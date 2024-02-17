@@ -40,7 +40,7 @@ if ($stmt->execute()) {
     // Espera 5 segundos antes de redirecionar
     sleep(5);
     // Redireciona para outro arquivo HTML em outra pasta
-    header("Location:C:\Users\tomas\OneDrive\PAP\SITE BANDA\escola.html");
+    header("escola.html");
     exit(); // Certifique-se de sair após o redirecionamento
 } else {
     echo "Erro: " . $conn->error;
