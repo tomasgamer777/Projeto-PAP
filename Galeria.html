@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Banda Musical de Pinheiro de Ázere</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+       <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="inicial.html"><img src="assets/favicon.ico" alt="..." /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link" href="Galeria.html">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="a-banda.html">A banda</a></li>
+                <li class="nav-item"><a class="nav-link" href="escola.html">Escola de Música</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+<!-- Inclua jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Inclua o arquivo JavaScript do Slick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<style>
+    .gallery {
+        text-align: center; /* Centraliza as imagens horizontalmente */
+        position: relative; /* Necessário para posicionar os botões */
+    }
+
+    .gallery img {
+        max-width: 100%; /* Define a largura máxima da imagem como 100% */
+        max-height: 1250px; /* Define a altura máxima da imagem */
+        height: auto; /* Mantém a proporção da imagem */
+        display: inline-block; /* Permite que as margens laterais funcionem */
+        margin: 0 auto; /* Centraliza a imagem horizontalmente */
+        position: relative;
+    }
+
+      /* Estilo para a legenda */
+      .slick-slide {
+            position: relative;
+        }
+
+        .slick-slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .slick-prev,
+        .slick-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            width: 80px; /* Largura dos botões */
+            height: 80px; /* Altura dos botões */
+            background-color: transparent;
+            border: 2px solid #D3D3D3; /* Borda branca */
+            border-radius: 50%; /* Borda arredondada */
+            cursor: pointer;
+        }
+
+        .slick-prev {
+            left: 20px;
+        }
+
+        .slick-next {
+            right: 20px;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            content: '';
+            display: inline-block;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            width: 0;
+            height: 0;
+        }
+
+        .slick-prev:before {
+            border-right: 30px solid #D3D3D3; /* Triângulo branco apontando para a esquerda */
+            margin-right: 10px;
+        }
+
+        .slick-next:before {
+            border-left: 30px solid #D3D3D3; /* Triângulo branco apontando para a direita */
+            margin-left: 10px;
+        }
+    .caption {
+        position: absolute;
+        top: 40%;
+        right: 10%;
+        transform: translateY(-50%);
+        color: #fff;
+        padding: 5px 10px;
+        text-align: center; /* Centraliza o texto */
+        font-size: 40px; /* Tamanho da fonte */
+        font-weight: bold; /* Negrito */
+    }
+</style>
+</head>
+<body>
+<!-- Galeria de imagens -->
+<div class="gallery">
+    <div>
+        <img src="assets/Galeria/concerto BVSCD/swipe.jpg" alt="Imagem 1">
+        <div class="caption">Concerto solidário BVSCD</div>
+    </div>
+    <div>
+        <img src="assets/Galeria/116º aniversário/swipe.jpg" alt="Imagem 2">
+        <div class="caption">116º aniversário da Banda</div>
+    </div>
+    <div>
+        <img src="assets/Galeria/Carnaval 2020/backgound.jpg" alt="Imagem 3">
+        <div class="caption">Carnaval 2020</div>
+    </div>
+    <div>
+        <img src="assets/Galeria/Carnaval 2019/swipe.jpg" alt="Imagem 3">
+        <div class="caption">Carnaval 2019</div>
+    </div>
+    <!-- Adicione quantas imagens desejar -->
+</div>
+
+<!-- Script para ativar o Slick -->
+<script>
+    $(document).ready(function(){
+        $('.gallery').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            arrows: true,
+            autoplay: false,
+            autoplaySpeed: 2000
+        });
+    });
+</script>
+</body>
+</html>
+
+    <!-- Portfolio-->
+    <section class="page-section bg-light" id="portfolio">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 1-->
+                <div class="portfolio-item">
+                    <div class="button">
+                        <a href="galeria\carnaval2020.html">
+                        <img class="img-fluid" src="assets/Galeria/Carnaval 2020/backgound.jpg" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Carnaval 2020</div>
+                        <div class="portfolio-caption-subheading text-muted">Dia 25 de fevereiro 2020</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 2-->
+                <div class="portfolio-item">
+                    <div class="button">
+                        <a href="galeria/VI gala.html">
+                        <img class="img-fluid" src="assets/Galeria/VI gala/backgound.jpg" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">VI Gala de Natal</div>
+                        <div class="portfolio-caption-subheading text-muted">Dia 23 de dezembro 2019</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 3-->
+                <div class="portfolio-item">
+                    <div class="button">
+                        <a href="galeria/116º aniversário.html">
+                        <img class="img-fluid" src="assets/Galeria/116º aniversário/backgound.jpg" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">116º aniversário da Banda</div>
+                        <div class="portfolio-caption-subheading text-muted">Dia 20 de outubro 2019</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                <!-- Portfolio item 4-->
+                <div class="portfolio-item">
+                    <div class="button">
+                        <a href="galeria/concerto BVSCD.html">
+                        <img class="img-fluid" src="assets/Galeria/concerto BVSCD/background.jpg" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Concerto solidário BVSCD</div>
+                        <div class="portfolio-caption-subheading text-muted">Dia 12 de junho 2019</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                <!-- Portfolio item 5-->
+                <div class="portfolio-item">
+                    <div class="button">
+                        <a href="galeria/carnaval2019.html">
+                        <img class="img-fluid" src="assets/Galeria/Carnaval 2019/swipe.jpg" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Carnaval 2019</div>
+                        <div class="portfolio-caption-subheading text-muted">Dia a verificar</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <!-- Portfolio item 6-->
+                <div class="portfolio-item">
+                    <div class="button">
+                        <a href="galeria/chamadouro2019.html">
+                        <img class="img-fluid" src="assets/Galeria/Chamadouro 2019/background.jpg" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Festas em honra de St. Ildefonso e N.Sra. das Candeias - Chamadouro</div>
+                        <div class="portfolio-caption-subheading text-muted">Dia 4 de fevereiro 2019</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</section>
+
+    </div>
+    
+</body>
+</html>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
