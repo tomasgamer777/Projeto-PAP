@@ -1,0 +1,42 @@
+<?php
+include "init.php";
+?>
+<html>
+<head>
+<title>Área reservada</title>
+</head>
+<body>
+<?php
+if (isst($_SESSION['email'])) //SE EXISTIR AUTENTICAÇÃO
+{
+	echo' Olá ' . $_SESSION['email'] . '.<br/>';
+<?php
+include 'init.php';
+//consulta do utilizador
+$consulta="Select * from utilizadores where email='" . $_POST['email'] . "' and
+password='" $_POST['password'] . "'";
+$resultado=mysql_query($resultado);
+if (mysql_num_rows($resultado)>0) //SE O MAIL E A PASSWORD COINCIREM
+{
+//COLOCA NA VARIAVEL LINHA OS DADOS DA consulta
+$linha=mysql_fetch_array($resultado);
+//COLOCA O EMAIL EM SESSAO
+$SESSION['email']=$linha['email'];
+//REIRECIONA A PAGINA PARA A PAGINA SECRETA
+header("location: admin.php");}
+else //CASO NÃO COINCIDAM
+{
+//REDIRECIONA PARA A PAGINA INICIAL REPORTANDO O ERRO 
+header("location: index.php?erro=1");}
+?>
+echo '<a href="logout.php"> Logout </a></td>';
+//LINK PARA FAZER logout
+
+}
+else //CASO NÃO ESTEJA AUTENTICADO
+{
+	echo 'Esta é uma área reservada, só utilizadores podem ter acesso.';
+}
+?>
+</body>
+</html>
