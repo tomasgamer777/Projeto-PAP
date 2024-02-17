@@ -1,8 +1,8 @@
 <?php
 // Conexão com o banco de dados
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "plesk2.server.highcloudservices.eu";
+$username = "tomas";
+$password = "!6B0ire55";
 $dbname = "banda";
 
 // Criando a conexão
