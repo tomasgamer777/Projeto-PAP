@@ -1,4 +1,5 @@
 <?php
+
 // Conexão com o banco de dados
 $servername = "plesk2.server.highcloudservices.eu";
 $username = "tomas";
@@ -34,17 +35,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssssss", $nome, $sobrenome, $data_nascimento, $rua, $distrito, $codigo_postal, $email, $target_file, $senha);
 
-if ($stmt->execute()) {
-    echo "Inscrição realizada com sucesso!
-    Em 5 segundos será redirecionado para a pagina!";
-    // Espera 5 segundos antes de redirecionar
-    sleep(5);
-    // Redireciona para outro arquivo HTML em outra pasta
-    header("escola.html");
-    exit(); // Certifique-se de sair após o redirecionamento
-} else {
-    echo "Erro: " . $conn->error;
-}
+
 
 $stmt->close();
 $conn->close();
