@@ -29,7 +29,7 @@ $target_file = $target_dir . basename($_FILES["foto"]["name"]);
 move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
 
 // Inserindo os dados na base de dados
-$sql = "INSERT INTO inscrição (Nome, Sobrenome, Data_Nasc, Morada, Distrito, Cod_Postal, Email, Foto_inscri, Password)
+$sql = "INSERT INTO inscricao (Nome, Sobrenome, Data_Nasc, Morada, Distrito, Cod_Postal, Email, Foto_inscri, Password)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssssss", $nome, $sobrenome, $data_nascimento, $rua, $distrito, $codigo_postal, $email, $target_file, $senha);
