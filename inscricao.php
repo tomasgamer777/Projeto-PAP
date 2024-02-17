@@ -34,7 +34,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 if ($conn->query($sql) === TRUE) {
   echo "Inscrição feita com sucesso!";
-  header("Location: escola.html");
+  header("Location: ./escola.html");
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
