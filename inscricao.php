@@ -16,6 +16,8 @@ $nome = $_POST['nome'];
 $sobrenome = $_POST['sobrenome'];
 $data_nascimento = $_POST['data_nascimento'];
 $rua = $_POST['rua'];
+$nif = $_POST['nif']
+$telef = $_POST['telefone']
 $distrito = $_POST['distrito'];
 $codigo_postal = $_POST['codigo_postal'];
 $email = $_POST['email'];
@@ -27,8 +29,8 @@ $target_file = $target_dir . basename($_FILES["foto"]["name"]);
 move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
 
 
-$sql = "INSERT INTO users (nome, sobrenome, data_nasc, morada, distrito, cod_postal, email, foto, password, tipo, status)
-VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo_postal', '$email', '$target_file', '$senha', 1, 2)";
+$sql = "INSERT INTO users (nome, sobrenome, data_nasc, morada, distrito, cod_postal, email, foto, password, tipo, status, telef, nif)
+VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo_postal', '$email', '$target_file', '$senha', 1, 2, '$telef', '$nif')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Inscrição feita com sucesso!";
