@@ -1,8 +1,0 @@
-Boa noite professora. 
-Eu tinha falado com os membros da direção da banda e chegamos a uma conclusão de algumas ideias para o site.
-Uma das ideias que seguiu, foi a de integrar no site a inscrição para a escola de musica.
-Eu mostrei alguns sites aos membros da direção dos quais eles escolheram o seguinte. Pois está bem conseguido e
-gostaram da maneira de como está organizado.
-https://www.bandadearouca.com
-No ficheiro .HTML está um template que ainda estamos a discurtir se vai avançar com esse ou não. Pelo facto de terem
-gostado bastante do modelo de site da banda a cima. 
