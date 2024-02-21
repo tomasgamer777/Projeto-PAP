@@ -28,7 +28,7 @@ move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
 
 
 $sql = "INSERT INTO users (nome, sobrenome, data_nasc, morada, distrito, cod_postal, email, foto, password, tipo, status)
-VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo_postal', '$email', '$target_file', '$senha', 1, 1)";
+VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo_postal', '$email', '$target_file', '$senha', 1, 2)";
 
 if ($conn->query($sql) === TRUE) {
   echo "Inscrição feita com sucesso!";
