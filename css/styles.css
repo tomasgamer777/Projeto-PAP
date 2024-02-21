@@ -11775,3 +11775,26 @@ footer {
       justify-content: center;
   }
 }
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.imagem {
+  width: 100%;
+  height: auto;
+}
+
+.botao {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #007bff; /* cor de fundo do botão */
+  color: white; /* cor do texto do botão */
+  padding: 10px 20px; /* espaço interno do botão */
+  border: none; /* remover borda */
+  border-radius: 5px; /* arredondar cantos */
+  text-decoration: none; /* remover sublinhado */
+}
