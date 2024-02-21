@@ -32,7 +32,7 @@ VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo
 
 if ($conn->query($sql) === TRUE) {
   echo "Inscrição feita com sucesso!";
-  header("Location: ./escola.html");
+  header("Location: ./inscricoes.html");
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
