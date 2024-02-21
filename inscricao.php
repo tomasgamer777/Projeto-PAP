@@ -4,16 +4,14 @@ $username = "tomas";
 $password = "!6B0ire55";
 $dbname = "banda";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
   die("conexão falada: " . $conn->connect_error);
 }
 echo "conexão feito com sucesso";
 
-// Recebendo os dados do formulário
+//dados do formulário
 $nome = $_POST['nome'];
 $sobrenome = $_POST['sobrenome'];
 $data_nascimento = $_POST['data_nascimento'];
@@ -21,9 +19,9 @@ $rua = $_POST['rua'];
 $distrito = $_POST['distrito'];
 $codigo_postal = $_POST['codigo_postal'];
 $email = $_POST['email'];
-$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Encriptação da senha
+$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-// Processando o upload da foto
+// upload da foto
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["foto"]["name"]);
 move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
