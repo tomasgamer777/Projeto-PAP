@@ -16,8 +16,8 @@ $nome = $_POST['nome'];
 $sobrenome = $_POST['sobrenome'];
 $data_nascimento = $_POST['data_nascimento'];
 $rua = $_POST['rua'];
-$nif = $_POST['nif']
-$telef = $_POST['telefone']
+$nif = $_POST['nif'];
+$telef = $_POST['telefone'];
 $distrito = $_POST['distrito'];
 $codigo_postal = $_POST['codigo_postal'];
 $email = $_POST['email'];
@@ -26,8 +26,8 @@ $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
 
 
-$sql = "INSERT INTO users (nome, sobrenome, data_nasc, morada, distrito, cod_postal, email, password, tipo, status)
-VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo_postal', '$email', '$senha', 3, 2)";
+$sql = "INSERT INTO users (nome, sobrenome, data_nasc, morada, distrito, nif, telef, cod_postal, email, password, tipo, status)
+VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$telef', '$nif', '$codigo_postal', '$email', '$senha', 3, 2)";
 
 if ($conn->query($sql) === TRUE) {
   echo "Inscrição feita com sucesso!";
