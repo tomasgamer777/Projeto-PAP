@@ -21,14 +21,11 @@ $codigo_postal = $_POST['codigo_postal'];
 $email = $_POST['email'];
 $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-// upload da foto
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["foto"]["name"]);
-move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
 
 
-$sql = "INSERT INTO users (nome, sobrenome, data_nasc, morada, distrito, cod_postal, email, foto, password, tipo, status)
-VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo_postal', '$email', '$target_file', '$senha', 3, 2)";
+
+$sql = "INSERT INTO users (nome, sobrenome, data_nasc, morada, distrito, cod_postal, email, password, tipo, status)
+VALUES ('$nome', '$sobrenome', '$data_nascimento', '$rua', '$distrito', '$codigo_postal', '$email', '$senha', 3, 2)";
 
 if ($conn->query($sql) === TRUE) {
   echo "Inscrição feita com sucesso!";
