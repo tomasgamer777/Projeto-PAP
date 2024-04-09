@@ -1,30 +1,43 @@
-<html>
-    <body> <h2> Remover Produto </h2>
-    <?php
-    $Nome=$_POST['Nome'];
-    if(!$Nome)
-{
-    echo 'Volte atrás e escreva o Produto';
+<?php
+$user_id = $_POST['user_id'];
+
+if (!$user_id) {
+    echo 'Volte atrás e forneça o ID do utilizador.';
     exit;
 }
-echo 'Produto a remover: '.$Nome.'<p>';
-$mysqli=new mysqli('127.0.0.1','root','','comercial');
-if($mysqli-> connect_error) {
-    echo 'Falha na ligação. </br>';
-    echo $mysqli->connect_error; exit;
+
+echo 'Utilizador a remover: '.$user_id.'<p>';
+
+$servername = "plesk2.server.highcloudservices.eu";
+$username = "tomas";
+$password = "Pv~i23i20";
+$dbname = "banda";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Falha na ligação: " . $conn->connect_error);
 }
-$resultado =$mysqli-> query ("select * from produtos");
-$nr_antes = mysqli_num_rows($resultado);
-$remove = "Delete from produtos Where Nomeproduto = '".$Nome."'";
-mysqli_query($mysqli ,$remove);
-$resultado = $mysqli->query("select * from produtos");
-$nr_depois = mysqli_num_rows($resultado);
-$removidos = $nr_antes - $nr_depois;
-echo 'Nº registos removidos: '.$removidos;
-$mysqli->close();
+
+$sql = "SELECT * FROM users WHERE user_id = '$user_id'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $remove = "DELETE FROM users WHERE user_id = '$user_id'";
+    if ($conn->query($remove) === TRUE) {
+        echo 'Utilizador removido com sucesso.';
+    } else {
+        echo 'Erro ao remover utilizador: ' . $conn->error;
+    }
+} else {
+    echo 'Utilizador não encontrado.';
+}
+
+$conn->close();
 ?>
+
 <p></p>
-<a href="http://localhost/ficha/Entradaf.html">
-                Voltar a entrada </a>
+<a href="admin.html">Voltar à entrada</a>
+
 </body>
 </html>
