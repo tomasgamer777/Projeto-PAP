@@ -1,29 +1,33 @@
 <?php
-$user_id = $_POST['user_id'];
+$nome = $_POST['Nome'];
 
-if (!$user_id) {
-    echo 'Volte atrás e forneça o ID do utilizador.';
+if (!$nome) {
+    echo 'Volte atrás e forneça o nome do utilizador a ser removido.';
     exit;
 }
 
-echo 'Utilizador a remover: '.$user_id.'<p>';
+echo 'Utilizador a remover: '.$nome.'<p>';
 
 $servername = "plesk2.server.highcloudservices.eu";
 $username = "tomas";
 $password = "Pv~i23i20";
-$dbname = "banda";
+$dbname = "comercial";
 
+// Cria uma conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Verifica a conexão
 if ($conn->connect_error) {
     die("Falha na ligação: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM users WHERE user_id = '$user_id'";
+// Consulta SQL para verificar se o utilizador existe antes de removê-lo
+$sql = "SELECT * FROM produtos WHERE Nomeproduto = '$nome'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    $remove = "DELETE FROM users WHERE user_id = '$user_id'";
+    // Utilizador encontrado, então remova-o
+    $remove = "DELETE FROM produtos WHERE Nomeproduto = '$nome'";
     if ($conn->query($remove) === TRUE) {
         echo 'Utilizador removido com sucesso.';
     } else {
