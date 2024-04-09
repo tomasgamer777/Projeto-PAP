@@ -22,12 +22,12 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para verificar se o utilizador existe antes de removê-lo
-$sql = "SELECT * FROM produtos WHERE Nomeproduto = '$nome'";
+$sql = "SELECT * FROM users WHERE nome = '$nome'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Utilizador encontrado, então remova-o
-    $remove = "DELETE FROM produtos WHERE Nomeproduto = '$nome'";
+    $remove = "DELETE FROM users WHERE nome = '$nome'";
     if ($conn->query($remove) === TRUE) {
         echo 'Utilizador removido com sucesso.';
     } else {
