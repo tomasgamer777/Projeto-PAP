@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $servername = "plesk2.server.highcloudservices.eu";
     $username = "tomas";
-    $password = "!6B0ire55";
+    $password = "Pv~i23i20";
     $dbname = "banda";
 
     // Cria uma conexão com o banco de dados
