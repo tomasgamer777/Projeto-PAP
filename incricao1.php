@@ -1,7 +1,7 @@
 <?php
 $servername = "plesk2.server.highcloudservices.eu";
 $username = "tomas";
-$password = "!6B0ire55";
+$password = "Pv~i23i20";
 $dbname = "banda";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
