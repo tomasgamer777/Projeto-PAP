@@ -12,12 +12,13 @@
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <label for="Nome">Nome do Utilizador:</label>
     <input type="text" id="Nome" name="Nome">
-    <button type="submit">Pesquisar</button>
+    <button type="submit" name="submit">Pesquisar</button>
 </form>
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['Nome'];
+    echo '<h3>Resultados da Pesquisa</h3>';
     echo 'Utilizador a procurar: ' . $nome . '<br />';
     
     $servername = "plesk2.server.highcloudservices.eu";
