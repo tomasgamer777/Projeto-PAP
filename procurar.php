@@ -35,14 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Consulta SQL para selecionar o utilizador com base no nome fornecido
-    $sql = "SELECT user_id, nome, subrenome FROM users WHERE nome = '$nome'";
+    $sql = "SELECT user_id, nome, sobrenome FROM users WHERE nome = '$nome'";
     $result = $conn->query($sql);
 
     // Verifica se há resultados e exibe na página
     if ($result->num_rows > 0) {
         echo "<h3>Dados deste utilizador</h3>";
         while ($row = $result->fetch_assoc()) {
-            echo $row['user_id'] . " - " . $row['nome'] . " - " . $row['subrenome'] . "<br>";
+            echo $row['user_id'] . " - " . $row['nome'] . " - " . $row['sobrenome'] . "<br>";
         }
     } else {
         echo "<h3>Utilizador não encontrado</h3>";
