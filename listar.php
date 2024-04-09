@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Utilizador</title>
+</head>
+<body>
+
+<h2>Pesquisar Utilizador</h2>
+
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <label for="user_id">ID do Utilizador:</label>
+    <input type="text" id="user_id" name="user_id">
+    <button type="submit">Pesquisar</button>
+</form>
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_POST['user_id'];
@@ -34,5 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-<p></p>
-<a href="index.html">Voltar à entrada</a>
+
+</body>
+</html>
