@@ -11,7 +11,7 @@ echo 'Utilizador a remover: '.$nome.'<p>';
 $servername = "plesk2.server.highcloudservices.eu";
 $username = "tomas";
 $password = "Pv~i23i20";
-$dbname = "comercial";
+$dbname = "banda";
 
 // Cria uma conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
