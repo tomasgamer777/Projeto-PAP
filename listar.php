@@ -1,22 +1,26 @@
 <?php
-    echo '<h3> Listar Produto </h3>';
-    $mysqli =new mysqli('127.0.0.1','root','','comercial');
-    if ($mysqli -> connect_error) {
-        echo 'Falha na ligação. </br>';
-        echo $mysqli->connect_error;
-        exit;
+    echo '<h3> Listar Utilizadores </h3>';
+    $servername = "plesk2.server.highcloudservices.eu";
+    $username = "tomas";
+    $password = "Pv~i23i20";
+    $dbname = "banda";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+     die("conexão falada: " . $conn->connect_error);
     }
     else {
-        $resultado = $mysqli -> query("select * from produtos");
+        $resultado = $mysqli -> query("select * from users");
         $n_registos = $resultado -> num_rows;
-        echo $n_registos .' registo(s) encontrado(s) <p>';
+        echo $n_registos .' utilizador(es) encontrado(s) <p>';
         while ($registo = $resultado -> fetch_assoc()) {
-            echo $registo ['Codproduto'] . " - " .
-                 $registo ['Nomeproduto'] . " - " .
-                 $registo ['Precovenda'] . " - " ; echo "</br>";
+            echo $registo ['user_id'] . " - " .
+                 $registo ['nome'] . " - " .
+                 $registo ['sobrenome'] . " - " ; echo "</br>";
         }
         $mysqli->close();
     }
 ?>
 <p> </p>
-<a href="http://localhost/ficha/Entradaf.html"> Voltar a entrada </a>
+<a href="admin.html"> Voltar a entrada </a>
