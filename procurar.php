@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_POST['user_id'];
-    echo 'Utilizador a procurar:'.$user_id.'<br />';
+    $nome = $_POST['Nome'];
+    echo 'Utilizador a procurar: ' . $nome . '<br />';
     
     $servername = "plesk2.server.highcloudservices.eu";
     $username = "tomas";
@@ -16,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("conexão falada: " . $conn->connect_error);
     }
     
-    // Consulta SQL para selecionar o utilizador com base no user_id fornecido
-    $sql = "SELECT user_id, nome, subrenome FROM users WHERE user_id = '$user_id'";
+    // Consulta SQL para selecionar o utilizador com base no nome fornecido
+    $sql = "SELECT user_id, nome, subrenome FROM users WHERE nome = '$nome'";
     $result = $conn->query($sql);
 
     // Verifica se há resultados e exibe na página
