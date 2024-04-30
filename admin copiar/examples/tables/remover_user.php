@@ -1,6 +1,9 @@
 <?php
 // Verifica se foi enviado o ID do utilizador via POST
 if (isset($_POST['user_id'])) {
+    // Mensagem de depuração
+    echo "User ID: " . $_POST['user_id'] . "<br>";
+
     // Conexão com o banco de dados
     $servername = "plesk2.server.highcloudservices.eu";
     $username = "tomas";
@@ -17,6 +20,9 @@ if (isset($_POST['user_id'])) {
     // Obtém o ID do utilizador enviado via POST
     $userId = $_POST['user_id'];
 
+    // Mensagem de depuração
+    echo "Deleting user with ID: " . $userId . "<br>";
+
     // Prepara a query SQL para remover o utilizador
     $sql = "DELETE FROM users WHERE user_id = $userId";
 
@@ -32,7 +38,6 @@ if (isset($_POST['user_id'])) {
     $conn->close();
 } else {
     // Responde com um JSON indicando erro de parâmetros
-    echo json_encode(arrally("success" => false, "error" => "ID do utilizador não especificado."));
+    echo json_encode(array("success" => false, "error" => "ID do utilizador não especificado."));
 }
-
 ?>
