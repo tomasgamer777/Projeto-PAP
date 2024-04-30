@@ -1,272 +1,184 @@
-# [Datta Able Django](https://appseed.us/product/datta-able/django/)
+# [Material Dashboard PRO](https://creativetimofficial.github.io/material-dashboard-pro/examples/dashboard.html) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Material%20Dashboard,%20a%20free%20Material%20Bootstrap%204%20Admin%20Template%20%E2%9D%A4%EF%B8%8F%20https%3A//bit.ly/2Lyat1Y%20%23bootstrap%20%23material%20%23design%20%23developers%20%23freebie%20%20via%20%40CreativeTim)
 
-Open-source **[Django Dashboard](https://appseed.us/admin-dashboards/django/)** provided by `AppSeed` on top of a modern design. **[Datta Able](https://appseed.us/product/datta-able/django/)** Bootstrap Lite is the most stylized Bootstrap 4 Template, among all other Lite/Free admin templates in the market. It comes with high feature-rich pages and components with fully developer-centric code - design from `CodedThemes`.
 
-- 👉 [Datta Able Django](https://appseed.us/product/datta-able/django/) - `Product page` 
-- 👉 [Datta Able Django](https://django-datta-able.appseed-srv1.com/) - `LIVE demo` 
+ ![version](https://img.shields.io/badge/version-2.1.0-blue.svg)  [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/ct-material-dashboard-pro.svg?maxAge=2592000)](https://github.com/creativetimofficial/ct-material-dashboard-pro/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/ct-material-dashboard-pro.svg?maxAge=2592000)](https://github.com/creativetimofficial/ct-material-dashboard-pro/issues?q=is%3Aissue+is%3Aclosed) [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim-general/Lobby) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
-<br />
 
-## Features
+![Product Gif](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-dashboard-pro-html/material-dashboard-pro.gif)
 
-> `Have questions?` Contact **[Support](https://appseed.us/support/)** (Email & Discord) provided by **AppSeed**
+Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design. It is based on the popular Bootstrap 4 framework and comes packed with multiple third-party plugins. All components are built to fit perfectly with each other, while aligning to the material concepts.
 
-| Free Version                          | [PRO Version](https://appseed.us/product/datta-able-pro/django/)    | 🚀 Custom - $9,999         |  
-| --------------------------------------| --------------------------------------| --------------------------------------|
-| ✓ **Django 4.1.12**                   | **Everything in Free**, plus:                                                                 | **Everything in PRO**, plus:      |
-| ✓ Best Practices                      | ✅ **Premium Bootstrap 5 Design**                                                             | ✅ **1mo Custom Development**     | 
-| ✓ Bootstrap 4, `Datta Able` Design    | ✅ `OAuth` Google, GitHub                                                                     | ✅ **Team**: PM, Developer, Tester        |
-| ✓ API Generator                       | ✅ `API`, **[Charts](https://django-datta-able-pro.onrender.com/charts/)**                  | ✅ Weekly Sprints                 |
-| ✓ Simple DataTables                   | ✅ **[DataTables](https://django-datta-able-pro.onrender.com/tables/)** (Filters, Export)   | ✅ Technical SPECS                |
-| ✓ `Docker`                            | ✅ **Celery**                                                                                 | ✅ Documentation                  |
-| ✓ `CI/CD` Flow via Render             | ✅ **[Media Files Manager](https://django-datta-able-pro.onrender.com/file-manager)**       | ✅ **30 days Delivery Warranty**  |
-| -                                     | ✅ **[Extended User Profiles](https://django-datta-enh-latest.onrender.com/users/profile/)**  |  -                                |
-| -                                     | ✅ `Private REPO Access`                                                                      |  -                                |
-| -                                     | ✅ **PRO Support** - [Email & Discord](https://appseed.us/support/)                           |  -                                |
-| -                                     | ✅ Deployment Assistance                                                                      |  -                                |
-| ------------------------------------  | ------------------------------------                                  | ------------------------------------|
-| ✓ [LIVE Demo](https://django-datta-able.appseed-srv1.com/)  | 🚀 [LIVE Demo](https://django-datta-able-pro.onrender.com/) | 🛒 `Order`: **[$9,999](https://appseed.gumroad.com/l/rocket-package)** (GUMROAD) |   
+Material Dashboard PRO makes use of light, surface and movement. The general layout resembles sheets of paper following multiple layers, so that the depth and order is obvious. Inside the archive you will find multiple example pages on how to use all components. And, of course, every element is documented.
 
-  
-![Datta Able (enhanced with dark mode) - Open-Source Seed project generated by AppSeed.](https://user-images.githubusercontent.com/51070104/176118649-7233ffbc-6118-4f56-8cda-baa81d256877.png)
+This dashboard is the bigger version for the [Material Dashboard](https://www.creative-tim.com/product/material-dashboard), which is available for free download. We have created the PRO version based on the feedback we received from people using the demo. We tried to keep it as lean as possible, but provide all the necessary tools for developing a complex product. The result is a powerful dashboard that can easily help you build admin panels, CRMs or content management systems.
 
-<br /> 
 
-## Start with `Docker`
+Material Dashboard PRO has the same line of design as the Material Kit PRO, so they go together quite good. If you think you will need more landing and example pages, be sure to check it out. If you love material design, you'll probably enjoy using these products!
 
-> 👉 **Step 1** - Download the code from the GH repository (using `GIT`) 
 
-```bash
-$ git clone https://github.com/app-generator/django-datta-able.git
-$ cd django-datta-able
-```
+#### Special thanks
+During the development of this dashboard, we have used many existing resources from awesome developers. We want to thank them for providing their tools open source:
+- [Robert McIntosh](https://github.com/mouse0270/bootstrap-notify) for the notification system.
+- [Chartist](https://gionkunz.github.io/chartist-js/) for the wonderful charts
+- [Tristan Edwards](https://twitter.com/t4t5) for the [Sweet Alert2](https://sweetalert2.github.io/)
+- [Eonasdan](https://github.com/Eonasdan) for the - [DateTimPicker](https://eonasdan.github.io/bootstrap-datetimepicker/)
+- Kirill Lebedev for [jVector Maps](http://jvectormap.com/)
+- [Vincent Gabriel](https://twitter.com/gabrielva) for the - [Bootstrap Wizard](http://vinceg.github.io/twitter-bootstrap-wizard/)
 
-<br />
 
-> 👉 **Step 2** - Start the APP in `Docker`
+Let us know your thoughts below. And good luck with development!
 
-```bash
-$ chmod +x entrypoint.sh
-$ docker-compose up --build 
-```
 
-Visit `http://localhost:5085` in your browser. The app should be up & running.
+## Table of Contents
 
-<br />
+* [Versions](#versions) 
+* [Demo](#demo)
+* [Quick Start](#quick-start)
+* [Documentation](#documentation)
+* [File Structure](#file-structure)
+* [Browser Support](#browser-support)
+* [Resources](#resources)
+* [Reporting Issues](#reporting-issues)
+* [Technical Support or Questions](#technical-support-or-questions)
+* [Licensing](#licensing)
+* [Useful Links](#useful-links)
 
-## Environment
 
-Create a new `.env` file using sample `env.sample`. The meaning of each variable can be found below: 
 
-- `DEBUG`: if `True` the app runs in development mode
-  - For production value `False` should be used
-- For `MySql` persistence
-  - Install the DB Driver: `pip install mysqlclient` 
-  - Create DB and assign a new user (full rights) 
-  - Edit `.env` to match the DB, user, and password
+## Versions
 
-<br />
+[<img src="https://s3.amazonaws.com/creativetim_bucket/github/html.png" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-pro)[<img src="https://s3.amazonaws.com/creativetim_bucket/github/react.svg" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-pro-react)[<img src="https://s3.amazonaws.com/creativetim_bucket/github/vuejs.png" width="60" height="60" />](https://www.creative-tim.com/product/vue-material-dashboard-pro)[<img src="https://s3.amazonaws.com/creativetim_bucket/github/angular.png" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-pro-angular2)
 
-## Manual Build
 
-> Download the code 
 
-```bash
-$ git clone https://github.com/app-generator/django-datta-able.git
-$ cd django-datta-able
-```
+| HTML | React | Vue | Angular  |
+| --- | --- | --- | ---  |
+| [![Material Dashboard PRO  HTML](https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-pro)  | [![Material Dashboard PRO  React](https://s3.amazonaws.com/creativetim_bucket/products/80/original/opt_mdp_react_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-pro-react)  | [![Vue Material Dashboard PRO](https://s3.amazonaws.com/creativetim_bucket/products/87/original/opt_mdp_vue_thumbnail.jpg)](https://www.creative-tim.com/product/vue-material-dashboard-pro)  | [![Material Dashboard PRO  Angular](https://s3.amazonaws.com/creativetim_bucket/products/55/original/opt_mdp_angular_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-pro-angular2) 
 
-<br />
 
-### 👉 Set Up for `Unix`, `MacOS` 
 
-> Install modules via `VENV`  
+## Demo
 
-```bash
-$ virtualenv env
-$ source env/bin/activate
-$ pip3 install -r requirements.txt
-```
+- [Start page](https://creativetimofficial.github.io/material-dashboard-pro/examples/dashboard.html)
+- [User profile page](https://demos.creative-tim.com/material-dashboard-pro/examples/pages/user.html)
+- [Tables page ](https://demos.creative-tim.com/material-dashboard-pro/examples/tables/extended.html)
+- [Maps Page](https://demos.creative-tim.com/material-dashboard-pro/examples/maps/google.html)
+- [Notifications page](https://demos.creative-tim.com/material-dashboard-pro/examples/components/notifications.html)
 
-<br />
+[View More](https://creativetimofficial.github.io/material-dashboard-pro/examples/dashboard.html).
 
-> Set Up Database
 
-```bash
-$ python manage.py makemigrations
-$ python manage.py migrate
-```
+## Quick start
 
-<br />
+- Buy from [Creative Tim](https://www.creative-tim.com/product/material-dashboard-pro)
 
-> Generate API
 
-```bash
-$ python manage.py generate-api -f
-```
+## Documentation
+The documentation for the Material Dashboard PRO is hosted at our [website](https://demos.creative-tim.com/material-dashboard-pro/docs/2.1/getting-started/introduction.html).
 
-<br />
 
-> Start the APP
-
-```bash
-$ python manage.py createsuperuser # create the admin
-$ python manage.py runserver       # start the project
-```
-
-At this point, the app runs at `http://127.0.0.1:8000/`. 
-
-<br />
-
-### 👉 Set Up for `Windows` 
-
-> Install modules via `VENV` (windows) 
+## File Structure
+Within the download you'll find the following directories and files:
 
 ```
-$ virtualenv env
-$ .\env\Scripts\activate
-$ pip3 install -r requirements.txt
-```
+material-dashboard-pro/
+├── CHANGELOG.md
+├── README.md
+├── assets/
+│   ├── css/
+│   │   ├── material-dashboard.css
+│   │   ├── material-dashboard.css.map
+│   │   ├── material-dashboard.min.css
+│   ├── demo/
+│   │   ├── demo.css
+│   │   └── demo.js
+│   ├── img/
+│   ├── js/
+│   │   ├── core/
+│   │   │   ├── bootstrap-material-design.min.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── popper.min.js
+│   │   ├── material-dashboard.js
+│   │   ├── material-dashboard.js.map
+│   │   ├── material-dashboard.min.js
+│   │   └── plugins/
+│   └── scss/
+│       ├── material-dashboard/
+│       └── material-dashboard.scss
+├── docs
+│   └── documentation.html
+├── examples
+│   ├── dashboard.html
+│   ├── calendar.html
+│   ├── charts.html
+│   ├── components/
+│   ├── forms/
+│   ├── maps/
+│   ├── pages/
+│   ├── tables/
+│   └── widgets.html
+├── gulpfile.js
+├── package.json
+└── template.html
 
-<br />
-
-> Set Up Database
-
-```bash
-$ python manage.py makemigrations
-$ python manage.py migrate
-```
-
-<br />
-
-> Start the APP
-
-```bash
-$ python manage.py createsuperuser # create the admin
-$ python manage.py runserver       # start the project
 ```
 
 
-At this point, the app runs at `http://127.0.0.1:8000/`. 
+## Browser Support
 
-<br />
+At present, we officially aim to support the last two versions of the following browsers:
 
-<br />
+<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
 
-## Codebase Structure
 
-The project is coded using a simple and intuitive structure presented below:
 
-```bash
-< PROJECT ROOT >
-   |
-   |-- core/                            
-   |    |-- settings.py                   # Project Configuration  
-   |    |-- urls.py                       # Project Routing
-   |
-   |-- home/
-   |    |-- views.py                      # APP Views 
-   |    |-- urls.py                       # APP Routing
-   |    |-- models.py                     # APP Models 
-   |    |-- tests.py                      # Tests  
-   |    |-- templates/                    # Theme Customisation 
-   |         |-- pages                    # 
-   |              |-- custom-index.py     # Custom Dashboard      
-   |
-   |-- requirements.txt                   # Project Dependencies
-   |
-   |-- env.sample                         # ENV Configuration (default values)
-   |-- manage.py                          # Start the app - Django default start script
-   |
-   |-- ************************************************************************
-```
+## Resources
+- Demo: <https://creativetimofficial.github.io/material-dashboard-pro/examples/dashboard.html>
+- Download Page: <https://www.creative-tim.com/product/material-dashboard-pro>
+- Documentation: <https://demos.creative-tim.com/material-dashboard-pro/docs/2.1/getting-started/introduction.html>
+- License Agreement: <https://www.creative-tim.com/license>
+- Support: <https://www.creative-tim.com/contact-us>
+- Issues: [Github Issues Page](https://github.com/creativetimofficial/ct-material-dashboard-pro/issues)
+- [Material Kit](https://www.creative-tim.com/product/material-kit?ref=github-md-free) - For Front End Development
 
-<br />
+## Reporting Issues
 
-## How to Customize 
+We use GitHub Issues as the official bug tracker for the Material Dashboard. Here are some advices for our users that want to report an issue:
 
-When a template file is loaded in the controller, `Django` scans all template directories starting from the ones defined by the user, and returns the first match or an error in case the template is not found. 
-The theme used to style this starter provides the following files: 
+1. Make sure that you are using the latest version of the Material Dashboard. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/).
+2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
+3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
 
-```bash
-# This exists in ENV: LIB/admin_datta
-< UI_LIBRARY_ROOT >                      
-   |
-   |-- templates/                     # Root Templates Folder 
-   |    |          
-   |    |-- accounts/       
-   |    |    |-- auth-signin.html     # Sign IN Page
-   |    |    |-- auth-signup.html     # Sign UP Page
-   |    |
-   |    |-- includes/       
-   |    |    |-- footer.html          # Footer component
-   |    |    |-- sidebar.html         # Sidebar component
-   |    |    |-- navigation.html      # Navigation Bar
-   |    |    |-- scripts.html         # Scripts Component
-   |    |
-   |    |-- layouts/       
-   |    |    |-- base.html            # Masterpage
-   |    |    |-- base-auth.html       # Masterpage for Auth Pages
-   |    |
-   |    |-- pages/       
-   |         |-- index.html           # Dashboard Page
-   |         |-- profile.html         # Profile Page
-   |         |-- *.html               # All other pages
-   |    
-   |-- ************************************************************************
-```
 
-When the project requires customization, we need to copy the original file that needs an update (from the virtual environment) and place it in the template folder using the same path. 
+## Technical Support or Questions
 
-> For instance, if we want to **customize the index.html** these are the steps:
+If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us) instead of opening an issue.
 
-- ✅ `Step 1`: create the `templates` DIRECTORY inside the `home` app
-- ✅ `Step 2`: configure the project to use this new template directory
-  - `core/settings.py` TEMPLATES section
-- ✅ `Step 3`: copy the `index.html` from the original location (inside your ENV) and save it to the `home/templates` DIR
-  - Source PATH: `<YOUR_ENV>/LIB/admin_black_pro/pages/index.html`
-  - Destination PATH: `<PROJECT_ROOT>home/templates/pages/index.html`
 
-> To speed up all these steps, the **codebase is already configured** (`Steps 1, and 2`) and a `custom dashboard` can be found at this location:
 
-`home/templates/pages/custom-index.html` 
+## Licensing
 
-By default, this file is unused because the `theme` expects `index.html` (without the `custom-` prefix). 
+- Copyright 2018 Creative Tim (https://www.creative-tim.com/)
 
-In order to use it, simply rename it to `index.html`. Like this, the default version shipped in the library is ignored by Django. 
+- Creative Tim [license](https://www.creative-tim.com/license)
 
-In a similar way, all other files and components can be customized easily.
 
-<br />
 
-## Deploy on [Render](https://render.com/)
+## Useful Links
 
-- Create a Blueprint instance
-  - Go to https://dashboard.render.com/blueprints this link.
-- Click `New Blueprint Instance` button.
-- Connect your `repo` which you want to deploy.
-- Fill the `Service Group Name` and click on the `Update Existing Resources` button.
-- After that, your deployment will start automatically.
+- [More products](https://www.creative-tim.com/bootstrap-themes) from Creative Tim
+- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
+- [Freebies](https://www.creative-tim.com/bootstrap-themes/free) from Creative Tim
+- [Affiliate Program](https://www.creative-tim.com/affiliates/new) (earn money)
 
-At this point, the product should be LIVE.
+##### Social Media
 
-<br />
+Twitter: <https://twitter.com/CreativeTim>
 
-## [Datta Able Django](https://appseed.us/product/datta-able-pro/django/) `PRO Version`
+Facebook: <https://www.facebook.com/CreativeTim>
 
-> For more components, pages, and priority on support, feel free to take a look at this amazing starter:
+Dribbble: <https://dribbble.com/creativetim>
 
-Designed for those who like bold elements and beautiful websites, **Datta Able** is the most stylish Bootstrap 4 Admin Template compare to all other Bootstrap admin templates. It comes with high feature-rich pages and components with fully developer-centric code. 
+Google+: <https://plus.google.com/+CreativetimPage>
 
-- 👉 [Django Datta PRO](https://appseed.us/product/datta-able-pro/django/) - product page
-  - ✅ `Enhanced UI` - more pages and components
-  - ✅ `Priority` on support
-
-<br >
-
-![Datta Able PRO - Full-Stack Starter generated by AppSeed.](https://user-images.githubusercontent.com/51070104/170474361-a58da82b-fff9-4a59-81a8-7ab99f478f48.png)
-
-<br />
-
----
-[Datta Able Django](https://appseed.us/product/datta-able/django/) - Open-source starter provided by **[AppSeed](https://appseed.us/)**.
+Instagram: <https://www.instagram.com/CreativeTimOfficial>
