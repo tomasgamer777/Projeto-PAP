@@ -21,14 +21,17 @@ if (isset($_POST['user_id'])) {
     $sql = "DELETE FROM users WHERE user_id = $userId";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Utilizador removido com sucesso!";
+        // Resposta JSON indicando sucesso
+        echo json_encode(array("success" => true));
     } else {
-        echo "Erro ao remover o utilizador: " . $conn->error;
+        // Resposta JSON indicando erro
+        echo json_encode(array("success" => false, "error" => "Erro ao remover o utilizador: " . $conn->error));
     }
 
-    // Fecha a conexão com a base de dados
+    // Fecha a conexão com o banco de dados
     $conn->close();
 } else {
-    echo "ID do utilizador não especificado.";
+    // Resposta JSON indicando erro de parâmetros
+    echo json_encode(array("success" => false, "error" => "ID do utilizador não especificado."));
 }
 ?>
