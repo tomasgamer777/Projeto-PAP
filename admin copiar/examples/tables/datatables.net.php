@@ -507,12 +507,13 @@
                                             die("Connection failed: " . $conn->connect_error);
                                         }
     
-                                        $sql = "SELECT nome, sobrenome, email, telef, morada, tipo, status FROM users";
+                                        $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status FROM users";
                                         $result = $conn->query($sql);
     
                                         if ($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
                                                 echo "<tr>";
+                                                  echo "<td>" . $row["user_id"] . "</td>";
                                                 echo "<td>" . $row["nome"] . "</td>";
                                                 echo "<td>" . $row["sobrenome"] . "</td>";
                                                 echo "<td>" . $row["email"] . "</td>";
