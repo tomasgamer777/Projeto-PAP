@@ -451,102 +451,118 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-primary card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">assignment</i>
-                            </div>
-                            <h4 class="card-title">DataTables.net</h4>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
                         </div>
-                        <div class="card-body">
-                            <div class="toolbar">
-                                <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
-                            </div>
-                            <div class="material-datatables">
-                                <table id="datatables" class="table table-striped table-no-bordered table-hover"
-                                    cellspacing="0" width="100%" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>Nome</th>
-                                            <th>Sobrenome</th>
-                                            <th>Email</th>
-                                            <th>Telefone</th>
-                                            <th>Morada</th>
-                                            <th>Tipo</th>
-                                            <th>Status</th>
-                                            <th class="disabled-sorting text-right">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                        <th>Código</th>
-                                            <th>Nome</th>
-                                            <th>Sobrenome</th>
-                                            <th>Email</th>
-                                            <th>Telefone</th>
-                                            <th>Morada</th>
-                                            <th>Tipo</th>
-                                            <th>Status</th>
-                                            <th class="text-right">Actions</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php
-                                        // Conexão com o banco de dados
-                                        $servername = "plesk2.server.highcloudservices.eu";
-                                        $username = "tomas";
-                                        $password = "Pv~i23i20";
-                                        $dbname = "banda";
-    
-                                        $conn = new mysqli($servername, $username, $password, $dbname);
-    
-                                        // Verifica a conexão
-                                        if ($conn->connect_error) {
-                                            die("Connection failed: " . $conn->connect_error);
-                                        }
-    
-                                        $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status FROM users";
-                                        $result = $conn->query($sql);
-    
-                                        if ($result->num_rows > 0) {
-                                            while($row = $result->fetch_assoc()) {
-                                                echo "<tr>";
-                                                  echo "<td>" . $row["user_id"] . "</td>";
-                                                echo "<td>" . $row["nome"] . "</td>";
-                                                echo "<td>" . $row["sobrenome"] . "</td>";
-                                                echo "<td>" . $row["email"] . "</td>";
-                                                echo "<td>" . $row["telef"] . "</td>";
-                                                echo "<td>" . $row["morada"] . "</td>";
-                                                echo "<td>" . $row["tipo"] . "</td>";
-                                                echo "<td>" . $row["status"] . "</td>";
-                                                echo '<td class="text-right">
-                                                        <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
-                                                        <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                                                        <a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
-                                                      </td>';
-                                                echo "</tr>";
-                                            }
-                                        } else {
-                                            echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
-                                        }
-                                        $conn->close();
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- end content-->
+                        <h4 class="card-title">DataTables.net</h4>
                     </div>
-                    <!-- end card  -->
+                    <div class="card-body">
+                        <div class="toolbar">
+                            <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
+                        </div>
+                        <div class="material-datatables">
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Sobrenome</th>
+                                        <th>Email</th>
+                                        <th>Telefone</th>
+                                        <th>Morada</th>
+                                        <th>Tipo</th>
+                                        <th>Status</th>
+                                        <th class="disabled-sorting text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Sobrenome</th>
+                                        <th>Email</th>
+                                        <th>Telefone</th>
+                                        <th>Morada</th>
+                                        <th>Tipo</th>
+                                        <th>Status</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php
+                                    // Conexão com o banco de dados
+                                    $servername = "plesk2.server.highcloudservices.eu";
+                                    $username = "tomas";
+                                    $password = "Pv~i23i20";
+                                    $dbname = "banda";
+
+                                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                                    // Verifica a conexão
+                                    if ($conn->connect_error) {
+                                        die("Connection failed: " . $conn->connect_error);
+                                    }
+
+                                    $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status FROM users";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row["user_id"] . "</td>";
+                                            echo "<td>" . $row["nome"] . "</td>";
+                                            echo "<td>" . $row["sobrenome"] . "</td>";
+                                            echo "<td>" . $row["email"] . "</td>";
+                                            echo "<td>" . $row["telef"] . "</td>";
+                                            echo "<td>" . $row["morada"] . "</td>";
+                                            echo "<td>" . $row["tipo"] . "</td>";
+                                            echo "<td>" . $row["status"] . "</td>";
+                                            echo '<td class="text-right">
+                                                    <a href="#" class="btn btn-link btn-info btn-just-icon like" onclick="likeUser(' . $row["user_id"] . ')"><i class="material-icons">favorite</i></a>
+                                                    <a href="#" class="btn btn-link btn-warning btn-just-icon edit" onclick="editUser(' . $row["user_id"] . ')"><i class="material-icons">dvr</i></a>
+                                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="removeUser(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
+                                                  </td>';
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+                                    }
+                                    $conn->close();
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end content-->
                 </div>
-                <!-- end col-md-12 -->
+                <!-- end card  -->
             </div>
-            <!-- end row -->
+            <!-- end col-md-12 -->
         </div>
+        <!-- end row -->
+    </div>
+</div>
+
+<script>
+    function likeUser(userId) {
+        alert("Curtiu o usuário com ID " + userId);
+    }
+
+    function editUser(userId) {
+        alert("Editou o usuário com ID " + userId);
+    }
+
+    function removeUser(userId) {
+        alert("Removeu o usuário com ID " + userId);
+    }
+</script>
+
     </div>
     
       <footer class="footer">
