@@ -567,8 +567,7 @@
             alert("Utilizador removido com sucesso!");
             
             // Redireciona para a mesma página
-            console.log("Redirecionando...");
-window.location.href = window.location.href;
+            location.reload();
         });
     } else {
         alert("Remoção cancelada.");
