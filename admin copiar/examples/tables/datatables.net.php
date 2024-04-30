@@ -563,7 +563,11 @@
             // Aqui você pode fazer uma chamada AJAX para remover o utilizador do banco de dados
             // Por exemplo:
             $.post("remover_user.php", { user_id: userId }, function(data) {
-               alert("Utilizador removido com sucesso!");
+                // Exibe mensagem de sucesso
+                alert("Utilizador removido com sucesso!");
+
+                // Recarrega os dados da datatable
+                $('#datatables').DataTable().ajax.reload();
             });
         } else {
             alert("Remoção cancelada.");
