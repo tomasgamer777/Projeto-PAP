@@ -565,15 +565,16 @@
             $.post("remover_user.php", { user_id: userId }, function(data) {
                 // Exibe mensagem de sucesso
                 alert("Utilizador removido com sucesso!");
-
-                // Recarrega os dados da datatable
-                $('#datatables').DataTable().ajax.reload();
+                
+                // Redireciona o usuário para a mesma página após a remoção do utilizador
+                window.location.href = window.location.href;
             });
         } else {
             alert("Remoção cancelada.");
         }
     }
 </script>
+
 
 
     </div>
