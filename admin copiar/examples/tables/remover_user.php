@@ -32,6 +32,7 @@ if (isset($_POST['user_id'])) {
     $conn->close();
 } else {
     // Responde com um JSON indicando erro de parâmetros
-    echo json_encode(array("success" => false, "error" => "ID do utilizador não especificado."));
+    echo json_encode(arrally("success" => false, "error" => "ID do utilizador não especificado."));
 }
+
 ?>
