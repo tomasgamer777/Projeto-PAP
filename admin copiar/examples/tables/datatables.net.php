@@ -470,6 +470,7 @@
                                     cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th>Código</th>
                                             <th>Nome</th>
                                             <th>Sobrenome</th>
                                             <th>Email</th>
@@ -482,13 +483,14 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                          <th>Nome</th>
-                                          <th>Sobrenome</th>
-                                          <th>Email</th>
-                                          <th>Telefone</th>
-                                          <th>Morada</th>
-                                          <th>Tipo</th>
-                                          <th>Status</th>
+                                        <th>Código</th>
+                                            <th>Nome</th>
+                                            <th>Sobrenome</th>
+                                            <th>Email</th>
+                                            <th>Telefone</th>
+                                            <th>Morada</th>
+                                            <th>Tipo</th>
+                                            <th>Status</th>
                                             <th class="text-right">Actions</th>
                                         </tr>
                                     </tfoot>
