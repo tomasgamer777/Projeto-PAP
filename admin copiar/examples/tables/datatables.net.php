@@ -559,20 +559,20 @@
     }
 
     function confirmRemove(userId) {
-        if (confirm("Tem certeza que deseja remover o utilizador com ID " + userId + "?")) {
-            // Aqui você pode fazer uma chamada AJAX para remover o utilizador do banco de dados
-            // Por exemplo:
-            $.post("remover_user.php", { user_id: userId }, function(data) {
-                // Exibe mensagem de sucesso
-                alert("Utilizador removido com sucesso!");
-                
-                // Redireciona o usuário para a mesma página após a remoção do utilizador
-                window.location.href = window.location.href;
-            });
-        } else {
-            alert("Remoção cancelada.");
-        }
+    if (confirm("Tem certeza que deseja remover o utilizador com ID " + userId + "?")) {
+        // Aqui você pode fazer uma chamada AJAX para remover o utilizador do banco de dados
+        // Por exemplo:
+        $.post("remover_user.php", { user_id: userId }, function(data) {
+            // Exibe mensagem de sucesso
+            alert("Utilizador removido com sucesso!");
+            
+            // Redireciona para a mesma página
+            window.location.href = window.location.href;
+        });
+    } else {
+        alert("Remoção cancelada.");
     }
+}
 </script>
 
 
