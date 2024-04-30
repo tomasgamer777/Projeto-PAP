@@ -526,7 +526,7 @@
                                             echo '<td class="text-right">
                                                     <a href="#" class="btn btn-link btn-info btn-just-icon like" onclick="likeUser(' . $row["user_id"] . ')"><i class="material-icons">favorite</i></a>
                                                     <a href="#" class="btn btn-link btn-warning btn-just-icon edit" onclick="editUser(' . $row["user_id"] . ')"><i class="material-icons">dvr</i></a>
-                                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="removeUser(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
+                                                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="confirmRemove(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
                                                   </td>';
                                             echo "</tr>";
                                         }
@@ -551,17 +551,27 @@
 
 <script>
     function likeUser(userId) {
-        alert("Curtiu o usuário com ID " + userId);
+        alert("Curtiu o utilizador com ID " + userId);
     }
 
     function editUser(userId) {
-        alert("Editou o usuário com ID " + userId);
+        alert("Editou o utilizador com ID " + userId);
     }
 
-    function removeUser(userId) {
-        alert("Removeu o usuário com ID " + userId);
+    function confirmRemove(userId) {
+        if (confirm("Tem certeza que deseja remover o utilizador com ID " + userId + "?")) {
+            // Aqui você pode fazer uma chamada AJAX para remover o utilizador do banco de dados
+            // Por exemplo:
+            // $.post("remover_utilizador.php", { user_id: userId }, function(data) {
+            //     alert("Utilizador removido com sucesso!");
+            // });
+            alert("Utilizador removido com sucesso!");
+        } else {
+            alert("Remoção cancelada.");
+        }
     }
 </script>
+
 
     </div>
     
