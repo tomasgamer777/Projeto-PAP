@@ -363,9 +363,10 @@
                           <div class="col-sm-7">
                             <div class="form-group">
                               <label>Data de Nascimento</label>
-                              <input type="text" class="form-control datepicker" value="01/05/2024">
+                              <input type="text" class="form-control datepicker" value="01/05/2024" readonly>
                             </div>
                           </div>
+
                           <div class="col-sm-3">
                             <div class="form-group">
                               <label>Rua</label>
