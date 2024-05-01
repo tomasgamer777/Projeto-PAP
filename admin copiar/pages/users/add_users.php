@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $distrito = $_POST['distrito'];
 
     // Prepara e executa a consulta SQL para inserir os dados
-    $sql = "INSERT INTO usuarios (nome, sobrenome, email, password, morada, telef, nif, distrito)
+    $sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito)
     VALUES ('$firstname', '$lastname', '$email', '$password', '$rua', '$telefone', '$nif', '$distrito')";
 
     if ($conn->query($sql) === TRUE) {
