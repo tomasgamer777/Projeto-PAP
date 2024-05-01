@@ -362,23 +362,8 @@
                           </div>
                           <div class="col-sm-7">
                             <div class="form-group">
-                               <div class="card-header card-header-rose card-header-text">
-                                <div class="card-icon">
-                                  <i class="material-icons">library_books</i>
-                                </div>
-                                <h4 class="card-title">Data de Nascimento</h4>
-                                </div>
-                                <div class="card-body ">
-                                  <div class="form-group">
-                                    <input type="text" class="form-control datepicker" value="01/05/2024">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          <div class="col-sm-7">
-                            <div class="form-group">
                               <label>Data de Nascimento</label>
-                              <input type="text" class="form-control">
+                              <input type="text" class="form-control datepicker" value="01/05/2024">
                             </div>
                           </div>
                           <div class="col-sm-3">
