@@ -361,7 +361,7 @@
                             <h5 class="info-text"> Mais informações sobre o Utilizador </h5>
                           </div>
                           <div class="col-sm-7">
-                            <div class="card ">
+                            <div class="form-group">
                                <div class="card-header card-header-rose card-header-text">
                                 <div class="card-icon">
                                   <i class="material-icons">library_books</i>
