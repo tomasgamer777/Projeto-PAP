@@ -366,29 +366,28 @@
                               <input type="text" class="form-control datepicker" value="01/05/2024" readonly>
                             </div>
                           </div>
-
                           <div class="col-sm-3">
                             <div class="form-group">
                               <label>Rua</label>
-                              <input type="text" class="form-control">
+                              <input type="text" class="form-control" name="rua">
                             </div>
                           </div>
                           <div class="col-sm-3">
                             <div class="form-group">
                               <label>Telefone</label>
-                              <input type="text" class="form-control">
+                              <input type="text" class="form-control" name="telefone">
                             </div>
                           </div>
                           <div class="col-sm-3">
-                            <div class="form-group">
-                              <label>NIF</label>
-                              <input type="text" class="form-control">
-                            </div>
+                              <div class="form-group">
+                                  <label>NIF</label>
+                                  <input type="text" class="form-control" name="nif">
+                              </div>
                           </div>
                           <div class="col-sm-5">
-                            <div class="form-group select-wizard">
+                              <div class="form-group select-wizard">
                               <label>Distrito</label>
-                              <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select">
+                              <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
                                 <option value="aveiro"> Aveiro </option>
                                 <option value="beja"> Beja </option>
                                 <option value="braga"> Braga </option>
