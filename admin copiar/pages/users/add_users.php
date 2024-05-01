@@ -348,7 +348,7 @@
                                   <div class="icon">
                                     <i class="fa fa-laptop"></i>
                                   </div>
-                                  <h6>Socio</h6>
+                                  <h6>Sócio</h6>
                                 </div>
                               </div>
                             </div>
@@ -360,6 +360,21 @@
                           <div class="col-sm-12">
                             <h5 class="info-text"> Mais informações sobre o Utilizador </h5>
                           </div>
+                          <div class="col-sm-7">
+                            <div class="card ">
+                               <div class="card-header card-header-rose card-header-text">
+                                <div class="card-icon">
+                                  <i class="material-icons">library_books</i>
+                                </div>
+                                <h4 class="card-title">Data de Nascimento</h4>
+                                </div>
+                                <div class="card-body ">
+                                  <div class="form-group">
+                                    <input type="text" class="form-control datepicker" value="01/05/2024">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           <div class="col-sm-7">
                             <div class="form-group">
                               <label>Data de Nascimento</label>
@@ -894,6 +909,15 @@
       setTimeout(function() {
         $('.card.card-wizard').addClass('active');
       }, 600);
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      // initialise Datetimepicker and Sliders
+      md.initFormExtendedDatetimepickers();
+      if ($('.slider').length != 0) {
+        md.initSliders();
+      }
     });
   </script>
 </body>
