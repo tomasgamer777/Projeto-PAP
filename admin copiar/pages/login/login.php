@@ -2,10 +2,10 @@
 // Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Conexão com o banco de dados (substitua pelas suas configurações)
-    $servername = "localhost";
-    $username = "seu_usuario";
-    $password = "sua_senha";
-    $dbname = "seu_banco_de_dados";
+    $servername = "plesk2.server.highcloudservices.eu";
+    $username = "tomas";
+    $password = "Pv~i23i20";
+    $dbname = "banda";
 
     // Dados do formulário
     $email = $_POST['email'];
