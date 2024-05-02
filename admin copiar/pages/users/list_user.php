@@ -122,8 +122,8 @@
           </div>
         </div>
         <ul class="nav">
-          <li class="nav-item active ">
-            <a class="nav-link" href="../pages/dashboard.html">
+          <li class="nav-item  ">
+            <a class="nav-link" href="../dashboard.html">
               <i class="material-icons">dashboard</i>
               <p> Menu Principal </p>
             </a>
@@ -138,13 +138,13 @@
             <div class="collapse" id="formsExamples">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="../pages/add_users.php">
+                  <a class="nav-link" href="../users/add_users.html">
                     <i class="material-icons"> person_add_alt </i>
                     <span class="sidebar-normal"> Adicionar Utilizador </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/users/list_user.php">
+                <li class="nav-item active">
+                  <a class="nav-link" href="../users/list_user.php">
                     <i class="material-icons"> list </i>
                     <span class="sidebar-normal"> lista de Utilizadores </span>
                   </a>
@@ -153,7 +153,7 @@
             </div>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="../pages/calendar.html">
+            <a class="nav-link" href="../calendar.html">
               <i class="material-icons">calendar_today</i>
               <p> Calendário </p>
             </a>
