@@ -172,7 +172,7 @@
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">DataTables.net</a>
+            <a class="navbar-brand" href="#pablo">Lista de utilizadores</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -239,7 +239,7 @@
                         <div class="card-icon">
                             <i class="material-icons">assignment</i>
                         </div>
-                        <h4 class="card-title">DataTables.net</h4>
+                        <h4 class="card-title">Lista de Utilizadores</h4>
                     </div>
                     <div class="card-body">
                         <div class="toolbar">
