@@ -329,9 +329,6 @@
 </div>
 
 <script>
-    function likeUser(userId) {
-        alert("Curtiu o utilizador com ID " + userId);
-    }
 
     function editUser(userId) {
         alert("Editou o utilizador com ID " + userId);
