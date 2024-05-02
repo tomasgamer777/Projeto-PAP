@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Dados do formulário
     $email = $_POST['email'];
-    $user_password = $_POST['password']; // Usar uma variável diferente para a senha fornecida pelo usuário
+    $password = $_POST['password']; // Usar uma variável diferente para a senha fornecida pelo usuário
 
     // Consulta SQL para verificar se o usuário e a senha correspondem
     $sql = "SELECT * FROM users WHERE email='$email'";
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>demo.showSwal('auto-close');</script>";
             } else {
                 // Verificar se a senha fornecida pelo usuário corresponde à senha armazenada no banco de dados
-                if (password_verify($user_password, $row['password'])) {
+                if (password_verify($password, $row['password'])) {
                     // Verificar se o usuário é um administrador (tipo = 1)
                     if ($row['tipo'] == 1) {
                         // Redirecionamento para o dashboard
