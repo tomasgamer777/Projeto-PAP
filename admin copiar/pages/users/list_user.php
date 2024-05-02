@@ -258,7 +258,7 @@
                                         <th>Morada</th>
                                         <th>Tipo</th>
                                         <th>Status</th>
-                                        <th class="disabled-sorting text-right">Actions</th>
+                                        <th class="disabled-sorting text-right">Ações</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -271,7 +271,7 @@
                                         <th>Morada</th>
                                         <th>Tipo</th>
                                         <th>Status</th>
-                                        <th class="text-right">Actions</th>
+                                        <th class="text-right">Ações</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -827,7 +827,7 @@
         responsive: true,
         language: {
           search: "_INPUT_",
-          searchPlaceholder: "Search records",
+          searchPlaceholder: "Procurar Utilizador",
         }
       });
 
