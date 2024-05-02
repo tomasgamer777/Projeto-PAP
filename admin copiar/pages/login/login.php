@@ -6,9 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = "Pv~i23i20";
     $dbname = "banda";
 
-     // Dados do formulário
-     $email = $_POST['email'];
-     $password = $_POST['password'];
+     
  
      // Criar conexão
      $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,6 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      if ($conn->connect_error) {
          die("Conexão falhou: " . $conn->connect_error);
      }
+
+     // Dados do formulário
+     $email = $_POST['email'];
+     $password = $_POST['password'];
  
      // Consulta SQL para verificar se o usuário e a senha correspondem
      $sql = "SELECT * FROM users WHERE email='$email'";
