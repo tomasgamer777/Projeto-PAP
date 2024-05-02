@@ -623,9 +623,9 @@ demo = {
 
         } else if (type == 'auto-close') {
             swal({
-                title: "Auto close alert!",
-                text: "I will close in 2 seconds.",
-                timer: 2000,
+                title: "Utilizador Desativado",
+                text: "Tente utilizador ou entre em contacto com um menbro da direção",
+                timer: 5000,
                 showConfirmButton: false
             }).catch(swal.noop)
         } else if (type == 'input-field') {
