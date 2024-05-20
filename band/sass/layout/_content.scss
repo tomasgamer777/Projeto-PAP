@@ -135,8 +135,14 @@
 	}
 }
 
-.map{
-	height: 320px;
+.map {
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .contact-form{
@@ -160,22 +166,52 @@
 		min-height: 150px;
 	}
 }
-.map-wrapper{
-	address{
-		font-style: normal;
-		background: #353535;
-		border-bottom: 3px solid $accent-color;
-		padding: 10px;
-		color: white;
+.map-wrapper {
+    address {
+        font-style: normal;
+        background: #353535;
+        border-bottom: 3px solid $accent-color;
+        padding: 10px;
+        color: white;
 
-		a{
-			color: white;
-			transition: .3s ease;
-			text-decoration: none;
+        a {
+            color: white;
+            transition: .3s ease;
+            text-decoration: none;
 
-			&:hover{
-				color: $accent-color;
-			}
-		}
-	}
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-6 {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form {
+    flex: 1;
+}
+
+.map-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.map {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#map {
+    flex: 1;
 }
