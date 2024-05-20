@@ -135,12 +135,8 @@
 	}
 }
 
-
-
-#map {
-    width: 100%;
-    height: 100%;
-    border: 0;
+.map{
+	height: 320px;
 }
 
 .contact-form{
@@ -164,71 +160,22 @@
 		min-height: 150px;
 	}
 }
-.map-wrapper {
-    address {
-        font-style: normal;
-        background: #353535;
-        border-bottom: 3px solid $accent-color;
-        padding: 10px;
-        color: white;
+.map-wrapper{
+	address{
+		font-style: normal;
+		background: #353535;
+		border-bottom: 3px solid $accent-color;
+		padding: 10px;
+		color: white;
 
-        a {
-            color: white;
-            transition: .3s ease;
-            text-decoration: none;
+		a{
+			color: white;
+			transition: .3s ease;
+			text-decoration: none;
 
-            &:hover {
-                color: $accent-color;
-            }
-        }
-    }
-}
-
-.map {
-    height: 320px; /* Ajuste a altura conforme necessário */
-}
-
-#map {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-.col-md-6 {
-    display: flex;
-    flex-direction: column;
-}
-
-.map-wrapper, address {
-    margin-bottom: 20px;
-}
-
-.map-wrapper {
-    position: relative;
-    width: 100%;
-    height: 450px; /* Ajuste conforme necessário */
-    margin-bottom: 20px;
-}
-
-#map {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-address {
-    background: #353535;
-    border-bottom: 3px solid $accent-color;
-    padding: 10px;
-    color: white;
-}
-
-address a {
-    color: white;
-    transition: .3s ease;
-    text-decoration: none;
-}
-
-address a:hover {
-    color: $accent-color;
+			&:hover{
+				color: $accent-color;
+			}
+		}
+	}
 }
