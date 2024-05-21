@@ -160,7 +160,7 @@
           </li>
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-              <i class="material-icons">person</i>
+              <i class="material-icons">public</i>
               <p> Editar Website
                 <b class="caret"></b>
               </p>
