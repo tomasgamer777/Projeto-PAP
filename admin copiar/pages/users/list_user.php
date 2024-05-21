@@ -158,6 +158,30 @@
               <p> Calendário </p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+              <i class="material-icons">person</i>
+              <p> Editar Website
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse" id="formsExamples">
+              <ul class="nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="../users/add_users.html">
+                    <i class="material-icons"> home </i>
+                    <span class="sidebar-normal"> Página principal </span>
+                  </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="../users/list_user.php">
+                    <i class="material-icons"> collections </i>
+                    <span class="sidebar-normal"> Galeria </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
