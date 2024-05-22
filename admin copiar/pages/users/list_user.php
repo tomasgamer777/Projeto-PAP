@@ -280,7 +280,7 @@
                                     // Conexão com o banco de dados
                                     $servername = "plesk2.server.highcloudservices.eu";
                                     $username = "tomas";
-                                    $password = "Pv~i23i20";
+                                    $password = "!h01fFw35";
                                     $dbname = "banda";
 
                                     $conn = new mysqli($servername, $username, $password, $dbname);
