@@ -278,7 +278,7 @@
                                 <tbody>
                                     <?php
                                     // Conexão com o banco de dados
-                                    $servername = "plesk2.server.highcloudservices.eu";
+                                    $servername = "localhost";
                                     $username = "tomas";
                                     $password = "!h01fFw35";
                                     $dbname = "banda";
