@@ -441,9 +441,9 @@
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['finish'])) {
-        $servername = "plesk2.server.highcloudservices.eu";
+        $servername = "localhost";
         $username = "tomas";
-        $password = "Pv~i23i20";
+        $password = "!h01fFw35";
         $dbname = "banda";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
