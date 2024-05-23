@@ -447,31 +447,36 @@
         $dbname = "banda";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Conexão falhou: " . $conn->connect_error);
-        }
 
-        $firstname = $conn->real_escape_string($_POST['firstname']);
-        $lastname = $conn->real_escape_string($_POST['lastname']);
-        $email = $conn->real_escape_string($_POST['email']);
-        $password = $conn->real_escape_string($_POST['password']);
-        $rua = $conn->real_escape_string($_POST['rua']);
-        $telefone = $conn->real_escape_string($_POST['telefone']);
-        $nif = $conn->real_escape_string($_POST['nif']);
-        $distrito = $conn->real_escape_string($_POST['distrito']);
+    if ($conn->connect_error) {
+        die("Conexão falhou: " . $conn->connect_error);
+    }
 
-        $sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito)
-                VALUES ('$firstname', '$lastname', '$email', '$password', '$rua', '$telefone', '$nif', '$distrito')";
+    $firstname = $conn->real_escape_string($_POST['firstname']);
+    $lastname = $conn->real_escape_string($_POST['lastname']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $password = $conn->real_escape_string($_POST['password']);
+    $rua = $conn->real_escape_string($_POST['rua']);
+    $telefone = $conn->real_escape_string($_POST['telefone']);
+    $nif = $conn->real_escape_string($_POST['nif']);
+    $distrito = $conn->real_escape_string($_POST['distrito']);
 
+    $sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito)
+            VALUES ('$firstname', '$lastname', '$email', '$password', '$rua', '$telefone', '$nif', '$distrito')";
+
+    try {
         if ($conn->query($sql) === TRUE) {
             echo "Dados inseridos com sucesso!";
         } else {
-            echo "Erro ao inserir dados: " . $conn->error;
+            throw new Exception("Erro ao inserir dados: " . $conn->error);
         }
-
-        $conn->close();
+    } catch (Exception $e) {
+        echo "Exception capturada: ",  $e->getMessage(), "\n";
     }
-    ?>
+
+    $conn->close();
+}
+?>
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
