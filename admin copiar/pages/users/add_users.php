@@ -22,14 +22,13 @@ $rua = $conn->real_escape_string($_POST['rua']);
 $telefone = $conn->real_escape_string($_POST['telefone']);
 $nif = $conn->real_escape_string($_POST['nif']);
 $distrito = $conn->real_escape_string($_POST['distrito']);
-$job = isset($_POST['jobb']) ? $conn->real_escape_string(implode(',', $_POST['jobb'])) : '';
 
 // Encripta a senha
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 // Prepara a consulta SQL
-$sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito, job) 
-        VALUES ('$firstname', '$lastname', '$email', '$hashed_password', '$rua', '$telefone', '$nif', '$distrito', '$job')";
+$sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito) 
+        VALUES ('$firstname', '$lastname', '$email', '$hashed_password', '$rua', '$telefone', '$nif', '$distrito')";
 
 // Executa a consulta
 if ($conn->query($sql) === TRUE) {
