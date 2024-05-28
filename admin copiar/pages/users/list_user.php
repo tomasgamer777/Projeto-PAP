@@ -337,8 +337,6 @@
 
     function confirmRemove(userId) {
     if (confirm("Tem certeza que deseja remover o utilizador com ID " + userId + "?")) {
-        // Aqui você pode fazer uma chamada AJAX para remover o utilizador do banco de dados
-        // Por exemplo:
         $.post("remover_user.php", { user_id: userId }, function(data) {
             // Exibe mensagem de sucesso
             alert("Utilizador removido com sucesso!");
