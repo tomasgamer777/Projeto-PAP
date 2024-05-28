@@ -1,72 +1,55 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "plesk2.server.highcloudservices.eu";
-    $username = "tomas";
-    $password = "Pv~i23i20";
-    $dbname = "banda";
+// Configurações da base de dados
+  $servername = "localhost";
+  $username = "tomas";
+  $password = "!h01fFw35";
+  $dbname = "banda";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['finish'])) {
-        $servername = "localhost";
-        $username = "tomas";
-        $password = "!h01fFw35";
-        $dbname = "banda";
+// Cria a conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Conexão falhou: " . $conn->connect_error);
-    }
-
-    $firstname = $conn->real_escape_string($_POST['firstname']);
-    $lastname = $conn->real_escape_string($_POST['lastname']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $conn->real_escape_string($_POST['password']);
-    $rua = $conn->real_escape_string($_POST['rua']);
-    $telefone = $conn->real_escape_string($_POST['telefone']);
-    $nif = $conn->real_escape_string($_POST['nif']);
-    $distrito = $conn->real_escape_string($_POST['distrito']);
-
-    $sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito)
-            VALUES ('$firstname', '$lastname', '$email', '$password', '$rua', '$telefone', '$nif', '$distrito')";
-
-    try {
-        if ($conn->query($sql) === TRUE) {
-            echo "Dados inseridos com sucesso!";
-        } else {
-            throw new Exception("Erro ao inserir dados: " . $conn->error);
-        }
-    } catch (Exception $e) {
-        echo "Exception capturada: ",  $e->getMessage(), "\n";
-    }
-
-    $conn->close();
+// Verifica a conexão
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-?>
-    
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Conexão falhou: " . $conn->connect_error);
-    }
+// Captura os dados do formulário
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$rua = $_POST['rua'];
+$telefone = $_POST['telefone'];
+$nif = $_POST['nif'];
+$distrito = $_POST['distrito'];
 
-    $firstname = $_POST['nome'];
-    $lastname = $_POST['sobrenome'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $rua = $_POST['morada'];
-    $telefone = $_POST['telef'];
-    $nif = $_POST['nif'];
-    $distrito = $_POST['distrito'];
+// Prepara a consulta SQL
+$sql = "INSERT INTO users (firstname, lastname, email, password, rua, telefone, nif, distrito, )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    $sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito)
-    VALUES ('$firstname', '$lastname', '$email', '$password', '$rua', '$telefone', '$nif', '$distrito')";
+// Prepara a declaração
+$stmt = $conn->prepare($sql);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Dados inseridos com sucesso!";
+if ($stmt) {
+    // Encripta a senha
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+    // Liga os parâmetros
+    $stmt->bind_param("sssssssss", $firstname, $lastname, $email, $hashed_password, $rua, $telefone, $nif, $distrito);
+
+    // Executa a declaração
+    if ($stmt->execute()) {
+        echo "Novo registro criado com sucesso";
     } else {
-        echo "Erro ao inserir dados: " . $conn->error;
+        echo "Erro: " . $sql . "<br>" . $conn->error;
     }
 
-    $conn->close();
+    // Fecha a declaração
+    $stmt->close();
+} else {
+    echo "Erro na preparação da consulta: " . $conn->error;
 }
+
+// Fecha a conexão
+$conn->close();
 ?>
