@@ -22,10 +22,10 @@ $rua = $_POST['rua'];
 $telefone = $_POST['telefone'];
 $nif = $_POST['nif'];
 $distrito = $_POST['distrito'];
+$job = isset($_POST['jobb']) ? implode(',', $_POST['jobb']) : '';
 
 // Prepara a consulta SQL
-$sql = "INSERT INTO users (firstname, lastname, email, password, rua, telefone, nif, distrito, )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO users (firstname, lastname, email, password, rua, telefone, nif, distrito, job) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 // Prepara a declaração
 $stmt = $conn->prepare($sql);
@@ -35,7 +35,7 @@ if ($stmt) {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     // Liga os parâmetros
-    $stmt->bind_param("sssssssss", $firstname, $lastname, $email, $hashed_password, $rua, $telefone, $nif, $distrito);
+    $stmt->bind_param("sssssssss", $firstname, $lastname, $email, $hashed_password, $rua, $telefone, $nif, $distrito, $job);
 
     // Executa a declaração
     if ($stmt->execute()) {
