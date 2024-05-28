@@ -230,191 +230,191 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="content">
-        <div class="container-fluid">
-          <div class="col-md-8 col-12 mr-auto ml-auto">
-            <!--      Wizard container        -->
-            <div class="wizard-container">
-              <div class="card card-wizard" data-color="rose" id="wizardProfile">
-                <form action="" method="">
+<div class="content">
+<div class="container-fluid">
+  <div class="col-md-8 col-12 mr-auto ml-auto">
+      <!--      Wizard container        -->
+      <div class="wizard-container">
+          <div class="card card-wizard" data-color="rose" id="wizardProfile">
+              <form action="add_users.php" method="post" enctype="multipart/form-data">
                   <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                   <div class="card-header text-center">
-                    <h3 class="card-title">
-                      Personaliza o Utlizador
-                    </h3>
+                      <h3 class="card-title">
+                          Personaliza o Utilizador
+                      </h3>
                   </div>
                   <div class="wizard-navigation">
-                    <ul class="nav nav-pills">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
-                          Informações Básicas
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#address" data-toggle="tab" role="tab">
-                          Sobre
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#account" data-toggle="tab" role="tab">
-                          Função
-                        </a>
-                      </li>
-                    </ul>
+                      <ul class="nav nav-pills">
+                          <li class="nav-item">
+                              <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
+                                  Informações Básicas
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#address" data-toggle="tab" role="tab">
+                                  Sobre
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#account" data-toggle="tab" role="tab">
+                                  Função
+                              </a>
+                          </li>
+                      </ul>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content">
-                      <div class="tab-pane active" id="about">
-                        <h5 class="info-text"> Informações Básicas</h5>
-                        <div class="row justify-content-center">
-                          <div class="col-sm-4">
-                            <div class="picture-container">
-                              <div class="picture">
-                                <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                <input type="file" id="wizard-picture">
-                              </div>
-                              <h6 class="description">Foto de Perfil</h6>
-                            </div>
-                          </div>
-                          <div class="col-sm-6">
-                            <div class="input-group form-control-lg">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <i class="material-icons">face</i>
-                                </span>
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInput1" class="bmd-label-floating">Primeiro Nome</label>
-                                <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
-                              </div>
-                            </div>
-                            <div class="input-group form-control-lg">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <i class="material-icons">record_voice_over</i>
-                                </span>
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInput11" class="bmd-label-floating">Sobrenome</label>
-                                <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-10 mt-3">
-                            <div class="input-group form-control-lg">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <i class="material-icons">email</i>
-                                </span>
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInput1" class="bmd-label-floating">Email </label>
-                                <input type="email" class="form-control" id="exampleemalil" name="email" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-10 mt-3">
-                            <div class="input-group form-control-lg">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <i class="material-icons">password</i>
-                                </span>
-                              </div>
-                            <div class="form-group">
-                            <label for="exampleInput1" class="bmd-label-floating">Password </label>
-                            <input type="password" class="form-control" id="examplepassword" name="password" required>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-                      </div>
-                      <div class="tab-pane" id="account">
-                        <h5 class="info-text"> Qual é a função do Utilizador?  </h5>
-                        <div class="row justify-content-center">
-                          <div class="col-lg-10">
-                            <div class="row">
-                              <div class="col-sm-4">
-                                <div class="choice" data-toggle="wizard-checkbox">
-                                  <input type="checkbox" name="jobb" value="Design">
-                                  <div class="icon">
-                                  <i class="material-icons">admin_panel_settings</i>
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="about">
+                              <h5 class="info-text"> Informações Básicas</h5>
+                              <div class="row justify-content-center">
+                                  <div class="col-sm-4">
+                                      <div class="picture-container">
+                                          <div class="picture">
+                                              <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                              <input type="file" id="wizard-picture" name="profile_picture">
+                                          </div>
+                                          <h6 class="description">Foto de Perfil</h6>
+                                      </div>
                                   </div>
-                                  <h6>Admin</h6>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="choice" data-toggle="wizard-checkbox">
-                                  <input type="checkbox" name="jobb" value="Code">
-                                  <div class="icon">
-                                    <i class="material-icons">piano</i>
+                                  <div class="col-sm-6">
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">face</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput1" class="bmd-label-floating">Primeiro Nome</label>
+                                              <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                                          </div>
+                                      </div>
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">record_voice_over</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput11" class="bmd-label-floating">Sobrenome</label>
+                                              <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                                          </div>
+                                      </div>
                                   </div>
-                                  <h6>Músico</h6>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="choice" data-toggle="wizard-checkbox">
-                                  <input type="checkbox" name="jobb" value="Develop">
-                                  <div class="icon">
-                                    <i class="material-icons">payments</i>
+                                  <div class="col-lg-10 mt-3">
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">email</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput1" class="bmd-label-floating">Email </label>
+                                              <input type="email" class="form-control" id="exampleemail" name="email" required>
+                                          </div>
+                                      </div>
                                   </div>
-                                  <h6>Sócio</h6>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane" id="address">
-                        <div class="row justify-content-center">
-                          <div class="col-sm-12">
-                            <h5 class="info-text"> Mais informações sobre o Utilizador </h5>
-                          </div>
-                          <div class="col-sm-7">
-                            <div class="form-group">
-                              <label>Data de Nascimento</label>
-                              <input type="text" class="form-control datepicker" value="01/05/2024" readonly>
-                            </div>
-                          </div>
-                          <div class="col-sm-3">
-                            <div class="form-group">
-                              <label>Rua</label>
-                              <input type="text" class="form-control" name="rua">
-                            </div>
-                          </div>
-                          <div class="col-sm-3">
-                            <div class="form-group">
-                              <label>Telefone</label>
-                              <input type="text" class="form-control" name="telefone">
-                            </div>
-                          </div>
-                          <div class="col-sm-3">
-                              <div class="form-group">
-                                  <label>NIF</label>
-                                  <input type="text" class="form-control" name="nif">
+                                  <div class="col-lg-10 mt-3">
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">password</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput1" class="bmd-label-floating">Password </label>
+                                              <input type="password" class="form-control" id="examplepassword" name="password" required>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                          <div class="col-sm-5">
-                              <div class="form-group select-wizard">
-                              <label>Distrito</label>
-                              <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
-                                <option value="aveiro"> Aveiro </option>
-                                <option value="beja"> Beja </option>
-                                <option value="braga"> Braga </option>
-                                <option value="braganca"> Bragança </option>
-                                <option value="castelo"> Castelo Branco </option>
-                                <option value="coimbra"> Coimbra </option>
-                                <option value="evora"> Évora </option>
-                                <option value="faro"> Faro </option>
-                                <option value="guarda"> Guarda </option>
-                                <option value="leiria"> Leiria </option>
-                                <option value="lisboa"> Lisboa </option>
-                                <option value="portalegre"> Portalegre </option>
-                                <option value="porto"> Porto </option>
-                                <option value="setubal"> Setúbal </option>
-                                <option value="viana"> Viana do Castelo </option>
-                                <option value="vila"> Vila Real </option>
-                                <option value="viseu"> Viseu </option>
-                              </select>
+                          <div class="tab-pane" id="account">
+                              <h5 class="info-text"> Qual é a função do Utilizador? </h5>
+                              <div class="row justify-content-center">
+                                  <div class="col-lg-10">
+                                      <div class="row">
+                                          <div class="col-sm-4">
+                                              <div class="choice" data-toggle="wizard-checkbox">
+                                                  <input type="checkbox" name="jobb[]" value="Admin">
+                                                  <div class="icon">
+                                                      <i class="material-icons">admin_panel_settings</i>
+                                                  </div>
+                                                  <h6>Admin</h6>
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                              <div class="choice" data-toggle="wizard-checkbox">
+                                                  <input type="checkbox" name="jobb[]" value="Musico">
+                                                  <div class="icon">
+                                                      <i class="material-icons">piano</i>
+                                                  </div>
+                                                  <h6>Músico</h6>
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                              <div class="choice" data-toggle="wizard-checkbox">
+                                                  <input type="checkbox" name="jobb[]" value="Socio">
+                                                  <div class="icon">
+                                                      <i class="material-icons">payments</i>
+                                                  </div>
+                                                  <h6>Sócio</h6>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="tab-pane" id="address">
+                              <div class="row justify-content-center">
+                                  <div class="col-sm-12">
+                                      <h5 class="info-text"> Mais informações sobre o Utilizador </h5>
+                                  </div>
+                                  <div class="col-sm-7">
+                                      <div class="form-group">
+                                          <label>Data de Nascimento</label>
+                                          <input type="text" class="form-control datepicker" value="01/05/2024" readonly>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                          <label>Rua</label>
+                                          <input type="text" class="form-control" name="rua">
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                          <label>Telefone</label>
+                                          <input type="text" class="form-control" name="telefone">
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                          <label>NIF</label>
+                                          <input type="text" class="form-control" name="nif">
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-5">
+                                      <div class="form-group select-wizard">
+                                          <label>Distrito</label>
+                                          <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
+                                              <option value="aveiro">Aveiro</option>
+                                              <option value="beja">Beja</option>
+                                              <option value="braga">Braga</option>
+                                              <option value="braganca">Bragança</option>
+                                              <option value="castelo">Castelo Branco</option>
+                                              <option value="coimbra">Coimbra</option>
+                                              <option value="evora">Évora</option>
+                                              <option value="faro">Faro</option>
+                                              <option value="guarda">Guarda</option>
+                                              <option value="leiria">Leiria</option>
+                                              <option value="lisboa">Lisboa</option>
+                                              <option value="portalegre">Portalegre</option>
+                                              <option value="porto">Porto</option>
+                                              <option value="setubal">Setúbal</option>
+                                              <option value="viana">Viana do Castelo</option>
+                                              <option value="vila">Vila Real</option>
+                                              <option value="viseu">Viseu</option>
+                                          </select>
                             </div>
                           </div>
                         </div>
