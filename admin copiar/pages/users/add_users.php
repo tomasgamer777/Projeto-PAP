@@ -14,39 +14,28 @@ if ($conn->connect_error) {
 }
 
 // Captura os dados do formulário
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$rua = $_POST['rua'];
-$telefone = $_POST['telefone'];
-$nif = $_POST['nif'];
-$distrito = $_POST['distrito'];
+$firstname = $conn->real_escape_string($_POST['firstname']);
+$lastname = $conn->real_escape_string($_POST['lastname']);
+$email = $conn->real_escape_string($_POST['email']);
+$password = $conn->real_escape_string($_POST['password']);
+$rua = $conn->real_escape_string($_POST['rua']);
+$telefone = $conn->real_escape_string($_POST['telefone']);
+$nif = $conn->real_escape_string($_POST['nif']);
+$distrito = $conn->real_escape_string($_POST['distrito']);
+$job = isset($_POST['jobb']) ? $conn->real_escape_string(implode(',', $_POST['jobb'])) : '';
+
+// Encripta a senha
+$hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 // Prepara a consulta SQL
-$sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito, ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito, job) 
+        VALUES ('$firstname', '$lastname', '$email', '$hashed_password', '$rua', '$telefone', '$nif', '$distrito', '$job')";
 
-// Prepara a declaração
-$stmt = $conn->prepare($sql);
-
-if ($stmt) {
-    // Encripta a senha
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-    // Liga os parâmetros
-    $stmt->bind_param("sssssssss", $firstname, $lastname, $email, $hashed_password, $rua, $telefone, $nif, $distrito);
-
-    // Executa a declaração
-    if ($stmt->execute()) {
-        echo "Novo registro criado com sucesso";
-    } else {
-        echo "Erro: " . $sql . "<br>" . $conn->error;
-    }
-
-    // Fecha a declaração
-    $stmt->close();
+// Executa a consulta
+if ($conn->query($sql) === TRUE) {
+    echo "Novo registro criado com sucesso";
 } else {
-    echo "Erro na preparação da consulta: " . $conn->error;
+    echo "Erro: " . $sql . "<br>" . $conn->error;
 }
 
 // Fecha a conexão
