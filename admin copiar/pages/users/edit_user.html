@@ -172,7 +172,7 @@
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand" href="../users/edit_user.html">Editar utilizador</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -248,33 +248,30 @@
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Company (disabled)</label>
+                          <label class="bmd-label-floating">Código</label>
                           <input type="text" class="form-control" disabled>
                         </div>
                       </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
                       <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
-                        </div>
+                        <div class="picture-container">
+                          <div class="picture">
+                              <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                              <input type="file" id="wizard-picture" name="profile_picture" accept="image/*">
+                          </div>
+                          <h6 class="description">Foto de Perfil</h6>
+                      </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Fist Name</label>
+                          <label class="bmd-label-floating">Nome</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Last Name</label>
+                          <label class="bmd-label-floating">Sobrenome</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
@@ -282,7 +279,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
+                          <label class="bmd-label-floating">Morada</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
@@ -290,19 +287,19 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">City</label>
+                          <label class="bmd-label-floating">Telefone</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Country</label>
+                          <label class="bmd-label-floating">Data de Nascimento</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Postal Code</label>
+                          <label class="bmd-label-floating">Distrito</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
@@ -310,15 +307,22 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>About Me</label>
                           <div class="form-group">
-                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
+                            <label class="bmd-label-floating">Código Postal</label>
+                            <input type="text" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">NIF</label>
+                            <input type="text" class="form-control">
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
+                    <button type="submit" class="btn btn-rose pull-right">Atualizar utilizador</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
