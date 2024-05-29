@@ -33,7 +33,7 @@ if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0
     $file_type = mime_content_type($_FILES['profile_picture']['tmp_name']);
 
     if(in_array($file_type, $allowed_types)) {
-        $target_dir = "uploads/";
+        $target_dir = "fotosperfil/";
         $target_file = $target_dir . basename($_FILES["profile_picture"]["name"]);
         if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)) {
             $profile_picture = $target_file;
