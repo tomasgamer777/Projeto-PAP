@@ -299,54 +299,64 @@
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
-                                    $row_num = 0; // Contador de linhas para alternar as cores
                                     while ($row = $result->fetch_assoc()) {
-                                        $row_num++;
-                                        echo "<tr class='" . ($row_num % 2 == 0 ? 'even' : 'odd') . "'>"; // Adiciona classes de cor alternada
+                                        echo "<tr>";
+                                        echo "<td>" . $row["user_id"] . "</td>";
+                                        echo "<td>" . $row["nome"] . "</td>";
+                                        echo "<td>" . $row["sobrenome"] . "</td>";
+                                        echo "<td>" . $row["email"] . "</td>";
+                                        echo "<td>" . $row["telef"] . "</td>";
+                                        echo "<td>" . $row["morada"] . "</td>";
                                         
-                                        // Adiciona bordas arredondadas às células
-                                        echo "<td class='rounded'>" . $row["user_id"] . "</td>";
-                                        echo "<td class='rounded' contenteditable='true'>" . $row["nome"] . "</td>";
-                                        echo "<td class='rounded' contenteditable='true'>" . $row["sobrenome"] . "</td>";
-                                        echo "<td class='rounded' contenteditable='true'>" . $row["email"] . "</td>";
-                                        echo "<td class='rounded' contenteditable='true'>" . $row["telef"] . "</td>";
-                                        echo "<td class='rounded' contenteditable='true'>" . $row["morada"] . "</td>";
+                                        // Verifica o valor do campo "tipo" e exibe o status correspondente
+                                        switch ($row["tipo"]) {
+                                            case 0:
+                                                echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
+                                                break;
+                                            case 1:
+                                                echo "<td><span style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</span></td>";
+                                                break;
+                                            case 2:
+                                                echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</span></td>";
+                                                break;
+                                            case 3:
+                                                echo "<td><span style='background-color: #03a9f4; color: white; padding: 2px 5px; border-radius: 3px;'>Sócio</span></td>";
+                                                break;
+                                            case 4:
+                                                echo "<td><span style='background-color: #9c27b0; color: white; padding: 2px 5px; border-radius: 3px;'>Admin</span></td>";
+                                                break;
+                                            case 5:
+                                                echo "<td><span style='background-color: #673ab7; color: white; padding: 2px 5px; border-radius: 3px;'>Encarregado de Educação</span></td>";
+                                                break;
+                                            case 6:
+                                                echo "<td><span style='background-color: #009688; color: white; padding: 2px 5px; border-radius: 3px;'>Professor</span></td>";
+                                                break;
+                                            default:
+                                                echo "<td>" . $row["tipo"] . "</td>";
+                                        }
 
-                                        // Exibe a combobox para selecionar o tipo de usuário
-                                        echo "<td class='rounded'>";
-                                        echo "<select class='form-control tipo' data-user-id='" . $row["user_id"] . "' onchange='showSaveButton(this)'>";
-                                        echo "<option value='0' " . ($row["tipo"] == 0 ? "selected" : "") . ">Para aceitação</option>";
-                                        echo "<option value='1' " . ($row["tipo"] == 1 ? "selected" : "") . ">Aluno</option>";
-                                        echo "<option value='2' " . ($row["tipo"] == 2 ? "selected" : "") . ">Músico</option>";
-                                        echo "<option value='3' " . ($row["tipo"] == 3 ? "selected" : "") . ">Sócio</option>";
-                                        echo "<option value='4' " . ($row["tipo"] == 4 ? "selected" : "") . ">Admin</option>";
-                                        echo "<option value='5' " . ($row["tipo"] == 5 ? "selected" : "") . ">Encarregado de Educação</option>";
-                                        echo "<option value='6' " . ($row["tipo"] == 6 ? "selected" : "") . ">Professor</option>";
-                                        echo "</select>";
-                                        echo "</td>";
-
-                                        // Exibe a combobox para selecionar o status
-                                        echo "<td class='rounded'>";
-                                        echo "<select class='form-control status' data-user-id='" . $row["user_id"] . "' onchange='showSaveButton(this)'>";
-                                        echo "<option value='1' " . ($row["status"] == 1 ? "selected" : "") . ">Ativo</option>";
-                                        echo "<option value='2' " . ($row["status"] == 2 ? "selected" : "") . ">Desativado</option>";
-                                        echo "</select>";
-                                        echo "</td>";
+                                        // Exibe o status conforme necessário
+                                        if ($row["tipo"] == 0) {
+                                            echo "<td><span style='background-color: #1E90FF; color: white; padding: 2px 5px; border-radius: 3px;'>Por aceitar</span></td>";
+                                        } elseif ($row["status"] == 2) {
+                                            echo "<td><span style='background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px;'>Ativo</span></td>";
+                                        } elseif ($row["status"] == 1) {
+                                            echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
+                                        } else {
+                                            echo "<td>" . $row["status"] . "</td>";
+                                        }
                                         
-                                        echo '<td class="text-right rounded">
+                                        echo '<td class="text-right">
                                                 <a href="editar_user.php" class="btn btn-link btn-warning btn-just-icon edit" onclick="editUser(' . $row["user_id"] . ')"><i class="material-icons">edit</i></a>
-                                                <button class="btn btn-success btn-just-icon save" style="display:none;" onclick="saveChanges(' . $row["user_id"] . ')"><i class="material-icons">save</i></button>
                                                 <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="confirmRemove(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
                                               </td>';
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='7'>Nenhum resultado encontrado.</td></tr>";
+                                    echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
                                 }
                                 $conn->close();
                                 ?>
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -364,33 +374,6 @@
 
 
 <script>
-
-function saveChanges(userId) {
-    var nome = document.querySelector("td[data-user-id='" + userId + "'][data-field='nome']").textContent;
-    var sobrenome = document.querySelector("td[data-user-id='" + userId + "'][data-field='sobrenome']").textContent;
-    var email = document.querySelector("td[data-user-id='" + userId + "'][data-field='email']").textContent;
-    var telef = document.querySelector("td[data-user-id='" + userId + "'][data-field='telef']").textContent;
-    var morada = document.querySelector("td[data-user-id='" + userId + "'][data-field='morada']").textContent;
-    var tipo = document.querySelector("select[data-user-id='" + userId + "'].tipo").value;
-    var status = document.querySelector("select[data-user-id='" + userId + "'].status").value;
-
-    // Enviar solicitação POST para salvar_edicao_user.php
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "save_edit.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                alert(xhr.responseText);
-            } else {
-                alert('Erro ao salvar as alterações.');
-            }
-        }
-    };
-    xhr.send("user_id=" + userId + "&nome=" + nome + "&sobrenome=" + sobrenome + "&email=" + email + "&telef=" + telef + "&morada=" + morada + "&tipo=" + tipo + "&status=" + status);
-}
-
-
 
 function confirmRemove(userId) {
     swal({
