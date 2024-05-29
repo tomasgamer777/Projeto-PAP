@@ -311,7 +311,7 @@
                                         // Verifica o valor do campo "tipo" e exibe o status correspondente
                                         switch ($row["tipo"]) {
                                             case 0:
-                                                echo "<td style='background-color: #ffcc00; color: black;'>Para aceitação</td>";
+                                                echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
                                                 break;
                                             case 1:
                                                 echo "<td style='background-color: #ffeb3b; color: black;'>Aluno</td>";
@@ -337,7 +337,7 @@
 
                                         // Exibe o status conforme necessário
                                         if ($row["tipo"] == 0) {
-                                            echo "<td style='background-color: #f44336; color: white;'>Desativado</td>";
+                                            echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
                                         } elseif ($row["status"] == 1) {
                                             echo "<td style='background-color: #4CAF50; color: white;'>Ativo</td>";
                                         } elseif ($row["status"] == 2) {
@@ -357,7 +357,6 @@
                                 }
                                 $conn->close();
                                 ?>
-
                                 </tbody>
                             </table>
                         </div>
