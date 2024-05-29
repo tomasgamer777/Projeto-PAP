@@ -314,7 +314,7 @@
                                                 echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
                                                 break;
                                             case 1:
-                                              echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
+                                                echo "<td><span style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</span></td>";
                                                 break;
                                             case 2:
                                                 echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</span></td>";
