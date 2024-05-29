@@ -314,22 +314,22 @@
                                                 echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
                                                 break;
                                             case 1:
-                                                echo "<td style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</td>";
+                                                echo "<td><span style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</span></td>";
                                                 break;
                                             case 2:
-                                                echo "<td style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</td>";
+                                                echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</span></td>";
                                                 break;
                                             case 3:
-                                                echo "<td style='background-color: #03a9f4; color: white; padding: 2px 5px; border-radius: 3px;'>Sócio</td>";
+                                                echo "<td><span style='background-color: #03a9f4; color: white; padding: 2px 5px; border-radius: 3px;'>Sócio</span></td>";
                                                 break;
                                             case 4:
-                                                echo "<td style='background-color: #9c27b0; color: white; padding: 2px 5px; border-radius: 3px;'>Admin</td>";
+                                                echo "<td><span style='background-color: #9c27b0; color: white; padding: 2px 5px; border-radius: 3px;'>Admin</span></td>";
                                                 break;
                                             case 5:
-                                                echo "<td style='background-color: #673ab7; color: white; padding: 2px 5px; border-radius: 3px;'>Encarregado de Educação</td>";
+                                                echo "<td><span style='background-color: #673ab7; color: white; padding: 2px 5px; border-radius: 3px;'>Encarregado de Educação</span></td>";
                                                 break;
                                             case 6:
-                                                echo "<td style='background-color: #009688; color: white; padding: 2px 5px; border-radius: 3px;'>Professor</td>";
+                                                echo "<td><span style='background-color: #009688; color: white; padding: 2px 5px; border-radius: 3px;'>Professor</span></td>";
                                                 break;
                                             default:
                                                 echo "<td>" . $row["tipo"] . "</td>";
@@ -339,9 +339,9 @@
                                         if ($row["tipo"] == 0) {
                                             echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
                                         } elseif ($row["status"] == 1) {
-                                            echo "<td style='background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px;'>Ativo</td>";
+                                            echo "<td><span style='background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px;'>Ativo</span></td>";
                                         } elseif ($row["status"] == 2) {
-                                            echo "<td style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</td>";
+                                            echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
                                         } else {
                                             echo "<td>" . $row["status"] . "</td>";
                                         }
