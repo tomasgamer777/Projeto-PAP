@@ -4,6 +4,11 @@
 
 <head>
   <meta charset="utf-8" />
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" rel="stylesheet">
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -329,25 +334,54 @@
     </div>
 </div>
 
+
+
 <script>
 
-    function editUser(userId) {
-        alert("Editou o utilizador com ID " + userId);
-    }
-
-    function confirmRemove(userId) {
-    if (confirm("Tem certeza que deseja remover o utilizador com ID " + userId + "?")) {
-        $.post("remover_user.php", { user_id: userId }, function(data) {
-            // Exibe mensagem de sucesso
-            alert("Utilizador removido com sucesso!");
-            
-            // Redireciona para a mesma página
-            location.reload();
-        });
-    } else {
-        alert("Remoção cancelada.");
-    }
+function confirmRemove(userId) {
+    swal({
+        title: "Tem certeza?",
+        text: "Deseja realmente remover o utilizador com o código " + userId + "?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn btn-danger",
+        cancelButtonClass: "btn btn-default",
+        confirmButtonText: "Sim, remover",
+        cancelButtonText: "Cancelar",
+        buttonsStyling: false
+    }).then((result) => {
+        if (result.value) {
+            $.post("remover_user.php", { user_id: userId }, function(data) {
+                swal({
+                    title: "Removido!",
+                    text: "Utilizador removido com sucesso.",
+                    type: "success",
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                }).then(() => {
+                    location.reload();
+                });
+            }).fail(() => {
+                swal({
+                    title: "Erro",
+                    text: "Ocorreu um erro ao tentar remover o utilizador.",
+                    type: "error",
+                    confirmButtonClass: "btn btn-danger",
+                    buttonsStyling: false
+                });
+            });
+        } else {
+            swal({
+                title: "Cancelado",
+                text: "Remoção cancelada.",
+                type: "error",
+                confirmButtonClass: "btn btn-info",
+                buttonsStyling: false
+            });
+        }
+    }).catch(swal.noop);
 }
+
 </script>
 
 
