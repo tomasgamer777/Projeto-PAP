@@ -915,43 +915,7 @@
     });
 
 
-$(document).ready(function() {
-    $('#userForm').on('submit', function(e) {
-        e.preventDefault();
 
-        var fileInput = $('#wizard-picture')[0];
-        var file = fileInput.files[0];
-
-        // Verifica se o arquivo é uma imagem
-        if (file && !file.type.startsWith('image/')) {
-            alert('Por favor, envie um arquivo de imagem.');
-            return;
-        }
-
-        var formData = new FormData(this);
-
-        $.ajax({
-            url: 'add_users.php',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                // Adicione a lógica de resposta aqui, como exibir uma mensagem de sucesso
-                alert('Registro criado com sucesso!');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                // Adicione a lógica de erro aqui, como exibir uma mensagem de erro
-                alert('Erro ao criar o registro: ' + errorThrown);
-            }
-        });
-    });
-
-    $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        autoclose: true
-    });
-});
 
     
   </script>
