@@ -314,7 +314,7 @@
                                                 echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
                                                 break;
                                             case 1:
-                                                echo "<td><span style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</span></td>";
+                                                echo "<td style='background-color: #ffeb3b;'>Aluno</td>";
                                                 break;
                                             case 2:
                                                 echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</span></td>";
@@ -337,11 +337,11 @@
 
                                         // Exibe o status conforme necessário
                                         if ($row["tipo"] == 0) {
-                                            echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
-                                        } elseif ($row["status"] == 1) {
-                                            echo "<td><span style='background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px;'>Ativo</span></td>";
+                                            echo "<td><span style='background-color: #1E90FF; color: white; padding: 2px 5px; border-radius: 3px;'>Por aceitar</span></td>";
                                         } elseif ($row["status"] == 2) {
-                                            echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
+                                            echo "<td><span style='background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px;'>Ativo</span></td>";
+                                        } elseif ($row["status"] == 1) {
+                                            echo "<td style='background-color: #f44336; color: white;'>Desativado</td>";
                                         } else {
                                             echo "<td>" . $row["status"] . "</td>";
                                         }
