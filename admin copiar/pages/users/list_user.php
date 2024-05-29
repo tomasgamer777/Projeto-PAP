@@ -314,22 +314,22 @@
                                                 echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
                                                 break;
                                             case 1:
-                                                echo "<td style='background-color: #ffeb3b; color: black;'>Aluno</td>";
+                                                echo "<td style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</td>";
                                                 break;
                                             case 2:
-                                                echo "<td style='background-color: #f44336; color: white;'>Músico</td>";
+                                                echo "<td style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</td>";
                                                 break;
                                             case 3:
-                                                echo "<td style='background-color: #03a9f4; color: white;'>Sócio</td>";
+                                                echo "<td style='background-color: #03a9f4; color: white; padding: 2px 5px; border-radius: 3px;'>Sócio</td>";
                                                 break;
                                             case 4:
-                                                echo "<td style='background-color: #9c27b0; color: white;'>Admin</td>";
+                                                echo "<td style='background-color: #9c27b0; color: white; padding: 2px 5px; border-radius: 3px;'>Admin</td>";
                                                 break;
                                             case 5:
-                                                echo "<td style='background-color: #673ab7; color: white;'>Encarregado de Educação</td>";
+                                                echo "<td style='background-color: #673ab7; color: white; padding: 2px 5px; border-radius: 3px;'>Encarregado de Educação</td>";
                                                 break;
                                             case 6:
-                                                echo "<td style='background-color: #009688; color: white;'>Professor</td>";
+                                                echo "<td style='background-color: #009688; color: white; padding: 2px 5px; border-radius: 3px;'>Professor</td>";
                                                 break;
                                             default:
                                                 echo "<td>" . $row["tipo"] . "</td>";
@@ -339,9 +339,9 @@
                                         if ($row["tipo"] == 0) {
                                             echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
                                         } elseif ($row["status"] == 1) {
-                                            echo "<td style='background-color: #4CAF50; color: white;'>Ativo</td>";
+                                            echo "<td style='background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px;'>Ativo</td>";
                                         } elseif ($row["status"] == 2) {
-                                            echo "<td style='background-color: #f44336; color: white;'>Desativado</td>";
+                                            echo "<td style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</td>";
                                         } else {
                                             echo "<td>" . $row["status"] . "</td>";
                                         }
