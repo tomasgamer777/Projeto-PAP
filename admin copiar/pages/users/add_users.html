@@ -236,7 +236,7 @@
       <!--      Wizard container        -->
       <div class="wizard-container">
           <div class="card card-wizard" data-color="rose" id="wizardProfile">
-              <form action="add_users.php" method="post" enctype="multipart/form-data">
+            <form id="userForm" method="POST" enctype="multipart/form-data">
                   <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                   <div class="card-header text-center">
                       <h3 class="card-title">
@@ -270,11 +270,11 @@
                                   <div class="col-sm-4">
                                     <div class="picture-container">
                                       <div class="picture">
-                                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                        <input type="file" id="wizard-picture" name="profile_picture">
+                                          <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                          <input type="file" id="wizard-picture" name="profile_picture" accept="image/*">
                                       </div>
                                       <h6 class="description">Foto de Perfil</h6>
-                                    </div>
+                                  </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="input-group form-control-lg">
@@ -364,60 +364,60 @@
                                 </div>
                             </div>
                         </div>
-                          <div class="tab-pane" id="address">
-                              <div class="row justify-content-center">
-                                  <div class="col-sm-12">
-                                      <h5 class="info-text"> Mais informações sobre o Utilizador </h5>
-                                  </div>
-                                  <div class="col-sm-7">
-                                    <div class="form-group">
+                        <div class="tab-pane" id="address">
+                          <div class="row justify-content-center">
+                              <div class="col-sm-12">
+                                  <h5 class="info-text">Mais informações sobre o Utilizador</h5>
+                              </div>
+                              <div class="col-sm-7">
+                                  <div class="form-group">
                                       <label>Data de Nascimento</label>
-                                      <input type="text" class="form-control datepicker" value="05/28/2024" id="data_nascimento" name="data_nascimento">
+                                      <input type="text" class="form-control datepicker" id="data_nascimento" name="data_nascimento">
                                   </div>
+                              </div>
+                              <div class="col-sm-3">
+                                  <div class="form-group">
+                                      <label>Rua</label>
+                                      <input type="text" class="form-control" name="rua">
                                   </div>
-                                  <div class="col-sm-3">
-                                      <div class="form-group">
-                                          <label>Rua</label>
-                                          <input type="text" class="form-control" name="rua">
-                                      </div>
+                              </div>
+                              <div class="col-sm-3">
+                                  <div class="form-group">
+                                      <label>Telefone</label>
+                                      <input type="text" class="form-control" name="telefone">
                                   </div>
-                                  <div class="col-sm-3">
-                                      <div class="form-group">
-                                          <label>Telefone</label>
-                                          <input type="text" class="form-control" name="telefone">
-                                      </div>
+                              </div>
+                              <div class="col-sm-3">
+                                  <div class="form-group">
+                                      <label>NIF</label>
+                                      <input type="text" class="form-control" name="nif">
                                   </div>
-                                  <div class="col-sm-3">
-                                      <div class="form-group">
-                                          <label>NIF</label>
-                                          <input type="text" class="form-control" name="nif">
-                                      </div>
+                              </div>
+                              <div class="col-sm-5">
+                                  <div class="form-group select-wizard">
+                                      <label>Distrito</label>
+                                      <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
+                                          <option value="aveiro">Aveiro</option>
+                                          <option value="beja">Beja</option>
+                                          <option value="braga">Braga</option>
+                                          <option value="braganca">Bragança</option>
+                                          <option value="castelo">Castelo Branco</option>
+                                          <option value="coimbra">Coimbra</option>
+                                          <option value="evora">Évora</option>
+                                          <option value="faro">Faro</option>
+                                          <option value="guarda">Guarda</option>
+                                          <option value="leiria">Leiria</option>
+                                          <option value="lisboa">Lisboa</option>
+                                          <option value="portalegre">Portalegre</option>
+                                          <option value="porto">Porto</option>
+                                          <option value="setubal">Setúbal</option>
+                                          <option value="viana">Viana do Castelo</option>
+                                          <option value="vila">Vila Real</option>
+                                          <option value="viseu">Viseu</option>
+                                      </select>
                                   </div>
-                                  <div class="col-sm-5">
-                                      <div class="form-group select-wizard">
-                                          <label>Distrito</label>
-                                          <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
-                                              <option value="Aveiro">Aveiro</option>
-                                              <option value="Beja">Beja</option>
-                                              <option value="Braga">Braga</option>
-                                              <option value="Bragança">Bragança</option>
-                                              <option value="Castelo Branco">Castelo Branco</option>
-                                              <option value="Coimbra">Coimbra</option>
-                                              <option value="Evora">Évora</option>
-                                              <option value="Faro">Faro</option>
-                                              <option value="Guarda">Guarda</option>
-                                              <option value="Leiria">Leiria</option>
-                                              <option value="Lisboa">Lisboa</option>
-                                              <option value="Portalegre">Portalegre</option>
-                                              <option value="Porto">Porto</option>
-                                              <option value="Setubal">Setúbal</option>
-                                              <option value="Viana do Castelo">Viana do Castelo</option>
-                                              <option value="Vila Real">Vila Real</option>
-                                              <option value="Viseu">Viseu</option>
-                                          </select>
-                            </div>
+                              </div>
                           </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -913,7 +913,111 @@
         md.initSliders();
       }
     });
+
+
+$(document).ready(function() {
+    $('#userForm').on('submit', function(e) {
+        e.preventDefault();
+
+        var fileInput = $('#wizard-picture')[0];
+        var file = fileInput.files[0];
+
+        // Verifica se o arquivo é uma imagem
+        if (file && !file.type.startsWith('image/')) {
+            alert('Por favor, envie um arquivo de imagem.');
+            return;
+        }
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: 'add_users.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // Adicione a lógica de resposta aqui, como exibir uma mensagem de sucesso
+                alert('Registro criado com sucesso!');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Adicione a lógica de erro aqui, como exibir uma mensagem de erro
+                alert('Erro ao criar o registro: ' + errorThrown);
+            }
+        });
+    });
+
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+});
+
+    
   </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+$(document).ready(function() {
+    $('#userForm').on('submit', function(e) {
+        e.preventDefault();
+
+        var fileInput = $('#wizard-picture')[0];
+        var file = fileInput.files[0];
+
+        // Verifica se o arquivo é uma imagem
+        if (file && !file.type.startsWith('image/')) {
+            alert('Por favor, envie um arquivo de imagem.');
+            return;
+        }
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: 'add_users.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                var jsonResponse = JSON.parse(response);
+                if (jsonResponse.status === "success") {
+                    Swal.fire({
+                        title: "Bom trabalho!",
+                        text: jsonResponse.message,
+                        icon: "success",
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: jsonResponse.message,
+                        icon: "error",
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                Swal.fire({
+                    title: "Erro!",
+                    text: "Erro ao criar o registro: " + errorThrown,
+                    icon: "error",
+                    confirmButtonClass: "btn btn-danger",
+                    buttonsStyling: false
+                });
+            }
+        });
+    });
+
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
+});
+</script>
+
 </body>
 
 </html>

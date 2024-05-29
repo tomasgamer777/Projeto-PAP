@@ -560,6 +560,15 @@ demo = {
                 type: "success"
             }).catch(swal.noop)
 
+        } else if (type == 'success-add') {
+            swal({
+                title: "Bom trabalho!",
+                text: "Utilizador inserido com sucesso ",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+            }).catch(swal.noop)
+
         } else if (type == 'warning-message-and-confirmation') {
             swal({
                 title: 'Are you sure?',
