@@ -30,7 +30,7 @@ $status = 2;
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 // Lida com o upload da foto de perfil
-$target_dir = "uploads/";
+$target_dir = "fotosperfil/";
 $target_file = $target_dir . basename($_FILES["profile_picture"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 $uploadOk = 1;
