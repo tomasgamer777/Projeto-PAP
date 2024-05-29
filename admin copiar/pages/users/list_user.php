@@ -281,45 +281,83 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <?php
-                                    // Conexão com o banco de dados
-                                    $servername = "localhost";
-                                    $username = "tomas";
-                                    $password = "!h01fFw35";
-                                    $dbname = "banda";
+                                <?php
+                                // Conexão com o banco de dados
+                                $servername = "localhost";
+                                $username = "tomas";
+                                $password = "!h01fFw35";
+                                $dbname = "banda";
 
-                                    $conn = new mysqli($servername, $username, $password, $dbname);
+                                $conn = new mysqli($servername, $username, $password, $dbname);
 
-                                    // Verifica a conexão
-                                    if ($conn->connect_error) {
-                                        die("Connection failed: " . $conn->connect_error);
-                                    }
+                                // Verifica a conexão
+                                if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                }
 
-                                    $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status FROM users";
-                                    $result = $conn->query($sql);
+                                $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status FROM users";
+                                $result = $conn->query($sql);
 
-                                    if ($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row["user_id"] . "</td>";
-                                            echo "<td>" . $row["nome"] . "</td>";
-                                            echo "<td>" . $row["sobrenome"] . "</td>";
-                                            echo "<td>" . $row["email"] . "</td>";
-                                            echo "<td>" . $row["telef"] . "</td>";
-                                            echo "<td>" . $row["morada"] . "</td>";
-                                            echo "<td>" . $row["tipo"] . "</td>";
-                                            echo "<td>" . $row["status"] . "</td>";
-                                            echo '<td class="text-right">
-                                            <a href="#" class="btn btn-link btn-warning btn-just-icon edit" onclick="editUser(' . $row["user_id"] . ')"><i class="material-icons">edit</i></a>
-                                            <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="confirmRemove(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
-                                          </td>';                                    
-                                            echo "</tr>";
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row["user_id"] . "</td>";
+                                        echo "<td>" . $row["nome"] . "</td>";
+                                        echo "<td>" . $row["sobrenome"] . "</td>";
+                                        echo "<td>" . $row["email"] . "</td>";
+                                        echo "<td>" . $row["telef"] . "</td>";
+                                        echo "<td>" . $row["morada"] . "</td>";
+                                        
+                                        // Verifica o valor do campo "tipo" e exibe o status correspondente
+                                        switch ($row["tipo"]) {
+                                            case 0:
+                                                echo "<td style='background-color: #ffcc00; color: black;'>Para aceitação</td>";
+                                                break;
+                                            case 1:
+                                                echo "<td style='background-color: #ffeb3b; color: black;'>Aluno</td>";
+                                                break;
+                                            case 2:
+                                                echo "<td style='background-color: #f44336; color: white;'>Músico</td>";
+                                                break;
+                                            case 3:
+                                                echo "<td style='background-color: #03a9f4; color: white;'>Sócio</td>";
+                                                break;
+                                            case 4:
+                                                echo "<td style='background-color: #9c27b0; color: white;'>Admin</td>";
+                                                break;
+                                            case 5:
+                                                echo "<td style='background-color: #673ab7; color: white;'>Encarregado de Educação</td>";
+                                                break;
+                                            case 6:
+                                                echo "<td style='background-color: #009688; color: white;'>Professor</td>";
+                                                break;
+                                            default:
+                                                echo "<td>" . $row["tipo"] . "</td>";
                                         }
-                                    } else {
-                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+
+                                        // Exibe o status conforme necessário
+                                        if ($row["tipo"] == 0) {
+                                            echo "<td style='background-color: #f44336; color: white;'>Desativado</td>";
+                                        } elseif ($row["status"] == 1) {
+                                            echo "<td style='background-color: #4CAF50; color: white;'>Ativo</td>";
+                                        } elseif ($row["status"] == 2) {
+                                            echo "<td style='background-color: #f44336; color: white;'>Desativado</td>";
+                                        } else {
+                                            echo "<td>" . $row["status"] . "</td>";
+                                        }
+                                        
+                                        echo '<td class="text-right">
+                                                <a href="editar_user.php" class="btn btn-link btn-warning btn-just-icon edit" onclick="editUser(' . $row["user_id"] . ')"><i class="material-icons">edit</i></a>
+                                                <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="confirmRemove(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
+                                              </td>';
+                                        echo "</tr>";
                                     }
-                                    $conn->close();
-                                    ?>
+                                } else {
+                                    echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+                                }
+                                $conn->close();
+                                ?>
+
                                 </tbody>
                             </table>
                         </div>
