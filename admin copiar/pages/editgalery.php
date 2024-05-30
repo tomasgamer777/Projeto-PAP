@@ -332,10 +332,10 @@
           </div>
           <div class="row">
             <?php
-              $servername = "your_servername";
-              $username = "your_username";
-              $password = "your_password";
-              $dbname = "your_dbname";
+              $servername = "localhost";
+              $username = "tomas";
+              $password = "!h01fFw35";
+              $dbname = "banda";
 
               // Create connection
               $conn = new mysqli($servername, $username, $password, $dbname);
@@ -345,7 +345,7 @@
                 die("Connection failed: " . $conn->connect_error);
               }
 
-              $sql = "SELECT title, description, image_url FROM gallery ORDER BY upload_date DESC";
+              $sql = "SELECT title, description, image_url FROM galeria ORDER BY upload_date DESC";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
