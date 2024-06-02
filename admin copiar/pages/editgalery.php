@@ -315,39 +315,39 @@
             </div>
           </div>
           <!-- Exibição das Imagens -->
-<div class="row">
-  <?php
-    $servername = "localhost";
-    $username = "tomas";
-    $password = "!h01fFw35";
-    $dbname = "banda";
+          <div class="row">
+            <?php
+              $servername = "localhost";
+              $username = "tomas";
+              $password = "!h01fFw35";
+              $dbname = "banda";
 
-    // Criar conexão
-    $conn = new mysqli($servername, $username, $password, $dbname);
+              // Criar conexão
+              $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Verificar conexão
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
+              // Verificar conexão
+              if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+              }
 
-    $sql = "SELECT image_url FROM galeria ORDER BY upload_date DESC";
-    $result = $conn->query($sql);
+              $sql = "SELECT image_url FROM galeria ORDER BY uploaded_at DESC";
+              $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        echo "<div class='col-md-4'>
-                <div class='card'>
-                  <img class='card-img-top' src='" . $row["image_url"] . "' alt='Imagem'>
-                </div>
-              </div>";
-      }
-    } else {
-      echo "0 resultados";
-    }
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<div class='col-md-4'>
+                          <div class='card'>
+                            <img class='card-img-top' src='" . $row["image_url"] . "' alt='Imagem'>
+                          </div>
+                        </div>";
+                }
+              } else {
+                echo "0 resultados";
+              }
 
-    $conn->close();
-  ?>
-</div>
+              $conn->close();
+            ?>
+          </div>
         </div>
       </div>
       <footer class="footer">
