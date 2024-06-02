@@ -1,222 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Material Dashboard PRO by Creative Tim
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!-- Extra details for Live View on GitHub Pages -->
-  <!-- Canonical SEO -->
-  <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
-  <!--  Social tags      -->
-  <meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, material dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, material design, material dashboard bootstrap 4 dashboard">
-  <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
-  <!-- Schema.org markup for Google+ -->
-  <meta itemprop="name" content="Material Dashboard PRO by Creative Tim">
-  <meta itemprop="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
-  <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
-  <!-- Twitter Card data -->
-  <meta name="twitter:card" content="product">
-  <meta name="twitter:site" content="@creativetim">
-  <meta name="twitter:title" content="Material Dashboard PRO by Creative Tim">
-  <meta name="twitter:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
-  <meta name="twitter:creator" content="@creativetim">
-  <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
-  <!-- Open Graph data -->
-  <meta property="fb:app_id" content="655968634437471">
-  <meta property="og:title" content="Material Dashboard PRO by Creative Tim" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="http://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html" />
-  <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg" />
-  <meta property="og:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design." />
-  <meta property="og:site_name" content="Creative Tim" />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Galeria</title>
   <!-- CSS Files -->
-  <link href="../assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
-  <!-- End Google Tag Manager -->
+  <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet">
+  <link href="../assets/css/custom.css" rel="stylesheet">
+  <!-- Fonts and Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 
 <body class="">
-  <!-- Extra details for Live View on GitHub Pages -->
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <div class="wrapper ">
-    <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="logo">
-        <a href="../pages/dashboard.html" class="simple-text logo-mini">
-          AM
-        </a>
-        <a href="../pages/dashboard.html" class="simple-text logo-normal">
-          ADMIN
-        </a>
-      </div>
+  <div class="wrapper">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <div class="logo"><a href="#" class="simple-text logo-normal">Nome da Aplicação</a></div>
       <div class="sidebar-wrapper">
-        <div class="user">
-          <div class="photo">
-            <img src="../assets/img/faces/avatar.jpg" />
-          </div>
-          <div class="user-info">
-            <a data-toggle="collapse" href="#collapseExample" class="username">
-              <span>
-                Tomás Calçada
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> EP </span>
-                    <span class="sidebar-normal"> Editar Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> D </span>
-                    <span class="sidebar-normal"> Definições </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
         <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="../pages/dashboard.html">
-              <i class="material-icons">dashboard</i>
-              <p> Menu Principal </p>
+          <li class="nav-item active">
+            <a class="nav-link" href="./galeria.html">
+              <i class="material-icons">image</i>
+              <p>Galeria</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#utilizadores">
-              <i class="material-icons">person</i>
-              <p> Utilizadores
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="utilizadores">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/users/add_users.html">
-                    <i class="material-icons"> person_add_alt </i>
-                    <span class="sidebar-normal"> Adicionar Utilizadores </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/users/list_user.php">
-                    <i class="material-icons"> list </i>
-                    <span class="sidebar-normal"> lista de Utilizadores </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../pages/calendar.html">
-              <i class="material-icons">calendar_today</i>
-              <p> Calendário </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#website">
-              <i class="material-icons">public</i>
-              <p> Editar Website
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="website">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/edithomepage.html">
-                    <i class="material-icons"> house </i>
-                    <span class="sidebar-normal"> Página Principal </span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="../pages/editgalery.html">
-                    <i class="material-icons"> collections </i>
-                    <span class="sidebar-normal"> Galeria </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/editpages.html">
-                    <i class="material-icons"> feed </i>
-                    <span class="sidebar-normal"> Páginas </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#publicidade">
-              <i class="material-icons">monetization_on</i>
-              <p> Publicidade
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="publicidade">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/addpub.html">
-                    <i class="material-icons"> add </i>
-                    <span class="sidebar-normal"> Adicionar Publicidade </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/listpub.html">
-                    <i class="material-icons"> list </i>
-                    <span class="sidebar-normal"> Lista de Publicidade </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../pages/settings.html">
-              <i class="material-icons">settings</i>
-              <p> Definições </p>
-            </a>
-          </li>
+          <!-- Outros itens do menu -->
         </ul>
       </div>
     </div>
@@ -253,18 +62,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
+                  <p class="d-lg-none d-md-block">Stats</p>
                 </a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
                   <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
+                  <p class="d-lg-none d-md-block">Some Actions</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">Mike John responded to your email</a>
@@ -277,17 +82,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
+                  <p class="d-lg-none d-md-block">Account</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="material-icons">settings</i>
-                  <p class="d-lg-none d-md-block">
-                    Settings
-                  </p>
+                  <p class="d-lg-none d-md-block">Settings</p>
                 </a>
               </li>
             </ul>
@@ -310,14 +111,6 @@
                     <p class="card-category">Complete os campos abaixo</p>
                   </div>
                   <div class="card-body">
-                    <div class="form-group">
-                      <label for="title" class="bmd-label-floating">Título</label>
-                      <input type="text" class="form-control" id="title" name="title" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="description" class="bmd-label-floating">Descrição</label>
-                      <textarea class="form-control" id="description" name="description"></textarea>
-                    </div>
                     <div class="form-group">
                       <label for="image" class="bmd-label-floating">Selecionar Imagem</label>
                       <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
@@ -345,7 +138,7 @@
                 die("Connection failed: " . $conn->connect_error);
               }
 
-              $sql = "SELECT title, description, image_url FROM galeria ORDER BY upload_date DESC";
+              $sql = "SELECT image_url FROM gallery ORDER BY upload_date DESC";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
@@ -353,10 +146,6 @@
                   echo "<div class='col-md-4'>
                           <div class='card'>
                             <img class='card-img-top' src='" . $row["image_url"] . "' alt='Imagem'>
-                            <div class='card-body'>
-                              <h4 class='card-title'>" . $row["title"] . "</h4>
-                              <p class='card-text'>" . $row["description"] . "</p>
-                            </div>
                           </div>
                         </div>";
                 }
@@ -374,24 +163,16 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
+                <a href="https://www.creative-tim.com">Creative Tim</a>
               </li>
               <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
+                <a href="https://creative-tim.com/presentation">About Us</a>
               </li>
               <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
+                <a href="http://blog.creative-tim.com">Blog</a>
               </li>
               <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
+                <a href="https://www.creative-tim.com/license">Licenses</a>
               </li>
             </ul>
           </nav>
