@@ -329,7 +329,7 @@
                 die("Connection failed: " . $conn->connect_error);
               }
 
-              $sql = "SELECT image_url FROM gallery ORDER BY upload_date DESC";
+              $sql = "SELECT image_url FROM galeria ORDER BY upload_date DESC";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
