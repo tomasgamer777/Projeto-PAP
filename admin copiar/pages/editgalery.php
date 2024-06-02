@@ -316,10 +316,10 @@
           </div>
           <div class="row">
             <?php
-              $servername = "your_servername";
-              $username = "your_username";
-              $password = "your_password";
-              $dbname = "your_dbname";
+              $servername = "localhost";
+              $username = "tomas";
+              $password = "!h01fFw35";
+              $dbname = "banda";
 
               // Create connection
               $conn = new mysqli($servername, $username, $password, $dbname);
