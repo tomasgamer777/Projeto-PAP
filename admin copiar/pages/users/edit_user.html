@@ -534,30 +534,31 @@
       align-items: center;
     }
     .picture-container {
-      text-align: center;
-      margin-bottom: 20px; /* Adicionado para separação entre a imagem e o botão */
-    }
-    .picture {
-      position: relative;
-      display: inline-block; /* Alterado para permitir que o botão fique ao lado */
-    }
-    .picture input[type="file"] {
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      cursor: pointer;
-      height: 100%;
-      width: 100%;
-      z-index: 2; /* Ajustado para aparecer sobre a imagem */
-    }
-    .picture .btn {
-      position: relative;
-      z-index: 1; /* Ajustado para aparecer sob a imagem */
-      margin-top: -40px; /* Ajustado para posicionar sobre a imagem */
-      width: auto; /* Ajustado para tornar o botão mais compacto */
-    }
-  </style>
+    text-align: center;
+    margin-bottom: 20px; /* Adicionado para separação entre a imagem e o botão */
+  }
+  .picture {
+    width: 150px; /* Tamanho da imagem */
+    height: 150px; /* Tamanho da imagem */
+    border-radius: 50%; /* Tornando a imagem redonda */
+    overflow: hidden; /* Ocultar parte da imagem fora do círculo */
+    margin: 0 auto; /* Centralizar a imagem */
+  }
+  .picture img {
+    width: 100%;
+    height: auto;
+  }
+  .picture input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    z-index: 2; /* Ajustado para aparecer sobre a imagem */
+  }
+</style>
   <script>
     $(document).ready(function() {
       $().ready(function() {
