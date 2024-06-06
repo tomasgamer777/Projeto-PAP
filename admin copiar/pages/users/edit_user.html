@@ -239,90 +239,151 @@
                   <div class="card-icon">
                     <i class="material-icons">perm_identity</i>
                   </div>
-                  <h4 class="card-title">Edit Profile -
-                    <small class="category">Complete your profile</small>
+                  <h4 class="card-title">Editar utilizador -
+                    <small class="category">Atualize o formulário</small>
                   </h4>
                 </div>
                 <div class="card-body">
                   <form id="editProfileForm">
                     <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Código</label>
-                          <input type="text" class="form-control" disabled>
-                        </div>
-                      </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-4">
-                          <div class="picture-container">
-                            <div class="picture">
-                              <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                              <input type="file" id="wizard-picture" name="profile_picture" accept="image/*">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Código</label>
+                                <input type="text" class="form-control" id="user_id" disabled>
                             </div>
-                            <h6 class="description">Foto de Perfil</h6>
-                          </div>
-                          </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Nome</label>
-                          <input type="text" class="form-control">
                         </div>
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Sobrenome</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Morada</label>
-                          <input type="text" class="form-control">
+                        <div class="col-md-4">
+                            <div class="picture-container">
+                                <div class="picture">
+                                    <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/*">
+                                </div>
+                                <h6 class="description">Foto de Perfil</h6>
+                            </div>
                         </div>
-                      </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Nome</label>
+                                <input type="text" class="form-control" id="nome">
+                            </div>
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Sobrenome</label>
+                                <input type="text" class="form-control" id="sobrenome">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Telefone</label>
-                          <input type="text" class="form-control">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Morada</label>
+                                <input type="text" class="form-control" id="morada">
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Data de Nascimento</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Distrito</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Código Postal</label>
-                            <input type="text" class="form-control">
-                          </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Telefone</label>
+                                <input type="text" class="form-control" id="telefone">
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">NIF</label>
-                            <input type="text" class="form-control">
-                          </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Data de Nascimento</label>
+                                <input type="text" class="form-control" id="data_nascimento">
+                            </div>
                         </div>
-                      </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Distrito</label>
+                                <input type="text" class="form-control" id="distrito">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Código Postal</label>
+                                    <input type="text" class="form-control" id="codigo_postal">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">NIF</label>
+                                    <input type="text" class="form-control" id="nif">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <button type="button" id="updateButton" class="btn btn-rose pull-right">Atualizar utilizador</button>
                     <div class="clearfix"></div>
-                  </form>
+                </form>
+
+                <script>
+                    window.onload = function() {
+                        // Verificar se há um parâmetro 'user_id' na URL
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const userId = urlParams.get('user_id');
+                        
+                        if (userId !== null) {
+                            // Se 'user_id' estiver presente, buscar as informações do utilizador
+                            fetchUserData(userId);
+                        }
+                    };
+
+                    function fetchUserData(userId) {
+                        // Fazer uma requisição AJAX para obter os dados do utilizador do servidor
+                        // Suponha que você tenha uma rota no servidor que retorna os dados do utilizador com base no ID
+                        fetch('get_user_data.php?user_id=' + userId)
+                            .then(response => response.json())
+                            .then(data => {
+                                // Preencher o formulário de edição com os dados do utilizador
+                                document.getElementById("user_id").value = data.user_id;
+                                document.getElementById("nome").value = data.nome;
+                                document.getElementById("sobrenome").value = data.sobrenome;
+                                document.getElementById("morada").value = data.morada;
+                                document.getElementById("telefone").value = data.telefone;
+                                document.getElementById("data_nascimento").value = data.data_nascimento;
+                                document.getElementById("distrito").value = data.distrito;
+                                document.getElementById("codigo_postal").value = data.codigo_postal;
+                                document.getElementById("nif").value = data.nif;
+                                document.getElementById("wizardPicturePreview").src = data.foto_perfil_url; // Substituir 'foto_perfil_url' pela chave real do URL da foto de perfil no objeto de dados retornado
+                            })
+                            .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
+                    }
+
+                    document.getElementById("updateButton").addEventListener("click", function() {
+                        updateUser();
+                    });
+
+                    function updateUser() {
+                        const formData = new FormData(document.getElementById("editProfileForm"));
+                        fetch('update_user.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erro ao atualizar o utilizador');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            // Manipular a resposta do servidor, se necessário
+                            console.log(data);
+                            alert('Utilizador atualizado com sucesso!');
+                        })
+                        .catch(error => {
+                            console.error('Erro ao atualizar o utilizador:', error);
+                            alert('Ocorreu um erro ao atualizar o utilizador. Por favor, tente novamente.');
+                        });
+                    }
+                </script>
                 </div>
               </div>
             </div>
@@ -512,6 +573,70 @@
    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
    <script src="../../assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
    
+
+   <script>
+    window.onload = function() {
+        // Verificar se há um parâmetro 'user_id' na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
+        
+        if (userId !== null) {
+            // Se 'user_id' estiver presente, buscar as informações do utilizador
+            fetchUserData(userId);
+        }
+    };
+
+    function fetchUserData(userId) {
+        // Fazer uma requisição AJAX para obter os dados do utilizador do servidor
+        // Suponha que você tenha uma rota no servidor que retorna os dados do utilizador com base no ID
+        fetch('get_user_data.php?user_id=' + userId)
+            .then(response => response.json())
+            .then(data => {
+                // Preencher o formulário de edição com os dados do utilizador
+                document.getElementById("user_id").value = data.user_id;
+                document.getElementById("nome").value = data.nome;
+                document.getElementById("sobrenome").value = data.sobrenome;
+                document.getElementById("email").value = data.email;
+                document.getElementById("telef").value = data.telef;
+                document.getElementById("morada").value = data.morada;
+                document.getElementById("tipo").value = data.tipo;
+                document.getElementById("status").value = data.status;
+            })
+            .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
+    }
+
+    function updateUser() {
+        // Aqui você pode implementar a lógica para atualizar o utilizador no servidor
+        // Por exemplo, você pode enviar uma requisição AJAX para enviar os dados atualizados para o backend
+        // e tratar a resposta do servidor conforme necessário
+        // Lembre-se de ajustar isso de acordo com a estrutura do seu backend
+        // e de adicionar validações de entrada e tratamento de erros adequados
+
+        // Exemplo de como você pode enviar os dados atualizados para o backend:
+        const formData = new FormData(document.getElementById("editUserForm"));
+        fetch('update_user.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao atualizar o utilizador');
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Manipular a resposta do servidor, se necessário
+            console.log(data);
+            alert('Utilizador atualizado com sucesso!');
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar o utilizador:', error);
+            alert('Ocorreu um erro ao atualizar o utilizador. Por favor, tente novamente.');
+        });
+    }
+</script>
+
+
    <!-- Custom Script for SweetAlert -->
    <script>
      $(document).ready(function () {

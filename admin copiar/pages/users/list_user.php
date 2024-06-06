@@ -347,7 +347,7 @@
                                         }
                                         
                                         echo '<td class="text-right">
-                                                <a href="editar_user.php" class="btn btn-link btn-warning btn-just-icon edit" onclick="editUser(' . $row["user_id"] . ')"><i class="material-icons">edit</i></a>
+                                                 <a href="edit_user.html?user_id=' . $row["user_id"] . '" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i></a>
                                                 <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="confirmRemove(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
                                               </td>';
                                         echo "</tr>";
