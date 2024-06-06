@@ -558,6 +558,23 @@
     width: 100%;
     z-index: 2; /* Ajustado para aparecer sobre a imagem */
   }
+  .picture .btn-upload {
+    position: relative;
+    z-index: 1; /* Ajustado para aparecer sob a imagem */
+    margin-top: -30px; /* Ajustado para posicionar sobre a imagem */
+    width: 80px; /* Reduzindo o tamanho do botão */
+    height: 30px; /* Reduzindo o tamanho do botão */
+    font-size: 12px; /* Reduzindo o tamanho do texto do botão */
+    border-radius: 5px; /* Adicionando bordas arredondadas ao botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Removendo a borda do botão */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Adicionando transição suave */
+  }
+  .picture .btn-upload:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+  }
 </style>
   <script>
     $(document).ready(function() {
