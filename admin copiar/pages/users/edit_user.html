@@ -553,23 +553,35 @@
     };
 
     function fetchUserData(userId) {
-        // Fazer uma requisição AJAX para obter os dados do utilizador do servidor
-        // Suponha que você tenha uma rota no servidor que retorna os dados do utilizador com base no ID
-        fetch('get_user_data.php?user_id=' + userId)
-            .then(response => response.json())
-            .then(data => {
-                // Preencher o formulário de edição com os dados do utilizador
-                document.getElementById("user_id").value = data.user_id;
-                document.getElementById("nome").value = data.nome;
-                document.getElementById("sobrenome").value = data.sobrenome;
-                document.getElementById("email").value = data.email;
-                document.getElementById("telef").value = data.telef;
-                document.getElementById("morada").value = data.morada;
-                document.getElementById("tipo").value = data.tipo;
-                document.getElementById("status").value = data.status;
-            })
-            .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
-    }
+    // Fazer uma requisição AJAX para obter os dados do utilizador do servidor
+    // Suponha que você tenha uma rota no servidor que retorna os dados do utilizador com base no ID
+    fetch('get_user_data.php?user_id=' + userId)
+        .then(response => response.json())
+        .then(data => {
+            // Preencher o formulário de edição com os dados do utilizador
+            document.getElementById("user_id").value = data.user_id;
+            document.getElementById("nome").value = data.nome;
+            document.getElementById("sobrenome").value = data.sobrenome;
+            document.getElementById("email").value = data.email;
+            document.getElementById("telef").value = data.telef;
+            document.getElementById("morada").value = data.morada;
+            document.getElementById("tipo").value = data.tipo;
+            document.getElementById("status").value = data.status;
+            
+            // Preencher os campos adicionais
+            document.getElementById("data_nascimento").value = data.data_nascimento;
+            document.getElementById("distrito").value = data.distrito;
+            document.getElementById("codigo_postal").value = data.codigo_postal;
+            document.getElementById("nif").value = data.nif;
+            
+            // Se a imagem do perfil estiver disponível nos dados, você pode atualizar a visualização da imagem
+            if (data.profile_picture) {
+                document.getElementById("wizardPicturePreview").src = data.profile_picture;
+            }
+        })
+        .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
+}
+
 
     function updateUser() {
         // Aqui você pode implementar a lógica para atualizar o utilizador no servidor
