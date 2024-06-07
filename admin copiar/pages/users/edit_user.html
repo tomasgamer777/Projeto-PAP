@@ -257,7 +257,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Suponha que o ID do usuário seja passado como um parâmetro na URL
             const urlParams = new URLSearchParams(window.location.search);
             const userId = urlParams.get('user_id');
             if (userId) {
@@ -265,7 +264,7 @@
             }
         });
     </script>
-    
+
       <div class="content">
         <div class="container-fluid">
           <div class="row justify-content-center">
@@ -284,8 +283,8 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Código</label>
-                                <input type="text" class="form-control" id="user_id" disabled>
+                                <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
+                                <label class="bmd-label-floating" for="user_id">Código</label>
                             </div>
                         </div>
                     </div>
@@ -301,54 +300,58 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nome</label>
-                                <input type="text" class="form-control" id="nome">
+                                <input type="text" class="form-control" id="nome" placeholder=" ">
+                                <label class="bmd-label-floating" for="nome">Nome</label>
                             </div>
                             <div class="form-group">
-                                <label class="bmd-label-floating">Sobrenome</label>
-                                <input type="text" class="form-control" id="sobrenome">
+                                <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                                <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email" placeholder=" ">
+                                <label class="bmd-label-floating" for="email">Email</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Morada</label>
-                                <input type="text" class="form-control" id="morada">
+                                <input type="text" class="form-control" id="morada" placeholder=" ">
+                                <label class="bmd-label-floating" for="morada">Morada</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Telefone</label>
-                                <input type="text" class="form-control" id="telef">
+                                <input type="text" class="form-control" id="telef" placeholder=" ">
+                                <label class="bmd-label-floating" for="telef">Telefone</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Data de Nascimento</label>
-                                <input type="text" class="form-control" id="data_nascimento">
+                                <input type="text" class="form-control" id="data_nascimento" placeholder=" ">
+                                <label class="bmd-label-floating" for="data_nascimento">Data de Nascimento</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Distrito</label>
-                                <input type="text" class="form-control" id="distrito">
+                                <input type="text" class="form-control" id="distrito" placeholder=" ">
+                                <label class="bmd-label-floating" for="distrito">Distrito</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Código Postal</label>
-                                <input type="text" class="form-control" id="codigo_postal">
+                                <input type="text" class="form-control" id="codigo_postal" placeholder=" ">
+                                <label class="bmd-label-floating" for="codigo_postal">Código Postal</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">NIF</label>
-                                <input type="text" class="form-control" id="nif">
+                                <input type="text" class="form-control" id="nif" placeholder=" ">
+                                <label class="bmd-label-floating" for="nif">NIF</label>
                             </div>
                         </div>
                     </div>
@@ -600,6 +603,15 @@
      });
    </script>
    <style>
+
+        .form-group label {
+            top: -20px;
+            transition: 0.2s ease all;
+        }
+        .form-group input:focus ~ label, .form-group input:not(:placeholder-shown) ~ label {
+            top: -20px;
+        }
+
     .content {
       display: flex;
       justify-content: center;
