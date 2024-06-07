@@ -244,15 +244,15 @@
                     document.getElementById("morada").value = data.morada;
                     document.getElementById("tipo").value = data.tipo;
                     document.getElementById("status").value = data.status;
-                    document.getElementById("data_nascimento").value = data.data_nascimento;
-                    document.getElementById("codigo_postal").value = data.codigo_postal;
+                    document.getElementById("data_nasc").value = data.data_nasc;
+                    document.getElementById("cod_postal").value = data.codigo_postal;
                     document.getElementById("nif").value = data.nif;
 
                     // Selecionar a opção correta do select de distrito
                     document.querySelector(`select[name="distrito"] option[value="${data.distrito}"]`).selected = true;
 
-                    if (data.profile_picture) {
-                        document.getElementById("wizardPicturePreview").src = data.profile_picture;
+                    if (data.foto) {
+                        document.getElementById("wizardPicturePreview").src = data.foto;
                     }
                 })
                 .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
@@ -295,7 +295,7 @@
                             <div class="picture-container">
                                 <div class="picture">
                                     <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/*">
+                                    <input type="file" id="foto" name="foto" accept="image/*">
                                 </div>
                                 <h6 class="description">Foto de Perfil</h6>
                             </div>
@@ -332,8 +332,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="data_nascimento" placeholder=" ">
-                                <label class="bmd-label-floating" for="data_nascimento">Data de Nascimento</label>
+                                <input type="text" class="form-control" id="data_nasc" placeholder=" ">
+                                <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -364,8 +364,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="codigo_postal" placeholder=" ">
-                                <label class="bmd-label-floating" for="codigo_postal">Código Postal</label>
+                                <input type="text" class="form-control" id="cod_postal" placeholder=" ">
+                                <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -563,14 +563,14 @@
             document.getElementById("status").value = data.status;
             
             // Preencher os campos adicionais
-            document.getElementById("data_nascimento").value = data.data_nascimento;
+            document.getElementById("data_nasc").value = data.data_nasc;
             document.getElementById("distrito").value = data.distrito;
-            document.getElementById("codigo_postal").value = data.codigo_postal;
+            document.getElementById("cod_postal").value = data.cod_postal;
             document.getElementById("nif").value = data.nif;
             
             // Se a imagem do perfil estiver disponível nos dados, você pode atualizar a visualização da imagem
-            if (data.profile_picture) {
-                document.getElementById("wizardPicturePreview").src = data.profile_picture;
+            if (data.foto) {
+                document.getElementById("wizardPicturePreview").src = data.foto;
             }
         })
         .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
