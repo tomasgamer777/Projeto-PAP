@@ -230,6 +230,42 @@
         </div>
       </nav>
       <!-- End Navbar -->
+
+      <script>
+        function fetchUserData(userId) {
+            fetch('get_user_data.php?user_id=' + userId)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("user_id").value = data.user_id;
+                    document.getElementById("nome").value = data.nome;
+                    document.getElementById("sobrenome").value = data.sobrenome;
+                    document.getElementById("email").value = data.email;
+                    document.getElementById("telef").value = data.telef;
+                    document.getElementById("morada").value = data.morada;
+                    document.getElementById("tipo").value = data.tipo;
+                    document.getElementById("status").value = data.status;
+                    document.getElementById("data_nascimento").value = data.data_nascimento;
+                    document.getElementById("distrito").value = data.distrito;
+                    document.getElementById("codigo_postal").value = data.codigo_postal;
+                    document.getElementById("nif").value = data.nif;
+
+                    if (data.profile_picture) {
+                        document.getElementById("wizardPicturePreview").src = data.profile_picture;
+                    }
+                })
+                .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Suponha que o ID do usuário seja passado como um parâmetro na URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            if (userId) {
+                fetchUserData(userId);
+            }
+        });
+    </script>
+    
       <div class="content">
         <div class="container-fluid">
           <div class="row justify-content-center">
@@ -286,7 +322,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Telefone</label>
-                                <input type="text" class="form-control" id="telefone">
+                                <input type="text" class="form-control" id="telef">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -303,87 +339,22 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Código Postal</label>
-                                    <input type="text" class="form-control" id="codigo_postal">
-                                </div>
+                                <label class="bmd-label-floating">Código Postal</label>
+                                <input type="text" class="form-control" id="codigo_postal">
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">NIF</label>
-                                    <input type="text" class="form-control" id="nif">
-                                </div>
+                                <label class="bmd-label-floating">NIF</label>
+                                <input type="text" class="form-control" id="nif">
                             </div>
                         </div>
                     </div>
                     <button type="button" id="updateButton" class="btn btn-rose pull-right">Atualizar utilizador</button>
                     <div class="clearfix"></div>
                 </form>
-
-                <script>
-                    window.onload = function() {
-                        // Verificar se há um parâmetro 'user_id' na URL
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const userId = urlParams.get('user_id');
-                        
-                        if (userId !== null) {
-                            // Se 'user_id' estiver presente, buscar as informações do utilizador
-                            fetchUserData(userId);
-                        }
-                    };
-
-                    function fetchUserData(userId) {
-                        // Fazer uma requisição AJAX para obter os dados do utilizador do servidor
-                        // Suponha que você tenha uma rota no servidor que retorna os dados do utilizador com base no ID
-                        fetch('get_user_data.php?user_id=' + userId)
-                            .then(response => response.json())
-                            .then(data => {
-                                // Preencher o formulário de edição com os dados do utilizador
-                                document.getElementById("user_id").value = data.user_id;
-                                document.getElementById("nome").value = data.nome;
-                                document.getElementById("sobrenome").value = data.sobrenome;
-                                document.getElementById("morada").value = data.morada;
-                                document.getElementById("telefone").value = data.telefone;
-                                document.getElementById("data_nascimento").value = data.data_nascimento;
-                                document.getElementById("distrito").value = data.distrito;
-                                document.getElementById("codigo_postal").value = data.codigo_postal;
-                                document.getElementById("nif").value = data.nif;
-                                document.getElementById("wizardPicturePreview").src = data.foto_perfil_url; // Substituir 'foto_perfil_url' pela chave real do URL da foto de perfil no objeto de dados retornado
-                            })
-                            .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
-                    }
-
-                    document.getElementById("updateButton").addEventListener("click", function() {
-                        updateUser();
-                    });
-
-                    function updateUser() {
-                        const formData = new FormData(document.getElementById("editProfileForm"));
-                        fetch('update_user.php', {
-                            method: 'POST',
-                            body: formData
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Erro ao atualizar o utilizador');
-                            }
-                            return response.text();
-                        })
-                        .then(data => {
-                            // Manipular a resposta do servidor, se necessário
-                            console.log(data);
-                            alert('Utilizador atualizado com sucesso!');
-                        })
-                        .catch(error => {
-                            console.error('Erro ao atualizar o utilizador:', error);
-                            alert('Ocorreu um erro ao atualizar o utilizador. Por favor, tente novamente.');
-                        });
-                    }
-                </script>
                 </div>
               </div>
             </div>
