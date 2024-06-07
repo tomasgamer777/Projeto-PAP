@@ -231,39 +231,103 @@
       </nav>
       <!-- End Navbar -->
 
-      <script>
-        function fetchUserData(userId) {
-            fetch('get_user_data.php?user_id=' + userId)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("user_id").value = data.user_id;
-                    document.getElementById("nome").value = data.nome;
-                    document.getElementById("sobrenome").value = data.sobrenome;
-                    document.getElementById("email").value = data.email;
-                    document.getElementById("telef").value = data.telef;
-                    document.getElementById("morada").value = data.morada;
-                    document.getElementById("tipo").value = data.tipo;
-                    document.getElementById("status").value = data.status;
-                    document.getElementById("data_nascimento").value = data.data_nascimento;
-                    document.getElementById("distrito").value = data.distrito;
-                    document.getElementById("codigo_postal").value = data.codigo_postal;
-                    document.getElementById("nif").value = data.nif;
-
-                    if (data.profile_picture) {
-                        document.getElementById("wizardPicturePreview").src = data.profile_picture;
-                    }
-                })
-                .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const userId = urlParams.get('user_id');
-            if (userId) {
-                fetchUserData(userId);
-            }
-        });
-    </script>
+      <form id="editProfileForm">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
+                    <label class="bmd-label-floating" for="user_id">Código</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="picture-container">
+                    <div class="picture">
+                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                        <input type="file" id="wizard-picture" name="profile_picture" accept="image/*">
+                    </div>
+                    <h6 class="description">Foto de Perfil</h6>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nome" placeholder=" ">
+                    <label class="bmd-label-floating" for="nome">Nome</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="email" placeholder=" ">
+                    <label class="bmd-label-floating" for="email">Email</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="morada" placeholder=" ">
+                    <label class="bmd-label-floating" for="morada">Morada</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="telef" placeholder=" ">
+                    <label class="bmd-label-floating" for="telef">Telefone</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="data_nascimento" placeholder=" ">
+                    <label class="bmd-label-floating" for="data_nascimento">Data de Nascimento</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="distrito">Distrito</label>
+                    <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
+                        <option value="aveiro">Aveiro</option>
+                        <option value="beja">Beja</option>
+                        <option value="braga">Braga</option>
+                        <option value="braganca">Bragança</option>
+                        <option value="castelo">Castelo Branco</option>
+                        <option value="coimbra">Coimbra</option>
+                        <option value="evora">Évora</option>
+                        <option value="faro">Faro</option>
+                        <option value="guarda">Guarda</option>
+                        <option value="leiria">Leiria</option>
+                        <option value="lisboa">Lisboa</option>
+                        <option value="portalegre">Portalegre</option>
+                        <option value="porto">Porto</option>
+                        <option value="setubal">Setúbal</option>
+                        <option value="viana">Viana do Castelo</option>
+                        <option value="vila">Vila Real</option>
+                        <option value="viseu">Viseu</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="codigo_postal" placeholder=" ">
+                    <label class="bmd-label-floating" for="codigo_postal">Código Postal</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nif" placeholder=" ">
+                    <label class="bmd-label-floating" for="nif">NIF</label>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="updateButton" class="btn btn-rose pull-right">Atualizar utilizador</button>
+        <div class="clearfix"></div>
+    </form>
 
       <div class="content">
         <div class="container-fluid">
@@ -336,8 +400,26 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="distrito" placeholder=" ">
-                                <label class="bmd-label-floating" for="distrito">Distrito</label>
+                                <label for="distrito">Distrito</label>
+                                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
+                                    <option value="aveiro">Aveiro</option>
+                                    <option value="beja">Beja</option>
+                                    <option value="braga">Braga</option>
+                                    <option value="braganca">Bragança</option>
+                                    <option value="castelo">Castelo Branco</option>
+                                    <option value="coimbra">Coimbra</option>
+                                    <option value="evora">Évora</option>
+                                    <option value="faro">Faro</option>
+                                    <option value="guarda">Guarda</option>
+                                    <option value="leiria">Leiria</option>
+                                    <option value="lisboa">Lisboa</option>
+                                    <option value="portalegre">Portalegre</option>
+                                    <option value="porto">Porto</option>
+                                    <option value="setubal">Setúbal</option>
+                                    <option value="viana">Viana do Castelo</option>
+                                    <option value="vila">Vila Real</option>
+                                    <option value="viseu">Viseu</option>
+                                </select>
                             </div>
                         </div>
                     </div>
