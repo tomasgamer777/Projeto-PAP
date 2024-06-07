@@ -245,12 +245,10 @@
                     document.getElementById("tipo").value = data.tipo;
                     document.getElementById("status").value = data.status;
                     document.getElementById("data_nasc").value = data.data_nasc;
-                    document.getElementById("cod_postal").value = data.codigo_postal;
+                    document.getElementById("cod_postal").value = data.cod_postal;
                     document.getElementById("nif").value = data.nif;
-
-                    // Selecionar a opção correta do select de distrito
                     document.querySelector(`select[name="distrito"] option[value="${data.distrito}"]`).selected = true;
-
+                    
                     if (data.foto) {
                         document.getElementById("wizardPicturePreview").src = data.foto;
                     }
@@ -295,7 +293,7 @@
                             <div class="picture-container">
                                 <div class="picture">
                                     <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                    <input type="file" id="foto" name="foto" accept="image/*">
+                                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/*">
                                 </div>
                                 <h6 class="description">Foto de Perfil</h6>
                             </div>

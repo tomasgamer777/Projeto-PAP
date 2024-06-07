@@ -18,8 +18,11 @@ if (isset($_GET['user_id'])) {
     }
 
     // Consulta para obter os dados do usuário com base no ID
-    $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status, data_nasc, distrito, cod_postal, nif, foto FROM users WHERE user_id = $user_id";
-    $result = $conn->query($sql);
+    $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status, data_nasc, distrito, cod_postal, nif, foto FROM users WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         // Se houver resultados, enviar os dados do usuário como JSON
@@ -30,6 +33,7 @@ if (isset($_GET['user_id'])) {
         echo json_encode(array("error" => "Nenhum usuário encontrado com o ID fornecido"));
     }
 
+    $stmt->close();
     $conn->close();
 } else {
     // Se nenhum ID de usuário foi fornecido, retornar uma mensagem de erro
