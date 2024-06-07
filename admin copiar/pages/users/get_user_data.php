@@ -29,14 +29,13 @@ if (isset($_GET['user_id'])) {
         $row = $result->fetch_assoc();
         echo json_encode($row);
     } else {
-        // Se nenhum usuário for encontrado com o ID fornecido, retornar uma mensagem de erro
-        echo json_encode(array("error" => "Nenhum usuário encontrado com o ID fornecido"));
+        // Se nenhum usuário for encontrado com o ID fornecido, enviar um erro
+        echo json_encode(["error" => "Usuário não encontrado"]);
     }
 
     $stmt->close();
     $conn->close();
 } else {
-    // Se nenhum ID de usuário foi fornecido, retornar uma mensagem de erro
-    echo json_encode(array("error" => "ID do usuário não fornecido"));
+    echo json_encode(["error" => "ID do usuário não fornecido"]);
 }
 ?>
