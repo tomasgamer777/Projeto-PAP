@@ -40,6 +40,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link href="../../assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../assets/demo/demo.css" rel="stylesheet" />
@@ -423,15 +424,15 @@
                   </div>
                   <div class="card-footer">
                     <div class="mr-auto">
-                      <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
+                      <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Voltar">
                     </div>
                     <div class="ml-auto">
-                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
-                      <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" formaction="add_users.php">
+                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Proximo">
+                      <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" formaction="add_users.php">
                     </div>
                     <div class="clearfix"></div>
                   </div>
-                </form>job
+                </form>
               </div>
             </div>
             <!-- wizard container -->
@@ -577,6 +578,20 @@
       </ul>
     </div>
   </div>
+
+<!-- Inclua o jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Inclua o jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- Configuração do Datepicker -->
+<script>
+    $(document).ready(function() {
+        $("#data_nascimento").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    });
+</script>
+
   <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
@@ -975,18 +990,7 @@ $(document).ready(function() {
         });
     });
 
-    $(document).ready(function() {
-            $("#data_nascimento").datepicker({
-                dateFormat: "dd/mm/yy",
-                onClose: function(dateText, inst) {
-                    if (dateText) {
-                        var parts = dateText.split('/');
-                        var formattedDate = parts[1] + '/' + parts[0] + '/' + parts[2];
-                        $("#data_nascimento").val(formattedDate);
-                    }
-                }
-            });
-        });
+    
 });
 </script>
 
