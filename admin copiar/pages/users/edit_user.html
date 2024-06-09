@@ -619,68 +619,7 @@
     
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#userForm').on('submit', function(e) {
-                e.preventDefault();
 
-                var fileInput = $('#wizard-picture')[0];
-                var file = fileInput.files[0];
-
-                // Verifica se o arquivo é uma imagem
-                if (file && !file.type.startsWith('image/')) {
-                    Swal.fire({
-                        title: "Erro!",
-                        text: "Por favor, envie um arquivo de imagem.",
-                        icon: "error",
-                        confirmButtonClass: "btn btn-danger",
-                        buttonsStyling: false
-                    });
-                    return;
-                }
-
-                var formData = new FormData(this);
-
-                $.ajax({
-                    url: 'update_user.php', // Altere o URL para o arquivo que processa a atualização do usuário
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        var jsonResponse = JSON.parse(response);
-                        if (jsonResponse.status === "success") {
-                            Swal.fire({
-                                title: "Bom trabalho!",
-                                text: jsonResponse.message,
-                                icon: "success",
-                                confirmButtonClass: "btn btn-success",
-                                buttonsStyling: false
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Erro!",
-                                text: jsonResponse.message,
-                                icon: "error",
-                                confirmButtonClass: "btn btn-danger",
-                                buttonsStyling: false
-                            });
-                        }
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        Swal.fire({
-                            title: "Erro!",
-                            text: "Erro ao atualizar o perfil: " + errorThrown,
-                            icon: "error",
-                            confirmButtonClass: "btn btn-danger",
-                            buttonsStyling: false
-                        });
-                    }
-                });
-            });
-        });
-    </script>
 
 
    <!-- Custom Script for SweetAlert -->
@@ -1024,6 +963,71 @@
       md.checkFullPageBackgroundImage();
     });
   </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#userForm').on('submit', function(e) {
+                e.preventDefault();
+
+                var fileInput = $('#wizard-picture')[0];
+                var file = fileInput.files[0];
+
+                // Verifica se o arquivo é uma imagem
+                if (file && !file.type.startsWith('image/')) {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Por favor, envie um arquivo de imagem.",
+                        icon: "error",
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    });
+                    return;
+                }
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: 'update_user.php', // Altere o URL para o arquivo que processa a atualização do usuário
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        var jsonResponse = JSON.parse(response);
+                        if (jsonResponse.status === "success") {
+                            Swal.fire({
+                                title: "Bom trabalho!",
+                                text: jsonResponse.message,
+                                icon: "success",
+                                confirmButtonClass: "btn btn-success",
+                                buttonsStyling: false
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Erro!",
+                                text: jsonResponse.message,
+                                icon: "error",
+                                confirmButtonClass: "btn btn-danger",
+                                buttonsStyling: false
+                            });
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        Swal.fire({
+                            title: "Erro!",
+                            text: "Erro ao atualizar o perfil: " + errorThrown,
+                            icon: "error",
+                            confirmButtonClass: "btn btn-danger",
+                            buttonsStyling: false
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>
