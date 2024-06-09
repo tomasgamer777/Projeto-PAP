@@ -27,11 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = $result->fetch_assoc();
             if ($row['status'] == 1) {
                 // Usuário está desativado, retorna uma mensagem de erro
-                echo json_encode(array("success" => false, "message" => "Usuário desativado."));
+                echo json_encode(array("success" => false, "message" => "Utilizador desativado."));
             } else {
                 // Verificar se a senha fornecida pelo usuário corresponde à senha armazenada no banco de dados
                 if (password_verify($password_user, $row['password'])) {
-                    // Verificar se o usuário é um administrador (tipo = 1)
+                    // Verificar se o usuário é um administrador (tipo = 4)
                     if ($row['tipo'] == 4) {
                         // Retorna um JSON indicando sucesso
                         echo json_encode(array("success" => true));
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             // Retorna uma mensagem de erro
-            echo json_encode(array("success" => false, "message" => "Usuário não encontrado."));
+            echo json_encode(array("success" => false, "message" => "Utilizador não encontrado."));
         }
     } else {
         // Retorna uma mensagem de erro
