@@ -593,11 +593,24 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Configuração do Datepicker -->
 <script>
-    $(document).ready(function() {
-        $("#data_nascimento").datepicker({
-            dateFormat: "dd/mm/yy"
-        });
-    });
+  $(document).ready(function() {
+      $("#data_nascimento").datepicker({
+          dateFormat: "dd/mm/yy"
+      });
+
+      function validateLength(inputId, errorId) {
+          $(inputId).on('input', function() {
+              if (this.value.length > 9) {
+                  $(errorId).show();
+              } else {
+                  $(errorId).hide();
+              }
+          });
+      }
+
+      validateLength('#telefone', '#telefone-error');
+      validateLength('#nif', '#nif-error');
+  });
 </script>
 
   <!--   Core JS Files   -->
