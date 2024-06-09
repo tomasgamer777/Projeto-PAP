@@ -615,91 +615,74 @@
         });
 
 
-    function updateUser() {
-        // Aqui você pode implementar a lógica para atualizar o utilizador no servidor
-        // Por exemplo, você pode enviar uma requisição AJAX para enviar os dados atualizados para o backend
-        // e tratar a resposta do servidor conforme necessário
-        // Lembre-se de ajustar isso de acordo com a estrutura do seu backend
-        // e de adicionar validações de entrada e tratamento de erros adequados
-
-        // Exemplo de como você pode enviar os dados atualizados para o backend:
-        const formData = new FormData(document.getElementById("editUserForm"));
-        fetch('update_user.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao atualizar o utilizador');
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Manipular a resposta do servidor, se necessário
-            console.log(data);
-            alert('Utilizador atualizado com sucesso!');
-        })
-        .catch(error => {
-            console.error('Erro ao atualizar o utilizador:', error);
-            alert('Ocorreu um erro ao atualizar o utilizador. Por favor, tente novamente.');
-        });
-    }
+    
 </script>
 
 
    <!-- Custom Script for SweetAlert -->
 
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script>
-       // Função para atualizar o usuário
-       function updateUser() {
-           // Coletar os dados do formulário
-           var formData = new FormData(document.getElementById("editProfileForm"));
+    <script>
+        $(document).ready(function() {
+            $('#userForm').on('submit', function(e) {
+                e.preventDefault();
 
-           // Enviar os dados do formulário para o arquivo update_user.php usando AJAX
-           $.ajax({
-               url: 'update_user.php',
-               type: 'POST',
-               data: formData,
-               contentType: false,
-               processData: false,
-               success: function (response) {
-                   // Verificar a resposta do servidor
-                   if (response.status === "success") {
-                       // Se a atualização for bem-sucedida, exibir uma mensagem de sucesso
-                       Swal.fire({
-                           title: 'Sucesso!',
-                           text: 'Perfil atualizado com sucesso.',
-                           icon: 'success',
-                           confirmButtonText: 'Ok'
-                       });
-                   } else {
-                       // Se ocorrer um erro durante a atualização, exibir uma mensagem de erro
-                       Swal.fire({
-                           title: 'Erro!',
-                           text: 'Ocorreu um erro ao atualizar o perfil. Por favor, tente novamente.',
-                           icon: 'error',
-                           confirmButtonText: 'Ok'
-                       });
-                   }
-               },
-               error: function (jqXHR, textStatus, errorThrown) {
-                   // Se ocorrer um erro durante a solicitação AJAX, exibir uma mensagem de erro
-                   Swal.fire({
-                       title: 'Erro!',
-                       text: 'Erro ao atualizar o perfil: ' + errorThrown,
-                       icon: 'error',
-                       confirmButtonText: 'Ok'
-                   });
-               }
-           });
-       }
+                var fileInput = $('#wizard-picture')[0];
+                var file = fileInput.files[0];
 
-       // Vincular a função updateUser ao evento de clique do botão "Atualizar usuário"
-       $('#updateButton').click(function () {
-           updateUser();
-       });
-   </script>
+                // Verifica se o arquivo é uma imagem
+                if (file && !file.type.startsWith('image/')) {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Por favor, envie um arquivo de imagem.",
+                        icon: "error",
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    });
+                    return;
+                }
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: 'update_user.php', // Altere o URL para o arquivo que processa a atualização do usuário
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        var jsonResponse = JSON.parse(response);
+                        if (jsonResponse.status === "success") {
+                            Swal.fire({
+                                title: "Bom trabalho!",
+                                text: jsonResponse.message,
+                                icon: "success",
+                                confirmButtonClass: "btn btn-success",
+                                buttonsStyling: false
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Erro!",
+                                text: jsonResponse.message,
+                                icon: "error",
+                                confirmButtonClass: "btn btn-danger",
+                                buttonsStyling: false
+                            });
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        Swal.fire({
+                            title: "Erro!",
+                            text: "Erro ao atualizar o perfil: " + errorThrown,
+                            icon: "error",
+                            confirmButtonClass: "btn btn-danger",
+                            buttonsStyling: false
+                        });
+                    }
+                });
+            });
+        });
+    </script>
    <style>
 
       .form-group label {
