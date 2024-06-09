@@ -392,14 +392,12 @@
                                 <div class="form-group">
                                   <label>Telefone</label>
                                   <input type="text" class="form-control" id="telefone" name="telefone" maxlength="9">
-                                  <span class="error-message" id="telefone-error">O telefone não pode ter mais de 9 dígitos.</span>
                               </div>
                               </div>
                               <div class="col-sm-3">
                                 <div class="form-group">
                                   <label>NIF</label>
                                   <input type="text" class="form-control" id="nif" name="nif" maxlength="9">
-                                  <span class="error-message" id="nif-error">O NIF não pode ter mais de 9 dígitos.</span>
                               </div>
                               </div>
                               <div class="col-sm-5">
@@ -593,24 +591,11 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Configuração do Datepicker -->
 <script>
-  $(document).ready(function() {
-      $("#data_nascimento").datepicker({
-          dateFormat: "dd/mm/yy"
-      });
-
-      function validateLength(inputId, errorId) {
-          $(inputId).on('input', function() {
-              if (this.value.length > 9) {
-                  $(errorId).show();
-              } else {
-                  $(errorId).hide();
-              }
-          });
-      }
-
-      validateLength('#telefone', '#telefone-error');
-      validateLength('#nif', '#nif-error');
-  });
+    $(document).ready(function() {
+        $("#data_nascimento").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    });
 </script>
 
   <!--   Core JS Files   -->
