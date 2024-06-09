@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Dados do formulário
     $email = $_POST['email'];
-    $password = $_POST['password']; // Usar uma variável diferente para a senha fornecida pelo usuário
+    $password_user = $_POST['password']; // Usar uma variável diferente para a senha fornecida pelo usuário
 
     // Consulta SQL para verificar se o usuário e a senha correspondem
     $sql = "SELECT * FROM users WHERE email='$email'";
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo json_encode(array("success" => false, "message" => "Usuário desativado."));
             } else {
                 // Verificar se a senha fornecida pelo usuário corresponde à senha armazenada no banco de dados
-                if (password_verify($password, $row['password'])) {
+                if (password_verify($password_user, $row['password'])) {
                     // Verificar se o usuário é um administrador (tipo = 1)
                     if ($row['tipo'] == 4) {
                         // Retorna um JSON indicando sucesso
