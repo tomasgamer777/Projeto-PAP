@@ -1,20 +1,18 @@
 <?php
 // Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "plesk2.server.highcloudservices.eu";
+    $servername = "localhost";
     $username = "tomas";
-    $password = "Pv~i23i20";
+    $password = "!h01fFw35";
     $dbname = "banda";
 
-     
- 
-     // Criar conexão
-     $conn = new mysqli($servername, $username, $password, $dbname);
- 
-     // Verificar conexão
-     if ($conn->connect_error) {
-         die("Conexão falhou: " . $conn->connect_error);
-     }
+    // Criar conexão
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Verificar conexão
+    if ($conn->connect_error) {
+        die("Conexão falhou: " . $conn->connect_error);
+    }
 
     // Dados do formulário
     $email = $_POST['email'];
@@ -28,32 +26,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             if ($row['status'] == 1) {
-                // Usuário está desativado, exibe mensagem de erro
-                echo "<script>demo.showSwal('auto-close');</script>";
+                // Usuário está desativado, retorna uma mensagem de erro
+                echo json_encode(array("success" => false, "message" => "Usuário desativado."));
             } else {
                 // Verificar se a senha fornecida pelo usuário corresponde à senha armazenada no banco de dados
                 if (password_verify($password, $row['password'])) {
                     // Verificar se o usuário é um administrador (tipo = 1)
-                    if ($row['tipo'] == 1) {
-                        // Redirecionamento para o dashboard
-                        header("Location: dashboard.html");
+                    if ($row['tipo'] == 4) {
+                        // Retorna um JSON indicando sucesso
+                        echo json_encode(array("success" => true));
                         exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
                     } else {
-                        echo "Login bem sucedido como usuário normal. Não tem permissões de administrador.";
-                        // Faça o redirecionamento para a página de usuário normal ou outras ações necessárias aqui
+                        // Retorna um JSON indicando sucesso
+                        echo json_encode(array("success" => true, "message" => "Login bem sucedido como usuário normal. Não tem permissões de administrador."));
                     }
                 } else {
-                    echo "Senha incorreta.";
+                    // Retorna uma mensagem de erro
+                    echo json_encode(array("success" => false, "message" => "Senha incorreta."));
                 }
             }
         } else {
-            echo "Usuário não encontrado.";
+            // Retorna uma mensagem de erro
+            echo json_encode(array("success" => false, "message" => "Usuário não encontrado."));
         }
     } else {
-        echo "Erro na consulta SQL: " . $conn->error;
+        // Retorna uma mensagem de erro
+        echo json_encode(array("success" => false, "message" => "Erro na consulta SQL: " . $conn->error));
     }
 
-    
-        $conn->close();
-    }
-    ?>
+    $conn->close();
+}
+?>
