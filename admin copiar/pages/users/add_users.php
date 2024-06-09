@@ -31,14 +31,14 @@ $distrito = $conn->real_escape_string($_POST['distrito']);
 $jobb = $conn->real_escape_string($_POST['jobb']);
 $status = 2;
 
-// Verificar se a data não está vazia e converter a data
+
 if (!empty($data_nascimento)) {
     $data_nascimento_formatada = converterData($data_nascimento);
 } else {
-    $data_nascimento_formatada = null; // Ou lidar com isso de acordo com sua lógica de negócios
+    $data_nascimento_formatada = null; 
 }
 
-// Lida com o upload da imagem
+
 $profile_picture = '';
 if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0){
     $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
@@ -46,7 +46,8 @@ if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0
 
     if(in_array($file_type, $allowed_types)) {
         $target_dir = "fotosperfil/";
-        $target_file = $target_dir . basename($_FILES["profile_picture"]["name"]);
+        $file_name = uniqid() . "_" . basename($_FILES["profile_picture"]["name"]);
+        $target_file = $target_dir . $file_name;
         if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)) {
             $profile_picture = $target_file;
         } else {
