@@ -13,18 +13,30 @@ if ($conn->connect_error) {
     die(json_encode(["status" => "error", "message" => "Connection failed: " . $conn->connect_error]));
 }
 
+function converterData($data) {
+    $data_parts = explode('/', $data);
+    return $data_parts[2] . '-' . $data_parts[1] . '-' . $data_parts[0];
+}
+
 // Captura os dados do formulário
 $firstname = $conn->real_escape_string($_POST['firstname']);
 $lastname = $conn->real_escape_string($_POST['lastname']);
 $email = $conn->real_escape_string($_POST['email']);
 $password = $conn->real_escape_string($_POST['password']);
-$data_nascimento = $conn->real_escape_string($_POST['data_nascimento']);
+$data_nascimento = $_POST['data_nascimento'];
 $rua = $conn->real_escape_string($_POST['rua']);
 $telefone = $conn->real_escape_string($_POST['telefone']);
 $nif = $conn->real_escape_string($_POST['nif']);
 $distrito = $conn->real_escape_string($_POST['distrito']);
 $jobb = $conn->real_escape_string($_POST['jobb']);
 $status = 2;
+
+// Verificar se a data não está vazia e converter a data
+if (!empty($data_nascimento)) {
+    $data_nascimento_formatada = converterData($data_nascimento);
+} else {
+    $data_nascimento_formatada = null; // Ou lidar com isso de acordo com sua lógica de negócios
+}
 
 // Lida com o upload da imagem
 $profile_picture = '';
@@ -52,7 +64,7 @@ $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
 // Prepara a consulta SQL
 $sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito, data_nasc, tipo, status, foto) 
-        VALUES ('$firstname', '$lastname', '$email', '$hashed_password', '$rua', '$telefone', '$nif', '$distrito', '$data_nascimento', '$jobb', '$status', '$profile_picture')";
+        VALUES ('$firstname', '$lastname', '$email', '$hashed_password', '$rua', '$telefone', '$nif', '$distrito', '$data_nascimento_formatada', '$jobb', '$status', '$profile_picture')";
 
 // Executa a consulta
 if ($conn->query($sql) === TRUE) {
