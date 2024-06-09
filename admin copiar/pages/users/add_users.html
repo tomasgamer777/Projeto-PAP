@@ -975,10 +975,18 @@ $(document).ready(function() {
         });
     });
 
-    $('.datepicker').datepicker({
-        format: 'dd/mm/yy',
-        autoclose: true
-    });
+    $(document).ready(function() {
+            $("#data_nascimento").datepicker({
+                dateFormat: "dd/mm/yy",
+                onClose: function(dateText, inst) {
+                    if (dateText) {
+                        var parts = dateText.split('/');
+                        var formattedDate = parts[1] + '/' + parts[0] + '/' + parts[2];
+                        $("#data_nascimento").val(formattedDate);
+                    }
+                }
+            });
+        });
 });
 </script>
 
