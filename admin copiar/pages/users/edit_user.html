@@ -392,6 +392,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="estado">Estado</label>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="estado" name="estado">
+                            <label class="form-check-label" for="estado">Ativo / Inativo</label>
+                          </div>
+                          <small class="form-text text-muted" id="estadoHelp">Ativo: Ligado, Inativo: Desligado</small>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="tipo">Tipo</label>
+                          <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
+                            <option disabled selected>Tipo</option>
+                            <option value="0">Para aceitar</option>
+                            <option value="1">Aluno</option>
+                            <option value="2">Músico</option>
+                            <option value="3">Sócio</option>
+                            <option value="4">Admin</option>
+                            <option value="5">Encarregado de educação</option>
+                            <option value="6">Professor</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
                     <button type="button" id="updateButton" class="btn btn-rose pull-right">Atualizar utilizador</button>
                     <div class="clearfix"></div>
                 </form>
