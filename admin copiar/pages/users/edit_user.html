@@ -43,6 +43,17 @@
   <link href="../../assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../assets/demo/demo.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+  <style>
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  </style>
+
   <!-- Google Tag Manager -->
   <script>
     (function(w, d, s, l, i) {
@@ -244,82 +255,129 @@
                     <small class="category">Complete o formulário abaixo.</small>
                   </h4>
                 </div>
-                <div class="card-body">
-                  <form>
+                <div class="container form-container">
+                  <form id="editProfileForm" action="add_users.php" method="post" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-5">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Company (disabled)</label>
-                          <input type="text" class="form-control" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
+                          <label class="bmd-label-floating" for="user_id">Código</label>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">City</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Country</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Postal Code</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>About Me</label>
-                          <div class="form-group">
-                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
+                        <div class="picture-container">
+                          <div class="picture">
+                            <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                            <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif" onchange="resizeImage(event)">
                           </div>
+                          <h6 class="description">Foto de Perfil</h6>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="nome" name="firstname" placeholder=" " required>
+                          <label class="bmd-label-floating" for="nome">Nome</label>
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="sobrenome" name="lastname" placeholder=" " required>
+                          <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                        </div>
+                        <div class="form-group">
+                          <input type="email" class="form-control" id="email" name="email" placeholder=" " required>
+                          <label class="bmd-label-floating" for="email">Email</label>
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="morada" name="rua" placeholder=" ">
+                          <label class="bmd-label-floating" for="morada">Morada</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="telef" name="telefone" placeholder=" " inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                          <label class="bmd-label-floating" for="telef">Telefone</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="data_nasc" name="data_nascimento" placeholder=" ">
+                          <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="distrito">Distrito</label>
+                          <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
+                            <option value="Aveiro">Aveiro</option>
+                            <option value="Beja">Beja</option>
+                            <option value="Braga">Braga</option>
+                            <option value="Braganca">Bragança</option>
+                            <option value="Castelo Branco">Castelo Branco</option>
+                            <option value="Coimbra">Coimbra</option>
+                            <option value="Evora">Évora</option>
+                            <option value="Faro">Faro</option>
+                            <option value="Guarda">Guarda</option>
+                            <option value="Leiria">Leiria</option>
+                            <option value="Lisboa">Lisboa</option>
+                            <option value="Portalegre">Portalegre</option>
+                            <option value="Porto">Porto</option>
+                            <option value="Setubal">Setúbal</option>
+                            <option value="Viana do Castelo">Viana do Castelo</option>
+                            <option value="Vila Real">Vila Real</option>
+                            <option value="Viseu">Viseu</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="cod_postal" name="cod_postal" placeholder=" ">
+                          <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="nif" name="nif" placeholder=" " inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                          <label class="bmd-label-floating" for="nif">NIF</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="tipo">Tipo</label>
+                          <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
+                            <option disabled selected>Tipo</option>
+                            <option value="0">Para aceitar</option>
+                            <option value="1">Aluno</option>
+                            <option value="2">Músico</option>
+                            <option value="3">Sócio</option>
+                            <option value="4">Admin</option>
+                            <option value="5">Encarregado de educação</option>
+                            <option value="6">Professor</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="estado">Estado</label>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="estado" name="estado">
+                            <label class="form-check-label" for="estado">Ativo / Inativo</label>
+                          </div>
+                          <small class="form-text text-muted" id="estadoHelp">Ativo: Ligado, Inativo: Desligado</small>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-rose pull-right">Atualizar perfil</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -791,6 +849,61 @@
       md.checkFullPageBackgroundImage();
     });
   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+<script>
+  function resizeImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      const img = new Image();
+      img.src = e.target.result;
+
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const maxDimension = 320;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxDimension) {
+            height *= maxDimension / width;
+            width = maxDimension;
+          }
+        } else {
+          if (height > maxDimension) {
+            width *= maxDimension / height;
+            height = maxDimension;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(function(blob) {
+          const resizedFile = new File([blob], file.name, {
+            type: file.type,
+            lastModified: Date.now()
+          });
+
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(resizedFile);
+          document.getElementById('wizard-picture').files = dataTransfer.files;
+        }, file.type);
+      }
+    }
+    reader.readAsDataURL(file);
+  }
+</script>
+
+
 </body>
 
 </html>
