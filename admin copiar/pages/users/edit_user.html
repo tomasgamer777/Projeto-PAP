@@ -676,10 +676,31 @@
         // Redimensionar a imagem antes de enviar
         var fileInput = document.getElementById('wizard-picture');
         var file = fileInput.files[0];
-        resizeImage(file, 320, 320, function(resizedBlob) {
-            formData.append("profile_picture", resizedBlob, file.name);
+        if (file) {
+            resizeImage(file, 320, 320, function(resizedBlob) {
+                formData.append("profile_picture", resizedBlob, file.name);
 
-            // Enviar os dados para o servidor via AJAX
+                // Enviar os dados para o servidor via AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "update_user.php", true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        // Tratar a resposta do servidor
+                        var response = JSON.parse(xhr.responseText);
+                        // Mostrar uma mensagem de sucesso com SweetAlert
+                        swal("Sucesso", response.message, "success").then(() => {
+                            // Redirecionar o usuário para a página desejada
+                            window.location.href = "list_user.php";
+                        });
+                    } else {
+                        // Mostrar uma mensagem de erro com SweetAlert
+                        swal("Erro", "Ocorreu um erro ao atualizar o usuário.", "error");
+                    }
+                };
+                xhr.send(formData);
+            });
+        } else {
+            // Se nenhum arquivo foi selecionado, enviar apenas os dados do formulário
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "update_user.php", true);
             xhr.onload = function() {
@@ -697,7 +718,7 @@
                 }
             };
             xhr.send(formData);
-        });
+        }
     });
 
     function resizeImage(file, maxWidth, maxHeight, callback) {
