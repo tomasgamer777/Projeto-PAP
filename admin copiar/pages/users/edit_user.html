@@ -396,16 +396,16 @@
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <div class="form-group">
+                        <<div class="form-group">
                           <h4 class="title">Estado</h4>
                           <div class="togglebutton">
-                            <label>
-                              <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
-                              <span class="toggle"></span>
-                              <span class="state-text"></span>
-                            </label>
+                              <label>
+                                  <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
+                                  <span class="toggle"></span>
+                              </label>
+                              <span class="state-text"></span> 
                           </div>
-                        </div>
+                      </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
@@ -694,6 +694,15 @@
      });
    </script>
    <style>
+
+.togglebutton {
+    display: flex;
+    align-items: center; 
+}
+
+.togglebutton .state-text {
+    margin-left: 10px;
+}
 
       .form-group label {
             top: -20px;
