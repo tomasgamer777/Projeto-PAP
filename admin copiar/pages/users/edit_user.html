@@ -605,15 +605,26 @@
                 document.getElementById("telef").value = data.telef;
                 document.getElementById("morada").value = data.morada;
                 document.getElementById("tipo").value = data.tipo;
-                document.getElementById("estado").checked = data.status === '2'; // Ativar se o status for '2'
+                document.getElementById("estado").checked = (data.status === "Ativo");
+
+                // Atualiza o texto do toggle button conforme o estado
+                const estadoToggle = document.querySelector('.toggle');
+                const estadoText = document.querySelector('.state-text');
+                if (data.status === "Ativo") {
+                    estadoText.innerText = "Ativo";
+                    estadoToggle.style.left = "25px";
+                } else {
+                    estadoText.innerText = "Inativo";
+                    estadoToggle.style.left = "0";
+                }
+
                 document.getElementById("data_nasc").value = data.data_nasc;
                 document.getElementById("cod_postal").value = data.cod_postal;
                 document.getElementById("nif").value = data.nif;
                 document.querySelector(`select[name="distrito"]`).value = data.distrito;
 
-                if (data.foto) {
-                    document.getElementById("wizardPicturePreview").src = 'fotosperfil/' + data.foto;
-                }
+                // Forçar a atualização do campo de tipo e distrito para exibir a opção selecionada
+                $('.selectpicker').selectpicker('refresh');
             })
             .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
     }
