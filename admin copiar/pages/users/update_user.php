@@ -68,32 +68,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         // Verificar se a atualização foi bem-sucedida
-        if ($stmt->affected_rows > 0) {
-            // Se a atualização foi bem-sucedida, exibir um alerta de sucesso
-            echo '<script>
-                    swal({
-                        title: "Sucesso!",
-                        text: "As informações do usuário foram atualizadas com sucesso.",
-                        type: "success",
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
-                    }).then(() => {
-                        // Redirecionar para a página de lista de usuários após o alerta
-                        window.location.href = "list_user.php";
-                    });
-                </script>';
-        } else {
-            // Se a atualização falhou, exibir um alerta de erro
-            echo '<script>
-                    swal({
-                        title: "Erro",
-                        text: "Ocorreu um erro ao tentar atualizar as informações do usuário.",
-                        type: "error",
-                        confirmButtonClass: "btn btn-danger",
-                        buttonsStyling: false
-                    });
-                </script>';
-        }
+if ($stmt->affected_rows > 0) {
+    // Se a atualização foi bem-sucedida, exibir um alerta de sucesso
+    echo '<script>
+            swal({
+                title: "Sucesso!",
+                text: "As informações do usuário foram atualizadas com sucesso.",
+                type: "success",
+                confirmButtonClass: "btn btn-success",
+                buttonsStyling: false
+            }).then(() => {
+                // Redirecionar para a página de lista de usuários após o alerta
+                window.location.href = "list_user.php";
+            });
+        </script>';
+} else {
+    // Se a atualização falhou, exibir um alerta de erro
+    echo '<script>
+            swal({
+                title: "Erro",
+                text: "Ocorreu um erro ao tentar atualizar as informações do usuário.",
+                type: "error",
+                confirmButtonClass: "btn btn-danger",
+                buttonsStyling: false
+            });
+        </script>';
+}
 
         // Fechar a conexão com o banco de dados e liberar os recursos
         $stmt->close();
