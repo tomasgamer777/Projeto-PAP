@@ -684,17 +684,21 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "update_user.php", true);
                 xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        // Tratar a resposta do servidor
+                    try {
                         var response = JSON.parse(xhr.responseText);
-                        // Mostrar uma mensagem de sucesso com SweetAlert
-                        swal("Sucesso", response.message, "success").then(() => {
-                            // Redirecionar o usuário para a página desejada
-                            window.location.href = "list_user.php";
-                        });
-                    } else {
-                        // Mostrar uma mensagem de erro com SweetAlert
-                        swal("Erro", "Ocorreu um erro ao atualizar o usuário.", "error");
+                        if (xhr.status === 200 && response.success) {
+                            // Mostrar uma mensagem de sucesso com SweetAlert
+                            swal("Sucesso", response.message, "success").then(() => {
+                                // Redirecionar o usuário para a página desejada
+                                window.location.href = "list_user.php";
+                            });
+                        } else {
+                            // Mostrar uma mensagem de erro com SweetAlert
+                            swal("Erro", response.message, "error");
+                        }
+                    } catch (e) {
+                        // Mostrar uma mensagem de erro com SweetAlert para resposta inesperada
+                        swal("Erro", "Ocorreu um erro inesperado.", "error");
                     }
                 };
                 xhr.send(formData);
@@ -704,17 +708,21 @@
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "update_user.php", true);
             xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Tratar a resposta do servidor
+                try {
                     var response = JSON.parse(xhr.responseText);
-                    // Mostrar uma mensagem de sucesso com SweetAlert
-                    swal("Sucesso", response.message, "success").then(() => {
-                        // Redirecionar o usuário para a página desejada
-                        window.location.href = "list_user.php";
-                    });
-                } else {
-                    // Mostrar uma mensagem de erro com SweetAlert
-                    swal("Erro", "Ocorreu um erro ao atualizar o usuário.", "error");
+                    if (xhr.status === 200 && response.success) {
+                        // Mostrar uma mensagem de sucesso com SweetAlert
+                        swal("Sucesso", response.message, "success").then(() => {
+                            // Redirecionar o usuário para a página desejada
+                            window.location.href = "list_user.php";
+                        });
+                    } else {
+                        // Mostrar uma mensagem de erro com SweetAlert
+                        swal("Erro", response.message, "error");
+                    }
+                } catch (e) {
+                    // Mostrar uma mensagem de erro com SweetAlert para resposta inesperada
+                    swal("Erro", "Ocorreu um erro inesperado.", "error");
                 }
             };
             xhr.send(formData);
