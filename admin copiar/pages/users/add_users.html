@@ -391,15 +391,16 @@
                               <div class="col-sm-3">
                                 <div class="form-group">
                                   <label>Telefone</label>
-                                  <input type="text" class="form-control" id="telefone" name="telefone" maxlength="9" pattern="[0-9]*" inputmode="numeric">
+                                  <input type="text" class="form-control" id="telefone" name="telefone" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 </div>
                               </div>
                               <div class="col-sm-3">
                                 <div class="form-group">
                                   <label>NIF</label>
-                                  <input type="text" class="form-control" id="nif" name="nif" maxlength="9" pattern="[0-9]*" inputmode="numeric">
+                                  <input type="text" class="form-control" id="nif" name="nif" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 </div>
                               </div>
+                              
                               <div class="col-sm-5">
                                   <div class="form-group select-wizard">
                                       <label>Distrito</label>
