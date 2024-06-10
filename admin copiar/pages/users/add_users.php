@@ -31,13 +31,11 @@ $distrito = $conn->real_escape_string($_POST['distrito']);
 $jobb = $conn->real_escape_string($_POST['jobb']);
 $status = 2;
 
-
 if (!empty($data_nascimento)) {
     $data_nascimento_formatada = converterData($data_nascimento);
 } else {
     $data_nascimento_formatada = null; 
 }
-
 
 $profile_picture = '';
 if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0){
