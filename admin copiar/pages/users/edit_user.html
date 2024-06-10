@@ -402,7 +402,7 @@
                             <label>
                               <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
                               <span class="toggle"></span>
-                              <span class="inactive-text">Inativo</span>
+                              <span class="state-text"></span>
                             </label>
                           </div>
                         </div>
@@ -1028,6 +1028,26 @@
       md.checkFullPageBackgroundImage();
     });
   </script>
+<script>
+  const toggleButton = document.querySelector('.toggle-btn');
+  const stateText = document.querySelector('.state-text');
+
+  // Função para atualizar a legenda com base no estado do ToggleButton
+  function updateStateText() {
+    if (toggleButton.checked) {
+      stateText.textContent = toggleButton.getAttribute('data-on');
+    } else {
+      stateText.textContent = toggleButton.getAttribute('data-off');
+    }
+  }
+
+  // Atualizar a legenda quando houver mudança no estado do ToggleButton
+  toggleButton.addEventListener('change', updateStateText);
+
+  // Atualizar a legenda no carregamento da página
+  updateStateText();
+</script>
+
 </body>
 
 </html>
