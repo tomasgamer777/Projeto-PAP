@@ -623,9 +623,8 @@
                 document.getElementById("nif").value = data.nif;
                 document.querySelector(`select[name="distrito"]`).value = data.distrito;
 
-                if (data.foto) {
-                    document.getElementById("wizardPicturePreview").src = 'fotosperfil/' + data.foto;
-                }
+                // Forçar a atualização do campo de tipo e distrito para exibir a opção selecionada
+                $('.selectpicker').selectpicker('refresh');
             })
             .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
     }
