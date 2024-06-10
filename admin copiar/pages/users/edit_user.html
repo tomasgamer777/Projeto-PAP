@@ -673,7 +673,7 @@
         formData.append("nif", document.getElementById("nif").value);
         formData.append("distrito", document.querySelector('select[name="distrito"]').value);
 
-        // Redimensionar a imagem antes de enviar
+        // Verificar se há uma imagem para redimensionar e enviar
         var fileInput = document.getElementById('wizard-picture');
         var file = fileInput.files[0];
         if (file) {
@@ -681,51 +681,11 @@
                 formData.append("profile_picture", resizedBlob, file.name);
 
                 // Enviar os dados para o servidor via AJAX
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "update_user.php", true);
-                xhr.onload = function() {
-                    try {
-                        var response = JSON.parse(xhr.responseText);
-                        if (xhr.status === 200 && response.success) {
-                            // Mostrar uma mensagem de sucesso com SweetAlert
-                            swal("Sucesso", response.message, "success").then(() => {
-                                // Redirecionar o usuário para a página desejada
-                                window.location.href = "list_user.php";
-                            });
-                        } else {
-                            // Mostrar uma mensagem de erro com SweetAlert
-                            swal("Erro", response.message, "error");
-                        }
-                    } catch (e) {
-                        // Mostrar uma mensagem de erro com SweetAlert para resposta inesperada
-                        swal("Erro", "Ocorreu um erro inesperado.", "error");
-                    }
-                };
-                xhr.send(formData);
+                sendFormData(formData);
             });
         } else {
-            // Se nenhum arquivo foi selecionado, enviar apenas os dados do formulário
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "update_user.php", true);
-            xhr.onload = function() {
-                try {
-                    var response = JSON.parse(xhr.responseText);
-                    if (xhr.status === 200 && response.success) {
-                        // Mostrar uma mensagem de sucesso com SweetAlert
-                        swal("Sucesso", response.message, "success").then(() => {
-                            // Redirecionar o usuário para a página desejada
-                            window.location.href = "list_user.php";
-                        });
-                    } else {
-                        // Mostrar uma mensagem de erro com SweetAlert
-                        swal("Erro", response.message, "error");
-                    }
-                } catch (e) {
-                    // Mostrar uma mensagem de erro com SweetAlert para resposta inesperada
-                    swal("Erro", "Ocorreu um erro inesperado.", "error");
-                }
-            };
-            xhr.send(formData);
+            // Enviar apenas os dados do formulário sem a imagem
+            sendFormData(formData);
         }
     });
 
@@ -763,6 +723,34 @@
         };
 
         reader.readAsDataURL(file);
+    }
+
+    function sendFormData(formData) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "update_user.php", true);
+        xhr.onload = function() {
+            try {
+                var response = JSON.parse(xhr.responseText);
+                if (xhr.status === 200 && response.success) {
+                    // Mostrar uma mensagem de sucesso com SweetAlert
+                    swal("Sucesso", response.message, "success").then(() => {
+                        // Redirecionar o usuário para a página desejada
+                        window.location.href = "list_user.php";
+                    });
+                } else {
+                    // Mostrar uma mensagem de erro com SweetAlert
+                    swal("Erro", response.message || "Ocorreu um erro ao atualizar o usuário.", "error");
+                }
+            } catch (e) {
+                // Mostrar uma mensagem de erro com SweetAlert para resposta inesperada
+                swal("Erro", "Ocorreu um erro inesperado. Verifique a resposta do servidor.", "error");
+                console.error("Erro na resposta do servidor: ", xhr.responseText);
+            }
+        };
+        xhr.onerror = function() {
+            swal("Erro", "Erro de conexão. Verifique sua rede e tente novamente.", "error");
+        };
+        xhr.send(formData);
     }
 
 </script>
