@@ -48,13 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Carregar a nova foto de perfil
             $photo_name = $_FILES['profile_picture']['name'];
             $photo_tmp = $_FILES['profile_picture']['tmp_name'];
-            $photo_path = "fotosperfil/" . $photo_name;
+            $photo_extension = pathinfo($photo_name, PATHINFO_EXTENSION); // Obter a extensão do arquivo
+            $photo_path = "fotosperfil/" . uniqid() . ".$photo_extension"; // Gerar um nome único para o arquivo
 
             if (move_uploaded_file($photo_tmp, $photo_path)) {
                 // Atualizar o nome da foto no banco de dados
                 $sql_update_photo = "UPDATE users SET foto = ? WHERE user_id = ?";
                 $stmt_update_photo = $conn->prepare($sql_update_photo);
-                $stmt_update_photo->bind_param("si", $photo_name, $user_id);
+                $stmt_update_photo->bind_param("si", $photo_path, $user_id);
                 $stmt_update_photo->execute();
                 $stmt_update_photo->close();
             }
@@ -78,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         buttonsStyling: false
                     }).then(() => {
                         // Redirecionar para a página de lista de usuários após o alerta
-                        window.location.href = "lista_utilizadores.php";
+                        window.location.href = "list_user.php";
                     });
                 </script>';
         } else {
