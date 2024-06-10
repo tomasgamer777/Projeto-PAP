@@ -69,9 +69,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verificar se a atualização foi bem-sucedida
         if ($stmt->affected_rows > 0) {
-            // Se a atualização foi bem-sucedida, redirecionar para a página de lista de usuários
-            header("Location: list_user.php");
-            exit(); // Certifique-se de que o script não continue a ser executado após o redirecionamento
+            // Se a atualização foi bem-sucedida, exibir um alerta de sucesso
+            echo '<script>
+                    swal({
+                        title: "Sucesso!",
+                        text: "As informações do usuário foram atualizadas com sucesso.",
+                        type: "success",
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    }).then(() => {
+                        // Redirecionar para a página de lista de usuários após o alerta
+                        window.location.href = "list_user.php";
+                    });
+                </script>';
         } else {
             // Se a atualização falhou, exibir um alerta de erro
             echo '<script>
