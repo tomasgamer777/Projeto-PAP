@@ -423,7 +423,7 @@
                         </div>
                       </div>
                     </div>
-                    <button type="button" id="updateButton" class="btn btn-rose pull-right">Atualizar utilizador</button>
+                    <button type="button" id="updateButton" class="btn btn-rose pull-right" onclick="updateUser()">Atualizar utilizador</button>
                     <div class="clearfix"></div>
                 </form>
                 </div>
@@ -656,35 +656,85 @@
     }
 
 
-    function updateUser() {
-        // Aqui você pode implementar a lógica para atualizar o utilizador no servidor
-        // Por exemplo, você pode enviar uma requisição AJAX para enviar os dados atualizados para o backend
-        // e tratar a resposta do servidor conforme necessário
-        // Lembre-se de ajustar isso de acordo com a estrutura do seu backend
-        // e de adicionar validações de entrada e tratamento de erros adequados
+    document.getElementById("updateButton").addEventListener("click", function() {
+    // Coletar todas as informações do formulário
+    var formData = new FormData();
+    formData.append("user_id", document.getElementById("user_id").value);
+    formData.append("nome", document.getElementById("nome").value);
+    formData.append("sobrenome", document.getElementById("sobrenome").value);
+    formData.append("email", document.getElementById("email").value);
+    formData.append("telef", document.getElementById("telef").value);
+    formData.append("morada", document.getElementById("morada").value);
+    formData.append("tipo", document.getElementById("tipo").value);
+    formData.append("estado", document.getElementById("estado").checked ? "Ativo" : "Inativo");
+    formData.append("data_nasc", document.getElementById("data_nasc").value);
+    formData.append("cod_postal", document.getElementById("cod_postal").value);
+    formData.append("nif", document.getElementById("nif").value);
+    formData.append("distrito", document.querySelector('select[name="distrito"]').value);
 
-        // Exemplo de como você pode enviar os dados atualizados para o backend:
-        const formData = new FormData(document.getElementById("editUserForm"));
-        fetch('update_user.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao atualizar o utilizador');
+    // Redimensionar a imagem antes de enviar
+    var fileInput = document.getElementById('wizard-picture');
+    var file = fileInput.files[0];
+    resizeImage(file, 320, 320, function(resizedBlob) {
+        formData.append("profile_picture", resizedBlob, "profile_picture.jpg");
+
+        // Enviar os dados para o servidor via AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "update_user.php", true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Tratar a resposta do servidor
+                var response = JSON.parse(xhr.responseText);
+                // Mostrar uma mensagem de sucesso com SweetAlert
+                swal("Sucesso", response.message, "success").then(() => {
+                    // Redirecionar o usuário para a página desejada
+                    window.location.href = "list_user.php";
+                });
+            } else {
+                // Mostrar uma mensagem de erro com SweetAlert
+                swal("Erro", "Ocorreu um erro ao atualizar o usuário.", "error");
             }
-            return response.text();
-        })
-        .then(data => {
-            // Manipular a resposta do servidor, se necessário
-            console.log(data);
-            alert('Utilizador atualizado com sucesso!');
-        })
-        .catch(error => {
-            console.error('Erro ao atualizar o utilizador:', error);
-            alert('Ocorreu um erro ao atualizar o utilizador. Por favor, tente novamente.');
-        });
-    }
+        };
+        xhr.send(formData);
+    });
+});
+
+function resizeImage(file, maxWidth, maxHeight, callback) {
+    var img = document.createElement("img");
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        img.src = e.target.result;
+    };
+
+    img.onload = function() {
+        var width = img.width;
+        var height = img.height;
+
+        if (width > height) {
+            if (width > maxWidth) {
+                height *= maxWidth / width;
+                width = maxWidth;
+            }
+        } else {
+            if (height > maxHeight) {
+                width *= maxHeight / height;
+                height = maxHeight;
+            }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob(callback, "image/jpeg");
+    };
+
+    reader.readAsDataURL(file);
+}
+
 </script>
 
 
