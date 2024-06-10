@@ -27,6 +27,10 @@ if (isset($_GET['user_id'])) {
     if ($result->num_rows > 0) {
         // Se houver resultados, enviar os dados do usuário como JSON
         $row = $result->fetch_assoc();
+
+        // Mapear o status para o togglebutton
+        $row['status'] = ($row['status'] == 2) ? "Ativo" : "Inativo";
+
         echo json_encode($row);
     } else {
         // Se nenhum usuário for encontrado com o ID fornecido, enviar um erro

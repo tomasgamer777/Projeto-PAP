@@ -595,55 +595,58 @@
     };
 
     function fetchUserData(userId) {
-            fetch('get_user_data.php?user_id=' + userId)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("user_id").value = data.user_id;
-                    document.getElementById("nome").value = data.nome;
-                    document.getElementById("sobrenome").value = data.sobrenome;
-                    document.getElementById("email").value = data.email;
-                    document.getElementById("telef").value = data.telef;
-                    document.getElementById("morada").value = data.morada;
-                    document.getElementById("tipo").value = data.tipo;
-                    document.getElementById("status").value = data.status;
-                    document.getElementById("data_nasc").value = data.data_nasc;
-                    document.getElementById("cod_postal").value = data.cod_postal;
-                    document.getElementById("nif").value = data.nif;
-                    document.querySelector(`select[name="distrito"]`).value = data.distrito;
+        fetch('get_user_data.php?user_id=' + userId)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("user_id").value = data.user_id;
+                document.getElementById("nome").value = data.nome;
+                document.getElementById("sobrenome").value = data.sobrenome;
+                document.getElementById("email").value = data.email;
+                document.getElementById("telef").value = data.telef;
+                document.getElementById("morada").value = data.morada;
+                document.getElementById("tipo").value = data.tipo;
+                document.getElementById("estado").checked = (data.status === "Ativo");
 
-                    if (data.foto) {
-                        document.getElementById("wizardPicturePreview").src = 'fotosperfil/' + data.foto;
-                    }
-                })
-                .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
-        }
-
-        function previewProfilePicture() {
-            const fileInput = document.getElementById('wizard-picture');
-            const previewImage = document.getElementById('wizardPicturePreview');
-
-            fileInput.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    previewImage.src = e.target.result;
-                };
-
-                if (file) {
-                    reader.readAsDataURL(file);
+                // Atualiza o texto do toggle button conforme o estado
+                const estadoToggle = document.querySelector('.toggle');
+                const estadoText = document.querySelector('.state-text');
+                if (data.status === "Ativo") {
+                    estadoText.innerText = "Ativo";
+                    estadoToggle.style.left = "25px";
+                } else {
+                    estadoText.innerText = "Inativo";
+                    estadoToggle.style.left = "0";
                 }
-            });
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const userId = urlParams.get('user_id');
-            if (userId) {
-                fetchUserData(userId);
+                document.getElementById("data_nasc").value = data.data_nasc;
+                document.getElementById("cod_postal").value = data.cod_postal;
+                document.getElementById("nif").value = data.nif;
+                document.querySelector(`select[name="distrito"]`).value = data.distrito;
+
+                if (data.foto) {
+                    document.getElementById("wizardPicturePreview").src = 'fotosperfil/' + data.foto;
+                }
+            })
+            .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
+    }
+
+    function previewProfilePicture() {
+        const fileInput = document.getElementById('wizard-picture');
+        const previewImage = document.getElementById('wizardPicturePreview');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
             }
-            previewProfilePicture();
         });
+    }
 
 
     function updateUser() {
