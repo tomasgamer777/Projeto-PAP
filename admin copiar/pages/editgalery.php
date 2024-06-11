@@ -181,18 +181,11 @@
               </ul>
             </div>
           </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../pages/settings.html">
-              <i class="material-icons">settings</i>
-              <p> Definições </p>
-            </a>
-          </li>
+          
         </ul>
       </div>
     </div>
+    
     <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
