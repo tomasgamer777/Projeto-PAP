@@ -4,6 +4,11 @@
 
 <head>
   <meta charset="utf-8" />
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" rel="stylesheet">
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
   <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -77,23 +82,23 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-          CT
+    <div class="logo">
+        <a href="../dashboard.html" class="simple-text logo-mini">
+          AM
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+        <a href="../dashboard.html"class="simple-text logo-normal">
+          ADMIN
         </a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
           <div class="photo">
-            <img src="../../assets/img/faces/avatar.jpg" />
+            <img src="../assets/img/faces/avatar.jpg" />
           </div>
           <div class="user-info">
             <a data-toggle="collapse" href="#collapseExample" class="username">
               <span>
-                Tania Andrew
+                Tomás Calçada
                 <b class="caret"></b>
               </span>
             </a>
@@ -101,20 +106,20 @@
               <ul class="nav">
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> MP </span>
-                    <span class="sidebar-normal"> My Profile </span>
+                    <span class="sidebar-mini"> P </span>
+                    <span class="sidebar-normal"> Perfil </span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     <span class="sidebar-mini"> EP </span>
-                    <span class="sidebar-normal"> Edit Profile </span>
+                    <span class="sidebar-normal"> Editar Perfil </span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> S </span>
-                    <span class="sidebar-normal"> Settings </span>
+                    <span class="sidebar-mini"> D </span>
+                    <span class="sidebar-normal"> Definições </span>
                   </a>
                 </li>
               </ul>
@@ -122,257 +127,65 @@
           </div>
         </div>
         <ul class="nav">
-          <li class="nav-item ">
-            <a class="nav-link" href="../../examples/dashboard.html">
+          <li class="nav-item  ">
+            <a class="nav-link" href="../dashboard.html">
               <i class="material-icons">dashboard</i>
-              <p> Dashboard </p>
+              <p> Menu Principal </p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-              <i class="material-icons">image</i>
-              <p> Pages
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="pagesExamples">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/pricing.html">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Pricing </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/rtl.html">
-                    <span class="sidebar-mini"> RS </span>
-                    <span class="sidebar-normal"> RTL Support </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/timeline.html">
-                    <span class="sidebar-mini"> T </span>
-                    <span class="sidebar-normal"> Timeline </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/login.html">
-                    <span class="sidebar-mini"> LP </span>
-                    <span class="sidebar-normal"> Login Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/register.html">
-                    <span class="sidebar-mini"> RP </span>
-                    <span class="sidebar-normal"> Register Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/lock.html">
-                    <span class="sidebar-mini"> LSP </span>
-                    <span class="sidebar-normal"> Lock Screen Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/user.html">
-                    <span class="sidebar-mini"> UP </span>
-                    <span class="sidebar-normal"> User Profile </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/error.html">
-                    <span class="sidebar-mini"> E </span>
-                    <span class="sidebar-normal"> Error Page </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item active ">
-            <a class="nav-link" data-toggle="collapse" href="#componentsExamples" aria-expanded="true">
-              <i class="material-icons">apps</i>
-              <p> Components
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse show" id="componentsExamples">
-              <ul class="nav">
-                <li class="nav-item active ">
-                  <a class="nav-link" data-toggle="collapse" href="#componentsCollapse" aria-expanded="true">
-                    <span class="sidebar-mini"> MLT </span>
-                    <span class="sidebar-normal"> Multi Level Collapse
-                      <b class="caret"></b>
-                    </span>
-                  </a>
-                  <div class="collapse show" id="componentsCollapse">
-                    <ul class="nav">
-                      <li class="nav-item ">
-                        <a class="nav-link" href="#0">
-                          <span class="sidebar-mini"> E </span>
-                          <span class="sidebar-normal"> Example </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/buttons.html">
-                    <span class="sidebar-mini"> B </span>
-                    <span class="sidebar-normal"> Buttons </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/grid.html">
-                    <span class="sidebar-mini"> GS </span>
-                    <span class="sidebar-normal"> Grid System </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/panels.html">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Panels </span>
-                  </a>
-                </li>
-                <li class="nav-item active ">
-                  <a class="nav-link" href="../../examples/components/sweet-alert.html">
-                    <span class="sidebar-mini"> SA </span>
-                    <span class="sidebar-normal"> Sweet Alert </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/notifications.html">
-                    <span class="sidebar-mini"> N </span>
-                    <span class="sidebar-normal"> Notifications </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/icons.html">
-                    <span class="sidebar-mini"> I </span>
-                    <span class="sidebar-normal"> Icons </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/typography.html">
-                    <span class="sidebar-mini"> T </span>
-                    <span class="sidebar-normal"> Typography </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-              <i class="material-icons">content_paste</i>
-              <p> Forms
+              <i class="material-icons">person</i>
+              <p> Utilizadores
                 <b class="caret"></b>
               </p>
             </a>
             <div class="collapse" id="formsExamples">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/regular.html">
-                    <span class="sidebar-mini"> RF </span>
-                    <span class="sidebar-normal"> Regular Forms </span>
+                  <a class="nav-link" href="../users/add_users.html">
+                    <i class="material-icons"> person_add_alt </i>
+                    <span class="sidebar-normal"> Adicionar Utilizador </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/extended.html">
-                    <span class="sidebar-mini"> EF </span>
-                    <span class="sidebar-normal"> Extended Forms </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/validation.html">
-                    <span class="sidebar-mini"> VF </span>
-                    <span class="sidebar-normal"> Validation Forms </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/wizard.html">
-                    <span class="sidebar-mini"> W </span>
-                    <span class="sidebar-normal"> Wizard </span>
+                <li class="nav-item active">
+                  <a class="nav-link" href="../users/list_user.php">
+                    <i class="material-icons"> list </i>
+                    <span class="sidebar-normal"> lista de Utilizadores </span>
                   </a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
-              <i class="material-icons">grid_on</i>
-              <p> Tables
+            <a class="nav-link" href="../calendar.html">
+              <i class="material-icons">calendar_today</i>
+              <p> Calendário </p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#website">
+              <i class="material-icons">public</i>
+              <p> Editar Website
                 <b class="caret"></b>
               </p>
             </a>
-            <div class="collapse" id="tablesExamples">
+            <div class="collapse" id="website">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/tables/regular.html">
-                    <span class="sidebar-mini"> RT </span>
-                    <span class="sidebar-normal"> Regular Tables </span>
+                  <a class="nav-link" href="../pages/edithomepage.html">
+                    <i class="material-icons"> house </i>
+                    <span class="sidebar-normal"> Página Principal </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/tables/extended.html">
-                    <span class="sidebar-mini"> ET </span>
-                    <span class="sidebar-normal"> Extended Tables </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/tables/datatables.net.html">
-                    <span class="sidebar-mini"> DT </span>
-                    <span class="sidebar-normal"> DataTables.net </span>
+                <li class="nav-item active">
+                  <a class="nav-link" href="../pages/editgalery.html">
+                    <i class="material-icons"> collections </i>
+                    <span class="sidebar-normal"> Galeria </span>
                   </a>
                 </li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#mapsExamples">
-              <i class="material-icons">place</i>
-              <p> Maps
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="mapsExamples">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/maps/google.html">
-                    <span class="sidebar-mini"> GM </span>
-                    <span class="sidebar-normal"> Google Maps </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/maps/fullscreen.html">
-                    <span class="sidebar-mini"> FSM </span>
-                    <span class="sidebar-normal"> Full Screen Map </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/maps/vector.html">
-                    <span class="sidebar-mini"> VM </span>
-                    <span class="sidebar-normal"> Vector Map </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../../examples/widgets.html">
-              <i class="material-icons">widgets</i>
-              <p> Widgets </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../../examples/charts.html">
-              <i class="material-icons">timeline</i>
-              <p> Charts </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../../examples/calendar.html">
-              <i class="material-icons">date_range</i>
-              <p> Calendar </p>
-            </a>
           </li>
         </ul>
       </div>
@@ -388,7 +201,7 @@
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Sweet Alert</a>
+            <a class="navbar-brand" href="#pablo">Lista de utilizadores</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -424,25 +237,21 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="#">Another Notification</a>
-                  <a class="dropdown-item" href="#">Another One</a>
+                  <a class="dropdown-item" href="#">notificações</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
-                    Account
+                    Conta
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="#">Definições</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="#">Terminar sessão</a>
                 </div>
               </li>
             </ul>
@@ -451,84 +260,194 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="header text-center">
-            <h3 class="title">Sweet Alert 2</h3>
-            <p class="category">A beautiful plugin, that replace the classic alert, Handcrafted by our friend
-              <a target="_blank" href="https://twitter.com/t4t5">Tristan Edwards</a>. Please check out the
-              <a href="https://github.com/sweetalert2/sweetalert2" target="_blank">full documentation.</a>
-            </p>
-          </div>
-          <div class="places-sweet-alerts">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">Basic example</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('basic')">Try me!</button>
-                  </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Lista de Utilizadores</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="toolbar">
+                            <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
+                        </div>
+                        <div class="material-datatables">
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Sobrenome</th>
+                                        <th>Email</th>
+                                        <th>Telefone</th>
+                                        <th>Morada</th>
+                                        <th>Tipo</th>
+                                        <th>Status</th>
+                                        <th class="disabled-sorting text-right">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Sobrenome</th>
+                                        <th>Email</th>
+                                        <th>Telefone</th>
+                                        <th>Morada</th>
+                                        <th>Tipo</th>
+                                        <th>Status</th>
+                                        <th class="text-right">Ações</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                <?php
+                                // Conexão com o banco de dados
+                                $servername = "localhost";
+                                $username = "tomas";
+                                $password = "!h01fFw35";
+                                $dbname = "banda";
+
+                                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                                // Verifica a conexão
+                                if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                }
+
+                                $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status FROM users";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row["user_id"] . "</td>";
+                                        echo "<td>" . $row["nome"] . "</td>";
+                                        echo "<td>" . $row["sobrenome"] . "</td>";
+                                        echo "<td>" . $row["email"] . "</td>";
+                                        echo "<td>" . $row["telef"] . "</td>";
+                                        echo "<td>" . $row["morada"] . "</td>";
+                                        
+                                        // Verifica o valor do campo "tipo" e exibe o status correspondente
+                                        switch ($row["tipo"]) {
+                                            case 0:
+                                                echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
+                                                break;
+                                            case 1:
+                                                echo "<td><span style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</span></td>";
+                                                break;
+                                            case 2:
+                                                echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</span></td>";
+                                                break;
+                                            case 3:
+                                                echo "<td><span style='background-color: #03a9f4; color: white; padding: 2px 5px; border-radius: 3px;'>Sócio</span></td>";
+                                                break;
+                                            case 4:
+                                                echo "<td><span style='background-color: #9c27b0; color: white; padding: 2px 5px; border-radius: 3px;'>Admin</span></td>";
+                                                break;
+                                            case 5:
+                                                echo "<td><span style='background-color: #673ab7; color: white; padding: 2px 5px; border-radius: 3px;'>Encarregado de Educação</span></td>";
+                                                break;
+                                            case 6:
+                                                echo "<td><span style='background-color: #009688; color: white; padding: 2px 5px; border-radius: 3px;'>Professor</span></td>";
+                                                break;
+                                            default:
+                                                echo "<td>" . $row["tipo"] . "</td>";
+                                        }
+
+                                        // Exibe o status conforme necessário
+                                        if ($row["tipo"] == 0) {
+                                            echo "<td><span style='background-color: #1E90FF; color: white; padding: 2px 5px; border-radius: 3px;'>Por aceitar</span></td>";
+                                        } elseif ($row["status"] == 2) {
+                                            echo "<td><span style='background-color: #4CAF50; color: white; padding: 2px 5px; border-radius: 3px;'>Ativo</span></td>";
+                                        } elseif ($row["status"] == 1) {
+                                            echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Desativado</span></td>";
+                                        } else {
+                                            echo "<td>" . $row["status"] . "</td>";
+                                        }
+                                        
+                                        echo '<td class="text-right">
+                                                 <a href="edit_user.html?user_id=' . $row["user_id"] . '" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i></a>
+                                                <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="confirmRemove(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
+                                              </td>';
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+                                }
+                                $conn->close();
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end content-->
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">A title with a text under</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('title-and-text')">Try me!</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">A success message</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('success-message')">Login</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">Custom HTML description</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('custom-html')">Try me!</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">A warning message, with a function attached to the "Confirm" Button...</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('warning-message-and-confirmation')">Try me!</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">...and by passing a parameter, you can execute something else for "Cancel"</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('warning-message-and-cancel')">Try me!</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">A message with auto close timer set to 2 seconds</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('auto-close')">Try me!</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card ">
-                  <div class="card-body text-center">
-                    <h5 class="card-text">Modal window with input field</h5>
-                    <button class="btn btn-rose btn-fill" onclick="demo.showSwal('input-field')">Try me!</button>
-                  </div>
-                </div>
-              </div>
+                <!-- end card  -->
             </div>
-          </div>
+            <!-- end col-md-12 -->
         </div>
-      </div>
+        <!-- end row -->
+    </div>
+</div>
+
+
+
+<script>
+
+function confirmRemove(userId) {
+    swal({
+        title: "Tem certeza?",
+        text: "Deseja realmente remover o utilizador com o código " + userId + "?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn btn-danger",
+        cancelButtonClass: "btn btn-default",
+        confirmButtonText: "Sim, remover",
+        cancelButtonText: "Cancelar",
+        buttonsStyling: false
+    }).then((result) => {
+        if (result.value) {
+            $.post("remover_user.php", { user_id: userId }, function(data) {
+                swal({
+                    title: "Removido!",
+                    text: "Utilizador removido com sucesso.",
+                    type: "success",
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                }).then(() => {
+                    location.reload();
+                });
+            }).fail(() => {
+                swal({
+                    title: "Erro",
+                    text: "Ocorreu um erro ao tentar remover o utilizador.",
+                    type: "error",
+                    confirmButtonClass: "btn btn-danger",
+                    buttonsStyling: false
+                });
+            });
+        } else {
+            swal({
+                title: "Cancelado",
+                text: "Remoção cancelada.",
+                type: "error",
+                confirmButtonClass: "btn btn-info",
+                buttonsStyling: false
+            });
+        }
+    }).catch(swal.noop);
+}
+
+</script>
+
+
+
+    </div>
+    
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
@@ -987,12 +906,41 @@
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
   </noscript>
-  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <script>
     $(document).ready(function() {
-      // Initialise Sweet Alert library
-      demo.showSwal();
+      $('#datatables').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Procurar Utilizador",
+        }
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
     });
   </script>
 </body>

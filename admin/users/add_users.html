@@ -40,6 +40,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link href="../../assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../../assets/demo/demo.css" rel="stylesheet" />
@@ -77,23 +78,23 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-          CT
+    <div class="logo">
+        <a href="../dashboard.html" class="simple-text logo-mini">
+          AM
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+        <a href="../dashboard.html"class="simple-text logo-normal">
+          ADMIN
         </a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
           <div class="photo">
-            <img src="../../assets/img/faces/avatar.jpg" />
+            <img src="../assets/img/faces/avatar.jpg" />
           </div>
           <div class="user-info">
             <a data-toggle="collapse" href="#collapseExample" class="username">
               <span>
-                Tania Andrew
+                Tomás Calçada
                 <b class="caret"></b>
               </span>
             </a>
@@ -101,20 +102,20 @@
               <ul class="nav">
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> MP </span>
-                    <span class="sidebar-normal"> My Profile </span>
+                    <span class="sidebar-mini"> P </span>
+                    <span class="sidebar-normal"> Perfil </span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
                     <span class="sidebar-mini"> EP </span>
-                    <span class="sidebar-normal"> Edit Profile </span>
+                    <span class="sidebar-normal"> Editar Perfil </span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> S </span>
-                    <span class="sidebar-normal"> Settings </span>
+                    <span class="sidebar-mini"> D </span>
+                    <span class="sidebar-normal"> Definições </span>
                   </a>
                 </li>
               </ul>
@@ -123,256 +124,64 @@
         </div>
         <ul class="nav">
           <li class="nav-item ">
-            <a class="nav-link" href="../../examples/dashboard.html">
+            <a class="nav-link" href="../dashboard.html">
               <i class="material-icons">dashboard</i>
-              <p> Dashboard </p>
+              <p> Menu Principal </p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-              <i class="material-icons">image</i>
-              <p> Pages
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="pagesExamples">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/pricing.html">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Pricing </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/rtl.html">
-                    <span class="sidebar-mini"> RS </span>
-                    <span class="sidebar-normal"> RTL Support </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/timeline.html">
-                    <span class="sidebar-mini"> T </span>
-                    <span class="sidebar-normal"> Timeline </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/login.html">
-                    <span class="sidebar-mini"> LP </span>
-                    <span class="sidebar-normal"> Login Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/register.html">
-                    <span class="sidebar-mini"> RP </span>
-                    <span class="sidebar-normal"> Register Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/lock.html">
-                    <span class="sidebar-mini"> LSP </span>
-                    <span class="sidebar-normal"> Lock Screen Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/user.html">
-                    <span class="sidebar-mini"> UP </span>
-                    <span class="sidebar-normal"> User Profile </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/pages/error.html">
-                    <span class="sidebar-mini"> E </span>
-                    <span class="sidebar-normal"> Error Page </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
-              <i class="material-icons">apps</i>
-              <p> Components
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="componentsExamples">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
-                    <span class="sidebar-mini"> MLT </span>
-                    <span class="sidebar-normal"> Multi Level Collapse
-                      <b class="caret"></b>
-                    </span>
-                  </a>
-                  <div class="collapse" id="componentsCollapse">
-                    <ul class="nav">
-                      <li class="nav-item ">
-                        <a class="nav-link" href="#0">
-                          <span class="sidebar-mini"> E </span>
-                          <span class="sidebar-normal"> Example </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/buttons.html">
-                    <span class="sidebar-mini"> B </span>
-                    <span class="sidebar-normal"> Buttons </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/grid.html">
-                    <span class="sidebar-mini"> GS </span>
-                    <span class="sidebar-normal"> Grid System </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/panels.html">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Panels </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/sweet-alert.html">
-                    <span class="sidebar-mini"> SA </span>
-                    <span class="sidebar-normal"> Sweet Alert </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/notifications.html">
-                    <span class="sidebar-mini"> N </span>
-                    <span class="sidebar-normal"> Notifications </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/icons.html">
-                    <span class="sidebar-mini"> I </span>
-                    <span class="sidebar-normal"> Icons </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/components/typography.html">
-                    <span class="sidebar-mini"> T </span>
-                    <span class="sidebar-normal"> Typography </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-              <i class="material-icons">content_paste</i>
-              <p> Forms
+              <i class="material-icons">person</i>
+              <p> Utilizadores
                 <b class="caret"></b>
               </p>
             </a>
             <div class="collapse" id="formsExamples">
               <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/regular.html">
-                    <span class="sidebar-mini"> RF </span>
-                    <span class="sidebar-normal"> Regular Forms </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/extended.html">
-                    <span class="sidebar-mini"> EF </span>
-                    <span class="sidebar-normal"> Extended Forms </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/validation.html">
-                    <span class="sidebar-mini"> VF </span>
-                    <span class="sidebar-normal"> Validation Forms </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/forms/wizard.html">
-                    <span class="sidebar-mini"> W </span>
-                    <span class="sidebar-normal"> Wizard </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item active ">
-            <a class="nav-link" data-toggle="collapse" href="#tablesExamples" aria-expanded="true">
-              <i class="material-icons">grid_on</i>
-              <p> Tables
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse show" id="tablesExamples">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/tables/regular.html">
-                    <span class="sidebar-mini"> RT </span>
-                    <span class="sidebar-normal"> Regular Tables </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/tables/extended.html">
-                    <span class="sidebar-mini"> ET </span>
-                    <span class="sidebar-normal"> Extended Tables </span>
-                  </a>
-                </li>
                 <li class="nav-item active ">
-                  <a class="nav-link" href="../../examples/tables/datatables.net.html">
-                    <span class="sidebar-mini"> DT </span>
-                    <span class="sidebar-normal"> DataTables.net </span>
+                  <a class="nav-link" href="../users/add_users.html">
+                    <i class="material-icons"> person_add_alt </i>
+                    <span class="sidebar-normal"> Adicionar Utilizador </span>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="../users/list_user.php">
+                    <i class="material-icons"> list </i>
+                    <span class="sidebar-normal"> lista de Utilizadores </span>
                   </a>
                 </li>
               </ul>
             </div>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#mapsExamples">
-              <i class="material-icons">place</i>
-              <p> Maps
+            <a class="nav-link" href="../calendar.html">
+              <i class="material-icons">calendar_today</i>
+              <p> Calendário </p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#website">
+              <i class="material-icons">public</i>
+              <p> Editar Website
                 <b class="caret"></b>
               </p>
             </a>
-            <div class="collapse" id="mapsExamples">
+            <div class="collapse" id="website">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/maps/google.html">
-                    <span class="sidebar-mini"> GM </span>
-                    <span class="sidebar-normal"> Google Maps </span>
+                  <a class="nav-link" href="../pages/edithomepage.html">
+                    <i class="material-icons"> house </i>
+                    <span class="sidebar-normal"> Página Principal </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/maps/fullscreen.html">
-                    <span class="sidebar-mini"> FSM </span>
-                    <span class="sidebar-normal"> Full Screen Map </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../../examples/maps/vector.html">
-                    <span class="sidebar-mini"> VM </span>
-                    <span class="sidebar-normal"> Vector Map </span>
+                <li class="nav-item active">
+                  <a class="nav-link" href="../pages/editgalery.html">
+                    <i class="material-icons"> collections </i>
+                    <span class="sidebar-normal"> Galeria </span>
                   </a>
                 </li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../../examples/widgets.html">
-              <i class="material-icons">widgets</i>
-              <p> Widgets </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../../examples/charts.html">
-              <i class="material-icons">timeline</i>
-              <p> Charts </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="../../examples/calendar.html">
-              <i class="material-icons">date_range</i>
-              <p> Calendar </p>
-            </a>
           </li>
         </ul>
       </div>
@@ -388,7 +197,7 @@
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">DataTables.net</a>
+            <a class="navbar-brand" href="">Adicionar Utilizador</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -424,25 +233,21 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="#">Another Notification</a>
-                  <a class="dropdown-item" href="#">Another One</a>
+                  <a class="dropdown-item" href="#">notificações</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
-                    Account
+                    Conta
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="#">Definições</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="#">Terminar sessão</a>
                 </div>
               </li>
             </ul>
@@ -450,134 +255,221 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-primary card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">assignment</i>
+<div class="content">
+<div class="container-fluid">
+  <div class="col-md-8 col-12 mr-auto ml-auto">
+      <!--      Wizard container        -->
+      <div class="wizard-container">
+          <div class="card card-wizard" data-color="rose" id="wizardProfile">
+            <form id="userForm" method="POST" enctype="multipart/form-data">
+                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                  <div class="card-header text-center">
+                      <h3 class="card-title">
+                          Personaliza o Utilizador
+                      </h3>
+                  </div>
+                  <div class="wizard-navigation">
+                      <ul class="nav nav-pills">
+                          <li class="nav-item">
+                              <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
+                                  Informações Básicas
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#address" data-toggle="tab" role="tab">
+                                  Sobre
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#account" data-toggle="tab" role="tab">
+                                  Função
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="card-body">
+                      <div class="tab-content">
+                              <div class="tab-pane active" id="about">
+                                <h5 class="info-text"> Informações Básicas</h5>
+                                <div class="row justify-content-center">
+                                  <div class="col-sm-4">
+                                    <div class="picture-container">
+                                      <div class="picture">
+                                        <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                        <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif" onchange="resizeImage(event)">
+                                      </div>
+                                      <h6 class="description">Foto de Perfil</h6>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">face</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput1" class="bmd-label-floating">Primeiro Nome</label>
+                                              <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                                          </div>
+                                      </div>
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">record_voice_over</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput11" class="bmd-label-floating">Sobrenome</label>
+                                              <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-10 mt-3">
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">email</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput1" class="bmd-label-floating">Email </label>
+                                              <input type="email" class="form-control" id="exampleemail" name="email" required>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-10 mt-3">
+                                      <div class="input-group form-control-lg">
+                                          <div class="input-group-prepend">
+                                              <span class="input-group-text">
+                                                  <i class="material-icons">password</i>
+                                              </span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="exampleInput1" class="bmd-label-floating">Password </label>
+                                              <input type="password" class="form-control" id="examplepassword" name="password" required>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="tab-pane" id="account">
+                            <h5 class="info-text"> Qual é a função do Utilizador? </h5>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-radio">
+                                                <input type="radio" name="jobb" value="4" id="admin">
+                                                <div class="icon">
+                                                    <i class="material-icons">admin_panel_settings</i>
+                                                </div>
+                                                <h6>Admin</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-radio">
+                                                <input type="radio" name="jobb" value="2" id="musico">
+                                                <div class="icon">
+                                                    <i class="material-icons">piano</i>
+                                                </div>
+                                                <h6>Músico</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-radio">
+                                                <input type="radio" name="jobb" value="3" id="socio">
+                                                <div class="icon">
+                                                    <i class="material-icons">payments</i>
+                                                </div>
+                                                <h6>Sócio</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="card-title">DataTables.net</h4>
+                        <style>
+                          .error-message {
+                              color: red;
+                              display: none;
+                          }
+                      </style>
+                        <div class="tab-pane" id="address">
+                          <div class="row justify-content-center">
+                              <div class="col-sm-12">
+                                  <h5 class="info-text">Mais informações sobre o Utilizador</h5>
+                              </div>
+                              <div class="col-sm-7">
+                                  <div class="form-group">
+                                      <label>Data de Nascimento</label>
+                                      <input type="text" class="form-control datepicker" id="data_nascimento" name="data_nascimento">
+                                  </div>
+                              </div>
+                              <div class="col-sm-3">
+                                  <div class="form-group">
+                                      <label>Rua</label>
+                                      <input type="text" class="form-control" name="rua">
+                                  </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group">
+                                  <label>Telefone</label>
+                                  <input type="text" class="form-control" id="telefone" name="telefone" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                </div>
+                              </div>
+                              <div class="col-sm-3">
+                                <div class="form-group">
+                                  <label>NIF</label>
+                                  <input type="text" class="form-control" id="nif" name="nif" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                </div>
+                              </div>
+                              
+                              <div class="col-sm-5">
+                                  <div class="form-group select-wizard">
+                                      <label>Distrito</label>
+                                      <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
+                                          <option value="Aveiro">Aveiro</option>
+                                          <option value="Beja">Beja</option>
+                                          <option value="Braga">Braga</option>
+                                          <option value="Bragança">Bragança</option>
+                                          <option value="Castelo Branco">Castelo Branco</option>
+                                          <option value="Coimbra">Coimbra</option>
+                                          <option value="Évora">Évora</option>
+                                          <option value="Faro">Faro</option>
+                                          <option value="Guarda">Guarda</option>
+                                          <option value="Leiria">Leiria</option>
+                                          <option value="Lisboa">Lisboa</option>
+                                          <option value="Portalegre">Portalegre</option>
+                                          <option value="Porto">Porto</option>
+                                          <option value="Setúbal">Setúbal</option>
+                                          <option value="Viana do Castelo">Viana do Castelo</option>
+                                          <option value="Vila Real">Vila Real</option>
+                                          <option value="Viseu">Viseu</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                     </div>
-                    <div class="card-body">
-                        <div class="toolbar">
-                            <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
-                        </div>
-                        <div class="material-datatables">
-                            <table id="datatables" class="table table-striped table-no-bordered table-hover"
-                                cellspacing="0" width="100%" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Nome</th>
-                                        <th>Sobrenome</th>
-                                        <th>Email</th>
-                                        <th>Telefone</th>
-                                        <th>Morada</th>
-                                        <th>Tipo</th>
-                                        <th>Status</th>
-                                        <th class="disabled-sorting text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Nome</th>
-                                        <th>Sobrenome</th>
-                                        <th>Email</th>
-                                        <th>Telefone</th>
-                                        <th>Morada</th>
-                                        <th>Tipo</th>
-                                        <th>Status</th>
-                                        <th class="text-right">Actions</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <?php
-                                    // Conexão com o banco de dados
-                                    $servername = "plesk2.server.highcloudservices.eu";
-                                    $username = "tomas";
-                                    $password = "Pv~i23i20";
-                                    $dbname = "banda";
-
-                                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                                    // Verifica a conexão
-                                    if ($conn->connect_error) {
-                                        die("Connection failed: " . $conn->connect_error);
-                                    }
-
-                                    $sql = "SELECT user_id, nome, sobrenome, email, telef, morada, tipo, status FROM users";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row["user_id"] . "</td>";
-                                            echo "<td>" . $row["nome"] . "</td>";
-                                            echo "<td>" . $row["sobrenome"] . "</td>";
-                                            echo "<td>" . $row["email"] . "</td>";
-                                            echo "<td>" . $row["telef"] . "</td>";
-                                            echo "<td>" . $row["morada"] . "</td>";
-                                            echo "<td>" . $row["tipo"] . "</td>";
-                                            echo "<td>" . $row["status"] . "</td>";
-                                            echo '<td class="text-right">
-                                            <a href="#" class="btn btn-link btn-warning btn-just-icon edit" onclick="editUser(' . $row["user_id"] . ')"><i class="material-icons">edit</i></a>
-                                            <a href="#" class="btn btn-link btn-danger btn-just-icon remove" onclick="confirmRemove(' . $row["user_id"] . ')"><i class="material-icons">close</i></a>
-                                          </td>';                                    
-                                            echo "</tr>";
-                                        }
-                                    } else {
-                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
-                                    }
-                                    $conn->close();
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="mr-auto">
+                      <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Voltar">
                     </div>
-                    <!-- end content-->
-                </div>
-                <!-- end card  -->
+                    <div class="ml-auto">
+                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Proximo">
+                      <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" formaction="add_users.php">
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </form>
+              </div>
             </div>
-            <!-- end col-md-12 -->
+            <!-- wizard container -->
+          </div>
         </div>
-        <!-- end row -->
-    </div>
-</div>
-
-<script>
-    function likeUser(userId) {
-        alert("Curtiu o utilizador com ID " + userId);
-    }
-
-    function editUser(userId) {
-        alert("Editou o utilizador com ID " + userId);
-    }
-
-    function confirmRemove(userId) {
-    if (confirm("Tem certeza que deseja remover o utilizador com ID " + userId + "?")) {
-        // Aqui você pode fazer uma chamada AJAX para remover o utilizador do banco de dados
-        // Por exemplo:
-        $.post("remover_user.php", { user_id: userId }, function(data) {
-            // Exibe mensagem de sucesso
-            alert("Utilizador removido com sucesso!");
-            
-            // Redireciona para a mesma página
-            location.reload();
-        });
-    } else {
-        alert("Remoção cancelada.");
-    }
-}
-</script>
-
-
-
-    </div>
-    
+      </div>
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
@@ -717,6 +609,20 @@
       </ul>
     </div>
   </div>
+
+<!-- Inclua o jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Inclua o jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- Configuração do Datepicker -->
+<script>
+    $(document).ready(function() {
+        $("#data_nascimento").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    });
+</script>
+
   <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
@@ -762,6 +668,57 @@
   <script src="../../assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../../assets/demo/demo.js"></script>
+
+  <script>
+    function resizeImage(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function(e) {
+        const img = new Image();
+        img.src = e.target.result;
+  
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+  
+          const maxDimension = 320;
+          let width = img.width;
+          let height = img.height;
+  
+          if (width > height) {
+            if (width > maxDimension) {
+              height *= maxDimension / width;
+              width = maxDimension;
+            }
+          } else {
+            if (height > maxDimension) {
+              width *= maxDimension / height;
+              height = maxDimension;
+            }
+          }
+  
+          canvas.width = width;
+          canvas.height = height;
+  
+          ctx.drawImage(img, 0, 0, width, height);
+  
+          canvas.toBlob(function(blob) {
+            const resizedFile = new File([blob], file.name, {
+              type: file.type,
+              lastModified: Date.now()
+            });
+  
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(resizedFile);
+            document.getElementById('wizard-picture').files = dataTransfer.files;
+          }, file.type);
+        }
+      }
+      reader.readAsDataURL(file);
+    }
+  </script>
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -1038,41 +995,87 @@
   </noscript>
   <script>
     $(document).ready(function() {
-      $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-          [10, 25, 50, -1],
-          [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search records",
-        }
-      });
-
-      var table = $('#datatable').DataTable();
-
-      // Edit record
-      table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
-
-      // Delete a record
-      table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-      });
-
-      //Like record
-      table.on('click', '.like', function() {
-        alert('You clicked on Like button');
-      });
+      // Initialise the wizard
+      demo.initMaterialWizard();
+      setTimeout(function() {
+        $('.card.card-wizard').addClass('active');
+      }, 600);
     });
   </script>
+  <script>
+    $(document).ready(function() {
+      // initialise Datetimepicker and Sliders
+      md.initFormExtendedDatetimepickers();
+      if ($('.slider').length != 0) {
+        md.initSliders();
+      }
+    });
+
+
+
+
+    
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+$(document).ready(function() {
+    $('#userForm').on('submit', function(e) {
+        e.preventDefault();
+
+        var fileInput = $('#wizard-picture')[0];
+        var file = fileInput.files[0];
+
+        // Verifica se o arquivo é uma imagem
+        if (file && !file.type.startsWith('image/')) {
+            alert('Por favor, envie um arquivo de imagem.');
+            return;
+        }
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: 'add_users.php',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                var jsonResponse = JSON.parse(response);
+                if (jsonResponse.status === "success") {
+                    Swal.fire({
+                        title: "Bom trabalho!",
+                        text: jsonResponse.message,
+                        icon: "success",
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: jsonResponse.message,
+                        icon: "error",
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                Swal.fire({
+                    title: "Erro!",
+                    text: "Erro ao criar o registro: " + errorThrown,
+                    icon: "error",
+                    confirmButtonClass: "btn btn-danger",
+                    buttonsStyling: false
+                });
+            }
+        });
+    });
+
+    
+});
+</script>
+
 </body>
 
 </html>
