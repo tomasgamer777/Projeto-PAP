@@ -173,13 +173,13 @@
             <div class="collapse" id="website">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="pages/edithomepage.html">
+                  <a class="nav-link" href="edithomepage.html">
                     <i class="material-icons"> house </i>
                     <span class="sidebar-normal"> Página Principal </span>
                   </a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="pages/editgalery.html">
+                  <a class="nav-link" href="editgalery.html">
                     <i class="material-icons"> collections </i>
                     <span class="sidebar-normal"> Galeria </span>
                   </a>
