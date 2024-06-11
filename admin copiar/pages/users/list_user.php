@@ -163,7 +163,30 @@
               <p> Calendário </p>
             </a>
           </li>
-          
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#website">
+              <i class="material-icons">public</i>
+              <p> Editar Website
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse" id="website">
+              <ul class="nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="../pages/edithomepage.html">
+                    <i class="material-icons"> house </i>
+                    <span class="sidebar-normal"> Página Principal </span>
+                  </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="../pages/editgalery.html">
+                    <i class="material-icons"> collections </i>
+                    <span class="sidebar-normal"> Galeria </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
