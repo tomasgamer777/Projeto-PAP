@@ -178,36 +178,9 @@
                     <span class="sidebar-normal"> Galeria </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/editpages.html">
-                    <i class="material-icons"> feed </i>
-                    <span class="sidebar-normal"> Páginas </span>
-                  </a>
-                </li>
               </ul>
             </div>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#publicidade">
-              <i class="material-icons">monetization_on</i>
-              <p> Publicidade
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="publicidade">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/addpub.html">
-                    <i class="material-icons"> add </i>
-                    <span class="sidebar-normal"> Adicionar Publicidade </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../pages/listpub.html">
-                    <i class="material-icons"> list </i>
-                    <span class="sidebar-normal"> Lista de Publicidade </span>
-                  </a>
-                </li>
               </ul>
             </div>
           </li>
