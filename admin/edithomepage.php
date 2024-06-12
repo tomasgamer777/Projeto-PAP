@@ -345,85 +345,91 @@
     </div>
 
     <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-primary card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">assignment</i>
-                        </div>
-                        <h4 class="card-title">Lista de Eventos (Segunda Datatable)</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="toolbar">
-                            <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
-                        </div>
-                        <div class="material-datatables">
-                            <table id="datatables2" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                <!-- Cabeçalho da Segunda Datatable -->
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Foto</th>
-                                        <th>Título</th>
-                                        <th>Legenda</th>
-                                        <th class="disabled-sorting text-right">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>Foto</th>
-                                            <th>Título</th>
-                                            <th>Legenda</th>
-                                            <th class="text-right">Ações</th>
-                                        </tr>
-                                    </tfoot>
-                                <!-- Corpo da Segunda Datatable -->
-                                <tbody>
-                                <?php
-                                    // Conexão com o banco de dados
-                                    $servername = "localhost";
-                                    $username = "tomas";
-                                    $password = "!h01fFw35";
-                                    $dbname = "banda";
-    
-                                    $conn = new mysqli($servername, $username, $password, $dbname);
-    
-                                    // Verifica a conexão
-                                    if ($conn->connect_error) {
-                                        die("Connection failed: " . $conn->connect_error);
-                                    }
-    
-                                    $sql = "SELECT id, titulo_2, legenda_2, foto FROM homepage WHERE titulo_2 IS NOT NULL";
-                                    $result = $conn->query($sql);
-    
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row["id"] . "</td>";
-                                            echo "<td>" . $row["foto"] . "</td>";
-                                            echo "<td>" . $row["titulo_2"] . "</td>";
-                                            echo "<td>" . $row["legenda_2"] . "</td>";
-                                            echo '<td class="text-right">
-                                                     <button class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#editModal2" data-id="' . $row["id"] . '" data-foto="' . $row["foto"] . '" data-titulo2="' . $row["titulo_2"] . '" data-legenda2="' . $row["legenda_2"] . '"><i class="material-icons">edit</i></button>
-                                                  </td>';
-                                            echo "</tr>";
-                                        }
-                                    } else {
-                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
-                                    }
-                                    $conn->close();
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="card-title">Lista de Eventos (Segunda Datatable)</h4>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">
+                    <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
+                </div>
+                <div class="material-datatables">
+                    <table id="datatables2" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <!-- Cabeçalho da Segunda Datatable -->
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Foto</th>
+                                <th>Título</th>
+                                <th>Legenda</th>
+                                <th class="disabled-sorting text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Código</th>
+                                <th>Foto</th>
+                                <th>Título</th>
+                                <th>Legenda</th>
+                                <th class="text-right">Ações</th>
+                            </tr>
+                        </tfoot>
+                        <!-- Corpo da Segunda Datatable -->
+                        <tbody>
+                            <?php
+                            // Conexão com o banco de dados
+                            $servername = "localhost";
+                            $username = "tomas";
+                            $password = "!h01fFw35";
+                            $dbname = "banda";
+
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Verifica a conexão
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            $sql = "SELECT id, titulo_2, legenda_2, foto FROM homepage WHERE titulo_2 IS NOT NULL";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row["id"] . "</td>";
+                                    echo "<td><img src='../dummy/homepage/" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
+                                    echo "<td>" . $row["titulo_2"] . "</td>";
+                                    echo "<td>" . $row["legenda_2"] . "</td>";
+                                    echo '<td class="text-right">
+                                             <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
+                                                data-id="' . $row["id"] . '" 
+                                                data-foto="' . $row["foto"] . '" 
+                                                data-titulo2="' . $row["titulo_2"] . '" 
+                                                data-legenda2="' . $row["legenda_2"] . '">
+                                                <i class="material-icons">edit</i>
+                                             </button>
+                                          </td>';
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='5'>Nenhum resultado encontrado.</td></tr>";
+                            }
+                            $conn->close();
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <!-- Fim da Segunda Datatable e Modal de Edição -->
-
     </div>
+</div>
+
+<!-- Fim da Segunda Datatable e Modal de Edição -->
+</div>
 </div>
 
 <!-- Modal de Edição (Segunda Datatable) -->
@@ -440,8 +446,11 @@
                 <div class="modal-body">
                     <input type="hidden" id="edit_id" name="edit_id">
                     <div class="form-group">
-                        <label for="edit_foto">Foto</label>
-                        <input type="text" class="form-control" id="edit_foto" name="edit_foto" required>
+                        <label for="edit_foto">Nova Foto</label>
+                        <input type="file" class="form-control-file" id="edit_foto" name="edit_foto" accept="image/*">
+                        <small id="fotoHelp" class="form-text text-muted">Escolha uma nova imagem para o evento.</small>
+                        <br>
+                        <img src="" id="edit_preview" class="img-thumbnail" style="max-width:200px; max-height:200px;">
                     </div>
                     <div class="form-group">
                         <label for="edit_titulo">Título</label>
@@ -474,34 +483,53 @@
         $(document).on('click', '.edit2', function () {
             var id = $(this).data('id');
             var foto = $(this).data('foto');
-            var titulo = $(this).data('titulo');
-            var legenda = $(this).data('legenda');
+            var titulo = $(this).data('titulo2');
+            var legenda = $(this).data('legenda2');
 
             $('#edit_id').val(id);
             $('#edit_foto').val(foto);
             $('#edit_titulo').val(titulo);
             $('#edit_legenda').val(legenda);
+            $('#edit_preview').attr('src', '../dummy/homepage/' + foto); // Mostra a pré-visualização da imagem
 
             $('#editModal2').modal('show');
         });
 
+        // Função para renomear a imagem ao fazer upload
+        function renameImage(file) {
+            var newName = 'homepage_' + Date.now();
+            var fileExt = file.name.split('.').pop();
+            return newName + '.' + fileExt;
+        }
+
         // Processamento do formulário de edição via AJAX
         $('#saveChanges2').click(function () {
             var id = $('#edit_id').val();
-            var foto = $('#edit_foto').val();
             var titulo = $('#edit_titulo').val();
             var legenda = $('#edit_legenda').val();
+            var formData = new FormData();
+
+            // Adiciona os dados ao FormData
+            formData.append('id', id);
+            formData.append('titulo_2', titulo);
+            formData.append('legenda_2', legenda);
+
+            // Verifica se há uma nova imagem selecionada
+            var fileInput = $('#edit_foto')[0];
+            if (fileInput.files.length > 0) {
+                var file = fileInput.files[0];
+                var renamedFilename = renameImage(file);
+                formData.append('foto', renamedFilename);
+                formData.append('uploaded_file', file, renamedFilename); // Adiciona o arquivo ao FormData
+            }
 
             $.ajax({
                 url: 'update_event2.php',
                 type: 'POST',
                 dataType: 'json',
-                data: {
-                    id: id,
-                    foto: foto,
-                    titulo_2: titulo,
-                    legenda_2: legenda
-                },
+                processData: false,
+                contentType: false,
+                data: formData,
                 success: function (response) {
                     if (response.status == 'success') {
                         // Mostrar um alerta de sucesso
@@ -529,7 +557,7 @@
                             hideClass: {
                                 popup: 'animate__animated animate__fadeOutUp'
                             }
-                        });
+                          });
                     }
                 },
                 error: function (xhr, status, error) {
