@@ -396,7 +396,7 @@
                                 }
 
                                 // Consulta SQL para selecionar os dados da tabela homepage
-                                $sql = "SELECT id, date, titulo_1, legenda_1 FROM homepage WHERE date IS NOT NULL";
+                                $sql = "SELECT id, date, titulo_1, legenda_1 FROM homepage WHERE date IS NOT NULL AND date <> ''";
 
                                 $result = $conn->query($sql);
 
