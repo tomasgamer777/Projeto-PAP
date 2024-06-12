@@ -344,7 +344,6 @@
                                 <option value="coisas">Coisas</option>
                             </select>
                         </div>
-                    </div>
                     <div class="form-group">
                         <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
                     </div>
