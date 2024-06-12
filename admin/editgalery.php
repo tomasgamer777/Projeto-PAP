@@ -448,21 +448,46 @@
 <script>
 function confirmDelete(imageId) {
     swal({
-        title: "Tem certeza?",
-        text: "Você realmente deseja excluir esta imagem?",
-        icon: "warning",
-        buttons: ["Cancelar", "Sim"], // Alterado o botão "Ok" para "Sim"
-        dangerMode: true,
-    })
-    .then((willDelete) => {
-        if (willDelete) {
-            // Se o usuário confirmar, enviar uma solicitação AJAX para excluir a imagem
-            deleteImage(imageId);
+      title: "Tem certeza?",
+        text: "Deseja realmente remover esta imagem?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn btn-danger",
+        cancelButtonClass: "btn btn-default",
+        confirmButtonText: "Sim, remover",
+        cancelButtonText: "Cancelar",
+        buttonsStyling: false
+      }).then((result) => {
+        if (result.value) {
+            $.post("delete_image.php", { user_id: userId }, function(data) {
+                swal({
+                    title: "Removido!",
+                    text: "Foto removida com sucesso.",
+                    type: "success",
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false
+                }).then(() => {
+                    location.reload();
+                });
+            }).fail(() => {
+                swal({
+                    title: "Erro",
+                    text: "Ocorreu um erro ao tentar remover a foto.",
+                    type: "error",
+                    confirmButtonClass: "btn btn-danger",
+                    buttonsStyling: false
+                });
+            });
         } else {
-            // Se o usuário cancelar, não fazer nada
-            swal("Imagem não excluída!");
+            swal({
+                title: "Cancelado",
+                text: "Remoção cancelada.",
+                type: "error",
+                confirmButtonClass: "btn btn-info",
+                buttonsStyling: false
+            });
         }
-    });
+    }).catch(swal.noop);
 }
 
 function deleteImage(imageId) {
