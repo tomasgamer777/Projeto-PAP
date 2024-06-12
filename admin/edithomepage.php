@@ -363,7 +363,6 @@
                                 <thead>
                                     <tr>
                                         <th>Código</th>
-                                        <th>Data</th>
                                         <th>Foto</th>
                                         <th>Título</th>
                                         <th>Legenda</th>
@@ -386,21 +385,19 @@
                                         die("Connection failed: " . $conn->connect_error);
                                     }
 
-                                    $sql = "SELECT id, date, foto, titulo_2, legenda_2 FROM homepage";
+                                    $sql = "SELECT id, foto, titulo_2, legenda_2 FROM homepage";
                                     $result = $conn->query($sql);
 
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             echo "<tr>";
                                             echo "<td>" . $row["id"] . "</td>";
-                                            echo "<td>" . $row["date"] . "</td>";
                                             echo "<td>" . $row["foto"] . "</td>";
                                             echo "<td>" . $row["titulo_2"] . "</td>";
                                             echo "<td>" . $row["legenda_2"] . "</td>";
                                             echo '<td class="text-right">
                                                     <button type="button" class="btn btn-link btn-warning btn-just-icon edit2" 
                                                         data-id="' . $row["id"] . '"
-                                                        data-date="' . $row["date"] . '"
                                                         data-foto="' . $row["foto"] . '"
                                                         data-titulo="' . $row["titulo_2"] . '"
                                                         data-legenda="' . $row["legenda_2"] . '"
@@ -440,10 +437,6 @@
             <div class="modal-body">
                 <form id="editForm2">
                     <input type="hidden" id="editId2" name="id">
-                    <div class="form-group">
-                        <label for="editDate2">Data <small class="text-muted">(dia e mês)</small></label>
-                        <input type="text" class="form-control text-uppercase" id="editDate2" name="date" placeholder="DD-MM">
-                    </div>
                     <div class="form-group">
                         <label for="editFoto">Foto</label>
                         <input type="text" class="form-control" id="editFoto" name="foto">
