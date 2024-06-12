@@ -1,0 +1,43 @@
+<?php
+// Verifica se os dados foram enviados via método POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    // Parâmetros de conexão com o banco de dados
+    $servername = "localhost";
+    $username = "tomas";
+    $password = "!h01fFw35";
+    $dbname = "banda";
+    
+    // Cria conexão com o banco de dados
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    // Verifica a conexão
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    
+    // Obtém os dados do formulário
+    $id = $_POST['id'];
+    $date = $_POST['date'];
+    $foto = $_POST['foto'];
+    $titulo_2 = $_POST['titulo_2'];
+    $legenda_2 = $_POST['legenda_2'];
+    
+    // Atualiza os dados na tabela "homepage"
+    $sql = "UPDATE homepage SET date = '$date', foto = '$foto', titulo_2 = '$titulo_2', legenda_2 = '$legenda_2' WHERE id = $id";
+    
+    if ($conn->query($sql) === TRUE) {
+        // Se a atualização foi bem-sucedida, retorna uma resposta de sucesso
+        echo json_encode(array("status" => "success"));
+    } else {
+        // Se ocorreu algum erro na atualização, retorna uma resposta de erro
+        echo json_encode(array("status" => "error", "message" => $conn->error));
+    }
+    
+    // Fecha a conexão com o banco de dados
+    $conn->close();
+} else {
+    // Se o método de requisição não for POST, retorna uma resposta de erro
+    echo json_encode(array("status" => "error", "message" => "Método não permitido"));
+}
+?>

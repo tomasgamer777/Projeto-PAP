@@ -274,7 +274,6 @@
                         </div>
                         <div class="card-body">
                             <div class="toolbar">
-                                <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
                             </div>
                             <div class="material-datatables">
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
@@ -344,6 +343,198 @@
             <!-- end row -->
         </div>
     </div>
+
+    <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Lista de Eventos (Segunda Datatable)</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="toolbar">
+                            <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
+                        </div>
+                        <div class="material-datatables">
+                            <table id="datatables2" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                <!-- Cabeçalho da Segunda Datatable -->
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Data</th>
+                                        <th>Foto</th>
+                                        <th>Título</th>
+                                        <th>Legenda</th>
+                                        <th class="disabled-sorting text-right">Ações</th>
+                                    </tr>
+                                </thead>
+                                <!-- Corpo da Segunda Datatable -->
+                                <tbody>
+                                    <?php
+                                    // Conexão com o banco de dados
+                                    $servername = "localhost";
+                                    $username = "tomas";
+                                    $password = "!h01fFw35";
+                                    $dbname = "banda";
+
+                                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                                    // Verifica a conexão
+                                    if ($conn->connect_error) {
+                                        die("Connection failed: " . $conn->connect_error);
+                                    }
+
+                                    $sql = "SELECT id, date, foto, titulo_2, legenda_2 FROM homepage";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row["id"] . "</td>";
+                                            echo "<td>" . $row["date"] . "</td>";
+                                            echo "<td>" . $row["foto"] . "</td>";
+                                            echo "<td>" . $row["titulo_2"] . "</td>";
+                                            echo "<td>" . $row["legenda_2"] . "</td>";
+                                            echo '<td class="text-right">
+                                                    <button type="button" class="btn btn-link btn-warning btn-just-icon edit2" 
+                                                        data-id="' . $row["id"] . '"
+                                                        data-date="' . $row["date"] . '"
+                                                        data-foto="' . $row["foto"] . '"
+                                                        data-titulo="' . $row["titulo_2"] . '"
+                                                        data-legenda="' . $row["legenda_2"] . '"
+                                                    >
+                                                        <i class="material-icons">edit</i>
+                                                    </button>
+                                                  </td>';
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+                                    }
+                                    $conn->close();
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fim da Segunda Datatable e Modal de Edição -->
+
+    </div>
+</div>
+
+<!-- Modal de Edição (Segunda Datatable) -->
+<div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModal2Label">Editar Evento (Segunda Datatable)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm2">
+                    <input type="hidden" id="editId2" name="id">
+                    <div class="form-group">
+                        <label for="editDate2">Data <small class="text-muted">(dia e mês)</small></label>
+                        <input type="text" class="form-control text-uppercase" id="editDate2" name="date" placeholder="DD-MM">
+                    </div>
+                    <div class="form-group">
+                        <label for="editFoto">Foto</label>
+                        <input type="text" class="form-control" id="editFoto" name="foto">
+                    </div>
+                    <div class="form-group">
+                        <label for="editTitulo2">Título</label>
+                        <input type="text" class="form-control" id="editTitulo2" name="titulo_2">
+                    </div>
+                    <div class="form-group">
+                        <label for="editLegenda2">Legenda</label>
+                        <input type="text" class="form-control" id="editLegenda2" name="legenda_2">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Mudanças</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Modal de Edição (Segunda Datatable) - Carregar dados no modal ao abrir
+    $('#editModal2').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botão que disparou o modal
+        var id = button.data('id');
+        var date = button.data('date');
+        var foto = button.data('foto');
+        var titulo = button.data('titulo');
+        var legenda = button.data('legenda');
+
+        var modal = $(this);
+        modal.find('#editId2').val(id);
+        modal.find('#editDate2').val(date);
+        modal.find('#editFoto').val(foto);
+        modal.find('#editTitulo2').val(titulo);
+        modal.find('#editLegenda2').val(legenda);
+    });
+
+    // Modal de Edição (Segunda Datatable) - Ação ao clicar em Salvar Mudanças
+    $('#saveChanges2').on('click', function () {
+        var form = $('#editForm2');
+        // Transformando a data para maiúsculas antes de enviar
+        var dateInput = $('#editDate2');
+        dateInput.val(dateInput.val().toUpperCase());
+
+        $.ajax({
+            type: "POST",
+            url: "update_event2.php", // Arquivo PHP para processar a atualização da Segunda Datatable
+            data: form.serialize(),
+            success: function (response) {
+                // Mostrar um alerta de sucesso com animação
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: 'Evento atualizado com sucesso!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                }).then(() => {
+                    // Recarregar a página após o fechamento do modal
+                    $('#editModal2').modal('hide');
+                    setTimeout(function() {
+                        location.reload(true); // Forçar recarregar a página do servidor
+                    }, 500); // Aguardar 500ms antes de recarregar
+                });
+            },
+            error: function (xhr, status, error) {
+                // Mostrar um alerta de erro com animação
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro ao atualizar o evento:
+                    // Mostrar um alerta de erro com animação
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: 'Erro ao atualizar o evento: ' + error,
+                        showClass: {
+                            popup: 'animate__animated animate__shakeX'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 
    <!-- Inclua SweetAlert no seu HTML -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
