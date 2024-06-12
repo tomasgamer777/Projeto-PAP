@@ -439,7 +439,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $('#editModal').modal('hide');
-                        location.reload(); // Recarrregar a página para mostrar as alterações
+                        window.location.reload(true); // Forçar recarregar a página do servidor
                     }
                 });
             },
@@ -460,6 +460,7 @@
         });
     });
 </script>
+
 
 
 
