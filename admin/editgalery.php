@@ -44,8 +44,8 @@
   <link href="assets/demo/demo.css" rel="stylesheet" />
   <!-- Google Tag Manager -->
   <style>
-    .form-group.select-group {
-        margin-top: 20px;
+    .form-group label {
+        margin-top: -20px;
     }
 </style>
 
@@ -315,7 +315,7 @@
                         <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
                     </div>
 
-                    <div class="form-group select-group"> <!-- Adicionada a classe CSS personalizada -->
+                    <div class="form-group">
                         <label for="type" class="bmd-label-floating">Tipo da Imagem</label>
                         <select class="form-control" id="type" name="type" required>
                             <option value="" disabled selected>Selecione o tipo</option>
