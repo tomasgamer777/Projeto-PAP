@@ -466,7 +466,7 @@
                             <input type="file" class="custom-file-input" id="edit_foto" name="edit_foto">
                             <label class="custom-file-label" for="edit_foto">Escolher arquivo</label>
                         </div>
-                        <img id="preview_edit_foto" src="#" alt="" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                        <img id="preview_edit_foto" src="#" alt="Pré-visualização da Nova Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                     </div>
                     <div class="form-group">
                         <label for="edit_titulo">Título</label>
