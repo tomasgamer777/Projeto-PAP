@@ -108,32 +108,7 @@
       });
     }
 
-    function deleteImage(imageId) {
-      swal({
-        title: "Tem certeza?",
-        text: "Deseja realmente excluir esta imagem?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          fetch(`delete_image.php?id=${imageId}`, {
-            method: 'GET'
-          })
-          .then(response => response.text())
-          .then(data => {
-            swal("Sucesso", data, "success");
-            setTimeout(() => {
-              location.reload();
-            }, 2000);
-          })
-          .catch(error => {
-            swal("Erro", "Houve um problema ao excluir a imagem.", "error");
-          });
-        }
-      });
-    }
+    
   </script>
 
 
@@ -392,6 +367,49 @@
 
         $conn->close();
       ?>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function confirmDelete(imageId) {
+    swal({
+        title: "Tem certeza?",
+        text: "Deseja realmente excluir esta imagem?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn btn-danger",
+        cancelButtonClass: "btn btn-default",
+        confirmButtonText: "Sim, excluir",
+        cancelButtonText: "Cancelar",
+        buttonsStyling: false
+    }).then((result) => {
+        if (result.value) {
+            deleteImage(imageId);
+        }
+    });
+}
+
+function deleteImage(imageId) {
+    $.post("delete_image.php", { id: imageId }, function(data) {
+        swal({
+            title: "Excluído!",
+            text: "A imagem foi excluída com sucesso.",
+            type: "success",
+            confirmButtonClass: "btn btn-success",
+            buttonsStyling: false
+        }).then(() => {
+            location.reload(); // Recarregar a página para atualizar a galeria
+        });
+    }).fail(() => {
+        swal({
+            title: "Erro",
+            text: "Ocorreu um erro ao excluir a imagem.",
+            type: "error",
+            confirmButtonClass: "btn btn-danger",
+            buttonsStyling: false
+        });
+    });
+}
+</script>
     </div>
 
     </div>
@@ -445,53 +463,7 @@
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-function confirmDelete(imageId) {
-    swal({
-      title: "Tem certeza?",
-        text: "Deseja realmente remover esta imagem?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonClass: "btn btn-danger",
-        cancelButtonClass: "btn btn-default",
-        confirmButtonText: "Sim, remover",
-        cancelButtonText: "Cancelar",
-        buttonsStyling: false
-      }).then((result) => {
-        if (result.value) {
-            $.post("delete_image.php", { id: imageId }, function(data) {
-                swal({
-                    title: "Removido!",
-                    text: "Foto removida com sucesso.",
-                    type: "success",
-                    confirmButtonClass: "btn btn-success",
-                    buttonsStyling: false
-                }).then(() => {
-                    location.reload();
-                });
-            }).fail(() => {
-                swal({
-                    title: "Erro",
-                    text: "Ocorreu um erro ao tentar remover a foto.",
-                    type: "error",
-                    confirmButtonClass: "btn btn-danger",
-                    buttonsStyling: false
-                });
-            });
-        } else {
-            swal({
-                title: "Cancelado",
-                text: "Remoção cancelada.",
-                type: "error",
-                confirmButtonClass: "btn btn-info",
-                buttonsStyling: false
-            });
-        }
-    }).catch(swal.noop);
-}
 
-
-</script>
 
 
 
