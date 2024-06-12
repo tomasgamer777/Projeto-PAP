@@ -330,8 +330,11 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(data => {
             // Exibe um alerta de sucesso com SweetAlert
-            swal("Sucesso!", "Imagem enviada com sucesso!", "success");
-            // Aqui você pode adicionar código para limpar os campos do formulário ou fazer outras ações após o envio bem-sucedido
+            swal("Sucesso!", "Imagem enviada com sucesso!", "success")
+            .then(() => {
+                // Recarrega a página após o alerta ser fechado
+                location.reload();
+            });
         })
         .catch(error => {
             // Exibe um alerta de erro com SweetAlert
@@ -340,6 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
 </script>
 
 
