@@ -13,16 +13,15 @@ if ($conn->connect_error) {
 }
 
 // Diretórios onde as imagens serão salvas
-$target_dir = "galeria/";
-$target_dir_resized = "galeria/resized/";
-$target_dir_original = "galeria/original/";
+$target_dir_small = "../dummy/";
+$target_dir_large = "../dummy/large-gallery/";
 
 // Verifica se os diretórios de uploads existem, se não, cria
-if (!is_dir($target_dir_resized)) {
-    mkdir($target_dir_resized, 0777, true);
+if (!is_dir($target_dir_small)) {
+    mkdir($target_dir_small, 0777, true);
 }
-if (!is_dir($target_dir_original)) {
-    mkdir($target_dir_original, 0777, true);
+if (!is_dir($target_dir_large)) {
+    mkdir($target_dir_large, 0777, true);
 }
 
 function resize_image($file, $width, $height, $output) {
@@ -34,11 +33,11 @@ function resize_image($file, $width, $height, $output) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
-    $target_file_original = $target_dir_original . basename($_FILES["image"]["name"]);
-    $target_file_resized_small = $target_dir_resized . "600x300_" . basename($_FILES["image"]["name"]);
-    $target_file_resized_large = $target_dir_resized . "1280x860_" . basename($_FILES["image"]["name"]);
+    $image_name = basename($_FILES["image"]["name"]);
+    $target_file_small = $target_dir_small . $image_name;
+    $target_file_large = $target_dir_large . $image_name;
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file_original, PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($target_file_small, PATHINFO_EXTENSION));
 
     // Verifica se o arquivo é uma imagem real ou uma imagem falsa
     $check = getimagesize($_FILES["image"]["tmp_name"]);
@@ -51,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
     }
 
     // Verifica se o arquivo já existe
-    if (file_exists($target_file_original)) {
+    if (file_exists($target_file_small) || file_exists($target_file_large)) {
         echo "Desculpe, o ficheiro já existe.";
         $uploadOk = 0;
     }
@@ -73,15 +72,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
         echo "Desculpe, o seu ficheiro não foi carregado.";
     // Se tudo estiver ok, tenta fazer o upload do arquivo
     } else {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_original)) {
-            echo "O ficheiro " . htmlspecialchars(basename($_FILES["image"]["name"])) . " foi carregado.";
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_small)) {
+            echo "O ficheiro " . htmlspecialchars($image_name) . " foi carregado.";
 
-            // Redimensiona a imagem e salva as cópias redimensionadas
-            resize_image($target_file_original, 600, 300, $target_file_resized_small);
-            resize_image($target_file_original, 1280, 860, $target_file_resized_large);
+            // Redimensiona a imagem e salva a cópia redimensionada grande
+            resize_image($target_file_small, 1280, 860, $target_file_large);
+
+            // Caminhos relativos para salvar na base de dados
+            $image_url_small = "dummy/" . $image_name;
+            $image_url_large = "dummy/large-gallery/" . $image_name;
 
             // Salva a URL das imagens no banco de dados
-            $sql = "INSERT INTO galeria (image_url, image_url_small, image_url_large) VALUES ('$target_file_original', '$target_file_resized_small', '$target_file_resized_large')";
+            $sql = "INSERT INTO galeria (image_url, image_url_small, image_url_large) VALUES ('$image_url_small', '$image_url_small', '$image_url_large')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "URL da imagem salva no banco de dados com sucesso.";
