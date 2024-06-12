@@ -323,13 +323,10 @@ document.addEventListener("DOMContentLoaded", function () {
             body: formData
         })
         .then(response => {
-            // Exibe a resposta para depuração
-            console.log(response);
-            
             if (!response.ok) {
                 throw new Error("Erro ao enviar imagem");
             }
-            return response.json();
+            return response.text(); // Alterado para text() em vez de json()
         })
         .then(data => {
             // Exibe um alerta de sucesso com SweetAlert
