@@ -321,40 +321,41 @@
             <p class="category">Use o formulário abaixo para adicionar novas imagens à galeria.</p>
         </div>
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <form id="uploadForm" onsubmit="submitForm(event)" enctype="multipart/form-data">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">Adicionar Imagem</h4>
-                            <p class="card-category">Complete os campos abaixo</p>
+        <div class="col-md-8 ml-auto mr-auto">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Adicionar Imagem</h4>
+                        <p class="card-category">Complete os campos abaixo</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="image" class="bmd-label-floating">Selecionar Imagem</label>
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                            <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="image" class="bmd-label-floating">Selecionar Imagem</label>
-                                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="type" class="bmd-label-floating">Tipo da Imagem</label>
-                                <select class="form-control" id="type" name="type" required>
-                                    <option value="" disabled selected>Selecione o tipo</option>
-                                    <option value="concerto">Concerto</option>
-                                    <option value="banda">Banda</option>
-                                    <option value="coisas">Coisas</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="submitButton">Enviar</button>
+                        <div class="form-group">
+                            <label for="type" class="bmd-label-floating">Tipo da Imagem</label>
+                            <select class="form-control" id="type" name="type" required>
+                                <option value="" disabled selected>Selecione o tipo</option>
+                                <option value="concerto">Concerto</option>
+                                <option value="banda">Banda</option>
+                                <option value="coisas">Coisas</option>
+                            </select>
                         </div>
                     </div>
-                </form>
+                    <div class="form-group">
+                        <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" id="submitButton">Enviar</button>
+                </div>
             </div>
-        </div>
+        </form>
+    </div>
+</div>
 
     <style>
       .form-group select#type {
