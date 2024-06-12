@@ -335,7 +335,7 @@
 
     <style>
       .form-group select#type {
-          margin-top: -0.5rem; /* Movendo a combobox para cima */
+          margin-top: 2.5rem; /* Movendo a combobox para cima */
           /* Ou margin-bottom: 0.5rem; para mover para baixo */
       }
     </style>
