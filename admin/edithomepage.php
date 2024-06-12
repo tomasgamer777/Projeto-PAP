@@ -409,8 +409,8 @@
                                         <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
                                                 data-id="' . $row["id"] . '" 
                                                 data-foto="' . $row["foto"] . '" 
-                                                data-titulo="' . $row["titulo_2"] . '" 
-                                                data-legenda="' . $row["legenda_2"] . '">
+                                                data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
+                                                data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
                                             <i class="material-icons">edit</i>
                                         </button>
                                       </td>';
@@ -421,8 +421,7 @@
                         }
 
                         $conn->close();
-                    ?>
-
+                        ?>
                         </tbody>
                     </table>
                 </div>
@@ -497,7 +496,7 @@
             $('#edit_legenda').val(legenda);
 
             // Pré-visualização da imagem atual
-            $('#preview_edit_foto').attr('src', '../dummy/homepage/' + foto);
+            $('#preview_edit_foto').attr('src', '../' + foto);
 
             $('#editModal2').modal('show');
         });
@@ -581,6 +580,7 @@
         });
     });
 </script>
+
 
 
 
