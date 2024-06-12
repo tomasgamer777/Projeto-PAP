@@ -494,27 +494,31 @@
 
 <script>
     $(document).ready(function () {
-// Função para exibir a imagem atual
+// Função para exibir a imagem atual no modal de edição
 function showCurrentImage(imageUrl) {
     $('#current_image').attr('src', imageUrl);
 }
 
-// Abrir o modal de edição ao clicar no botão de edição
+// Abrir o modal de edição ao clicar no botão de edição na datatable
 $(document).on('click', '.edit2', function () {
     var id = $(this).data('id');
     var titulo = $(this).data('titulo');
     var legenda = $(this).data('legenda');
-    var foto = $(this).data('foto'); // Verifique se 'foto' é o nome correto do campo
+    var foto = $(this).data('foto'); // Certifique-se de que 'foto' é o nome correto do atributo data
 
     // Preencher os campos do modal com os dados do evento
     $('#edit_id').val(id);
     $('#edit_titulo').val(titulo);
     $('#edit_legenda').val(legenda);
     
-    // Exibir a imagem atual, garantindo que 'foto' não seja 'undefined' ou vazio
+    // Exibir a imagem atual no modal
     if (foto) {
-        var imageUrl = '../dummy/homepage/' + foto; // Verifique se o caminho está correto
+        var imageUrl = '../' + foto; // Ajuste o caminho conforme necessário
         showCurrentImage(imageUrl);
+    } else {
+        // Caso não haja imagem definida, exibir uma imagem padrão ou mensagem
+       $('#current_image').attr('src', '../dummy/homepage/braga1cortado.jpg');
+        // Ou manipular conforme sua necessidade
     }
 
     // Abrir o modal de edição
