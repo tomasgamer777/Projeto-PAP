@@ -12,6 +12,10 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
   <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
   <!--  Social tags      -->
   <meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, material dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, material design, material dashboard bootstrap 4 dashboard">
@@ -408,7 +412,7 @@
                                 echo '<td class="text-right">
                                         <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
                                                 data-id="' . $row["id"] . '" 
-                                                data-foto="../' . $row["foto"] . '" 
+                                                data-foto="' . $row["foto"] . '" 
                                                 data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
                                                 data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
                                             <i class="material-icons">edit</i>
@@ -422,6 +426,7 @@
 
                         $conn->close();
                         ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -496,7 +501,7 @@
             $('#edit_legenda').val(legenda);
 
             // Pré-visualização da imagem atual
-            $('#preview_edit_foto').attr('src', foto);
+            $('#preview_edit_foto').attr('src', '../' + foto);
 
             $('#editModal2').modal('show');
         });
@@ -580,6 +585,9 @@
         });
     });
 </script>
+
+
+
    <!-- Inclua SweetAlert no seu HTML -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
