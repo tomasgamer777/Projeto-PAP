@@ -480,25 +480,25 @@ $(document).ready(function() {
         });
       });
 
-            // Função para excluir imagem
-            function confirmDelete(imageId) {
-          swal({
-              title: "Tem certeza?",
-              text: "Você realmente deseja excluir esta imagem?",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-          })
-          .then((willDelete) => {
-              if (willDelete) {
-                  // Se o usuário confirmar, redirecione para o script de exclusão da imagem
-                  window.location.href = "delete_image.php?id=" + imageId;
-              } else {
-                  // Se o usuário cancelar, exiba uma mensagem de cancelamento
-                  swal("Imagem não excluída!");
-              }
-          });
-      }
+      // Função para excluir imagem
+      function confirmDelete(imageId) {
+    swal({
+        title: "Tem certeza?",
+        text: "Você realmente deseja excluir esta imagem?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            // Se o usuário confirmar, redirecione para o script de exclusão da imagem
+            window.location.href = "delete_image.php?id=" + imageId;
+        } else {
+            // Se o usuário cancelar, exiba uma mensagem de cancelamento
+            swal("Imagem não excluída!");
+        }
+    });
+}
     });
 
     $(document).ready(function () {
