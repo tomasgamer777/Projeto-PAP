@@ -452,7 +452,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editForm2" enctype="multipart/form-data"> <!-- Adicionando enctype para permitir upload de arquivos -->
+            <form id="editForm2" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" id="edit_id" name="edit_id">
                     
@@ -480,12 +480,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button> <!-- Mudança para type="submit" -->
+                    <button type="submit" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 
 
 
@@ -513,14 +514,16 @@
             var id = $(this).data('id');
             var titulo = $(this).data('titulo');
             var legenda = $(this).data('legenda');
-            var foto = $(this).data('foto'); // Adicionar para obter o nome da imagem atual
+            var foto = $(this).data('foto'); // Nome do arquivo de imagem
 
             // Preencher os campos do modal com os dados do evento
             $('#edit_id').val(id);
             $('#edit_titulo').val(titulo);
             $('#edit_legenda').val(legenda);
-            showCurrentImage('../' + foto); // Exibir imagem atual
             
+            // Exibir a imagem atual
+            showCurrentImage('../' + foto);
+
             // Abrir o modal de edição
             $('#editModal2').modal('show');
         });
@@ -569,6 +572,7 @@
         });
     });
 </script>
+
 
 
 
