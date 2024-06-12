@@ -394,7 +394,7 @@
                                         die("Connection failed: " . $conn->connect_error);
                                     }
     
-                                    $sql = "SELECT id titulo_2, legenda_2, foto FROM homepage WHERE titulo_2 IS NOT NULL";
+                                    $sql = "SELECT id, titulo_2, legenda_2, foto FROM homepage WHERE titulo_2 IS NOT NULL";
                                     $result = $conn->query($sql);
     
                                     if ($result->num_rows > 0) {
