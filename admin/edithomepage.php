@@ -513,17 +513,18 @@ $(document).on('click', '.edit2', function () {
     
     // Verificar se há uma imagem definida
     if (foto) {
-        var imageUrl = foto; // 'foto' já contém o caminho relativo correto
+        var imageUrl = '../' + foto; // Adiciona '../' para navegar um nível acima do diretório raiz
         showCurrentImage(imageUrl);
     } else {
         // Se 'foto' não estiver definido, mostrar uma imagem padrão ou mensagem
-        $('#current_image').attr('src', '../dummy/homepage/braga1cortado.jpg');
+        $('#current_image').attr('src', '');
         // Ou manipular conforme sua necessidade
     }
 
     // Abrir o modal de edição
     $('#editModal2').modal('show');
 });
+
 
         // Pré-visualização da nova imagem ao selecionar um arquivo
         $("#edit_foto").change(function () {
