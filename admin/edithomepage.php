@@ -403,12 +403,12 @@
                                 echo "<tr>";
                                 echo "<td>" . $row["id"] . "</td>";
                                 echo "<td><img src='../" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
-                                echo "<td>" . $row["titulo_2"] . "</td>";
-                                echo "<td>" . $row["legenda_2"] . "</td>";
+                                echo "<td>" . htmlspecialchars($row["titulo_2"]) . "</td>";
+                                echo "<td>" . htmlspecialchars($row["legenda_2"]) . "</td>";
                                 echo '<td class="text-right">
                                         <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
                                                 data-id="' . $row["id"] . '" 
-                                                data-foto="' . $row["foto"] . '" 
+                                                data-foto="../' . $row["foto"] . '" 
                                                 data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
                                                 data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
                                             <i class="material-icons">edit</i>
@@ -496,7 +496,7 @@
             $('#edit_legenda').val(legenda);
 
             // Pré-visualização da imagem atual
-            $('#preview_edit_foto').attr('src', '../' + foto);
+            $('#preview_edit_foto').attr('src', foto);
 
             $('#editModal2').modal('show');
         });
@@ -580,11 +580,6 @@
         });
     });
 </script>
-
-
-
-
-
    <!-- Inclua SweetAlert no seu HTML -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
