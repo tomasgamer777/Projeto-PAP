@@ -519,7 +519,7 @@ $(document).on('click', '.edit2', function () {
         showCurrentImage(imageUrl);
     } else {
         // Se 'foto' não estiver definido, mostrar uma imagem padrão ou mensagem
-        $('#current_image').attr('src', '../dummy/homepage/concertocortado.jpg');
+        $('#current_image').attr('src', '');
         // Ou manipular conforme sua necessidade
     }
 
