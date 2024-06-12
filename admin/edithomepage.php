@@ -262,205 +262,89 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-    <div class="container-fluid">
-        <div class="header text-center">
-            <h3 class="title">Editar Saídas</h3>
-            <p class="category">Use o formulário abaixo para editar as ultimas saídas da banda mostradas no website.</p>
-        </div>
-        <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-            <form id="uploadForm" enctype="multipart/form-data">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title">Adicionar Imagem</h4>
-                        <p class="card-category">Complete os campos abaixo</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="image" class="bmd-label-floating">Selecionar Imagem</label>
-                            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-                            <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">Lista de eventos</h4>
                         </div>
-
-                        <div class="form-group">
-                            <label for="type" class="bmd-label-floating">Tipo da Imagem</label>
-                            <select class="form-control" id="type" name="type" required>
-                                <option value="" disabled selected>Selecione o tipo</option>
-                                <option value="concerto">Concerto</option>
-                                <option value="banda">Banda</option>
-                                <option value="coisas">Coisas</option>
-                            </select>
+                        <div class="card-body">
+                            <div class="toolbar">
+                                <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
+                            </div>
+                            <div class="material-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                                    cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Data</th>
+                                            <th>Título</th>
+                                            <th>Legenda</th>
+                                            <th class="disabled-sorting text-right">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Data</th>
+                                            <th>Título</th>
+                                            <th>Legenda</th>
+                                            <th class="text-right">Ações</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <?php
+                                    // Conexão com o banco de dados
+                                    $servername = "localhost";
+                                    $username = "tomas";
+                                    $password = "!h01fFw35";
+                                    $dbname = "banda";
+    
+                                    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+                                    // Verifica a conexão
+                                    if ($conn->connect_error) {
+                                        die("Connection failed: " . $conn->connect_error);
+                                    }
+    
+                                    $sql = "SELECT id, date, titulo_1, legenda_1 FROM homepage";
+                                    $result = $conn->query($sql);
+    
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row["id"] . "</td>";
+                                            echo "<td>" . $row["date"] . "</td>";
+                                            echo "<td>" . $row["titulo_1"] . "</td>";
+                                            echo "<td>" . $row["legenda_1"] . "</td>";
+                                            echo '<td class="text-right">
+                                                     <a href="edit_home.html?id=' . $row["id"] . '" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i></a>
+                                                  </td>';
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+                                    }
+                                    $conn->close();
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    <div class="form-group">
-                        <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
+                        <!-- end content-->
                     </div>
+                    <!-- end card  -->
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="uploadForm">Enviar</button>
-                </div>
+                <!-- end col-md-12 -->
             </div>
-        </form>
+            <!-- end row -->
+        </div>
     </div>
-</div>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("uploadForm");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        
-        // Aqui você pode adicionar código para validar os campos do formulário, se necessário
-        
-        // Cria um objeto FormData para enviar os dados do formulário
-        const formData = new FormData(form);
-
-        // Aqui você pode adicionar mais dados ao formData, se necessário
-        
-        // Envia os dados usando fetch
-        fetch("upload_image.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao enviar imagem");
-            }
-            return response.text(); // Alterado para text() em vez de json()
-        })
-        .then(data => {
-            // Exibe um alerta de sucesso com SweetAlert
-            swal("Sucesso!", "Imagem enviada com sucesso!", "success")
-            .then(() => {
-                // Recarrega a página após o alerta ser fechado
-                location.reload();
-            });
-        })
-        .catch(error => {
-            // Exibe um alerta de erro com SweetAlert
-            swal("Erro!", "Houve um erro ao enviar a imagem.", "error");
-            console.error("Erro ao enviar imagem:", error);
-        });
-    });
-});
-
-</script>
-
-
-<script>
-    // Função para exibir a pré-visualização da imagem
-    function previewImage(event) {
-        var input = event.target;
-        var preview = document.getElementById('imagePreview');
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    // Associar a função previewImage ao evento change do input de arquivo
-    document.getElementById('image').addEventListener('change', previewImage);
-</script>
-
-    <style>
-      .form-group select#type {
-          margin-top: 0.9rem; /* Movendo a combobox para cima */
-          /* Ou margin-bottom: 0.5rem; para mover para baixo */
-      }
-    </style>
-
-      <!-- Exibição das Imagens -->
-      <div class="row">
-      <?php
-        $servername = "localhost";
-        $username = "tomas";
-        $password = "!h01fFw35";
-        $dbname = "banda";
-
-        // Criar conexão
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Verificar conexão
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT id, image_url_small, image_url_large, type FROM galeria ORDER BY uploaded_at DESC LIMIT 12";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-            echo "<div class='col-md-4'>
-                    <div class='card'>
-                      <img class='card-img-top' src='../" . $row["image_url_small"] . "' alt='Imagem'>
-                      <div class='card-body'>
-                        <p class='card-text'>Tipo: " . $row["type"] . "</p>
-                        <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Excluir</button>
-                      </div>
-                    </div>
-                  </div>";
-          }
-        } else {
-          echo "0 resultados";
-        }
-
-        $conn->close();
-      ?>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-function confirmDelete(imageId) {
-    swal({
-        title: "Tem certeza?",
-        text: "Deseja realmente excluir esta imagem?",
-        icon: "warning",
-        buttons: ["Cancelar", "Sim, excluir"],
-        dangerMode: true
-    }).then((confirmDelete) => {
-        if (confirmDelete) {
-            $.ajax({
-                type: "GET",
-                url: "delete_image.php",
-                data: { id: imageId },
-                success: function(response) {
-                    swal({
-                        title: "Removido!",
-                        text: "Imagem removida com sucesso.",
-                        icon: "success"
-                    }).then(() => {
-                        location.reload();
-                    });
-                },
-                error: function(xhr, status, error) {
-                    swal({
-                        title: "Erro",
-                        text: "Ocorreu um erro ao tentar excluir a imagem.",
-                        icon: "error"
-                    });
-                }
-            });
-        } else {
-            swal({
-                title: "Cancelado",
-                text: "A exclusão da imagem foi cancelada.",
-                icon: "info"
-            });
-        }
-    });
-}
-
-</script>
-    </div>
-
-    </div>
-  </div>
       
     </div>
   </div>
