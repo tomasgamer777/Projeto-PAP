@@ -470,7 +470,7 @@
                     </div>
                     <div class="form-group">
                         <label for="edit_titulo">Título</label>
-                        <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
+                        <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" style="max-width: 100%;" required>
                     </div>
                     <div class="form-group">
                         <label for="edit_legenda">Legenda</label>
