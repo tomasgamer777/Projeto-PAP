@@ -401,7 +401,7 @@
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $row["id"] . "</td>";
-                                    echo "<td><img src='../dummy/homepage/" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
+                                    echo "<td><img src='../" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
                                     echo "<td>" . $row["titulo_2"] . "</td>";
                                     echo "<td>" . $row["legenda_2"] . "</td>";
                                     echo '<td class="text-right">
