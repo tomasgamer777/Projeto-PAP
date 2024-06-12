@@ -502,7 +502,7 @@
             $('#edit_legenda').val(legenda);
 
             // Pré-visualização da imagem atual
-            $('#preview_edit_foto').attr('src', '../dummy/homepage/' + foto);
+            $('#preview_edit_foto').attr('src', '../' + foto);
 
             $('#editModal2').modal('show');
         });
