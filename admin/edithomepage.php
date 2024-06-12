@@ -369,49 +369,62 @@
                                         <th class="disabled-sorting text-right">Ações</th>
                                     </tr>
                                 </thead>
+                                <tfoot>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Foto</th>
+                                            <th>Título</th>
+                                            <th>Legenda</th>
+                                            <th class="text-right">Ações</th>
+                                        </tr>
+                                    </tfoot>
                                 <!-- Corpo da Segunda Datatable -->
                                 <tbody>
-                                    <?php
-                                    // Conexão com o banco de dados
-                                    $servername = "localhost";
-                                    $username = "tomas";
-                                    $password = "!h01fFw35";
-                                    $dbname = "banda";
+                                <?php
+                                // Parâmetros de conexão com o banco de dados
+                                $servername = "localhost";
+                                $username = "tomas";
+                                $password = "!h01fFw35";
+                                $dbname = "banda";
 
-                                    $conn = new mysqli($servername, $username, $password, $dbname);
+                                // Cria conexão com o banco de dados
+                                $conn = new mysqli($servername, $username, $password, $dbname);
 
-                                    // Verifica a conexão
-                                    if ($conn->connect_error) {
-                                        die("Connection failed: " . $conn->connect_error);
+                                // Verifica a conexão
+                                if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                }
+
+                                // Consulta SQL para selecionar os dados da tabela homepage
+                                $sql = "SELECT id, foto, titulo_2, legenda_2 FROM homepage WHERE titulo_2 IS NOT NULL";
+
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row["id"] . "</td>";
+                                        echo "<td>" . $row["foto"] . "</td>";
+                                        echo "<td>" . $row["titulo_2"] . "</td>";
+                                        echo "<td>" . $row["legenda_2"] . "</td>";
+                                        echo '<td class="text-right">
+                                                <button type="button" class="btn btn-link btn-warning btn-just-icon edit2" 
+                                                    data-id="' . $row["id"] . '"
+                                                    data-foto="' . $row["foto"] . '"
+                                                    data-titulo="' . $row["titulo_2"] . '"
+                                                    data-legenda="' . $row["legenda_2"] . '"
+                                                >
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                              </td>';
+                                        echo "</tr>";
                                     }
+                                } else {
+                                    echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+                                }
 
-                                    $sql = "SELECT id, foto, titulo_2, legenda_2 FROM homepage";
-                                    $result = $conn->query($sql);
-
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row["id"] . "</td>";
-                                            echo "<td>" . $row["foto"] . "</td>";
-                                            echo "<td>" . $row["titulo_2"] . "</td>";
-                                            echo "<td>" . $row["legenda_2"] . "</td>";
-                                            echo '<td class="text-right">
-                                                    <button type="button" class="btn btn-link btn-warning btn-just-icon edit2" 
-                                                        data-id="' . $row["id"] . '"
-                                                        data-foto="' . $row["foto"] . '"
-                                                        data-titulo="' . $row["titulo_2"] . '"
-                                                        data-legenda="' . $row["legenda_2"] . '"
-                                                    >
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                  </td>';
-                                            echo "</tr>";
-                                        }
-                                    } else {
-                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
-                                    }
-                                    $conn->close();
-                                    ?>
+                                $conn->close();
+                                ?>
                                 </tbody>
                             </table>
                         </div>
@@ -429,88 +442,108 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModal2Label">Editar Evento (Segunda Datatable)</h5>
+                <h5 class="modal-title" id="editModal2Label">Editar Evento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="editForm2">
-                    <input type="hidden" id="editId2" name="id">
+            <form id="editForm2">
+                <div class="modal-body">
+                    <input type="hidden" id="edit_id" name="edit_id">
                     <div class="form-group">
-                        <label for="editFoto">Foto</label>
-                        <input type="text" class="form-control" id="editFoto" name="foto">
+                        <label for="edit_foto">Foto</label>
+                        <input type="text" class="form-control" id="edit_foto" name="edit_foto" required>
                     </div>
                     <div class="form-group">
-                        <label for="editTitulo2">Título</label>
-                        <input type="text" class="form-control" id="editTitulo2" name="titulo_2">
+                        <label for="edit_titulo">Título</label>
+                        <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
                     </div>
                     <div class="form-group">
-                        <label for="editLegenda2">Legenda</label>
-                        <input type="text" class="form-control" id="editLegenda2" name="legenda_2">
+                        <label for="edit_legenda">Legenda</label>
+                        <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
                     </div>
-                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Mudanças</button>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 <script>
-    // Modal de Edição (Segunda Datatable) - Carregar dados no modal ao abrir
-    $('#editModal2').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Botão que disparou o modal
-        var id = button.data('id');
-        var date = button.data('date');
-        var foto = button.data('foto');
-        var titulo = button.data('titulo');
-        var legenda = button.data('legenda');
+    $(document).ready(function () {
+        // Inicialização da DataTable
+        $('#datatables2').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+            }
+        });
 
-        var modal = $(this);
-        modal.find('#editId2').val(id);
-        modal.find('#editDate2').val(date);
-        modal.find('#editFoto').val(foto);
-        modal.find('#editTitulo2').val(titulo);
-        modal.find('#editLegenda2').val(legenda);
-    });
+        // Abrir o modal de edição ao clicar no botão de edição
+        $(document).on('click', '.edit2', function () {
+            var id = $(this).data('id');
+            var foto = $(this).data('foto');
+            var titulo = $(this).data('titulo');
+            var legenda = $(this).data('legenda');
 
-    // Modal de Edição (Segunda Datatable) - Ação ao clicar em Salvar Mudanças
-    $('#saveChanges2').on('click', function () {
-        var form = $('#editForm2');
-        // Transformando a data para maiúsculas antes de enviar
-        var dateInput = $('#editDate2');
-        dateInput.val(dateInput.val().toUpperCase());
+            $('#edit_id').val(id);
+            $('#edit_foto').val(foto);
+            $('#edit_titulo').val(titulo);
+            $('#edit_legenda').val(legenda);
 
-        $.ajax({
-            type: "POST",
-            url: "update_event2.php", // Arquivo PHP para processar a atualização da Segunda Datatable
-            data: form.serialize(),
-            success: function (response) {
-                // Mostrar um alerta de sucesso com animação
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso!',
-                    text: 'Evento atualizado com sucesso!',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
+            $('#editModal2').modal('show');
+        });
+
+        // Processamento do formulário de edição via AJAX
+        $('#saveChanges2').click(function () {
+            var id = $('#edit_id').val();
+            var foto = $('#edit_foto').val();
+            var titulo = $('#edit_titulo').val();
+            var legenda = $('#edit_legenda').val();
+
+            $.ajax({
+                url: 'update_event2.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: id,
+                    foto: foto,
+                    titulo_2: titulo,
+                    legenda_2: legenda
+                },
+                success: function (response) {
+                    if (response.status == 'success') {
+                        // Mostrar um alerta de sucesso
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sucesso!',
+                            text: 'Evento atualizado com sucesso!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(function () {
+                            // Fechar o modal de edição
+                            $('#editModal2').modal('hide');
+                            // Recarregar a página para atualizar a datatable
+                            location.reload(true);
+                        });
+                    } else {
+                        // Mostrar um alerta de erro com animação
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: 'Erro ao atualizar o evento: ' + response.message,
+                            showClass: {
+                                popup: 'animate__animated animate__shakeX'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                            }
+                        });
                     }
-                }).then(() => {
-                    // Recarregar a página após o fechamento do modal
-                    $('#editModal2').modal('hide');
-                    setTimeout(function() {
-                        location.reload(true); // Forçar recarregar a página do servidor
-                    }, 500); // Aguardar 500ms antes de recarregar
-                });
-            },
-            error: function (xhr, status, error) {
-                // Mostrar um alerta de erro com animação
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro!',
-                    text: 'Erro ao atualizar o evento:
+                },
+                error: function (xhr, status, error) {
                     // Mostrar um alerta de erro com animação
                     Swal.fire({
                         icon: 'error',
