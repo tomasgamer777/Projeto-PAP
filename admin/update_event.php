@@ -19,6 +19,7 @@ $sql = "UPDATE homepage SET date='$date', titulo_1='$titulo', legenda_1='$legend
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";
+    window.location.reload(true);
 } else {
     echo "Error updating record: " . $conn->error;
 }
