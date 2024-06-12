@@ -345,7 +345,10 @@
         </div>
     </div>
 
-    <!-- Modal de Edição -->
+   <!-- Inclua SweetAlert no seu HTML -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Modal de Edição -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -377,6 +380,7 @@
     </div>
 </div>
 
+
 <style>
     .text-uppercase {
         text-transform: uppercase;
@@ -388,37 +392,51 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $('#editModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Botão que disparou o modal
-            var id = button.data('id');
-            var date = button.data('date');
-            var titulo = button.data('titulo');
-            var legenda = button.data('legenda');
+    $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botão que disparou o modal
+        var id = button.data('id');
+        var date = button.data('date');
+        var titulo = button.data('titulo');
+        var legenda = button.data('legenda');
 
-            var modal = $(this);
-            modal.find('#editId').val(id);
-            modal.find('#editDate').val(date);
-            modal.find('#editTitulo').val(titulo);
-            modal.find('#editLegenda').val(legenda);
-        });
+        var modal = $(this);
+        modal.find('#editId').val(id);
+        modal.find('#editDate').val(date);
+        modal.find('#editTitulo').val(titulo);
+        modal.find('#editLegenda').val(legenda);
+    });
 
-        $('#saveChanges').on('click', function () {
-            var form = $('#editForm');
-            $.ajax({
-                type: "POST",
-                url: "update_event.php", // Crie este arquivo PHP para processar a atualização
-                data: form.serialize(),
-                success: function (response) {
-                    // Fechar o modal e atualizar a tabela conforme necessário
-                    $('#editModal').modal('hide');
-                    location.reload(); // Recarrregar a página para mostrar as alterações
-                },
-                error: function (xhr, status, error) {
-                    alert('Erro ao atualizar o evento: ' + error);
-                }
-            });
+    $('#saveChanges').on('click', function () {
+        var form = $('#editForm');
+        $.ajax({
+            type: "POST",
+            url: "update_event.php", // Crie este arquivo PHP para processar a atualização
+            data: form.serialize(),
+            success: function (response) {
+                // Mostrar um alerta de sucesso
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Evento atualizado com sucesso!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#editModal').modal('hide');
+                        location.reload(); // Recarrregar a página para mostrar as alterações
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                // Mostrar um alerta de erro
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Erro ao atualizar o evento: ' + error,
+                });
+            }
         });
-    </script>
+    });
+</script>
+
 
     
       
