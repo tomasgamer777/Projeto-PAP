@@ -454,7 +454,7 @@
                 </button>
             </div>
             <form id="editForm2">
-                <div class="modal-body">
+                <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
                     <input type="hidden" id="edit_id" name="edit_id">
                     <div class="form-group">
                         <label for="edit_foto">Imagem Atual</label>
