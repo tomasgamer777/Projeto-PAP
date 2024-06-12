@@ -335,7 +335,7 @@
 
         <style>
     .form-group label[for="type"] {
-        margin-top: -1.5rem; 
+        margin-top: 5.5rem; 
     }
 </style>
 
