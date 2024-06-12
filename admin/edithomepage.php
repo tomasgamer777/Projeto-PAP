@@ -476,32 +476,16 @@
         // Abrir o modal de edição ao clicar no botão de edição
         $(document).on('click', '.edit2', function () {
             var id = $(this).data('id');
+            var titulo = $(this).data('titulo');
+            var legenda = $(this).data('legenda');
 
-            // Requisição AJAX para obter os dados do evento específico
-            $.ajax({
-                url: 'get_event_data.php', // Substitua pelo script que obtém os dados do evento específico
-                type: 'POST',
-                dataType: 'json',
-                data: { id: id },
-                success: function (response) {
-                    if (response.status == 'success') {
-                        // Preencher os campos do modal com os dados do evento
-                        $('#edit_id').val(response.data.id);
-                        $('#edit_titulo').val(response.data.titulo_2);
-                        $('#edit_legenda').val(response.data.legenda_2);
+            // Preencher os campos do modal com os dados do evento
+            $('#edit_id').val(id);
+            $('#edit_titulo').val(titulo);
+            $('#edit_legenda').val(legenda);
 
-                        // Abrir o modal de edição
-                        $('#editModal2').modal('show');
-                    } else {
-                        // Mostrar mensagem de erro se não foi possível obter os dados
-                        alert('Erro ao carregar dados do evento.');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // Mostrar mensagem de erro se houver um erro na requisição AJAX
-                    alert('Erro na requisição AJAX: ' + error);
-                }
-            });
+            // Abrir o modal de edição
+            $('#editModal2').modal('show');
         });
 
         // Processamento do formulário de edição via AJAX
@@ -543,6 +527,7 @@
         });
     });
 </script>
+
 
 
 
