@@ -1,82 +1,128 @@
 <?php
-// Verifica se foi recebido um arquivo
-if (isset($_FILES['edit_foto'])) {
-    // Configurações para o upload da imagem
-    $target_dir = "../dummy/homepage/";
-    $target_file = $target_dir . basename($_FILES['edit_foto']['name']);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+// Verifica se foi feita uma requisição POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Configurações para o diretório de upload
+    $uploadDir = "../dummy/homepage/"; // Diretório onde as imagens serão armazenadas
+    $allowedExtensions = array("jpg", "jpeg", "png"); // Extensões de arquivo permitidas
 
-    // Verifica se é uma imagem real ou um arquivo fake
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES['edit_foto']['tmp_name']);
-        if ($check !== false) {
-            $uploadOk = 1;
+    // Função para gerar nome único para o arquivo
+    function generateUniqueName($filename) {
+        $pathinfo = pathinfo($filename);
+        $basename = $pathinfo['filename']; // Nome do arquivo sem extensão
+        $extension = $pathinfo['extension']; // Extensão do arquivo
+        $uniqueName = $basename . '_' . uniqid() . '.' . $extension; // Nome único
+        return $uniqueName;
+    }
+
+    // Função para mover o arquivo para o diretório de upload
+    function uploadFile($file, $uploadDir, $newFilename) {
+        $filename = $file['name'];
+        $tempName = $file['tmp_name'];
+        $targetFile = $uploadDir . $newFilename;
+
+        if (move_uploaded_file($tempName, $targetFile)) {
+            return $targetFile;
         } else {
-            $uploadOk = 0;
+            return false;
         }
     }
 
-    // Verifica se o ficheiro já existe
-    if (file_exists($target_file)) {
-        $uploadOk = 0;
+    // Conexão com o banco de dados (substitua com suas credenciais)
+    $servername = "localhost";
+    $username = "tomas";
+    $password = "!h01fFw35";
+    $dbname = "banda";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Verifica a conexão
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    // Verifica o tamanho do ficheiro
-    if ($_FILES['edit_foto']['size'] > 500000) {
-        $uploadOk = 0;
-    }
+    // Obtem os dados do formulário
+    $id = $_POST['id'];
+    $titulo = $_POST['titulo_2'];
+    $legenda = $_POST['legenda_2'];
 
-    // Permite apenas certos formatos de ficheiros
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        $uploadOk = 0;
-    }
+    // Verifica se foi enviada uma nova imagem
+    if ($_FILES['edit_foto']['name']) {
+        // Remove a foto existente se já houver uma
+        $sql_select = "SELECT foto FROM homepage WHERE id = ?";
+        $stmt_select = $conn->prepare($sql_select);
+        $stmt_select->bind_param("i", $id);
+        $stmt_select->execute();
+        $stmt_select->bind_result($existingPhoto);
+        $stmt_select->fetch();
+        $stmt_select->close();
 
-    // Se houver algum erro, o upload não será feito
-    if ($uploadOk == 0) {
-        echo "Erro ao fazer upload do ficheiro.";
-    } else {
-        // Tenta fazer o upload do ficheiro
-        if (move_uploaded_file($_FILES['edit_foto']['tmp_name'], $target_file)) {
-            // Aqui você pode salvar o caminho completo no banco de dados
-            $servername = "localhost";
-            $username = "tomas";
-            $password = "!h01fFw35";
-            $dbname = "banda";
+        if ($existingPhoto) {
+            unlink($uploadDir . $existingPhoto); // Remove a foto anterior do diretório
+        }
 
-            // Cria conexão
-            $conn = new mysqli($servername, $username, $password, $dbname);
+        // Faz o upload da nova foto
+        $newPhoto = $_FILES['edit_foto'];
+        $newFilename = 'home_' . generateUniqueName($newPhoto['name']);
+        $newPhotoPath = uploadFile($newPhoto, $uploadDir, $newFilename);
 
-            // Verifica a conexão
-            if ($conn->connect_error) {
-                die("Falha na conexão: " . $conn->connect_error);
-            }
+        if ($newPhotoPath) {
+            // Atualiza o caminho da nova foto no banco de dados
+            $newPhotoPathInDB = "dummy/homepage/" . $newFilename; // Caminho completo da nova foto
+            $sql_update = "UPDATE homepage SET titulo_2 = ?, legenda_2 = ?, foto = ? WHERE id = ?";
+            $stmt_update = $conn->prepare($sql_update);
+            $stmt_update->bind_param("sssi", $titulo, $legenda, $newPhotoPathInDB, $id);
+            $stmt_update->execute();
 
-            // Prepara os dados para inserção no banco de dados
-            $id = $_POST['id'];
-            $titulo = $_POST['titulo_2'];
-            $legenda = $_POST['legenda_2'];
-            $foto = "dummy/homepage/" . basename($_FILES['edit_foto']['name']); // Caminho completo da foto
-
-            // SQL para atualizar os dados na tabela
-            $sql = "UPDATE homepage SET titulo_2='$titulo', legenda_2='$legenda', foto='$foto' WHERE id=$id";
-
-            if ($conn->query($sql) === TRUE) {
-                // Se a atualização for bem-sucedida
-                $response = array("status" => "success");
-                echo json_encode($response);
+            if ($stmt_update->affected_rows > 0) {
+                $response = array(
+                    'status' => 'success',
+                    'message' => 'Dados atualizados com sucesso!'
+                );
             } else {
-                // Se houver um erro na atualização
-                $response = array("status" => "error", "message" => $conn->error);
-                echo json_encode($response);
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Nenhum dado foi atualizado.'
+                );
             }
 
-            $conn->close();
+            $stmt_update->close();
         } else {
-            echo "Erro ao fazer upload do ficheiro.";
+            $response = array(
+                'status' => 'error',
+                'message' => 'Erro ao fazer upload da imagem.'
+            );
         }
+    } else {
+        // Se não houver nova imagem, atualiza apenas os outros campos
+        $sql_update = "UPDATE homepage SET titulo_2 = ?, legenda_2 = ? WHERE id = ?";
+        $stmt_update = $conn->prepare($sql_update);
+        $stmt_update->bind_param("ssi", $titulo, $legenda, $id);
+        $stmt_update->execute();
+
+        if ($stmt_update->affected_rows > 0) {
+            $response = array(
+                'status' => 'success',
+                'message' => 'Dados atualizados com sucesso!'
+            );
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Nenhum dado foi atualizado.'
+            );
+        }
+
+        $stmt_update->close();
     }
+
+    // Fecha a conexão com o banco de dados e retorna a resposta em formato JSON
+    $conn->close();
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
 } else {
-    echo "Ficheiro não foi enviado.";
+    // Se a requisição não for do tipo POST, retorna um erro
+    http_response_code(405); // Método não permitido
+    echo json_encode(array('status' => 'error', 'message' => 'Método não permitido.'));
+    exit;
 }
 ?>
