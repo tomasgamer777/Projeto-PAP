@@ -18,13 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Obtém os dados do formulário
     $id = $_POST['id'];
-    $date = $_POST['date'];
     $foto = $_POST['foto'];
     $titulo_2 = $_POST['titulo_2'];
     $legenda_2 = $_POST['legenda_2'];
     
     // Atualiza os dados na tabela "homepage"
-    $sql = "UPDATE homepage SET date = '$date', foto = '$foto', titulo_2 = '$titulo_2', legenda_2 = '$legenda_2' WHERE id = $id";
+    $sql = "UPDATE homepage SET foto = '$foto', titulo_2 = '$titulo_2', legenda_2 = '$legenda_2' WHERE id = $id";
     
     if ($conn->query($sql) === TRUE) {
         // Se a atualização foi bem-sucedida, retorna uma resposta de sucesso
