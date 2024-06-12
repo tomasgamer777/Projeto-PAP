@@ -78,17 +78,33 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
+    <script>
+    // Função para exibir a pré-visualização da imagem
+    function previewImage() {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById('imagePreview').src = e.target.result;
+            document.getElementById('imagePreview').style.display = 'block';
+        };
+        reader.readAsDataURL(document.getElementById('image').files[0]);
+    }
+
+    // Verificar se um tipo foi selecionado antes de enviar o formulário
+    document.getElementById('uploadForm').addEventListener('submit', function (event) {
+        var type = document.getElementById('type').value;
+        if (!type) {
+            event.preventDefault();
+            alert('Por favor, selecione um tipo de imagem.');
+        }
+    });
+
+    // Associar a função previewImage ao evento change do input de arquivo
+    document.getElementById('image').addEventListener('change', previewImage);
+</script>
+
 
     <script>
-    function previewImage() {
-    const file = document.getElementById('image').files[0];
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        document.getElementById('imagePreview').style.display = 'block';
-        document.getElementById('imagePreview').src = e.target.result;
-    }
-    reader.readAsDataURL(file);
-}
+
 
     function submitForm(event) {
       event.preventDefault();
