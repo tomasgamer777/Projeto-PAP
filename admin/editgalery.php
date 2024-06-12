@@ -82,31 +82,6 @@
 
 
 
-    <script>
-
-
-    function submitForm(event) {
-      event.preventDefault();
-      const formData = new FormData(document.getElementById('uploadForm'));
-
-      fetch('upload_image.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.text())
-      .then(data => {
-        swal("Sucesso", data, "success");
-        setTimeout(() => {
-          location.reload();
-        }, 2000);
-      })
-      .catch(error => {
-        swal("Erro", "Houve um problema ao enviar a imagem.", "error");
-      });
-    }
-
-    
-  </script>
 
 
       <div class="logo">
@@ -321,7 +296,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="submitForm">Enviar</button>
+                    <button type="submit" class="btn btn-primary" id="uploadForm">Enviar</button>
                 </div>
             </div>
         </form>
@@ -358,6 +333,26 @@
     </style>
 
 <script>
+  function uploadForm(event) {
+      event.preventDefault();
+      const formData = new FormData(document.getElementById('uploadForm'));
+
+      fetch('upload_image.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        swal("Sucesso", data, "success");
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      })
+      .catch(error => {
+        swal("Erro", "Houve um problema ao enviar a imagem.", "error");
+      });
+    }
+
     // Verificar se um tipo foi selecionado antes de enviar o formulário
     document.getElementById('uploadForm').addEventListener('submit', function(event) {
         var type = document.getElementById('type').value;
