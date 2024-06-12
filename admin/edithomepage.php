@@ -510,6 +510,9 @@ $(document).on('click', '.edit2', function () {
     $('#edit_id').val(id);
     $('#edit_titulo').val(titulo);
     $('#edit_legenda').val(legenda);
+
+    // Exibir o valor de 'foto' em uma label para depuração
+    $('#foto_value').text(foto); // Esta label deve ser adicionada ao seu HTML
     
     // Verificar se há uma imagem definida
     if (foto) {
@@ -517,13 +520,14 @@ $(document).on('click', '.edit2', function () {
         showCurrentImage(imageUrl);
     } else {
         // Se 'foto' não estiver definido, mostrar uma imagem padrão ou mensagem
-        $('#current_image').attr('src', '');
+        $('#current_image').attr('src', '../dummy/homepage/braga1cortado.jpg');
         // Ou manipular conforme sua necessidade
     }
 
     // Abrir o modal de edição
     $('#editModal2').modal('show');
 });
+
 
 
 
