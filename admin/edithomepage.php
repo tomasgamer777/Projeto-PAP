@@ -474,7 +474,7 @@
                     </div>
                     <div class="form-group">
                         <label for="edit_legenda">Legenda</label>
-                        <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" style="max-width: 100%;" required>
+                        <textarea class="form-control" id="edit_legenda" name="edit_legenda" style="max-width: 100%; min-height: 80px; max-height: 200px;" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
