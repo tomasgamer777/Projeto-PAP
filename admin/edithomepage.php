@@ -416,13 +416,14 @@
                                 echo "<td>" . htmlspecialchars($row["titulo_2"]) . "</td>";
                                 echo "<td>" . htmlspecialchars($row["legenda_2"]) . "</td>";
                                 echo '<td class="text-right">
-                                <button class="btn btn-link btn-warning btn-just-icon edit2" 
-                                        data-id="' . $row["id"] . '" 
-                                        data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
-                                        data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                              </td>';
+                                  <button class="btn btn-link btn-warning btn-just-icon edit2" 
+                                          data-id="' . $row["id"] . '" 
+                                          data-foto="' . $row["foto"] . '" 
+                                          data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
+                                          data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
+                                      <i class="material-icons">edit</i>
+                                  </button>
+                                </td>';
                                 echo "</tr>";
                             }
                         } else {
@@ -452,25 +453,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editForm2" enctype="multipart/form-data">
+            <form id="editForm2">
                 <div class="modal-body">
                     <input type="hidden" id="edit_id" name="edit_id">
-                    
-                    <!-- Campo para exibir a imagem atual -->
-                    <label id="foto_value"></label>
-
                     <div class="form-group">
-                        <label>Imagem Atual</label><br>
-                        <img id="current_image" src="#" alt="Imagem Atual" style="max-width: 100%; max-height: 200px;">
+                        <label for="edit_foto">Imagem Atual</label>
+                        <img id="current_image" src="#" class="img-thumbnail" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                     </div>
-                    
-                    <!-- Campo para selecionar nova imagem -->
                     <div class="form-group">
                         <label for="edit_foto">Nova Imagem</label>
                         <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
                         <img id="preview_edit_foto" src="#" alt="Pré-visualização da Nova Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                     </div>
-                    
                     <div class="form-group">
                         <label for="edit_titulo">Título</label>
                         <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
@@ -482,12 +476,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 
 
 
@@ -507,28 +502,31 @@ $(document).on('click', '.edit2', function () {
     var titulo = $(this).data('titulo');
     var legenda = $(this).data('legenda');
     var foto = $(this).data('foto'); // Certifique-se de que 'foto' é o nome correto do atributo data
+    
+    console.log("ID:", id);
+    console.log("Título:", titulo);
+    console.log("Legenda:", legenda);
+    console.log("Foto:", foto);
 
     // Preencher os campos do modal com os dados do evento
     $('#edit_id').val(id);
     $('#edit_titulo').val(titulo);
     $('#edit_legenda').val(legenda);
 
-    // Exibir o valor de 'foto' em uma label para depuração
-    $('#foto_value').text(foto); // Esta label deve ser adicionada ao seu HTML
-    
     // Verificar se há uma imagem definida
     if (foto) {
         var imageUrl = '../' + foto; // Adiciona '../' para navegar um nível acima do diretório raiz
         showCurrentImage(imageUrl);
     } else {
         // Se 'foto' não estiver definido, mostrar uma imagem padrão ou mensagem
-        $('#current_image').attr('src', '');
+        $('#current_image').attr('src', '../dummy/homepage/braga1cortado.jpg');
         // Ou manipular conforme sua necessidade
     }
 
     // Abrir o modal de edição
     $('#editModal2').modal('show');
 });
+
 
 
 
