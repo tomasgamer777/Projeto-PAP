@@ -297,22 +297,25 @@
                                     </tfoot>
                                     <tbody>
                                     <?php
-                                    // Conexão com o banco de dados
+                                    // Parâmetros de conexão com o banco de dados
                                     $servername = "localhost";
                                     $username = "tomas";
                                     $password = "!h01fFw35";
                                     $dbname = "banda";
-    
+
+                                    // Cria conexão com o banco de dados
                                     $conn = new mysqli($servername, $username, $password, $dbname);
-    
+
                                     // Verifica a conexão
                                     if ($conn->connect_error) {
                                         die("Connection failed: " . $conn->connect_error);
                                     }
-    
-                                    $sql = "SELECT id, date, titulo_1, legenda_1 FROM homepage";
+
+                                    // Consulta SQL para selecionar os dados da tabela homepage
+                                    $sql = "SELECT id, date, titulo_1, legenda_1 FROM homepage WHERE date IS NOT NULL AND date <> ''";
+
                                     $result = $conn->query($sql);
-    
+
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             echo "<tr>";
@@ -321,13 +324,14 @@
                                             echo "<td>" . $row["titulo_1"] . "</td>";
                                             echo "<td>" . $row["legenda_1"] . "</td>";
                                             echo '<td class="text-right">
-                                                     <button class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#editModal" data-id="' . $row["id"] . '" data-date="' . $row["date"] . '" data-titulo="' . $row["titulo_1"] . '" data-legenda="' . $row["legenda_1"] . '"><i class="material-icons">edit</i></button>
+                                                    <a href="edit_home.html?id=' . $row["id"] . '" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i></a>
                                                   </td>';
                                             echo "</tr>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
+                                        echo "<tr><td colspan='5'>Nenhum resultado encontrado.</td></tr>";
                                     }
+
                                     $conn->close();
                                     ?>
                                     </tbody>
@@ -396,7 +400,7 @@
                                 }
 
                                 // Consulta SQL para selecionar os dados da tabela homepage
-                                $sql = "SELECT id, date, titulo_1, legenda_1 FROM homepage WHERE date IS NOT NULL AND date <> ''";
+                                $sql = "SELECT id, foto, titulo_2, legenda_2 FROM homepage WHERE titulo_2 IS NOT NULL";
 
                                 $result = $conn->query($sql);
 
@@ -404,16 +408,23 @@
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>" . $row["id"] . "</td>";
-                                        echo "<td>" . $row["date"] . "</td>";
-                                        echo "<td>" . $row["titulo_1"] . "</td>";
-                                        echo "<td>" . $row["legenda_1"] . "</td>";
+                                        echo "<td>" . $row["foto"] . "</td>";
+                                        echo "<td>" . $row["titulo_2"] . "</td>";
+                                        echo "<td>" . $row["legenda_2"] . "</td>";
                                         echo '<td class="text-right">
-                                                <a href="edit_home.html?id=' . $row["id"] . '" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i></a>
+                                                <button type="button" class="btn btn-link btn-warning btn-just-icon edit2" 
+                                                    data-id="' . $row["id"] . '"
+                                                    data-foto="' . $row["foto"] . '"
+                                                    data-titulo="' . $row["titulo_2"] . '"
+                                                    data-legenda="' . $row["legenda_2"] . '"
+                                                >
+                                                    <i class="material-icons">edit</i>
+                                                </button>
                                               </td>';
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='5'>Nenhum resultado encontrado.</td></tr>";
+                                    echo "<tr><td colspan='6'>Nenhum resultado encontrado.</td></tr>";
                                 }
 
                                 $conn->close();
