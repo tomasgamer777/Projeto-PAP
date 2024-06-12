@@ -443,29 +443,28 @@
                 </button>
             </div>
             <form id="editForm2">
-                <div class="modal-body">
-                    <input type="hidden" id="edit_id" name="edit_id">
-                    <div class="form-group">
-                        <label for="edit_foto">Nova Foto</label>
-                        <input type="file" class="form-control-file" id="edit_foto" name="edit_foto" accept="image/*">
-                        <small id="fotoHelp" class="form-text text-muted">Escolha uma nova imagem para o evento.</small>
-                        <br>
-                        <img src="" id="edit_preview" class="img-thumbnail" style="max-width:200px; max-height:200px;">
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_titulo">Título</label>
-                        <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_legenda">Legenda</label>
-                        <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
-                    </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit_id" name="edit_id">
+                <div class="form-group">
+                    <label for="edit_foto">Foto</label>
+                    <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
+                    <img id="preview_edit_foto" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
+                <div class="form-group">
+                    <label for="edit_titulo">Título</label>
+                    <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
                 </div>
-            </form>
+                <div class="form-group">
+                    <label for="edit_legenda">Legenda</label>
+                    <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
+            </div>
+        </form>
+
         </div>
     </div>
 </div>
@@ -494,15 +493,16 @@
         $(document).on('click', '.edit2', function () {
             var id = $(this).data('id');
             var foto = $(this).data('foto');
-            var titulo = $(this).data('titulo');
-            var legenda = $(this).data('legenda');
+            var titulo = $(this).data('titulo2'); // Ajustado para 'titulo2'
+            var legenda = $(this).data('legenda2'); // Ajustado para 'legenda2'
 
+            // Atribuir os valores aos campos do modal
             $('#edit_id').val(id);
             $('#edit_titulo').val(titulo);
             $('#edit_legenda').val(legenda);
 
             // Pré-visualização da imagem atual
-            $('#preview_edit_foto').attr('src', '../' + foto);
+            $('#preview_edit_foto').attr('src', '../dummy/homepage/' + foto);
 
             $('#editModal2').modal('show');
         });
@@ -521,25 +521,23 @@
 
             // Adicionar dados ao FormData
             formData.append('id', id);
-            formData.append('titulo_2', titulo);
-            formData.append('legenda_2', legenda);
+            formData.append('titulo_2', titulo); // Ajustado para 'titulo_2'
+            formData.append('legenda_2', legenda); // Ajustado para 'legenda_2'
 
             // Verificar se foi selecionada uma nova imagem
             var fileInput = $('#edit_foto')[0];
             if (fileInput.files.length > 0) {
-                var file = fileInput.files[0];
-                var renamedFile = renameImage(file);
-                formData.append('foto', renamedFile);
+                formData.append('foto', fileInput.files[0]);
             }
 
-            // Enviar dados via AJAX
+            // Requisição AJAX para atualização dos dados
             $.ajax({
                 url: 'update_event2.php',
                 type: 'POST',
+                dataType: 'json',
                 data: formData,
                 processData: false,
                 contentType: false,
-                dataType: 'json',
                 success: function (response) {
                     if (response.status == 'success') {
                         // Mostrar um alerta de sucesso
@@ -586,19 +584,9 @@
                 }
             });
         });
-
-        // Função para renomear a imagem
-        function renameImage(file) {
-            var timestamp = new Date().getTime();
-            var newName = 'homepage_' + timestamp;
-            var extension = file.name.split('.').pop().toLowerCase();
-            var renamedFile = new File([file], newName + '.' + extension, {
-                type: file.type
-            });
-            return renamedFile;
-        }
     });
 </script>
+
 
    <!-- Inclua SweetAlert no seu HTML -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
