@@ -179,7 +179,7 @@
                   </a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="../editgalery.html">
+                  <a class="nav-link" href="../editgalery.php">
                     <i class="material-icons"> collections </i>
                     <span class="sidebar-normal"> Galeria </span>
                   </a>
