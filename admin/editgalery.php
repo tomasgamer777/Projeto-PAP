@@ -380,6 +380,7 @@
                     <div class='card'>
                       <img class='card-img-top' src='../" . $row["image_url_small"] . "' alt='Imagem'>
                       <div class='card-body'>
+                        <p class='card-text'>Tipo: " . $row["type"] . "</p>
                         <button class='btn btn-danger' onclick='deleteImage(" . $row["id"] . ")'>Excluir</button>
                       </div>
                     </div>
