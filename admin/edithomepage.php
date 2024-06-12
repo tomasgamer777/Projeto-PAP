@@ -380,46 +380,48 @@
                         </tfoot>
                         <!-- Corpo da Segunda Datatable -->
                         <tbody>
-                            <?php
-                            // Conexão com o banco de dados
-                            $servername = "localhost";
-                            $username = "tomas";
-                            $password = "!h01fFw35";
-                            $dbname = "banda";
+                        <?php
+                        // Conexão com o banco de dados
+                        $servername = "localhost";
+                        $username = "tomas";
+                        $password = "!h01fFw35";
+                        $dbname = "banda";
 
-                            $conn = new mysqli($servername, $username, $password, $dbname);
+                        $conn = new mysqli($servername, $username, $password, $dbname);
 
-                            // Verifica a conexão
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
+                        // Verifica a conexão
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
 
-                            $sql = "SELECT id, titulo_2, legenda_2, foto FROM homepage WHERE titulo_2 IS NOT NULL";
-                            $result = $conn->query($sql);
+                        // Consulta SQL para selecionar os dados da segunda datatable
+                        $sql = "SELECT id, titulo_2, legenda_2, foto FROM homepage WHERE titulo_2 IS NOT NULL";
+                        $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row["id"] . "</td>";
-                                    echo "<td><img src='../" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
-                                    echo "<td>" . $row["titulo_2"] . "</td>";
-                                    echo "<td>" . $row["legenda_2"] . "</td>";
-                                    echo '<td class="text-right">
-                                             <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["id"] . "</td>";
+                                echo "<td>" . $row["foto"] . "</td>";
+                                echo "<td>" . $row["titulo_2"] . "</td>";
+                                echo "<td>" . $row["legenda_2"] . "</td>";
+                                echo '<td class="text-right">
+                                        <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
                                                 data-id="' . $row["id"] . '" 
                                                 data-foto="' . $row["foto"] . '" 
-                                                data-titulo2="' . $row["titulo_2"] . '" 
-                                                data-legenda2="' . $row["legenda_2"] . '">
-                                                <i class="material-icons">edit</i>
-                                             </button>
-                                          </td>';
-                                    echo "</tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='5'>Nenhum resultado encontrado.</td></tr>";
+                                                data-titulo="' . $row["titulo_2"] . '" 
+                                                data-legenda="' . $row["legenda_2"] . '">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                      </td>';
+                                echo "</tr>";
                             }
-                            $conn->close();
-                            ?>
+                        } else {
+                            echo "<tr><td colspan='5'>Nenhum resultado encontrado.</td></tr>";
+                        }
+
+                        $conn->close();
+                    ?>
                         </tbody>
                     </table>
                 </div>
@@ -433,6 +435,7 @@
 </div>
 
 <!-- Modal de Edição (Segunda Datatable) -->
+<!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -443,31 +446,31 @@
                 </button>
             </div>
             <form id="editForm2">
-            <div class="modal-body">
-                <input type="hidden" id="edit_id" name="edit_id">
-                <div class="form-group">
-                    <label for="edit_foto">Foto</label>
-                    <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
-                    <img id="preview_edit_foto" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                <div class="modal-body">
+                    <input type="hidden" id="edit_id" name="edit_id">
+                    <div class="form-group">
+                        <label for="edit_foto">Foto</label>
+                        <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
+                        <img id="preview_edit_foto" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_titulo">Título</label>
+                        <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_legenda">Legenda</label>
+                        <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="edit_titulo">Título</label>
-                    <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
                 </div>
-                <div class="form-group">
-                    <label for="edit_legenda">Legenda</label>
-                    <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
-            </div>
-        </form>
-
+            </form>
         </div>
     </div>
 </div>
+
 
 <script>
     $(document).ready(function () {
@@ -482,19 +485,12 @@
             }
         }
 
-        // Inicialização da DataTable
-        $('#datatables2').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-            }
-        });
-
         // Abrir o modal de edição ao clicar no botão de edição
         $(document).on('click', '.edit2', function () {
             var id = $(this).data('id');
             var foto = $(this).data('foto');
-            var titulo = $(this).data('titulo2'); // Ajustado para 'titulo2'
-            var legenda = $(this).data('legenda2'); // Ajustado para 'legenda2'
+            var titulo = $(this).data('titulo');
+            var legenda = $(this).data('legenda');
 
             // Atribuir os valores aos campos do modal
             $('#edit_id').val(id);
@@ -502,7 +498,7 @@
             $('#edit_legenda').val(legenda);
 
             // Pré-visualização da imagem atual
-            $('#preview_edit_foto').attr('src', '../' + foto);
+            $('#preview_edit_foto').attr('src', '../dummy/homepage/' + foto);
 
             $('#editModal2').modal('show');
         });
@@ -586,6 +582,8 @@
         });
     });
 </script>
+
+
 
 
    <!-- Inclua SweetAlert no seu HTML -->
