@@ -323,6 +323,9 @@ document.addEventListener("DOMContentLoaded", function () {
             body: formData
         })
         .then(response => {
+            // Exibe a resposta para depuração
+            console.log(response);
+            
             if (!response.ok) {
                 throw new Error("Erro ao enviar imagem");
             }
