@@ -348,6 +348,9 @@
    <!-- Inclua SweetAlert no seu HTML -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- Inclua SweetAlert no seu HTML -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Modal de Edição -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -381,6 +384,7 @@
 </div>
 
 
+
 <style>
     .text-uppercase {
         text-transform: uppercase;
@@ -408,16 +412,26 @@
 
     $('#saveChanges').on('click', function () {
         var form = $('#editForm');
+        // Transformando a data para maiúsculas antes de enviar
+        var dateInput = $('#editDate');
+        dateInput.val(dateInput.val().toUpperCase());
+
         $.ajax({
             type: "POST",
             url: "update_event.php", // Crie este arquivo PHP para processar a atualização
             data: form.serialize(),
             success: function (response) {
-                // Mostrar um alerta de sucesso
+                // Mostrar um alerta de sucesso com animação
                 Swal.fire({
                     icon: 'success',
-                    title: 'Sucesso',
+                    title: 'Sucesso!',
                     text: 'Evento atualizado com sucesso!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $('#editModal').modal('hide');
@@ -426,16 +440,23 @@
                 });
             },
             error: function (xhr, status, error) {
-                // Mostrar um alerta de erro
+                // Mostrar um alerta de erro com animação
                 Swal.fire({
                     icon: 'error',
-                    title: 'Erro',
+                    title: 'Erro!',
                     text: 'Erro ao atualizar o evento: ' + error,
+                    showClass: {
+                        popup: 'animate__animated animate__shakeX'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
                 });
             }
         });
     });
 </script>
+
 
 
     

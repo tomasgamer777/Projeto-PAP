@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 }
 
 $id = $_POST['id'];
-$date = $_POST['date'];
+$date = strtoupper($_POST['date']); // Certificar-se que a data está em maiúsculas
 $titulo = $_POST['titulo_1'];
 $legenda = $_POST['legenda_1'];
 
