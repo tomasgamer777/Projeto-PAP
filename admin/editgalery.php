@@ -81,12 +81,18 @@
     <script>
     // Função para exibir a pré-visualização da imagem
     function previewImage() {
+        var input = document.getElementById('image');
+        var preview = document.getElementById('imagePreview');
         var reader = new FileReader();
+
         reader.onload = function (e) {
-            document.getElementById('imagePreview').src = e.target.result;
-            document.getElementById('imagePreview').style.display = 'block';
+            preview.src = e.target.result;
+            preview.style.display = 'block';
         };
-        reader.readAsDataURL(document.getElementById('image').files[0]);
+
+        if (input.files && input.files[0]) {
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 
     // Verificar se um tipo foi selecionado antes de enviar o formulário
@@ -101,6 +107,7 @@
     // Associar a função previewImage ao evento change do input de arquivo
     document.getElementById('image').addEventListener('change', previewImage);
 </script>
+
 
 
     <script>
