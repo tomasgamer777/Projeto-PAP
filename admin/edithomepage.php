@@ -13,8 +13,14 @@
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <!-- Incluindo o Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Incluindo o jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Incluindo o Bootstrap JavaScript e o Popper.js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
   <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
   <!--  Social tags      -->
@@ -431,9 +437,7 @@
     </div>
 </div>
 
-<!-- Fim da Segunda Datatable e Modal de Edição -->
-</div>
-</div>
+
 
 <!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
