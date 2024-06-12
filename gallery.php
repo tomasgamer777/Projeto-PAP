@@ -53,14 +53,14 @@
 					<div class="filter-links filterable-nav">
 						<select class="mobile-filter">
 							<option value="*">Mostrar tudo</option>
-							<option value=".concert">Concertos</option>
-							<option value=".band">Banda</option>
-							<option value=".stuff">Coisas</option>
+							<option value=".concerto">Concertos</option>
+							<option value=".banda">Banda</option>
+							<option value=".coisas">Coisas</option>
 						</select>
 						<a href="#" class="current" data-filter="*">Mostrar tudo</a>
-						<a href="#" data-filter=".concert">Concertos</a>
-						<a href="#" data-filter=".band">Banda</a>
-						<a href="#" data-filter=".stuff">Coisas</a>
+						<a href="#" data-filter=".concerto">Concertos</a>
+						<a href="#" data-filter=".banda">Banda</a>
+						<a href="#" data-filter=".coisas">Coisas</a>
 					</div>
 					<div class="filterable-items">
 						<?php
