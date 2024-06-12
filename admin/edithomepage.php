@@ -511,15 +511,16 @@ $(document).on('click', '.edit2', function () {
     $('#edit_titulo').val(titulo);
     $('#edit_legenda').val(legenda);
     
-    // Exibir a imagem atual, garantindo que 'foto' não seja 'undefined'
+    // Exibir a imagem atual, garantindo que 'foto' não seja 'undefined' ou vazio
     if (foto) {
-        var imageUrl = '../' + foto;
+        var imageUrl = '../dummy/homepage/' + foto; // Verifique se o caminho está correto
         showCurrentImage(imageUrl);
     }
 
     // Abrir o modal de edição
     $('#editModal2').modal('show');
 });
+
         // Pré-visualização da nova imagem ao selecionar um arquivo
         $("#edit_foto").change(function () {
             readURL(this);
