@@ -462,7 +462,10 @@
                     </div>
                     <div class="form-group">
                         <label for="edit_foto">Nova Imagem</label>
-                        <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="edit_foto" name="edit_foto">
+                            <label class="custom-file-label" for="edit_foto">Escolher arquivo</label>
+                        </div>
                         <img id="preview_edit_foto" src="#" alt="Pré-visualização da Nova Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                     </div>
                     <div class="form-group">
@@ -502,11 +505,6 @@ $(document).on('click', '.edit2', function () {
     var titulo = $(this).data('titulo');
     var legenda = $(this).data('legenda');
     var foto = $(this).data('foto'); // Certifique-se de que 'foto' é o nome correto do atributo data
-    
-    console.log("ID:", id);
-    console.log("Título:", titulo);
-    console.log("Legenda:", legenda);
-    console.log("Foto:", foto);
 
     // Preencher os campos do modal com os dados do evento
     $('#edit_id').val(id);
@@ -517,24 +515,26 @@ $(document).on('click', '.edit2', function () {
     if (foto) {
         var imageUrl = '../' + foto; // Adiciona '../' para navegar um nível acima do diretório raiz
         showCurrentImage(imageUrl);
-    } else {
-        // Se 'foto' não estiver definido, mostrar uma imagem padrão ou mensagem
-        $('#current_image').attr('src', '');
-        // Ou manipular conforme sua necessidade
-    }
+    } 
 
     // Abrir o modal de edição
     $('#editModal2').modal('show');
-});
+    });
+            // Pré-visualização da nova imagem ao selecionar um arquivo
+    $("#edit_foto").change(function () {
+        readURL(this);
+    });
 
-
-
-
-
-        // Pré-visualização da nova imagem ao selecionar um arquivo
-        $("#edit_foto").change(function () {
-            readURL(this);
-        });
+    // Função para pré-visualização da nova imagem
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview_edit_foto').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
         // Processamento do formulário de edição via AJAX
         $('#editForm2').submit(function (event) {
