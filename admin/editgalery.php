@@ -351,14 +351,7 @@
       });
     }
 
-    // Verificar se um tipo foi selecionado antes de enviar o formulário
-    document.getElementById('uploadForm').addEventListener('submit', function(event) {
-        var type = document.getElementById('type').value;
-        if (!type) {
-            event.preventDefault();
-            alert('Por favor, selecione um tipo de imagem.');
-        }
-    });
+
 </script>
 
       <!-- Exibição das Imagens -->
