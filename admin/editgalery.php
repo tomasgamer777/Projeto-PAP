@@ -442,6 +442,31 @@
   <script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+function confirmDelete(imageId) {
+    swal({
+        title: "Tem certeza?",
+        text: "Você realmente deseja excluir esta imagem?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            // Se o usuário confirmar, redirecione para o script de exclusão da imagem
+            window.location.href = "delete_image.php?id=" + imageId;
+        } else {
+            // Se o usuário cancelar, exiba uma mensagem de cancelamento
+            swal("Imagem não excluída!");
+        }
+    });
+}
+</script>
+
+
+
   <script>
 
 $(document).ready(function() {
@@ -480,25 +505,7 @@ $(document).ready(function() {
         });
       });
 
-      // Função para excluir imagem
-      function confirmDelete(imageId) {
-    swal({
-        title: "Tem certeza?",
-        text: "Você realmente deseja excluir esta imagem?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    })
-    .then((willDelete) => {
-        if (willDelete) {
-            // Se o usuário confirmar, redirecione para o script de exclusão da imagem
-            window.location.href = "delete_image.php?id=" + imageId;
-        } else {
-            // Se o usuário cancelar, exiba uma mensagem de cancelamento
-            swal("Imagem não excluída!");
-        }
-    });
-}
+
     });
 
     $(document).ready(function () {
