@@ -445,7 +445,7 @@
 
 <!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document"> <!-- Adiciona classe modal-lg para um modal grande -->
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editModal2Label">Editar Evento</h5>
@@ -454,7 +454,7 @@
                 </button>
             </div>
             <form id="editForm2">
-                <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;"> <!-- Calcula a altura máxima -->
+                <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                     <input type="hidden" id="edit_id" name="edit_id">
                     <div class="form-group">
                         <label for="edit_foto">Imagem Atual</label>
@@ -474,7 +474,7 @@
                     </div>
                     <div class="form-group">
                         <label for="edit_legenda">Legenda</label>
-                        <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
+                        <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" style="max-width: 100%;" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -485,6 +485,7 @@
         </div>
     </div>
 </div>
+
 
 
 
