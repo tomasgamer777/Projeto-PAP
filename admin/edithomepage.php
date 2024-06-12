@@ -493,8 +493,39 @@
 
 
 <script>
-   $(document).ready(function () {
-    // Função para pré-visualização da imagem
+    $(document).ready(function () {
+// Função para exibir a imagem atual no modal de edição
+function showCurrentImage(imageUrl) {
+    $('#current_image').attr('src', imageUrl);
+}
+
+// Abrir o modal de edição ao clicar no botão de edição na datatable
+$(document).on('click', '.edit2', function () {
+    var id = $(this).data('id');
+    var titulo = $(this).data('titulo');
+    var legenda = $(this).data('legenda');
+    var foto = $(this).data('foto'); // Certifique-se de que 'foto' é o nome correto do atributo data
+
+    // Preencher os campos do modal com os dados do evento
+    $('#edit_id').val(id);
+    $('#edit_titulo').val(titulo);
+    $('#edit_legenda').val(legenda);
+
+    // Verificar se há uma imagem definida
+    if (foto) {
+        var imageUrl = '../' + foto; // Adiciona '../' para navegar um nível acima do diretório raiz
+        showCurrentImage(imageUrl);
+    } 
+
+    // Abrir o modal de edição
+    $('#editModal2').modal('show');
+    });
+            // Pré-visualização da nova imagem ao selecionar um arquivo
+    $("#edit_foto").change(function () {
+        readURL(this);
+    });
+
+    // Função para pré-visualização da nova imagem
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -505,26 +536,7 @@
         }
     }
 
-    // Abrir o modal de edição ao clicar no botão de edição
-    $(document).on('click', '.edit2', function () {
-        var id = $(this).data('id');
-        var titulo = $(this).data('titulo');
-        var legenda = $(this).data('legenda');
-
-        // Atribuir os valores aos campos do modal
-        $('#edit_id').val(id);
-        $('#edit_titulo').val(titulo);
-        $('#edit_legenda').val(legenda);
-
-        $('#editModal2').modal('show');
-    });
-
-    // Pré-visualização da imagem ao selecionar um arquivo
-    $("#edit_foto").change(function () {
-        readURL(this);
-    });
-
-    // Processamento do formulário de edição via AJAX
+        // Processamento do formulário de edição via AJAX
     $('#saveChanges2').click(function () {
         var id = $('#edit_id').val();
         var titulo = $('#edit_titulo').val();
@@ -592,7 +604,6 @@
         });
     });
 });
-
 </script>
 
 
