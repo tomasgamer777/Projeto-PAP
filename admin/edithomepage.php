@@ -495,39 +495,29 @@
 <script>
     $(document).ready(function () {
         // Função para exibir a imagem atual
-        function showCurrentImage(imageUrl) {
-            $('#current_image').attr('src', imageUrl);
-        }
+function showCurrentImage(imageUrl) {
+    $('#current_image').attr('src', imageUrl);
+}
 
-        // Função para pré-visualização da nova imagem
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#preview_edit_foto').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+// Abrir o modal de edição ao clicar no botão de edição
+$(document).on('click', '.edit2', function () {
+    var id = $(this).data('id');
+    var titulo = $(this).data('titulo');
+    var legenda = $(this).data('legenda');
+    var foto = $(this).data('foto'); // Caminho relativo da imagem
 
-        // Abrir o modal de edição ao clicar no botão de edição
-        $(document).on('click', '.edit2', function () {
-            var id = $(this).data('id');
-            var titulo = $(this).data('titulo');
-            var legenda = $(this).data('legenda');
-            var foto = $(this).data('foto'); // Nome do arquivo de imagem
+    // Preencher os campos do modal com os dados do evento
+    $('#edit_id').val(id);
+    $('#edit_titulo').val(titulo);
+    $('#edit_legenda').val(legenda);
+    
+    // Exibir a imagem atual
+    var imageUrl = '../' + foto;
+    showCurrentImage(imageUrl);
 
-            // Preencher os campos do modal com os dados do evento
-            $('#edit_id').val(id);
-            $('#edit_titulo').val(titulo);
-            $('#edit_legenda').val(legenda);
-            
-            // Exibir a imagem atual
-            showCurrentImage('../dummy/homepage/' + foto);
-
-            // Abrir o modal de edição
-            $('#editModal2').modal('show');
-        });
+    // Abrir o modal de edição
+    $('#editModal2').modal('show');
+});
 
         // Pré-visualização da nova imagem ao selecionar um arquivo
         $("#edit_foto").change(function () {
