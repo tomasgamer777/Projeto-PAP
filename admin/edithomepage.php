@@ -494,7 +494,7 @@
 
 <script>
     $(document).ready(function () {
-        // Função para exibir a imagem atual
+// Função para exibir a imagem atual
 function showCurrentImage(imageUrl) {
     $('#current_image').attr('src', imageUrl);
 }
@@ -504,21 +504,22 @@ $(document).on('click', '.edit2', function () {
     var id = $(this).data('id');
     var titulo = $(this).data('titulo');
     var legenda = $(this).data('legenda');
-    var foto = $(this).data('foto'); // Caminho relativo da imagem
+    var foto = $(this).data('foto'); // Verifique se 'foto' é o nome correto do campo
 
     // Preencher os campos do modal com os dados do evento
     $('#edit_id').val(id);
     $('#edit_titulo').val(titulo);
     $('#edit_legenda').val(legenda);
     
-    // Exibir a imagem atual
-    var imageUrl = '../' + foto;
-    showCurrentImage(imageUrl);
+    // Exibir a imagem atual, garantindo que 'foto' não seja 'undefined'
+    if (foto) {
+        var imageUrl = '../' + foto;
+        showCurrentImage(imageUrl);
+    }
 
     // Abrir o modal de edição
     $('#editModal2').modal('show');
 });
-
         // Pré-visualização da nova imagem ao selecionar um arquivo
         $("#edit_foto").change(function () {
             readURL(this);
