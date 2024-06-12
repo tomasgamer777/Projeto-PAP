@@ -444,22 +444,44 @@
   <script src="assets/demo/demo.js"></script>
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 function confirmDelete(imageId) {
     swal({
         title: "Tem certeza?",
         text: "Você realmente deseja excluir esta imagem?",
         icon: "warning",
-        buttons: true,
+        buttons: ["Cancelar", "Sim"], // Alterado o botão "Ok" para "Sim"
         dangerMode: true,
     })
     .then((willDelete) => {
         if (willDelete) {
-            // Se o usuário confirmar, redirecione para o script de exclusão da imagem
-            window.location.href = "delete_image.php?id=" + imageId;
+            // Se o usuário confirmar, enviar uma solicitação AJAX para excluir a imagem
+            deleteImage(imageId);
         } else {
-            // Se o usuário cancelar, exiba uma mensagem de cancelamento
+            // Se o usuário cancelar, não fazer nada
             swal("Imagem não excluída!");
+        }
+    });
+}
+
+function deleteImage(imageId) {
+    // Enviar uma solicitação AJAX para excluir a imagem
+    $.ajax({
+        type: "POST",
+        url: "delete_image.php",
+        data: { id: imageId },
+        success: function(response) {
+            // Se a exclusão for bem-sucedida, atualizar a lista de imagens na página
+            $("#imageGallery").load(location.href + " #imageGallery");
+            swal("Imagem excluída com sucesso!", {
+                icon: "success",
+            });
+        },
+        error: function(xhr, status, error) {
+            swal("Erro ao excluir a imagem!", {
+                icon: "error",
+            });
         }
     });
 }
