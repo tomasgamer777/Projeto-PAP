@@ -443,7 +443,6 @@
 
 
 <!-- Modal de Edição (Segunda Datatable) -->
-<!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -453,9 +452,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editForm2">
+            <form id="editForm2" enctype="multipart/form-data"> <!-- Adicionando enctype para permitir upload de arquivos -->
                 <div class="modal-body">
                     <input type="hidden" id="edit_id" name="edit_id">
+                    
+                    <!-- Campo para exibir a imagem atual -->
+                    <div class="form-group">
+                        <label>Imagem Atual</label><br>
+                        <img id="current_image" src="#" alt="Imagem Atual" style="max-width: 100%; max-height: 200px;">
+                    </div>
+                    
+                    <!-- Campo para selecionar nova imagem -->
+                    <div class="form-group">
+                        <label for="edit_foto">Nova Imagem</label>
+                        <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
+                        <img id="preview_edit_foto" src="#" alt="Pré-visualização da Nova Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                    </div>
+                    
                     <div class="form-group">
                         <label for="edit_titulo">Título</label>
                         <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
@@ -467,7 +480,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
+                    <button type="submit" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button> <!-- Mudança para type="submit" -->
                 </div>
             </form>
         </div>
@@ -478,37 +491,60 @@
 
 <script>
     $(document).ready(function () {
+        // Função para exibir a imagem atual
+        function showCurrentImage(imageUrl) {
+            $('#current_image').attr('src', imageUrl);
+        }
+
+        // Função para pré-visualização da nova imagem
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#preview_edit_foto').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         // Abrir o modal de edição ao clicar no botão de edição
         $(document).on('click', '.edit2', function () {
             var id = $(this).data('id');
             var titulo = $(this).data('titulo');
             var legenda = $(this).data('legenda');
+            var foto = $(this).data('foto'); // Adicionar para obter o nome da imagem atual
 
             // Preencher os campos do modal com os dados do evento
             $('#edit_id').val(id);
             $('#edit_titulo').val(titulo);
             $('#edit_legenda').val(legenda);
-
+            showCurrentImage('../' + foto); // Exibir imagem atual
+            
             // Abrir o modal de edição
             $('#editModal2').modal('show');
         });
 
+        // Pré-visualização da nova imagem ao selecionar um arquivo
+        $("#edit_foto").change(function () {
+            readURL(this);
+        });
+
         // Processamento do formulário de edição via AJAX
-        $('#saveChanges2').click(function () {
+        $('#editForm2').submit(function (event) {
+            event.preventDefault(); // Evitar o envio padrão do formulário
             var id = $('#edit_id').val();
             var titulo = $('#edit_titulo').val();
             var legenda = $('#edit_legenda').val();
+            var formData = new FormData($(this)[0]);
 
             // Requisição AJAX para atualização dos dados
             $.ajax({
                 url: 'update_event2.php',
                 type: 'POST',
                 dataType: 'json',
-                data: {
-                    id: id,
-                    titulo_2: titulo,
-                    legenda_2: legenda
-                },
+                data: formData,
+                processData: false,
+                contentType: false,
                 success: function (response) {
                     if (response.status == 'success') {
                         // Mostrar um alerta de sucesso
