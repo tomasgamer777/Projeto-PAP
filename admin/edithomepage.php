@@ -277,8 +277,7 @@
                                 <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
                             </div>
                             <div class="material-datatables">
-                                <table id="datatables" class="table table-striped table-no-bordered table-hover"
-                                    cellspacing="0" width="100%" style="width:100%">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Código</th>
@@ -323,7 +322,7 @@
                                             echo "<td>" . $row["titulo_1"] . "</td>";
                                             echo "<td>" . $row["legenda_1"] . "</td>";
                                             echo '<td class="text-right">
-                                                     <a href="edit_home.html?id=' . $row["id"] . '" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">edit</i></a>
+                                                     <button class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#editModal" data-id="' . $row["id"] . '" data-date="' . $row["date"] . '" data-titulo="' . $row["titulo_1"] . '" data-legenda="' . $row["legenda_1"] . '"><i class="material-icons">edit</i></button>
                                                   </td>';
                                             echo "</tr>";
                                         }
@@ -345,6 +344,76 @@
             <!-- end row -->
         </div>
     </div>
+
+    <!-- Modal de Edição -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editId" name="id">
+                        <div class="form-group">
+                            <label for="editDate">Data</label>
+                            <input type="date" class="form-control" id="editDate" name="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="editTitulo">Título</label>
+                            <input type="text" class="form-control" id="editTitulo" name="titulo_1">
+                        </div>
+                        <div class="form-group">
+                            <label for="editLegenda">Legenda</label>
+                            <input type="text" class="form-control" id="editLegenda" name="legenda_1">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="saveChanges">Salvar Mudanças</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inclua o JS necessário aqui (jQuery, Bootstrap etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Botão que disparou o modal
+            var id = button.data('id');
+            var date = button.data('date');
+            var titulo = button.data('titulo');
+            var legenda = button.data('legenda');
+
+            var modal = $(this);
+            modal.find('#editId').val(id);
+            modal.find('#editDate').val(date);
+            modal.find('#editTitulo').val(titulo);
+            modal.find('#editLegenda').val(legenda);
+        });
+
+        $('#saveChanges').on('click', function () {
+            var form = $('#editForm');
+            $.ajax({
+                type: "POST",
+                url: "update_event.php", // Crie este arquivo PHP para processar a atualização
+                data: form.serialize(),
+                success: function (response) {
+                    // Fechar o modal e atualizar a tabela conforme necessário
+                    $('#editModal').modal('hide');
+                    location.reload(); // Recarrregar a página para mostrar as alterações
+                },
+                error: function (xhr, status, error) {
+                    alert('Erro ao atualizar o evento: ' + error);
+                }
+            });
+        });
+    </script>
+
+    
       
     </div>
   </div>
