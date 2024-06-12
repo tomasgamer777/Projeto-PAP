@@ -33,7 +33,20 @@ function resize_image($file, $width, $height, $output) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
-    $image_name = basename($_FILES["image"]["name"]);
+    // Verifica o número de imagens na base de dados
+    $result = $conn->query("SELECT COUNT(*) AS count FROM galeria");
+    $row = $result->fetch_assoc();
+    if ($row['count'] >= 12) {
+        echo "Desculpe, o limite de 12 imagens foi alcançado.";
+        exit;
+    }
+
+    // Gera o próximo nome de arquivo sequencial
+    $result = $conn->query("SELECT MAX(id) AS max_id FROM galeria");
+    $row = $result->fetch_assoc();
+    $next_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
+
+    $image_name = "gallery-" . $next_id . ".jpg";
     $target_file_small = $target_dir_small . $image_name;
     $target_file_large = $target_dir_large . $image_name;
     $uploadOk = 1;
@@ -46,12 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
         $uploadOk = 1;
     } else {
         echo "O ficheiro não é uma imagem.";
-        $uploadOk = 0;
-    }
-
-    // Verifica se o arquivo já existe
-    if (file_exists($target_file_small) || file_exists($target_file_large)) {
-        echo "Desculpe, o ficheiro já existe.";
         $uploadOk = 0;
     }
 
