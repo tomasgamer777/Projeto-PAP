@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
             // Redimensiona a imagem e salva a cópia redimensionada grande
             resize_image($target_file_small, 1280, 860, $target_file_large);
 
-            // Tipo da imagem (você pode obter isso de um campo de formulário, por exemplo)
+            // Tipo da imagem
             $image_type = $_POST['image_type'];
 
             // Caminhos relativos para salvar na base de dados

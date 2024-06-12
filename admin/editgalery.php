@@ -254,68 +254,82 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="header text-center">
-            <h3 class="title">Editar Galeria</h3>
-            <p class="category">Use o formulário abaixo para adicionar novas imagens à galeria.</p>
-          </div>
-          <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-              <form method="post" action="upload_image.php" enctype="multipart/form-data">
-                <div class="card">
-                  <div class="card-header card-header-primary">
-                    <h4 class="card-title">Adicionar Imagem</h4>
-                    <p class="card-category">Complete os campos abaixo</p>
-                  </div>
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="image" class="bmd-label-floating">Selecionar Imagem</label>
-                      <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                  </div>
+    <div class="container-fluid">
+      <div class="header text-center">
+        <h3 class="title">Editar Galeria</h3>
+        <p class="category">Use o formulário abaixo para adicionar novas imagens à galeria.</p>
+      </div>
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <form id="uploadForm" onsubmit="submitForm(event)" enctype="multipart/form-data">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Adicionar Imagem</h4>
+                <p class="card-category">Complete os campos abaixo</p>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="image" class="bmd-label-floating">Selecionar Imagem</label>
+                  <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage()" required>
                 </div>
-              </form>
+                <div class="form-group">
+                  <label for="image_type">Tipo de Imagem</label>
+                  <select class="form-control" id="image_type" name="image_type" required>
+                    <option value="concert">Concertos</option>
+                    <option value="band">Banda</option>
+                    <option value="stuff">Coisas</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </div>
             </div>
-          </div>
-          <!-- Exibição das Imagens -->
-          <div class="row">
-            <?php
-              $servername = "localhost";
-              $username = "tomas";
-              $password = "!h01fFw35";
-              $dbname = "banda";
-
-              // Criar conexão
-              $conn = new mysqli($servername, $username, $password, $dbname);
-
-              // Verificar conexão
-              if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-              }
-
-              $sql = "SELECT image_url FROM galeria ORDER BY uploaded_at DESC";
-              $result = $conn->query($sql);
-
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                  echo "<div class='col-md-4'>
-                          <div class='card'>
-                            <img class='card-img-top' src='" . $row["image_url"] . "' alt='Imagem'>
-                          </div>
-                        </div>";
-                }
-              } else {
-                echo "0 resultados";
-              }
-
-              $conn->close();
-            ?>
-          </div>
+          </form>
         </div>
       </div>
+      <!-- Exibição das Imagens -->
+      <div class="row">
+        <?php
+          $servername = "localhost";
+          $username = "tomas";
+          $password = "!h01fFw35";
+          $dbname = "banda";
+
+          // Criar conexão
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          // Verificar conexão
+          if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT id, image_url_small, image_url_large, type FROM galeria ORDER BY uploaded_at DESC LIMIT 12";
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<div class='col-md-4'>
+                      <div class='card'>
+                        <img class='card-img-top' src='" "../" . $row['image_url_small'] . "' alt='Imagem'>
+                        <div class='card-body'>
+                          <button class='btn btn-danger' onclick='deleteImage(" . $row["id"] . ")'>Excluir</button>
+                        </div>
+                      </div>
+                    </div>";
+            }
+          } else {
+            echo "0 resultados";
+          }
+
+          $conn->close();
+        ?>
+      </div>
+    </div>
+  </div>
       
     </div>
   </div>
