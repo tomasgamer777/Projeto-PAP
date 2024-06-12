@@ -410,14 +410,14 @@
                                 echo "<td>" . htmlspecialchars($row["titulo_2"]) . "</td>";
                                 echo "<td>" . htmlspecialchars($row["legenda_2"]) . "</td>";
                                 echo '<td class="text-right">
-                                        <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
-                                                data-id="' . $row["id"] . '" 
-                                                data-foto="' . $row["foto"] . '" 
-                                                data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
-                                                data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                      </td>';
+                                  <button class="btn btn-link btn-warning btn-just-icon edit2" data-toggle="modal" data-target="#editModal2" 
+                                          data-id="' . $row["id"] . '" 
+                                          data-foto="../' . $row["foto"] . '" 
+                                          data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
+                                          data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
+                                      <i class="material-icons">edit</i>
+                                  </button>
+                                </td>';
                                 echo "</tr>";
                             }
                         } else {
@@ -479,14 +479,14 @@
     $(document).ready(function () {
         // Função para pré-visualização da imagem
         function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#preview_edit_foto').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview_edit_foto').attr('src', e.target.result);
             }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 
         // Abrir o modal de edição ao clicar no botão de edição
         $(document).on('click', '.edit2', function () {
@@ -501,10 +501,9 @@
             $('#edit_legenda').val(legenda);
 
             // Pré-visualização da imagem atual
-            $('#preview_edit_foto').attr('src', '../' + foto);
-
-            $('#editModal2').modal('show');
-        });
+            $("#edit_foto").change(function () {
+                readURL(this);
+            });
 
         // Pré-visualização da imagem ao selecionar um arquivo
         $("#edit_foto").change(function () {
