@@ -489,6 +489,7 @@
 
 
 
+
 <script>
     $(document).ready(function () {
         // Função para exibir a imagem atual
@@ -568,6 +569,7 @@
         });
     });
 </script>
+
 
 
 
