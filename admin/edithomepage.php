@@ -435,9 +435,7 @@
     </div>
 </div>
 
-<!-- Fim da Segunda Datatable e Modal de Edição -->
-</div>
-</div>
+
 
 <!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
