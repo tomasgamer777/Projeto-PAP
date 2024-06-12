@@ -43,11 +43,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
   <!-- Google Tag Manager -->
-  <style>
-    .form-group label {
-        margin-top: -20px;
-    }
-</style>
+  
 
   <script>
     (function(w, d, s, l, i) {
