@@ -490,7 +490,7 @@
             $('#edit_foto').val(foto);
             $('#edit_titulo').val(titulo);
             $('#edit_legenda').val(legenda);
-            $('#edit_preview').attr('src', '../dummy/homepage/' + foto); // Mostra a pré-visualização da imagem
+            $('#edit_preview').attr('src', '../' + foto); // Mostra a pré-visualização da imagem
 
             $('#editModal2').modal('show');
         });
