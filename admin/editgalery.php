@@ -344,9 +344,7 @@
       .then(response => response.text())
       .then(data => {
         swal("Sucesso", data, "success");
-        setTimeout(() => {
-          location.reload();
-        }, 2000);
+        
       })
       .catch(error => {
         swal("Erro", "Houve um problema ao enviar a imagem.", "error");
