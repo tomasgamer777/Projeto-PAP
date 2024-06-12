@@ -79,13 +79,14 @@
 
     <script>
     function previewImage() {
-      const file = document.getElementById('image').files[0];
-      const reader = new FileReader();
-      reader.onload = function(e) {
+    const file = document.getElementById('image').files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('imagePreview').style.display = 'block';
         document.getElementById('imagePreview').src = e.target.result;
-      }
-      reader.readAsDataURL(file);
     }
+    reader.readAsDataURL(file);
+}
 
     function submitForm(event) {
       event.preventDefault();
@@ -341,7 +342,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
+                    <img id="imagePreview" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; display: none;">
                 </div>
               </div>
               <div class="card-footer">
@@ -353,41 +354,42 @@
       </div>
       <!-- Exibição das Imagens -->
       <div class="row">
-        <?php
-          $servername = "localhost";
-          $username = "tomas";
-          $password = "!h01fFw35";
-          $dbname = "banda";
+      <?php
+        $servername = "localhost";
+        $username = "tomas";
+        $password = "!h01fFw35";
+        $dbname = "banda";
 
-          // Criar conexão
-          $conn = new mysqli($servername, $username, $password, $dbname);
+        // Criar conexão
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-          // Verificar conexão
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
+        // Verificar conexão
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
 
-          $sql = "SELECT id, image_url_small, image_url_large, type FROM galeria ORDER BY uploaded_at DESC LIMIT 12";
-          $result = $conn->query($sql);
+        $sql = "SELECT id, image_url_small, image_url_large, type FROM galeria ORDER BY uploaded_at DESC LIMIT 12";
+        $result = $conn->query($sql);
 
-          if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-              echo "<div class='col-md-4'>
-                      <div class='card'>
-                        <img class='card-img-top' src='" "../" . $row['image_url_small'] . "' alt='Imagem'>
-                        <div class='card-body'>
-                          <button class='btn btn-danger' onclick='deleteImage(" . $row["id"] . ")'>Excluir</button>
-                        </div>
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo "<div class='col-md-4'>
+                    <div class='card'>
+                      <img class='card-img-top' src='../" . $row["image_url_small"] . "' alt='Imagem'>
+                      <div class='card-body'>
+                        <button class='btn btn-danger' onclick='deleteImage(" . $row["id"] . ")'>Excluir</button>
                       </div>
-                    </div>";
-            }
-          } else {
-            echo "0 resultados";
+                    </div>
+                  </div>";
           }
+        } else {
+          echo "0 resultados";
+        }
 
-          $conn->close();
-        ?>
-      </div>
+        $conn->close();
+      ?>
+    </div>
+
     </div>
   </div>
       
