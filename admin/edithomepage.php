@@ -472,6 +472,17 @@
 
 <script>
     $(document).ready(function () {
+        // Função para pré-visualização da imagem
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#preview_edit_foto').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         // Inicialização da DataTable
         $('#datatables2').DataTable({
             "language": {
@@ -483,24 +494,23 @@
         $(document).on('click', '.edit2', function () {
             var id = $(this).data('id');
             var foto = $(this).data('foto');
-            var titulo = $(this).data('titulo2');
-            var legenda = $(this).data('legenda2');
+            var titulo = $(this).data('titulo');
+            var legenda = $(this).data('legenda');
 
             $('#edit_id').val(id);
-            $('#edit_foto').val(foto);
             $('#edit_titulo').val(titulo);
             $('#edit_legenda').val(legenda);
-            $('#edit_preview').attr('src', '../' + foto); // Mostra a pré-visualização da imagem
+
+            // Pré-visualização da imagem atual
+            $('#preview_edit_foto').attr('src', '../dummy/homepage/' + foto);
 
             $('#editModal2').modal('show');
         });
 
-        // Função para renomear a imagem ao fazer upload
-        function renameImage(file) {
-            var newName = 'homepage_' + Date.now();
-            var fileExt = file.name.split('.').pop();
-            return newName + '.' + fileExt;
-        }
+        // Pré-visualização da imagem ao selecionar um arquivo
+        $("#edit_foto").change(function () {
+            readURL(this);
+        });
 
         // Processamento do formulário de edição via AJAX
         $('#saveChanges2').click(function () {
@@ -509,27 +519,27 @@
             var legenda = $('#edit_legenda').val();
             var formData = new FormData();
 
-            // Adiciona os dados ao FormData
+            // Adicionar dados ao FormData
             formData.append('id', id);
             formData.append('titulo_2', titulo);
             formData.append('legenda_2', legenda);
 
-            // Verifica se há uma nova imagem selecionada
+            // Verificar se foi selecionada uma nova imagem
             var fileInput = $('#edit_foto')[0];
             if (fileInput.files.length > 0) {
                 var file = fileInput.files[0];
-                var renamedFilename = renameImage(file);
-                formData.append('foto', renamedFilename);
-                formData.append('uploaded_file', file, renamedFilename); // Adiciona o arquivo ao FormData
+                var renamedFile = renameImage(file);
+                formData.append('foto', renamedFile);
             }
 
+            // Enviar dados via AJAX
             $.ajax({
                 url: 'update_event2.php',
                 type: 'POST',
-                dataType: 'json',
+                data: formData,
                 processData: false,
                 contentType: false,
-                data: formData,
+                dataType: 'json',
                 success: function (response) {
                     if (response.status == 'success') {
                         // Mostrar um alerta de sucesso
@@ -557,7 +567,7 @@
                             hideClass: {
                                 popup: 'animate__animated animate__fadeOutUp'
                             }
-                          });
+                        });
                     }
                 },
                 error: function (xhr, status, error) {
@@ -576,6 +586,17 @@
                 }
             });
         });
+
+        // Função para renomear a imagem
+        function renameImage(file) {
+            var timestamp = new Date().getTime();
+            var newName = 'homepage_' + timestamp;
+            var extension = file.name.split('.').pop().toLowerCase();
+            var renamedFile = new File([file], newName + '.' + extension, {
+                type: file.type
+            });
+            return renamedFile;
+        }
     });
 </script>
 
