@@ -457,6 +457,8 @@
                     <input type="hidden" id="edit_id" name="edit_id">
                     
                     <!-- Campo para exibir a imagem atual -->
+                    <label id="foto_value"></label>
+
                     <div class="form-group">
                         <label>Imagem Atual</label><br>
                         <img id="current_image" src="#" alt="Imagem Atual" style="max-width: 100%; max-height: 200px;">
