@@ -511,13 +511,13 @@ $(document).on('click', '.edit2', function () {
     $('#edit_titulo').val(titulo);
     $('#edit_legenda').val(legenda);
     
-    // Exibir a imagem atual no modal
+    // Verificar se há uma imagem definida
     if (foto) {
-        var imageUrl = '../' + foto; // Ajuste o caminho conforme necessário
+        var imageUrl = foto; // 'foto' já contém o caminho relativo correto
         showCurrentImage(imageUrl);
     } else {
-        // Caso não haja imagem definida, exibir uma imagem padrão ou mensagem
-       $('#current_image').attr('src', '');
+        // Se 'foto' não estiver definido, mostrar uma imagem padrão ou mensagem
+        $('#current_image').attr('src', '');
         // Ou manipular conforme sua necessidade
     }
 
