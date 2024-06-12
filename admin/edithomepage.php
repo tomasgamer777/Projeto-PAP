@@ -346,36 +346,36 @@
     </div>
 
     <!-- Modal de Edição -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="editForm">
-                        <input type="hidden" id="editId" name="id">
-                        <div class="form-group">
-                            <label for="editDate">Data</label>
-                            <input type="date" class="form-control" id="editDate" name="date">
-                        </div>
-                        <div class="form-group">
-                            <label for="editTitulo">Título</label>
-                            <input type="text" class="form-control" id="editTitulo" name="titulo_1">
-                        </div>
-                        <div class="form-group">
-                            <label for="editLegenda">Legenda</label>
-                            <input type="text" class="form-control" id="editLegenda" name="legenda_1">
-                        </div>
-                        <button type="button" class="btn btn-primary" id="saveChanges">Salvar Mudanças</button>
-                    </form>
-                </div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editId" name="id">
+                    <div class="form-group">
+                        <label for="editDate">Data <small class="text-muted">(dia e mês)</small></label>
+                        <input type="text" class="form-control" id="editDate" name="date" placeholder="DD-MM">
+                    </div>
+                    <div class="form-group">
+                        <label for="editTitulo">Título</label>
+                        <input type="text" class="form-control" id="editTitulo" name="titulo_1">
+                    </div>
+                    <div class="form-group">
+                        <label for="editLegenda">Legenda</label>
+                        <input type="text" class="form-control" id="editLegenda" name="legenda_1">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="saveChanges">Salvar Mudanças</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Inclua o JS necessário aqui (jQuery, Bootstrap etc.) -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
