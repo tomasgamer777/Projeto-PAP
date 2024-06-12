@@ -321,7 +321,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="submitButton">Enviar</button>
+                    <button type="submit" class="btn btn-primary" id="submitForm">Enviar</button>
                 </div>
             </div>
         </form>
