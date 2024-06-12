@@ -491,6 +491,7 @@
 
 
 
+
 <script>
     $(document).ready(function () {
         // Função para exibir a imagem atual
@@ -522,7 +523,7 @@
             $('#edit_legenda').val(legenda);
             
             // Exibir a imagem atual
-            showCurrentImage('../' + foto);
+            showCurrentImage('../dummy/homepage/' + foto);
 
             // Abrir o modal de edição
             $('#editModal2').modal('show');
@@ -572,6 +573,7 @@
         });
     });
 </script>
+
 
 
 
