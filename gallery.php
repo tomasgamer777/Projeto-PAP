@@ -47,87 +47,55 @@
 			
 			<main class="main-content">
 				<div class="fullwidth-block gallery">
-					<div class="container">
-						<div class="content fullwidth">
-							<h2 class="entry-title">Galeria</h2>
-							<div class="filter-links filterable-nav">
-								<select class="mobile-filter">
-									<option value="*">Mostrar tudo</option>
-									<option value=".concert">Concertos</option>
-									<option value=".band">Banda</option>
-									<option value=".stuff">Coisas</option>
-								</select>
-								<a href="#" class="current" data-filter="*">Mostrar tudo</a>
-								<a href="#" data-filter=".concert">Concertos</a>
-								<a href="#" data-filter=".band">Banda</a>
-								<a href="#" data-filter=".stuff">Coisas</a>
-							</div>
-							<div class="filterable-items row">
-								<?php
-								$servername = "localhost";
-								$username = "tomas";
-								$password = "!h01fFw35";
-								$dbname = "banda";
-						
-								// Criar conexão
-								$conn = new mysqli($servername, $username, $password, $dbname);
-						
-								// Verificar conexão
-								if ($conn->connect_error) {
-									die("Connection failed: " . $conn->connect_error);
-								}
-						
-								$sql = "SELECT image_url_small, image_url_large FROM galeria ORDER BY uploaded_at DESC";
-								$result = $conn->query($sql);
-						
-								if ($result->num_rows > 0) {
-									while ($row = $result->fetch_assoc()) {
-										echo "<div class='filterable-item col-md-4'>
-												<a href='" . $row["image_url_large"] . "' target='_blank'>
-													<figure><img src='" . $row["image_url_small"] . "' alt='Imagem' class='img-fluid'></figure>
-												</a>
-											  </div>";
-									}
-								} else {
-									echo "<p>0 resultados</p>";
-								}
-						
-								$conn->close();
-								?>
-							</div>
+				<div class="container">
+					<div class="content fullwidth">
+						<h2 class="entry-title">Galeria</h2>
+						<div class="filter-links filterable-nav">
+							<select class="mobile-filter">
+								<option value="*">Mostrar tudo</option>
+								<option value=".concert">Concertos</option>
+								<option value=".band">Banda</option>
+								<option value=".stuff">Coisas</option>
+							</select>
+							<a href="#" class="current" data-filter="*">Mostrar tudo</a>
+							<a href="#" data-filter=".concert">Concertos</a>
+							<a href="#" data-filter=".band">Banda</a>
+							<a href="#" data-filter=".stuff">Coisas</a>
 						</div>
-						
-						<!-- Inclua os arquivos JS necessários -->
-						<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-						<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-						<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-isotope/3.0.6/isotope.pkgd.min.js"></script>
-						<script>
-							$(document).ready(function() {
-								// Inicia o filtro
-								var $grid = $('.filterable-items').isotope({
-									itemSelector: '.filterable-item',
-									layoutMode: 'fitRows'
-								});
-						
-								// Filtra os itens ao clicar
-								$('.filterable-nav a').click(function() {
-									var filterValue = $(this).attr('data-filter');
-									$grid.isotope({ filter: filterValue });
-									$('.filterable-nav a').removeClass('current');
-									$(this).addClass('current');
-									return false;
-								});
-						
-								// Filtra os itens no select dropdown
-								$('.mobile-filter').change(function() {
-									var filterValue = $(this).val();
-									$grid.isotope({ filter: filterValue });
-								});
-							});
-						</script>
+						<div class="filterable-items">
+							<?php
+							$servername = "localhost";
+							$username = "tomas";
+							$password = "!h01fFw35";
+							$dbname = "banda";
+
+							// Criar conexão
+							$conn = new mysqli($servername, $username, $password, $dbname);
+
+							// Verificar conexão
+							if ($conn->connect_error) {
+								die("Connection failed: " . $conn->connect_error);
+							}
+
+							$sql = "SELECT image_url_small, image_url_large, type FROM galeria ORDER BY uploaded_at DESC";
+							$result = $conn->query($sql);
+
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									echo "<div class='filterable-item " . $row["type"] . "'>
+											<a href='" . $row["image_url_large"] . "'><figure><img src='" . $row["image_url_small"] . "' alt='Imagem'></figure></a>
+										</div>";
+								}
+							} else {
+								echo "0 resultados";
+							}
+
+							$conn->close();
+							?>
 						</div>
 					</div>
-				</div> <!-- .testimonial-section -->
+				</div>
+			</div> <!-- .testimonial-section -->
 
 				
 			</main> <!-- .main-content -->
