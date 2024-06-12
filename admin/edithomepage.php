@@ -416,10 +416,13 @@
                                 echo "<td>" . htmlspecialchars($row["titulo_2"]) . "</td>";
                                 echo "<td>" . htmlspecialchars($row["legenda_2"]) . "</td>";
                                 echo '<td class="text-right">
-                                  <button class="btn btn-link btn-warning btn-just-icon edit2" data-id="' . $row["id"] . '">
-                                      <i class="material-icons">edit</i>
-                                  </button>
-                                </td>';
+                                <button class="btn btn-link btn-warning btn-just-icon edit2" 
+                                        data-id="' . $row["id"] . '" 
+                                        data-titulo="' . htmlspecialchars($row["titulo_2"]) . '" 
+                                        data-legenda="' . htmlspecialchars($row["legenda_2"]) . '">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                              </td>';
                                 echo "</tr>";
                             }
                         } else {
@@ -439,6 +442,7 @@
 
 
 
+<!-- Modal de Edição (Segunda Datatable) -->
 <!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -469,6 +473,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script>
@@ -527,6 +532,7 @@
         });
     });
 </script>
+
 
 
 
