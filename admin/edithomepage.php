@@ -402,7 +402,7 @@
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>" . $row["id"] . "</td>";
-                                echo "<td>" . $row["foto"] . "</td>";
+                                echo "<td><img src='../" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
                                 echo "<td>" . $row["titulo_2"] . "</td>";
                                 echo "<td>" . $row["legenda_2"] . "</td>";
                                 echo '<td class="text-right">
@@ -422,6 +422,7 @@
 
                         $conn->close();
                     ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -435,7 +436,6 @@
 </div>
 
 <!-- Modal de Edição (Segunda Datatable) -->
-<!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -446,31 +446,32 @@
                 </button>
             </div>
             <form id="editForm2">
-                <div class="modal-body">
-                    <input type="hidden" id="edit_id" name="edit_id">
-                    <div class="form-group">
-                        <label for="edit_foto">Foto</label>
-                        <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
-                        <img id="preview_edit_foto" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_titulo">Título</label>
-                        <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_legenda">Legenda</label>
-                        <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
-                    </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit_id" name="edit_id">
+                <div class="form-group">
+                    <label for="edit_foto">Foto</label>
+                    <input type="file" class="form-control-file" id="edit_foto" name="edit_foto">
+                    <img id="preview_edit_foto" src="#" alt="Pré-visualização da Imagem" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
+                <div class="form-group">
+                    <label for="edit_titulo">Título</label>
+                    <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" required>
                 </div>
-            </form>
+                <div class="form-group">
+                    <label for="edit_legenda">Legenda</label>
+                    <input type="text" class="form-control" id="edit_legenda" name="edit_legenda" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
+            </div>
+        </form>
+
+
         </div>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function () {
@@ -485,12 +486,19 @@
             }
         }
 
+        // Inicialização da DataTable
+        $('#datatables2').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+            }
+        });
+
         // Abrir o modal de edição ao clicar no botão de edição
         $(document).on('click', '.edit2', function () {
             var id = $(this).data('id');
             var foto = $(this).data('foto');
-            var titulo = $(this).data('titulo');
-            var legenda = $(this).data('legenda');
+            var titulo = $(this).data('titulo2'); // Ajustado para 'titulo2'
+            var legenda = $(this).data('legenda2'); // Ajustado para 'legenda2'
 
             // Atribuir os valores aos campos do modal
             $('#edit_id').val(id);
@@ -582,7 +590,6 @@
         });
     });
 </script>
-
 
 
 
