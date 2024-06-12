@@ -36,8 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
     // Verifica o número de imagens na base de dados
     $result = $conn->query("SELECT COUNT(*) AS count FROM galeria");
     $row = $result->fetch_assoc();
-    if ($row['count'] >= 12) {
-        echo "Desculpe, o limite de 12 imagens foi alcançado.";
+    if ($row['count'] >= 24) {
+        echo "Desculpe, o limite de 24 imagens foi alcançado.";
         exit;
     }
 
