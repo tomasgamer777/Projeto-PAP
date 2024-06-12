@@ -459,7 +459,7 @@ function confirmDelete(imageId) {
         buttonsStyling: false
       }).then((result) => {
         if (result.value) {
-            $.post("delete_image.php", { user_id: userId }, function(data) {
+            $.post("delete_image.php", { id: imageId }, function(data) {
                 swal({
                     title: "Removido!",
                     text: "Foto removida com sucesso.",
@@ -490,26 +490,7 @@ function confirmDelete(imageId) {
     }).catch(swal.noop);
 }
 
-function deleteImage(imageId) {
-    // Enviar uma solicitação AJAX para excluir a imagem
-    $.ajax({
-        type: "POST",
-        url: "delete_image.php",
-        data: { id: imageId },
-        success: function(response) {
-            // Se a exclusão for bem-sucedida, atualizar a lista de imagens na página
-            $("#imageGallery").load(location.href + " #imageGallery");
-            swal("Imagem excluída com sucesso!", {
-                icon: "success",
-            });
-        },
-        error: function(xhr, status, error) {
-            swal("Erro ao excluir a imagem!", {
-                icon: "error",
-            });
-        }
-    });
-}
+
 </script>
 
 
