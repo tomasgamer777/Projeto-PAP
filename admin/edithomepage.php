@@ -422,7 +422,7 @@
 
         $.ajax({
             type: "POST",
-            url: "update_event.php", // Crie este arquivo PHP para processar a atualização
+            url: "update_event.php", // Arquivo PHP para processar a atualização
             data: form.serialize(),
             success: function (response) {
                 // Mostrar um alerta de sucesso com animação
@@ -436,11 +436,12 @@
                     hideClass: {
                         popup: 'animate__animated animate__fadeOutUp'
                     }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $('#editModal').modal('hide');
-                        window.location.reload(true); // Forçar recarregar a página do servidor
-                    }
+                }).then(() => {
+                    // Recarregar a página após o fechamento do modal
+                    $('#editModal').modal('hide');
+                    setTimeout(function() {
+                        location.reload(true); // Forçar recarregar a página do servidor
+                    }, 500); // Aguardar 500ms antes de recarregar
                 });
             },
             error: function (xhr, status, error) {
@@ -460,6 +461,7 @@
         });
     });
 </script>
+
 
 
 
