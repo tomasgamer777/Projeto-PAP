@@ -78,35 +78,7 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-    <script>
-    // Função para exibir a pré-visualização da imagem
-    function previewImage() {
-        var input = document.getElementById('image');
-        var preview = document.getElementById('imagePreview');
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-        };
-
-        if (input.files && input.files[0]) {
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    // Verificar se um tipo foi selecionado antes de enviar o formulário
-    document.getElementById('uploadForm').addEventListener('submit', function (event) {
-        var type = document.getElementById('type').value;
-        if (!type) {
-            event.preventDefault();
-            alert('Por favor, selecione um tipo de imagem.');
-        }
-    });
-
-    // Associar a função previewImage ao evento change do input de arquivo
-    document.getElementById('image').addEventListener('change', previewImage);
-</script>
+    
 
 
 
@@ -355,6 +327,28 @@
         </form>
     </div>
 </div>
+
+<script>
+    // Função para exibir a pré-visualização da imagem
+    function previewImage(event) {
+        var input = event.target;
+        var preview = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Associar a função previewImage ao evento change do input de arquivo
+    document.getElementById('image').addEventListener('change', previewImage);
+</script>
 
     <style>
       .form-group select#type {
