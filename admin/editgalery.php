@@ -312,13 +312,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="type" class="bmd-label-floating">Tipo da Imagem</label>
                                 <select class="form-control" id="type" name="type" required>
                                     <option value="" disabled selected>Selecione o tipo</option>
                                     <option value="concerto">Concerto</option>
                                     <option value="banda">Banda</option>
                                     <option value="coisas">Coisas</option>
                                 </select>
-                                <label for="type" class="bmd-label-floating">Tipo da Imagem</label>
                             </div>
 
                             <div class="form-group">
@@ -332,6 +332,12 @@
                 </form>
             </div>
         </div>
+
+        <style>
+    .form-group label[for="type"] {
+        margin-top: 1.5rem; 
+    }
+</style>
 
 <script>
     // Verificar se um tipo foi selecionado antes de enviar o formulário
