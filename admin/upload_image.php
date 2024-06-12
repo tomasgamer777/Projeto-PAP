@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
             $image_url_large = "dummy/large-gallery/" . $image_name;
 
             // Salva a URL das imagens no banco de dados
-            $sql = "INSERT INTO galeria (image_url, image_url_small, image_url_large, type) VALUES ('$image_url_small', '$image_url_small', '$image_url_large', '$image_type')";
+            $sql = "INSERT INTO galeria (image_url_small, image_url_large, type) VALUES ('$image_url_small', '$image_url_large', '$image_type')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "URL da imagem salva no banco de dados com sucesso.";

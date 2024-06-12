@@ -46,55 +46,56 @@
 			</header> <!-- .site-header -->
 			
 			<main class="main-content">
-				<div class="fullwidth-block gallery">
-				<div class="container">
-					<div class="content fullwidth">
-						<h2 class="entry-title">Galeria</h2>
-						<div class="filter-links filterable-nav">
-							<select class="mobile-filter">
-								<option value="*">Mostrar tudo</option>
-								<option value=".concert">Concertos</option>
-								<option value=".band">Banda</option>
-								<option value=".stuff">Coisas</option>
-							</select>
-							<a href="#" class="current" data-filter="*">Mostrar tudo</a>
-							<a href="#" data-filter=".concert">Concertos</a>
-							<a href="#" data-filter=".band">Banda</a>
-							<a href="#" data-filter=".stuff">Coisas</a>
-						</div>
-						<div class="filterable-items">
-							<?php
-							$servername = "localhost";
-							$username = "tomas";
-							$password = "!h01fFw35";
-							$dbname = "banda";
+			<div class="fullwidth-block gallery">
+			<div class="container">
+				<div class="content fullwidth">
+					<h2 class="entry-title">Galeria</h2>
+					<div class="filter-links filterable-nav">
+						<select class="mobile-filter">
+							<option value="*">Mostrar tudo</option>
+							<option value=".concert">Concertos</option>
+							<option value=".band">Banda</option>
+							<option value=".stuff">Coisas</option>
+						</select>
+						<a href="#" class="current" data-filter="*">Mostrar tudo</a>
+						<a href="#" data-filter=".concert">Concertos</a>
+						<a href="#" data-filter=".band">Banda</a>
+						<a href="#" data-filter=".stuff">Coisas</a>
+					</div>
+					<div class="filterable-items">
+						<?php
+						$servername = "localhost";
+						$username = "tomas";
+						$password = "!h01fFw35";
+						$dbname = "banda";
 
-							// Criar conexão
-							$conn = new mysqli($servername, $username, $password, $dbname);
+						// Criar conexão
+						$conn = new mysqli($servername, $username, $password, $dbname);
 
-							// Verificar conexão
-							if ($conn->connect_error) {
-								die("Connection failed: " . $conn->connect_error);
+						// Verificar conexão
+						if ($conn->connect_error) {
+							die("Connection failed: " . $conn->connect_error);
+						}
+
+						$sql = "SELECT image_url_small, image_url_large, type FROM galeria ORDER BY uploaded_at DESC";
+						$result = $conn->query($sql);
+
+						if ($result->num_rows > 0) {
+							while ($row = $result->fetch_assoc()) {
+								echo "<div class='filterable-item " . $row["type"] . "'>
+										<a href='" . $row["image_url_large"] . "'><figure><img src='" . $row["image_url_small"] . "' alt='Imagem'></figure></a>
+									</div>";
 							}
+						} else {
+							echo "0 resultados";
+						}
 
-							$sql = "SELECT image_url_small, image_url_large, type FROM galeria ORDER BY uploaded_at DESC";
-							$result = $conn->query($sql);
-
-							if ($result->num_rows > 0) {
-								while ($row = $result->fetch_assoc()) {
-									echo "<div class='filterable-item " . $row["type"] . "'>
-											<a href='" . $row["image_url_large"] . "'><figure><img src='" . $row["image_url_small"] . "' alt='Imagem'></figure></a>
-										</div>";
-								}
-							} else {
-								echo "0 resultados";
-							}
-
-							$conn->close();
-							?>
-						</div>
+						$conn->close();
+						?>
 					</div>
 				</div>
+			</div>
+		</div>
 			</div> <!-- .testimonial-section -->
 
 				
