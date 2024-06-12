@@ -517,7 +517,7 @@ $(document).on('click', '.edit2', function () {
         showCurrentImage(imageUrl);
     } else {
         // Se 'foto' não estiver definido, mostrar uma imagem padrão ou mensagem
-        $('#current_image').attr('src', '');
+        $('#current_image').attr('src', '../dummy/homepage/braga1cortado.jpg');
         // Ou manipular conforme sua necessidade
     }
 
