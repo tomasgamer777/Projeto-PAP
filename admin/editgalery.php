@@ -314,7 +314,7 @@
             while ($row = $result->fetch_assoc()) {
               echo "<div class='col-md-4'>
                       <div class='card'>
-                        <img class='card-img-top' src='" "../" . $row['image_url_small'] . "' alt='Imagem'>
+                        <img class='card-img-top' src='" . $row["image_url_small"] . "' alt='Imagem'>
                         <div class='card-body'>
                           <button class='btn btn-danger' onclick='deleteImage(" . $row["id"] . ")'>Excluir</button>
                         </div>
