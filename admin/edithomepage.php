@@ -493,39 +493,8 @@
 
 
 <script>
-    $(document).ready(function () {
-// Função para exibir a imagem atual no modal de edição
-function showCurrentImage(imageUrl) {
-    $('#current_image').attr('src', imageUrl);
-}
-
-// Abrir o modal de edição ao clicar no botão de edição na datatable
-$(document).on('click', '.edit2', function () {
-    var id = $(this).data('id');
-    var titulo = $(this).data('titulo');
-    var legenda = $(this).data('legenda');
-    var foto = $(this).data('foto'); // Certifique-se de que 'foto' é o nome correto do atributo data
-
-    // Preencher os campos do modal com os dados do evento
-    $('#edit_id').val(id);
-    $('#edit_titulo').val(titulo);
-    $('#edit_legenda').val(legenda);
-
-    // Verificar se há uma imagem definida
-    if (foto) {
-        var imageUrl = '../' + foto; // Adiciona '../' para navegar um nível acima do diretório raiz
-        showCurrentImage(imageUrl);
-    } 
-
-    // Abrir o modal de edição
-    $('#editModal2').modal('show');
-    });
-            // Pré-visualização da nova imagem ao selecionar um arquivo
-    $("#edit_foto").change(function () {
-        readURL(this);
-    });
-
-    // Função para pré-visualização da nova imagem
+   $(document).ready(function () {
+    // Função para pré-visualização da imagem
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -536,44 +505,94 @@ $(document).on('click', '.edit2', function () {
         }
     }
 
-        // Processamento do formulário de edição via AJAX
-        $('#editForm2').submit(function (event) {
-            event.preventDefault(); // Evitar o envio padrão do formulário
-            var id = $('#edit_id').val();
-            var titulo = $('#edit_titulo').val();
-            var legenda = $('#edit_legenda').val();
-            var formData = new FormData($(this)[0]);
+    // Abrir o modal de edição ao clicar no botão de edição
+    $(document).on('click', '.edit2', function () {
+        var id = $(this).data('id');
+        var titulo = $(this).data('titulo');
+        var legenda = $(this).data('legenda');
 
-            // Requisição AJAX para atualização dos dados
-            $.ajax({
-                url: 'update_event2.php',
-                type: 'POST',
-                dataType: 'json',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    if (response.status == 'success') {
-                        // Mostrar um alerta de sucesso
-                        alert('Evento atualizado com sucesso.');
+        // Atribuir os valores aos campos do modal
+        $('#edit_id').val(id);
+        $('#edit_titulo').val(titulo);
+        $('#edit_legenda').val(legenda);
 
+        $('#editModal2').modal('show');
+    });
+
+    // Pré-visualização da imagem ao selecionar um arquivo
+    $("#edit_foto").change(function () {
+        readURL(this);
+    });
+
+    // Processamento do formulário de edição via AJAX
+    $('#saveChanges2').click(function () {
+        var id = $('#edit_id').val();
+        var titulo = $('#edit_titulo').val();
+        var legenda = $('#edit_legenda').val();
+        var formData = new FormData();
+
+        // Adicionar dados ao FormData
+        formData.append('id', id);
+        formData.append('titulo_2', titulo);
+        formData.append('legenda_2', legenda);
+        formData.append('edit_foto', $('#edit_foto')[0].files[0]);
+
+        // Requisição AJAX para atualização dos dados
+        $.ajax({
+            url: 'update_event2.php',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.status == 'success') {
+                    // Mostrar um alerta de sucesso
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: 'Evento atualizado com sucesso!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(function () {
                         // Fechar o modal de edição
                         $('#editModal2').modal('hide');
-
                         // Recarregar a página para atualizar a datatable
                         location.reload(true);
-                    } else {
-                        // Mostrar um alerta de erro se não foi possível atualizar o evento
-                        alert('Erro ao atualizar evento.');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // Mostrar um alerta de erro se houver um erro na requisição AJAX
-                    alert('Erro na requisição AJAX: ' + error);
+                    });
+                } else {
+                    // Mostrar um alerta de erro com animação
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: 'Erro ao atualizar o evento: ' + response.message,
+                        showClass: {
+                            popup: 'animate__animated animate__shakeX'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    });
                 }
-            });
+            },
+            error: function (xhr, status, error) {
+                // Mostrar um alerta de erro com animação
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro ao atualizar o evento: ' + error,
+                    showClass: {
+                        popup: 'animate__animated animate__shakeX'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+            }
         });
     });
+});
+
 </script>
 
 
