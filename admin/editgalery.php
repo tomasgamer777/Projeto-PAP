@@ -303,6 +303,46 @@
     </div>
 </div>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("uploadForm");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        // Aqui você pode adicionar código para validar os campos do formulário, se necessário
+        
+        // Cria um objeto FormData para enviar os dados do formulário
+        const formData = new FormData(form);
+
+        // Aqui você pode adicionar mais dados ao formData, se necessário
+        
+        // Envia os dados usando fetch
+        fetch("upload_image.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao enviar imagem");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Exibe um alerta de sucesso com SweetAlert
+            swal("Sucesso!", "Imagem enviada com sucesso!", "success");
+            // Aqui você pode adicionar código para limpar os campos do formulário ou fazer outras ações após o envio bem-sucedido
+        })
+        .catch(error => {
+            // Exibe um alerta de erro com SweetAlert
+            swal("Erro!", "Houve um erro ao enviar a imagem.", "error");
+            console.error("Erro ao enviar imagem:", error);
+        });
+    });
+});
+</script>
+
+
 <script>
     // Função para exibir a pré-visualização da imagem
     function previewImage(event) {
