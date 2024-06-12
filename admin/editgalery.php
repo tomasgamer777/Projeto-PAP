@@ -76,6 +76,66 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
+
+    <script>
+    function previewImage() {
+      const file = document.getElementById('image').files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('imagePreview').src = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      const formData = new FormData(document.getElementById('uploadForm'));
+
+      fetch('upload_image.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        swal("Sucesso", data, "success");
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      })
+      .catch(error => {
+        swal("Erro", "Houve um problema ao enviar a imagem.", "error");
+      });
+    }
+
+    function deleteImage(imageId) {
+      swal({
+        title: "Tem certeza?",
+        text: "Deseja realmente excluir esta imagem?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          fetch(`delete_image.php?id=${imageId}`, {
+            method: 'GET'
+          })
+          .then(response => response.text())
+          .then(data => {
+            swal("Sucesso", data, "success");
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          })
+          .catch(error => {
+            swal("Erro", "Houve um problema ao excluir a imagem.", "error");
+          });
+        }
+      });
+    }
+  </script>
+
+
       <div class="logo">
         <a href="pages/dashboard.html" class="simple-text logo-mini">
           AM
