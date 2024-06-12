@@ -332,28 +332,6 @@
       }
     </style>
 
-<script>
-  function uploadForm(event) {
-      event.preventDefault();
-      const formData = new FormData(document.getElementById('uploadForm'));
-
-      fetch('upload_image.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.text())
-      .then(data => {
-        swal("Sucesso", data, "success");
-        
-      })
-      .catch(error => {
-        swal("Erro", "Houve um problema ao enviar a imagem.", "error");
-      });
-    }
-
-
-</script>
-
       <!-- Exibição das Imagens -->
       <div class="row">
       <?php
