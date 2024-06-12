@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
     $row = $result->fetch_assoc();
     $next_id = $row['max_id'] ? $row['max_id'] + 1 : 1;
 
-    $image_name = "gallery-" . $next_id . ".jpg";
+    $image_name = "galeria-" . $next_id . ".jpg";
     $target_file_small = $target_dir_small . $image_name;
     $target_file_large = $target_dir_large . $image_name;
     $uploadOk = 1;
