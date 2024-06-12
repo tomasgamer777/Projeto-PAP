@@ -351,6 +351,9 @@
 <!-- Inclua SweetAlert no seu HTML -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- Inclua SweetAlert no seu HTML -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Modal de Edição -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -382,6 +385,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -456,6 +460,7 @@
         });
     });
 </script>
+
 
 
 
