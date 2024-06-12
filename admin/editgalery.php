@@ -356,7 +356,7 @@
                       <img class='card-img-top' src='../" . $row["image_url_small"] . "' alt='Imagem'>
                       <div class='card-body'>
                         <p class='card-text'>Tipo: " . $row["type"] . "</p>
-                        <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Excluir</button>
+                        <button class='btn btn-danger' onclick='confirmDelete(<?php echo $row["id"]; ?>)'>Excluir</button>
                       </div>
                     </div>
                   </div>";
@@ -380,7 +380,7 @@ function confirmDelete(imageId) {
     }).then((confirmDelete) => {
         if (confirmDelete) {
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: "delete_image.php",
                 data: { id: imageId },
                 success: function(response) {
@@ -409,6 +409,7 @@ function confirmDelete(imageId) {
         }
     });
 }
+
 
 </script>
     </div>
