@@ -24,21 +24,21 @@ if (isset($_GET['id'])) {
 
     // Verifica se a imagem foi encontrada no banco de dados
     if ($row) {
-        // Exclui a entrada do banco de dados e os arquivos do servidor após confirmação
-        echo "<script>
-        if (confirm('Tem certeza de que deseja excluir esta imagem?')) {
-            // Exclui os arquivos do servidor
-            if (file_exists('../' . '" . $row['image_url_small'] . "')) {
-                unlink('../' . '" . $row['image_url_small'] . "');
-            }
-            if (file_exists('../' . '" . $row['image_url_large'] . "')) {
-                unlink('../' . '" . $row['image_url_large'] . "');
-            }
-
-            // Exclui a entrada do banco de dados
-            window.location.href = 'delete_image.php?id=" . $id . "';
+        // Exclui os arquivos do servidor
+        if (file_exists('../' . $row['image_url_small'])) {
+            unlink('../' . $row['image_url_small']);
         }
-        </script>";
+        if (file_exists('../' . $row['image_url_large'])) {
+            unlink('../' . $row['image_url_large']);
+        }
+
+        // Exclui a entrada do banco de dados
+        $sql = "DELETE FROM galeria WHERE id = $id";
+        if ($conn->query($sql) === TRUE) {
+            echo "Imagem excluída com sucesso.";
+        } else {
+            echo "Erro ao excluir imagem: " . $conn->error;
+        }
     } else {
         // Resposta de erro se a imagem não for encontrada
         echo "Imagem não encontrada.";
