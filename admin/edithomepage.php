@@ -360,7 +360,7 @@
                     <input type="hidden" id="editId" name="id">
                     <div class="form-group">
                         <label for="editDate">Data <small class="text-muted">(dia e mês)</small></label>
-                        <input type="text" class="form-control" id="editDate" name="date" placeholder="DD-MM">
+                        <input type="text" class="form-control text-uppercase" id="editDate" name="date" placeholder="DD-MM">
                     </div>
                     <div class="form-group">
                         <label for="editTitulo">Título</label>
@@ -376,6 +376,13 @@
         </div>
     </div>
 </div>
+
+<style>
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+</style>
+
 
     <!-- Inclua o JS necessário aqui (jQuery, Bootstrap etc.) -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
