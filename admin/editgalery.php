@@ -333,11 +333,12 @@
             </div>
         </div>
 
-        <style>
-    .form-group label[for="type"] {
-        margin-top: -6.5rem; 
-    }
-</style>
+    <style>
+      .form-group select#type {
+          margin-top: -0.5rem; /* Movendo a combobox para cima */
+          /* Ou margin-bottom: 0.5rem; para mover para baixo */
+      }
+    </style>
 
 <script>
     // Verificar se um tipo foi selecionado antes de enviar o formulário
