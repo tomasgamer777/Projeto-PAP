@@ -501,44 +501,6 @@ function confirmDelete(imageId) {
 
   <script>
 
-$(document).ready(function() {
-      // Função para enviar o formulário sem sair da página
-      $('#imageForm').submit(function(e) {
-        e.preventDefault(); // Evita o comportamento padrão do formulário
-        var formData = new FormData(this);
-
-        // Envia os dados do formulário via AJAX
-        $.ajax({
-          url: 'upload_image.php',
-          type: 'POST',
-          data: formData,
-          success: function(response) {
-            // Exibe o alerta de sucesso com SweetAlert2
-            Swal.fire({
-              icon: 'success',
-              title: 'Sucesso!',
-              text: 'A imagem foi enviada com sucesso.'
-            }).then(function() {
-              // Recarrega a página para exibir as novas imagens
-              location.reload();
-            });
-          },
-          error: function(xhr, status, error) {
-            // Exibe o alerta de erro com SweetAlert2
-            Swal.fire({
-              icon: 'error',
-              title: 'Erro!',
-              text: 'Ocorreu um erro ao enviar a imagem.'
-            });
-          },
-          cache: false,
-          contentType: false,
-          processData: false
-        });
-      });
-
-
-    });
 
     $(document).ready(function () {
       $().ready(function () {
