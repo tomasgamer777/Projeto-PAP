@@ -356,7 +356,7 @@
                       <img class='card-img-top' src='../" . $row["image_url_small"] . "' alt='Imagem'>
                       <div class='card-body'>
                         <p class='card-text'>Tipo: " . $row["type"] . "</p>
-                        <button class='btn btn-danger' onclick='confirmDelete(" . $row["id"] . ")'>Excluir</button>
+                        <button class='btn btn-danger' onclick='confirmDelete(" . $row['id'] . ")'>Excluir</button>
                       </div>
                     </div>
                   </div>";
@@ -374,41 +374,42 @@ function confirmDelete(imageId) {
     swal({
         title: "Tem certeza?",
         text: "Deseja realmente excluir esta imagem?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonClass: "btn btn-danger",
-        cancelButtonClass: "btn btn-default",
-        confirmButtonText: "Sim, excluir",
-        cancelButtonText: "Cancelar",
-        buttonsStyling: false
-    }).then((result) => {
-        if (result.value) {
-            deleteImage(imageId);
+        icon: "warning",
+        buttons: ["Cancelar", "Sim, excluir"],
+        dangerMode: true
+    }).then((confirmDelete) => {
+        if (confirmDelete) {
+            $.ajax({
+                type: "POST",
+                url: "delete_image.php",
+                data: { id: imageId },
+                success: function(response) {
+                    swal({
+                        title: "Removido!",
+                        text: "Imagem removida com sucesso.",
+                        icon: "success"
+                    }).then(() => {
+                        location.reload();
+                    });
+                },
+                error: function(xhr, status, error) {
+                    swal({
+                        title: "Erro",
+                        text: "Ocorreu um erro ao tentar excluir a imagem.",
+                        icon: "error"
+                    });
+                }
+            });
+        } else {
+            swal({
+                title: "Cancelado",
+                text: "A exclusão da imagem foi cancelada.",
+                icon: "info"
+            });
         }
     });
 }
 
-function deleteImage(imageId) {
-    $.post("delete_image.php", { id: imageId }, function(data) {
-        swal({
-            title: "Excluído!",
-            text: "A imagem foi excluída com sucesso.",
-            type: "success",
-            confirmButtonClass: "btn btn-success",
-            buttonsStyling: false
-        }).then(() => {
-            location.reload(); // Recarregar a página para atualizar a galeria
-        });
-    }).fail(() => {
-        swal({
-            title: "Erro",
-            text: "Ocorreu um erro ao excluir a imagem.",
-            type: "error",
-            confirmButtonClass: "btn btn-danger",
-            buttonsStyling: false
-        });
-    });
-}
 </script>
     </div>
 
