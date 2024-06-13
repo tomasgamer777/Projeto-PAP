@@ -1,107 +1,124 @@
 <?php
-// Conexão com o banco de dados
-$servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
+// Verifica se foi feita uma requisição POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Configurações para o diretório de upload
+    $uploadDir = "../dummy/"; // Diretório onde as imagens serão armazenadas
+    $allowedExtensions = array("jpg", "jpeg", "png"); // Extensões de arquivo permitidas
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Função para gerar nome único para o arquivo
+    function generateUniqueName($filename) {
+        $pathinfo = pathinfo($filename);
+        $basename = $pathinfo['filename']; // Nome do arquivo sem extensão
+        $extension = $pathinfo['extension']; // Extensão do arquivo
+        $uniqueName = $basename . '_' . uniqid() . '.' . $extension; // Nome único
+        return $uniqueName;
+    }
 
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    // Função para mover o arquivo para o diretório de upload
+    function uploadFile($file, $uploadDir, $newFilename) {
+        $filename = $file['name'];
+        $tempName = $file['tmp_name'];
+        $targetFile = $uploadDir . $newFilename;
 
-// Função para redimensionar a imagem
-function resizeImage($file, $width, $height, $output) {
-    list($original_width, $original_height) = getimagesize($file);
-
-    $src = imagecreatefromstring(file_get_contents($file));
-    $dst = imagecreatetruecolor($width, $height);
-
-    // Manter a transparência para PNG e GIF
-    if (exif_imagetype($file) == IMAGETYPE_PNG) {
-        imagealphablending($dst, false);
-        imagesavealpha($dst, true);
-        $transparent = imagecolorallocatealpha($dst, 255, 255, 255, 127);
-        imagefilledrectangle($dst, 0, 0, $width, $height, $transparent);
-    } elseif (exif_imagetype($file) == IMAGETYPE_GIF) {
-        $transparent_index = imagecolortransparent($src);
-        if ($transparent_index >= 0) {
-            $transparent_color = imagecolorsforindex($src, $transparent_index);
-            $transparent_index = imagecolorallocate($dst, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
-            imagefill($dst, 0, 0, $transparent_index);
-            imagecolortransparent($dst, $transparent_index);
+        if (move_uploaded_file($tempName, $targetFile)) {
+            return $targetFile;
+        } else {
+            return false;
         }
     }
 
-    imagecopyresampled($dst, $src, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
-    imagejpeg($dst, $output, 90); // Salvar a imagem redimensionada como JPEG com qualidade 90
+    // Conexão com o banco de dados (substitua com suas credenciais)
+    $servername = "localhost";
+    $username = "tomas";
+    $password = "!h01fFw35";
+    $dbname = "banda";
 
-    imagedestroy($src);
-    imagedestroy($dst);
-}
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Tratamento da imagem
-if(isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
-    $target_dir = "../dummy/";
-    $target_file = $target_dir . basename($_FILES["foto"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    // Verifica a conexão
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-    // Verificar se é uma imagem real ou falsa
-    $check = getimagesize($_FILES["foto"]["tmp_name"]);
-    if($check !== false) {
-        // Verificar se o arquivo já existe
-        if (file_exists($target_file)) {
-            echo json_encode(["error" => "Desculpe, o arquivo já existe."]);
-            exit;
+    // Obtem os dados do formulário
+    $id = $_POST['id'];
+    $dia = $_POST['dia'];
+    $mes = $_POST['mes'];
+    $titulo = $_POST['titulo_1'];
+    $legenda = $_POST['legenda_1'];
+    $currentFoto = $_POST['foto']; // Caminho atual da foto no banco de dados
+
+    // Verifica se foi enviada uma nova imagem
+    if ($_FILES['foto']['name']) {
+        // Remove a foto existente se já houver uma
+        if ($currentFoto) {
+            unlink("../" . $currentFoto); // Remove a foto anterior do diretório
         }
-        // Verificar o tamanho do arquivo
-        if ($_FILES["foto"]["size"] > 5000000) { // 5MB de limite
-            echo json_encode(["error" => "Desculpe, o seu arquivo é muito grande."]);
-            exit;
-        }
-        // Permitir certos formatos de arquivo
-        if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" ) {
-            echo json_encode(["error" => "Desculpe, apenas arquivos JPG, JPEG, PNG e GIF são permitidos."]);
-            exit;
-        }
-        // Tentar redimensionar e mover o arquivo para o diretório de destino
-        $resized_file = $target_dir . 'resized_' . basename($_FILES["foto"]["name"]);
-        resizeImage($_FILES["foto"]["tmp_name"], 600, 300, $resized_file);
-        if (file_exists($resized_file)) {
-            $foto = 'dummy/' . 'resized_' . basename($_FILES["foto"]["name"]);
-            // Atualizar o caminho da imagem no banco de dados
-            $id = $_POST['id'];
-            $sql_update = "UPDATE blog SET foto=? WHERE id=?";
+
+        // Faz o upload da nova foto
+        $newPhoto = $_FILES['foto'];
+        $newFilename = generateUniqueName($newPhoto['name']);
+        $newPhotoPath = uploadFile($newPhoto, $uploadDir, $newFilename);
+
+        if ($newPhotoPath) {
+            // Atualiza o caminho da nova foto no banco de dados
+            $newPhotoPathInDB = "dummy/" . $newFilename; // Caminho completo da nova foto
+            $sql_update = "UPDATE blog SET dia=?, mes=?, titulo=?, descricao=?, foto=? WHERE id=?";
             $stmt_update = $conn->prepare($sql_update);
-            $stmt_update->bind_param("si", $foto, $id);
-            if ($stmt_update->execute()) {
-                echo json_encode(["success" => "Evento atualizado com sucesso.", "foto" => $foto]);
+            $stmt_update->bind_param("sssssi", $dia, $mes, $titulo, $legenda, $newPhotoPathInDB, $id);
+            $stmt_update->execute();
+
+            if ($stmt_update->affected_rows > 0) {
+                $response = array(
+                    'status' => 'success',
+                    'message' => 'Dados atualizados com sucesso!',
+                    'foto' => $newPhotoPathInDB // Retornar o caminho da nova foto para atualização na interface
+                );
             } else {
-                echo json_encode(["error" => "Erro ao atualizar o caminho da imagem no banco de dados."]);
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Nenhum dado foi atualizado.'
+                );
             }
+
             $stmt_update->close();
         } else {
-            echo json_encode(["error" => "Desculpe, houve um erro ao enviar seu arquivo."]);
+            $response = array(
+                'status' => 'error',
+                'message' => 'Erro ao fazer upload da imagem.'
+            );
         }
     } else {
-        echo json_encode(["error" => "Arquivo não é uma imagem."]);
-    }
-} else {
-    // Se nenhuma nova foto foi enviada, mantenha a foto existente
-    $foto = $_POST['foto'];
-    $id = $_POST['id'];
-    $sql_update = "UPDATE blog SET foto=? WHERE id=?";
-    $stmt_update = $conn->prepare($sql_update);
-    $stmt_update->bind_param("si", $foto, $id);
-    if ($stmt_update->execute()) {
-        echo json_encode(["success" => "Evento atualizado com sucesso.", "foto" => $foto]);
-    } else {
-        echo json_encode(["error" => "Erro ao atualizar o caminho da imagem no banco de dados."]);
-    }
-    $stmt_update->close();
-}
+        // Se não houver nova imagem, atualiza apenas os outros campos
+        $sql_update = "UPDATE blog SET dia=?, mes=?, titulo=?, descricao=? WHERE id=?";
+        $stmt_update = $conn->prepare($sql_update);
+        $stmt_update->bind_param("ssssi", $dia, $mes, $titulo, $legenda, $id);
+        $stmt_update->execute();
 
-$conn->close();
+        if ($stmt_update->affected_rows > 0) {
+            $response = array(
+                'status' => 'success',
+                'message' => 'Dados atualizados com sucesso!'
+            );
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Nenhum dado foi atualizado.'
+            );
+        }
+
+        $stmt_update->close();
+    }
+
+    // Fecha a conexão com o banco de dados e retorna a resposta em formato JSON
+    $conn->close();
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+} else {
+    // Se a requisição não for do tipo POST, retorna um erro
+    http_response_code(405); // Método não permitido
+    echo json_encode(array('status' => 'error', 'message' => 'Método não permitido.'));
+    exit;
+}
 ?>
