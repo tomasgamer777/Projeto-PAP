@@ -611,6 +611,236 @@ $(document).on('click', '.edit2', function () {
 </script>
 
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="card-title">Imagens do Cabeçalho</h4>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">
+                    <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
+                </div>
+                <div class="material-datatables">
+                    <table id="datatables2" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <!-- Cabeçalho da Segunda Datatable -->
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Foto</th>
+                                <th class="disabled-sorting text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Código</th>
+                                <th>Foto</th>
+                                <th class="text-right">Ações</th>
+                            </tr>
+                        </tfoot>
+                        <!-- Corpo da Segunda Datatable -->
+                        <tbody>
+                        <?php
+                        // Conexão com o banco de dados
+                        $servername = "localhost";
+                        $username = "tomas";
+                        $password = "!h01fFw35";
+                        $dbname = "banda";
+
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Verifica a conexão
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        // Consulta SQL para selecionar os dados da segunda datatable
+                        $sql = "SELECT id, header homepage WHERE header IS NOT NULL";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["id"] . "</td>";
+                                echo "<td><img src='../" . $row["header"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
+                                echo '<td class="text-right">
+                                  <button class="btn btn-link btn-warning btn-just-icon edit2" 
+                                          data-id="' . $row["id"] . '" 
+                                          data-header="' . $row["header"] . '">
+                                      <i class="material-icons">edit</i>
+                                  </button>
+                                </td>';
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'>Nenhum resultado encontrado.</td></tr>";
+                        }
+
+                        $conn->close();
+                        ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal de Edição (Segunda Datatable) -->
+<div class="modal fade" id="editModal3" tabindex="-1" role="dialog" aria-labelledby="editModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModal3Label">Editar Cabeçalho</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editForm3">
+                <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+                    <input type="hidden" id="edit_id" name="edit_id">
+                    <div class="form-group">
+                        <label for="edit_foto1">Imagem Atual</label>
+                        <img id="current_image1" src="#" class="img-thumbnail" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_foto1">Nova Imagem</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="edit_foto1" name="edit_foto1">
+                            <label class="custom-file-label" for="edit_foto1">Escolher arquivo</label>
+                        </div>
+                        <img id="preview_edit_foto1" src="#" alt="" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges3">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+// Função para exibir a imagem atual no modal de edição
+function showCurrentImage(imageUrl) {
+    $('#current_image').attr('src', imageUrl);
+}
+
+// Abrir o modal de edição ao clicar no botão de edição na datatable
+$(document).on('click', '.edit2', function () {
+    var id = $(this).data('id');
+    var header = $(this).data('header'); // Certifique-se de que 'foto' é o nome correto do atributo data
+
+    // Preencher os campos do modal com os dados do evento
+    $('#edit_id').val(id);
+
+    // Verificar se há uma imagem definida
+    if (header) {
+        var imageUrl = '../' + header; // Adiciona '../' para navegar um nível acima do diretório raiz
+        showCurrentImage(imageUrl);
+    } 
+
+    // Abrir o modal de edição
+    $('#editModal3').modal('show');
+    });
+            // Pré-visualização da nova imagem ao selecionar um arquivo
+    $("#edit_foto1").change(function () {
+        readURL(this);
+    });
+
+    // Função para pré-visualização da nova imagem
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview_edit_foto1').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+        // Processamento do formulário de edição via AJAX
+    $('#saveChanges3').click(function () {
+        var id = $('#edit_id').val();
+        var formData = new FormData();
+
+        // Adicionar dados ao FormData
+        formData.append('id', id);
+        formData.append('edit_foto1', $('#edit_foto1')[0].files[0]);
+
+        // Requisição AJAX para atualização dos dados
+        $.ajax({
+            url: 'update_event3.php',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.status == 'success') {
+                    // Mostrar um alerta de sucesso
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: 'Evento atualizado com sucesso!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(function () {
+                        // Fechar o modal de edição
+                        $('#editModal3').modal('hide');
+                        // Recarregar a página para atualizar a datatable
+                        location.reload(true);
+                    });
+                } else {
+                    // Mostrar um alerta de erro com animação
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: 'Erro ao atualizar o evento: ' + response.message,
+                        showClass: {
+                            popup: 'animate__animated animate__shakeX'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                // Mostrar um alerta de erro com animação
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro ao atualizar o evento: ' + error,
+                    showClass: {
+                        popup: 'animate__animated animate__shakeX'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
+
+
 
 
 
