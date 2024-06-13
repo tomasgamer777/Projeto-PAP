@@ -625,7 +625,7 @@ $(document).on('click', '.edit2', function () {
                     <!-- Aqui você pode adicionar botões/ações adicionais para a barra de ferramentas -->
                 </div>
                 <div class="material-datatables">
-                    <table id="datatables2" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                    <table id="datatables3" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                         <!-- Cabeçalho da Segunda Datatable -->
                         <thead>
                             <tr>
