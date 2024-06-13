@@ -322,7 +322,7 @@
                                         die("Connection failed: " . $conn->connect_error);
                                     }
     
-                                    $sql = "SELECT id, date, titulo_1, legenda_1 FROM homepage WHERE date IS NOT NULL";
+                                    $sql = "SELECT id, dia, mes, titulo_1, legenda_1 FROM homepage WHERE dia IS NOT NULL";
                                     $result = $conn->query($sql);
     
                                     if ($result->num_rows > 0) {
