@@ -54,6 +54,11 @@
   <link href="assets/demo/demo.css" rel="stylesheet" />
   <!-- Google Tag Manager -->
   
+  <style>
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+    </style>
 
   <script>
     (function(w, d, s, l, i) {
@@ -342,7 +347,7 @@
                                         echo "<td>" . htmlspecialchars($row["titulo"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($row["descricao"]) . "</td>";
                                         echo '<td class="text-right">
-                                          <button class="btn btn-link btn-warning btn-just-icon editModal" 
+                                          <button class="btn btn-link btn-warning btn-just-icon edit2" 
                                                   data-id="' . $row["id"] . '" 
                                                   data-dia="' . htmlspecialchars($row["dia"]) . '"
                                                   data-mes="' . htmlspecialchars($row["mes"]) . '"
@@ -373,8 +378,6 @@
         <!-- end row -->
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Modal de Edição -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -421,23 +424,27 @@
     </div>
 </div>
 
-<style>
-    .text-uppercase {
-        text-transform: uppercase;
-    }
-</style>
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-    $('#editModal').on('show.bs.modal', function (event) {
+$(document).ready(function() {
+    // Log to ensure the DOM is ready
+    console.log("DOM is ready");
+
+    $('#editModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget);
+        console.log("Edit button clicked");
+
         var id = button.data('id');
         var dia = button.data('dia');
         var mes = button.data('mes');
         var titulo = button.data('titulo');
         var legenda = button.data('legenda');
         var foto = button.data('foto');
+
+        console.log("Data retrieved:", { id, dia, mes, titulo, legenda, foto });
 
         var modal = $(this);
         modal.find('#editId').val(id);
@@ -449,22 +456,21 @@
         modal.find('#currentFoto').attr('src', '../' + foto);
     });
 
-    $('#saveChanges').on('click', function () {
+    $('#saveChanges').on('click', function() {
         var form = $('#editForm')[0];
         var formData = new FormData(form);
 
-        // Transformando a data para maiúsculas antes de enviar
+        // Transforming month input to uppercase
         var dateInput = $('#editMes');
         dateInput.val(dateInput.val().toUpperCase());
 
         $.ajax({
             type: "POST",
-            url: "edit_event.php", // Arquivo PHP para processar a atualização
+            url: "edit_event.php", // PHP file to handle the update
             data: formData,
             processData: false,
             contentType: false,
-            success: function (response) {
-                // Mostrar um alerta de sucesso com animação
+            success: function(response) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Sucesso!',
@@ -476,15 +482,13 @@
                         popup: 'animate__animated animate__fadeOutUp'
                     }
                 }).then(() => {
-                    // Recarregar a página após o fechamento do modal
                     $('#editModal').modal('hide');
                     setTimeout(function() {
-                        location.reload(true); // Forçar recarregar a página do servidor
-                    }, 500); // Aguardar 500ms antes de recarregar
+                        location.reload(true);
+                    }, 500);
                 });
             },
-            error: function (xhr, status, error) {
-                // Mostrar um alerta de erro com animação
+            error: function(xhr, status, error) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro!',
@@ -499,6 +503,7 @@
             }
         });
     });
+});
 </script>
 
 
