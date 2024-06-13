@@ -3,9 +3,9 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Conexão com o banco de dados (substitua com suas próprias credenciais)
     $servername = "localhost";
-    $username = "seu_usuario";
-    $password = "sua_senha";
-    $dbname = "banda";
+$username = "tomas";
+$password = "!h01fFw35";
+$dbname = "banda";
 
     // Cria conexão
     $conn = new mysqli($servername, $username, $password, $dbname);
