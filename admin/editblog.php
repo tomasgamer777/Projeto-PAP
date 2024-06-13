@@ -430,43 +430,46 @@
 
 <script>
 $(document).ready(function() {
-    // Log to ensure the DOM is ready
     console.log("DOM is ready");
 
-    $('#editModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget);
+    // Evento de clique no botão de edição
+    $('.edit2').on('click', function() {
         console.log("Edit button clicked");
 
-        var id = button.data('id');
-        var dia = button.data('dia');
-        var mes = button.data('mes');
-        var titulo = button.data('titulo');
-        var legenda = button.data('legenda');
-        var foto = button.data('foto');
+        var id = $(this).data('id');
+        var dia = $(this).data('dia');
+        var mes = $(this).data('mes');
+        var titulo = $(this).data('titulo');
+        var legenda = $(this).data('legenda');
+        var foto = $(this).data('foto');
 
         console.log("Data retrieved:", { id, dia, mes, titulo, legenda, foto });
 
-        var modal = $(this);
-        modal.find('#editId').val(id);
-        modal.find('#editDia').val(dia);
-        modal.find('#editMes').val(mes);
-        modal.find('#editTitulo').val(titulo);
-        modal.find('#editLegenda').val(legenda);
-        modal.find('#editFoto').val(foto);
-        modal.find('#currentFoto').attr('src', '../' + foto);
+        // Preencher os campos do modal com os dados obtidos
+        $('#editId').val(id);
+        $('#editDia').val(dia);
+        $('#editMes').val(mes);
+        $('#editTitulo').val(titulo);
+        $('#editLegenda').val(legenda);
+        $('#editFoto').val(foto);
+        $('#currentFoto').attr('src', '../' + foto);
+
+        // Abrir o modal de edição
+        $('#editModal').modal('show');
     });
 
+    // Código para salvar as mudanças no modal de edição
     $('#saveChanges').on('click', function() {
         var form = $('#editForm')[0];
         var formData = new FormData(form);
 
-        // Transforming month input to uppercase
+        // Transformar o mês para maiúsculas antes de enviar
         var dateInput = $('#editMes');
         dateInput.val(dateInput.val().toUpperCase());
 
         $.ajax({
             type: "POST",
-            url: "edit_event.php", // PHP file to handle the update
+            url: "edit_event.php", // Arquivo PHP para processar a atualização
             data: formData,
             processData: false,
             contentType: false,
@@ -484,8 +487,8 @@ $(document).ready(function() {
                 }).then(() => {
                     $('#editModal').modal('hide');
                     setTimeout(function() {
-                        location.reload(true);
-                    }, 500);
+                        location.reload(true); // Forçar recarregar a página do servidor
+                    }, 500); // Aguardar 500ms antes de recarregar
                 });
             },
             error: function(xhr, status, error) {
