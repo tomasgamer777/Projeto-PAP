@@ -492,7 +492,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "edit_blog.php", // Arquivo PHP para processar a atualização
+            url: "update_blog.php", // Arquivo PHP para processar a atualização
             data: formData,
             processData: false,
             contentType: false,
