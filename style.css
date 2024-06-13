@@ -2693,3 +2693,13 @@ body {
         color: #fd5927; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.main-content {
+  text-align: center; /* Center align the content */
+  padding: 50px 0; /* Add padding to create space around content (adjust as needed) */
+}
+
+.main-content .content {
+  text-align: left; /* Reset text alignment for the inner content */
+}
