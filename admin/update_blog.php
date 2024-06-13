@@ -19,21 +19,21 @@ $dbname = "banda";
     session_start();
 
     // Obtém os dados do formulário
-    $id = $_POST['editId'];
-    $dia = $_POST['editDia'];
-    $mes = strtoupper($_POST['editMes']); // Transforma o mês em maiúsculo
-    $titulo = $_POST['editTitulo'];
-    $legenda = $_POST['editLegenda'];
+    $id = $_POST['id'];
+    $dia = $_POST['dia'];
+    $mes = $_POST['mes'];
+    $titulo = $_POST['titulo_1'];
+    $legenda = $_POST['legenda_1'];
 
     // Verifica se um novo arquivo de imagem foi enviado
-    if ($_FILES['editFoto']['name']) {
+    if ($_FILES['foto']['name']) {
         $target_dir = "../dummy/";
-        $target_file = $target_dir . basename($_FILES["editFoto"]["name"]);
+        $target_file = $target_dir . basename($_FILES["foto"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Verifica se o arquivo de imagem é uma imagem real
-        $check = getimagesize($_FILES["editFoto"]["tmp_name"]);
+        $check = getimagesize($_FILES["foto"]["tmp_name"]);
         if ($check === false) {
             echo "Erro: O arquivo enviado não é uma imagem válida.";
             $uploadOk = 0;
@@ -46,7 +46,7 @@ $dbname = "banda";
         }
 
         // Limita o tamanho do arquivo de imagem (opcional)
-        if ($_FILES["editFoto"]["size"] > 500000) {
+        if ($_FILES["foto"]["size"] > 500000) {
             echo "Erro: O arquivo é muito grande.";
             $uploadOk = 0;
         }
@@ -60,9 +60,9 @@ $dbname = "banda";
 
         // Se tudo estiver correto, tenta fazer o upload da imagem
         if ($uploadOk) {
-            if (move_uploaded_file($_FILES["editFoto"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
                 // Atualiza o caminho da imagem no banco de dados
-                $foto_caminho = "dummy/" . basename($_FILES["editFoto"]["name"]);
+                $foto_caminho = "dummy/recized_" . basename($_FILES["foto"]["name"]);
                 $sql_update = "UPDATE blog SET dia='$dia', mes='$mes', titulo='$titulo', descricao='$legenda', foto='$foto_caminho' WHERE id='$id'";
 
                 if ($conn->query($sql_update) === TRUE) {
@@ -101,4 +101,6 @@ $dbname = "banda";
 } else {
     echo "Erro: Método de requisição inválido.";
 }
+
+
 ?>
