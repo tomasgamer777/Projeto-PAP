@@ -98,8 +98,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_update->affected_rows > 0) {
             $response = array(
                 'status' => 'success',
-                'message' => 'Dados atualizados com sucesso!'
+                'message' => 'Dados atualizados com sucesso!',
+                // outros dados se necessário
             );
+            
+            // Enviar resposta JSON
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit;
         } else {
             $response = array(
                 'status' => 'error',
