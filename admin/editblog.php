@@ -476,53 +476,6 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<!-- Modal de Edição -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="editForm" enctype="multipart/form-data">
-                    <input type="hidden" id="editId" name="id">
-                    <input type="hidden" id="editFoto" name="foto">
-                    <div class="form-group">
-                        <label for="editDia">Dia <small class="text-muted"></small></label>
-                        <input type="text" class="form-control text-uppercase" id="editDia" name="dia" placeholder="DD">
-                    </div>
-                    <div class="form-group">
-                        <label for="editMes">Mês <small class="text-muted"></small></label>
-                        <input type="text" class="form-control text-uppercase" id="editMes" name="mes" placeholder="MM">
-                    </div>
-                    <div class="form-group">
-                        <label for="editTitulo">Título</label>
-                        <input type="text" class="form-control" id="editTitulo" name="titulo_1">
-                    </div>
-                    <div class="form-group">
-                        <label for="editLegenda">Legenda</label>
-                        <input type="text" class="form-control" id="editLegenda" name="legenda_1">
-                    </div>
-                    <div class="form-group">
-                        <label for="currentFoto">Foto Atual</label>
-                        <img id="currentFoto" src="" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
-                    </div>
-                    <div class="form-group">
-                        <label for="editFotoUpload">Alterar Foto</label>
-                        <input type="file" class="form-control" id="editFotoUpload" name="foto">
-                    </div>
-                    <button type="button" class="btn btn-primary" id="saveChanges">Salvar Mudanças</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <style>
     .text-uppercase {
         text-transform: uppercase;
@@ -533,7 +486,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
+        var button = $(event.relatedTarget); 
         var id = button.data('id');
         var dia = button.data('dia');
         var mes = button.data('mes');
@@ -543,8 +496,8 @@
 
         var modal = $(this);
         modal.find('#editId').val(id);
-        modal.find('#editDia').val(dia);
-        modal.find('#editMes').val(mes);
+        modal.find('#editDia').val(dia); 
+        modal.find('#editMes').val(mes); 
         modal.find('#editTitulo').val(titulo);
         modal.find('#editLegenda').val(legenda);
         modal.find('#editFoto').val(foto);
@@ -561,7 +514,7 @@
 
         $.ajax({
             type: "POST",
-            url: "edit_blog.php", // Arquivo PHP para processar a atualização
+            url: "edit_event.php", // Arquivo PHP para processar a atualização
             data: formData,
             processData: false,
             contentType: false,
@@ -570,7 +523,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Sucesso!',
-                    text: 'Blog atualizado com sucesso!',
+                    text: 'Evento atualizado com sucesso!',
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },
@@ -590,7 +543,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro!',
-                    text: 'Erro ao atualizar o Blog: ' + error,
+                    text: 'Erro ao atualizar o evento: ' + error,
                     showClass: {
                         popup: 'animate__animated animate__shakeX'
                     },
@@ -602,6 +555,15 @@
         });
     });
 </script>
+
+
+
+
+
+
+
+    
+      
     </div>
   </div>
   <!--   Core JS Files   -->
