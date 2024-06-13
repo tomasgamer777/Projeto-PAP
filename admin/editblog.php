@@ -139,7 +139,7 @@
         </div>
       </div>
       <ul class="nav">
-        <li class="nav-item active ">
+        <li class="nav-item ">
           <a class="nav-link" href="dashboard.html">
             <i class="material-icons">dashboard</i>
             <p> Menu Principal </p>
@@ -197,7 +197,7 @@
                   <span class="sidebar-normal"> Galeria </span>
                 </a>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item active">
                 <a class="nav-link" href="editblog.php">
                   <i class="material-icons"> newspaper </i>
                   <span class="sidebar-normal"> Blog </span>
