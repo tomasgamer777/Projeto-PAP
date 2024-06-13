@@ -51,7 +51,7 @@ function resizeImage($file, $width, $height, $output) {
 
 // Tratamento da imagem
 if(isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
-    $target_dir = "../dummy/";
+    $target_dir = "../dummy/"; // Caminho para a pasta dummy uma pasta acima
     $target_file = $target_dir . basename($_FILES["foto"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -77,7 +77,7 @@ if(isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
         $resized_file = $target_dir . 'resized_' . basename($_FILES["foto"]["name"]);
         resizeImage($_FILES["foto"]["tmp_name"], 600, 300, $resized_file);
         if (file_exists($resized_file)) {
-            $foto = "dummy/" . 'resized_' . basename($_FILES["foto"]["name"]);
+            $foto = "../dummy/" . 'resized_' . basename($_FILES["foto"]["name"]); // Caminho completo para a imagem redimensionada
         } else {
             echo json_encode(["error" => "Desculpe, houve um erro ao enviar seu arquivo."]);
             exit;
