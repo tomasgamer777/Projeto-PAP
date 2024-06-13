@@ -3,9 +3,9 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Conexão com o banco de dados (substitua com suas próprias credenciais)
     $servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
+    $username = "tomas";
+    $password = "!h01fFw35";
+    $dbname = "banda";
 
     // Cria conexão
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,7 +21,7 @@ $dbname = "banda";
     // Obtém os dados do formulário
     $id = $_POST['id'];
     $dia = $_POST['dia'];
-    $mes = $_POST['mes'];
+    $mes = strtoupper($_POST['mes']); // Transforma o mês em maiúsculo
     $titulo = $_POST['titulo_1'];
     $legenda = $_POST['legenda_1'];
 
@@ -62,7 +62,7 @@ $dbname = "banda";
         if ($uploadOk) {
             if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
                 // Atualiza o caminho da imagem no banco de dados
-                $foto_caminho = "dummy/resized_" . basename($_FILES["foto"]["name"]);
+                $foto_caminho = "dummy/" . basename($_FILES["foto"]["name"]);
                 $sql_update = "UPDATE blog SET dia='$dia', mes='$mes', titulo='$titulo', descricao='$legenda', foto='$foto_caminho' WHERE id='$id'";
 
                 if ($conn->query($sql_update) === TRUE) {
@@ -101,6 +101,4 @@ $dbname = "banda";
 } else {
     echo "Erro: Método de requisição inválido.";
 }
-
-
 ?>
