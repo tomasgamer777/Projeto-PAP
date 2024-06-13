@@ -737,8 +737,8 @@ $(document).on('click', '.edit2', function () {
 <script>
     $(document).ready(function () {
 // Função para exibir a imagem atual no modal de edição
-function showCurrentImage(imageUrl) {
-    $('#current_image').attr('src', imageUrl);
+function showCurrentImage1(imageUrl) {
+    $('#current_image1').attr('src', imageUrl);
 }
 
 // Abrir o modal de edição ao clicar no botão de edição na datatable
@@ -747,12 +747,12 @@ $(document).on('click', '.edit3', function () {
     var header = $(this).data('header'); // Certifique-se de que 'foto' é o nome correto do atributo data
 
     // Preencher os campos do modal com os dados do evento
-    $('#edit_id').val(id);
+    $('#edit_id1').val(id);
 
     // Verificar se há uma imagem definida
     if (header) {
         var imageUrl = '../' + header; // Adiciona '../' para navegar um nível acima do diretório raiz
-        showCurrentImage(imageUrl);
+        showCurrentImage1(imageUrl);
     } 
 
     // Abrir o modal de edição
