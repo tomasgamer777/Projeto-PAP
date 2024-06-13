@@ -378,6 +378,106 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Lista das informações do Blog</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="toolbar"></div>
+                        <div class="material-datatables">
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Foto</th>
+                                        <th>Dia</th>
+                                        <th>Mês</th>
+                                        <th>Título</th>
+                                        <th>Legenda</th>
+                                        <th class="disabled-sorting text-right">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Foto</th>
+                                        <th>Dia</th>
+                                        <th>Mês</th>
+                                        <th>Título</th>
+                                        <th>Legenda</th>
+                                        <th class="text-right">Ações</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                <?php
+                                // Conexão com o banco de dados
+                                $servername = "localhost";
+                                $username = "tomas";
+                                $password = "!h01fFw35";
+                                $dbname = "banda";
+
+                                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                                // Verifica a conexão
+                                if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                }
+
+                                // Consulta SQL para selecionar os dados da segunda datatable
+                                $sql = "SELECT id, dia, mes, titulo, descricao, foto FROM blog";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row["id"] . "</td>";
+                                        echo "<td><img src='../" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
+                                        echo "<td>" . htmlspecialchars($row["dia"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row["mes"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row["titulo"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row["descricao"]) . "</td>";
+                                        echo '<td class="text-right">
+                                          <button class="btn btn-link btn-warning btn-just-icon edit2" 
+                                                  data-id="' . $row["id"] . '" 
+                                                  data-dia="' . htmlspecialchars($row["dia"]) . '"
+                                                  data-mes="' . htmlspecialchars($row["mes"]) . '"
+                                                  data-titulo="' . htmlspecialchars($row["titulo"]) . '" 
+                                                  data-legenda="' . htmlspecialchars($row["descricao"]) . '"
+                                                  data-foto="' . htmlspecialchars($row["foto"]) . '">
+                                              <i class="material-icons">edit</i>
+                                          </button>
+                                        </td>';
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='7'>Nenhum resultado encontrado.</td></tr>";
+                                }
+
+                                $conn->close();
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!-- end card  -->
+            </div>
+            <!-- end col-md-12 -->
+        </div>
+        <!-- end row -->
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Modal de Edição -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -413,7 +513,7 @@
                         <img id="currentFoto" src="" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
                     </div>
                     <div class="form-group">
-                        <label for="editFoto">Alterar Foto</label>
+                        <label for="editFotoUpload">Alterar Foto</label>
                         <input type="file" class="form-control" id="editFotoUpload" name="foto">
                     </div>
                     <button type="button" class="btn btn-primary" id="saveChanges">Salvar Mudanças</button>
@@ -433,7 +533,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); 
+        var button = $(event.relatedTarget);
         var id = button.data('id');
         var dia = button.data('dia');
         var mes = button.data('mes');
@@ -443,8 +543,8 @@
 
         var modal = $(this);
         modal.find('#editId').val(id);
-        modal.find('#editDia').val(dia); 
-        modal.find('#editMes').val(mes); 
+        modal.find('#editDia').val(dia);
+        modal.find('#editMes').val(mes);
         modal.find('#editTitulo').val(titulo);
         modal.find('#editLegenda').val(legenda);
         modal.find('#editFoto').val(foto);
@@ -461,7 +561,7 @@
 
         $.ajax({
             type: "POST",
-            url: "edit_event.php", // Arquivo PHP para processar a atualização
+            url: "edit_blog.php", // Arquivo PHP para processar a atualização
             data: formData,
             processData: false,
             contentType: false,
@@ -470,7 +570,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Sucesso!',
-                    text: 'Evento atualizado com sucesso!',
+                    text: 'Blog atualizado com sucesso!',
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },
@@ -490,7 +590,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro!',
-                    text: 'Erro ao atualizar o evento: ' + error,
+                    text: 'Erro ao atualizar o Blog: ' + error,
                     showClass: {
                         popup: 'animate__animated animate__shakeX'
                     },
@@ -502,15 +602,6 @@
         });
     });
 </script>
-
-
-
-
-
-
-
-    
-      
     </div>
   </div>
   <!--   Core JS Files   -->
