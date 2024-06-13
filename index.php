@@ -113,58 +113,41 @@
 							</div> <!-- .event-nav -->
 
 						</header> <!-- .section-header -->
-						<div class="event-carousel">
-							
-							<div class="event">
-								<div class="entry-date">
-									<div class="date">09</div>
-									<span class="month">Maio</span>
-								</div>
-								<h2 class="entry-title"><a href="#">Santa Comba Dão</a></h2>
-								<p>Arruada feita para a celebração da Quinta-feira de Ascensão.</p>
-							</div> <!-- .event -->
-							
-							
-							<div class="event">
-								<div class="entry-date">
-									<div class="date">05</div>
-									<span class="month">Maio</span>
-								</div>
-								<h2 class="entry-title"><a href="#">Vimieiro</a></h2>
-								<p>Arruada e procissão relegiosa em celebração à Santa Cruz.</p>
-							</div> <!-- .event -->
-							
-							
-							<div class="event">
-								<div class="entry-date">
-									<div class="date">04</div>
-									<span class="month">Maio</span>
-								</div>
-								<h2 class="entry-title"><a href="#">Coimbra</a></h2>
-								<p>Concerto em comemoração do 50º aniversário do 25 de Abril.</p>
-							</div> <!-- .event -->
-							
-							
-							<div class="event">
-								<div class="entry-date">
-									<div class="date">25</div>
-									<span class="month">Abril</span>
-								</div>
-								<h2 class="entry-title"><a href="#">Nelas</a></h2>
-								<p>Concerto em comemoração do 50º aniversário do 25 de Abril. </p>
-							</div> <!-- .event -->
-							
-							
-							<div class="event">
-								<div class="entry-date">
-									<div class="date">24</div>
-									<span class="month">Março</span>
-								</div>
-								<h2 class="entry-title"><a href="#">Pinheiro de Ázere</a></h2>
-								<p>Procissão em celebreção do Domingo de Ramos.</p>
-							</div> <!-- .event -->
-							
-						</div> <!-- .event-carousel -->
+						<?php
+						$servername = "localhost";
+						$username = "tomas";
+						$password = "!h01fFw35";
+						$dbname = "banda";
+
+						$conn = new mysqli($servername, $username, $password, $dbname);
+
+						if ($conn->connect_error) {
+							die("Connection failed: " . $conn->connect_error);
+						}
+
+						$sql = "SELECT dia, mes, titulo_1, legenda_1 FROM homepage WHERE dia IS NOT NULL";
+						$result = $conn->query($sql);
+
+						if ($result->num_rows > 0) {
+							echo '<div class="event-carousel">';
+							while ($row = $result->fetch_assoc()) {
+								echo '<div class="event">';
+								echo '<div class="entry-date">';
+								echo '<div class="date">' . $row["dia"] . '</div>';
+								echo '<span class="month">' . $row["mes"] . '</span>';
+								echo '</div>';
+								echo '<h2 class="entry-title"><a href="#">' . $row["titulo_1"] . '</a></h2>';
+								echo '<p>' . $row["legenda_1"] . '</p>';
+								echo '</div> <!-- .event -->';
+							}
+							echo '</div> <!-- .event-carousel -->';
+						} else {
+							echo "<p>Nenhum evento encontrado.</p>";
+						}
+
+						$conn->close();
+						?>
+
 					</div> <!-- .container -->
 				</div> <!-- .upcoming-event-section -->
 
