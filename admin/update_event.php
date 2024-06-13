@@ -16,7 +16,7 @@ $mes = strtoupper($_POST['mes']); // Certificar-se que a data está em maiúscul
 $titulo = $_POST['titulo_1'];
 $legenda = $_POST['legenda_1'];
 
-$sql = "UPDATE homepage SET dia='$dia', mes='$mes' titulo_1='$titulo', legenda_1='$legenda' WHERE id='$id'";
+$sql = "UPDATE homepage SET dia='$dia', mes='$mes', titulo_1='$titulo', legenda_1='$legenda' WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";
