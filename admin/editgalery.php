@@ -93,108 +93,113 @@
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <div class="user">
-          <div class="photo">
-            <img src="assets/img/faces/avatar.jpg" />
-          </div>
-          <div class="user-info">
-            <a data-toggle="collapse" href="#collapseExample" class="username">
-              <span>
-                Tomás Calçada
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> EP </span>
-                    <span class="sidebar-normal"> Editar Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> D </span>
-                    <span class="sidebar-normal"> Definições </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+      <div class="user">
+        <div class="photo">
+          <img src="assets/img/faces/avatar.jpg" />
+        </div>
+        <div class="user-info">
+          <a data-toggle="collapse" href="#collapseExample" class="username">
+            <span>
+              Tomás Calçada
+              <b class="caret"></b>
+            </span>
+          </a>
+          <div class="collapse" id="collapseExample">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="sidebar-mini"> P </span>
+                  <span class="sidebar-normal"> Perfil </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="sidebar-mini"> EP </span>
+                  <span class="sidebar-normal"> Editar Perfil </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="sidebar-mini"> D </span>
+                  <span class="sidebar-normal"> Definições </span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="dashboard.html">
-              <i class="material-icons">dashboard</i>
-              <p> Menu Principal </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#utilizadores">
-              <i class="material-icons">person</i>
-              <p> Utilizadores
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="utilizadores">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="pusers/add_users.html">
-                    <i class="material-icons"> person_add_alt </i>
-                    <span class="sidebar-normal"> Adicionar Utilizadores </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="users/list_user.php">
-                    <i class="material-icons"> list </i>
-                    <span class="sidebar-normal"> lista de Utilizadores </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="calendar.html">
-              <i class="material-icons">calendar_today</i>
-              <p> Calendário </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#website">
-              <i class="material-icons">public</i>
-              <p> Editar Website
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="website">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="edithomepage.html">
-                    <i class="material-icons"> house </i>
-                    <span class="sidebar-normal"> Página Principal </span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="editgalery.php">
-                    <i class="material-icons"> collections </i>
-                    <span class="sidebar-normal"> Galeria </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          
-        </ul>
       </div>
+      <ul class="nav">
+        <li class="nav-item active ">
+          <a class="nav-link" href="dashboard.html">
+            <i class="material-icons">dashboard</i>
+            <p> Menu Principal </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#utilizadores">
+            <i class="material-icons">person</i>
+            <p> Utilizadores
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="utilizadores">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="users/add_users.html">
+                  <i class="material-icons"> person_add_alt </i>
+                  <span class="sidebar-normal"> Adicionar Utilizadores </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="users/list_user.php">
+                  <i class="material-icons"> list </i>
+                  <span class="sidebar-normal"> lista de Utilizadores </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="calendar.html">
+            <i class="material-icons">calendar_today</i>
+            <p> Calendário </p>
+          </a>
+        </li>
+        
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#website">
+            <i class="material-icons">public</i>
+            <p> Editar Website
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="website">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="add_users.html">
+                  <i class="material-icons"> house </i>
+                  <span class="sidebar-normal"> Página Principal </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="editgalery.php">
+                  <i class="material-icons"> collections </i>
+                  <span class="sidebar-normal"> Galeria </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="editblog.php">
+                  <i class="material-icons"> newspaper </i>
+                  <span class="sidebar-normal"> Blog </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </div>
-    
-    <div class="main-panel">
+  </div>
+  <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
         <div class="container-fluid">
