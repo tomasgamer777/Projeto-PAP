@@ -51,18 +51,19 @@ $username = "seu_usuario";
 $password = "sua_senha";
 $dbname = "seu_banco_de_dados";
 
-// Conectando ao banco de dados
+
+// Criar conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificando a conexão
+// Verificar conexão
 if ($conn->connect_error) {
     die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+} else {
+    echo "Conexão bem-sucedida!";
 }
 
-// Query SQL para selecionar os posts da tabela blog
-$sql = "SELECT dia, mes, titulo, descricao, foto FROM blog";
-$result = $conn->query($sql);
-
+// Fechar conexão
+$conn->close();
 ?>
 
 <main class="main-content">
