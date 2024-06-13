@@ -62,7 +62,7 @@ $dbname = "banda";
         if ($uploadOk) {
             if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
                 // Atualiza o caminho da imagem no banco de dados
-                $foto_caminho = "dummy/recized_" . basename($_FILES["foto"]["name"]);
+                $foto_caminho = "dummy/resized_" . basename($_FILES["foto"]["name"]);
                 $sql_update = "UPDATE blog SET dia='$dia', mes='$mes', titulo='$titulo', descricao='$legenda', foto='$foto_caminho' WHERE id='$id'";
 
                 if ($conn->query($sql_update) === TRUE) {
