@@ -342,7 +342,7 @@
                                         echo "<td>" . htmlspecialchars($row["titulo"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($row["descricao"]) . "</td>";
                                         echo '<td class="text-right">
-                                          <button class="btn btn-link btn-warning btn-just-icon edit2" 
+                                          <button class="btn btn-link btn-warning btn-just-icon editModal" 
                                                   data-id="' . $row["id"] . '" 
                                                   data-dia="' . htmlspecialchars($row["dia"]) . '"
                                                   data-mes="' . htmlspecialchars($row["mes"]) . '"
