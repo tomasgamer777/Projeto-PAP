@@ -36,8 +36,8 @@
 							<li class="menu-item"><a href="index.php">Página Principal</a></li>
 							<li class="menu-item"><a href="about.html">A Banda</a></li>
 							<li class="menu-item current-menu-item"><a href="gallery.php">Galeria</a></li>
-							<li class="menu-item"><a href="download.html">..</a></li>
-							<li class="menu-item"><a href="blog.html">..</a></li>
+							<li class="menu-item"><a href="download.html">Discografia</a></li>
+							<li class="menu-item"><a href="blog.html">Blog</a></li>
 							<li class="menu-item"><a href="contact.html">Contacte-nos</a></li>
 						</ul> <!-- .menu -->
 					</nav> <!-- .main-navigation -->
