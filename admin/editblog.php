@@ -278,180 +278,98 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-            
-        </div>
-    </div>
-<!-- Modal de Edição (Segunda Datatable) -->
-<div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModal2Label">Editar Blog</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="editForm2">
-                <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
-                    <input type="hidden" id="edit_id" name="edit_id">
-                    <div class="form-group">
-                        <label for="editDia">Dia <small class="text-muted"></small></label>
-                        <input type="text" class="form-control text-uppercase" id="editDia" name="dia" placeholder="DD">
-                    </div>
-                    <div class="form-group">
-                        <label for="editMes">Mês <small class="text-muted"></small></label>
-                        <input type="text" class="form-control text-uppercase" id="editMes" name="mes" placeholder="MM">
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_foto">Imagem Atual</label>
-                        <img id="current_image" src="#" class="img-thumbnail" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_foto">Nova Imagem</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="edit_foto" name="edit_foto">
-                            <label class="custom-file-label" for="edit_foto">Escolher arquivo</label>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <h4 class="card-title">Lista das informações do Blog</h4>
                         </div>
-                        <img id="preview_edit_foto" src="#" alt="" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                        <div class="card-body">
+                            <div class="toolbar">
+                            </div>
+                            <div class="material-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Foto</th>
+                                            <th>Dia</th>
+                                            <th>Mês</th>
+                                            <th>Título</th>
+                                            <th>Legenda</th>
+                                            <th class="disabled-sorting text-right">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Foto</th>
+                                            <th>Dia</th>
+                                            <th>Mês</th>
+                                            <th>Título</th>
+                                            <th>Legenda</th>
+                                            <th class="text-right">Ações</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <?php
+                        // Conexão com o banco de dados
+                        $servername = "localhost";
+                        $username = "tomas";
+                        $password = "!h01fFw35";
+                        $dbname = "banda";
+
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Verifica a conexão
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        // Consulta SQL para selecionar os dados da segunda datatable
+                        $sql = "SELECT id, titulo, descricao, foto FROM blog";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["id"] . "</td>";
+                                echo "<td><img src='../" . $row["foto"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
+                                echo "<td>" . htmlspecialchars($row["titulo"]) . "</td>";
+                                echo "<td>" . htmlspecialchars($row["descricao"]) . "</td>";
+                                echo '<td class="text-right">
+                                  <button class="btn btn-link btn-warning btn-just-icon edit2" 
+                                          data-id="' . $row["id"] . '" 
+                                          data-foto="' . $row["foto"] . '" 
+                                          data-titulo="' . htmlspecialchars($row["titulo"]) . '" 
+                                          data-legenda="' . htmlspecialchars($row["descricao"]) . '">
+                                      <i class="material-icons">edit</i>
+                                  </button>
+                                </td>';
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'>Nenhum resultado encontrado.</td></tr>";
+                        }
+
+                        $conn->close();
+                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end content-->
                     </div>
-                    <div class="form-group">
-                        <label for="edit_titulo">Título</label>
-                        <input type="text" class="form-control" id="edit_titulo" name="edit_titulo" style="max-width: 100%;" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_descricao">Descrição</label>
-                        <textarea class="form-descricao" id="edit_descricao" name="edit_descricao" style="max-width: 100%; min-height: 80px; max-height: 200px;" required></textarea>
-                    </div>
+                    <!-- end card  -->
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="saveChanges2">Salvar Alterações</button>
-                </div>
-            </form>
+                <!-- end col-md-12 -->
+            </div>
+            <!-- end row -->
         </div>
     </div>
-</div>
-<script>
-    $(document).ready(function () {
-// Função para exibir a imagem atual no modal de edição
-function showCurrentImage(imageUrl) {
-    $('#current_image').attr('src', imageUrl);
-}
-
-// Abrir o modal de edição ao clicar no botão de edição na datatable
-$(document).on('click', '.edit2', function () {
-    var id = $(this).data('id');
-    var dia = button.data('dia');
-    var mes = button.data('mes');
-    var titulo = $(this).data('titulo');
-    var descricao = $(this).data('descricao');
-    var foto = $(this).data('foto'); // Certifique-se de que 'foto' é o nome correto do atributo data
-
-    // Preencher os campos do modal com os dados do evento
-    $('#edit_id').val(id);
-    $('#editDia').val(dia);
-    $('#editMes').val(mes);
-    $('#edit_titulo').val(titulo);
-    $('#edit_descricao').val(descricao);
-
-    // Verificar se há uma imagem definida
-    if (foto) {
-        var imageUrl = '../' + foto; // Adiciona '../' para navegar um nível acima do diretório raiz
-        showCurrentImage(imageUrl);
-    } 
-
-    // Abrir o modal de edição
-    $('#editModal2').modal('show');
-    });
-            // Pré-visualização da nova imagem ao selecionar um arquivo
-    $("#edit_foto").change(function () {
-        readURL(this);
-    });
-
-    // Função para pré-visualização da nova imagem
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#preview_edit_foto').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-        // Processamento do formulário de edição via AJAX
-    $('#saveChanges2').click(function () {
-        // Transformando a data para maiúsculas antes de enviar
-        var dateInput = $('#editMes');
-        dateInput.val(dateInput.val().toUpperCase());
-        var id = $('#edit_id').val();
-        var titulo = $('#edit_titulo').val();
-        var titulo = $('#edit_Dia').val();
-        var descricao = $('#edit_descricao').val();
-        var formData = new FormData();
-
-        // Adicionar dados ao FormData
-        formData.append('id', id);
-        formData.append('titulo_2', titulo);
-        formData.append('legenda_2', legenda);
-        formData.append('edit_foto', $('#edit_foto')[0].files[0]);
-
-        // Requisição AJAX para atualização dos dados
-        $.ajax({
-            url: 'update_event2.php',
-            type: 'POST',
-            dataType: 'json',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response.status == 'success') {
-                    // Mostrar um alerta de sucesso
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sucesso!',
-                        text: 'Evento atualizado com sucesso!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(function () {
-                        // Fechar o modal de edição
-                        $('#editModal2').modal('hide');
-                        // Recarregar a página para atualizar a datatable
-                        location.reload(true);
-                    });
-                } else {
-                    // Mostrar um alerta de erro com animação
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro!',
-                        text: 'Erro ao atualizar o evento: ' + response.message,
-                        showClass: {
-                            popup: 'animate__animated animate__shakeX'
-                        },
-                        hideClass: {
-                            popup: 'animate__animated animate__fadeOutUp'
-                        }
-                    });
-                }
-            },
-            error: function (xhr, status, error) {
-                // Mostrar um alerta de erro com animação
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro!',
-                    text: 'Erro ao atualizar o evento: ' + error,
-                    showClass: {
-                        popup: 'animate__animated animate__shakeX'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
-                });
-            }
-        });
-    });
-});
-</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -502,7 +420,73 @@ $(document).on('click', '.edit2', function () {
 </style>
 
 
+    <!-- Inclua o JS necessário aqui (jQuery, Bootstrap etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); 
+        var id = button.data('id');
+        var dia = button.data('dia');
+        var mes = button.data('mes');
+        var titulo = button.data('titulo');
+        var legenda = button.data('legenda');
 
+        var modal = $(this);
+        modal.find('#editId').val(id);
+        modal.find('#editDia').val(dia); 
+        modal.find('#editMes').val(mes); 
+        modal.find('#editTitulo').val(titulo);
+        modal.find('#editLegenda').val(legenda);
+    });
+
+    $('#saveChanges').on('click', function () {
+        var form = $('#editForm');
+        // Transformando a data para maiúsculas antes de enviar
+        var dateInput = $('#editMes');
+        dateInput.val(dateInput.val().toUpperCase());
+
+        $.ajax({
+            type: "POST",
+            url: "update_event.php", // Arquivo PHP para processar a atualização
+            data: form.serialize(),
+            success: function (response) {
+                // Mostrar um alerta de sucesso com animação
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: 'Evento atualizado com sucesso!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                }).then(() => {
+                    // Recarregar a página após o fechamento do modal
+                    $('#editModal').modal('hide');
+                    setTimeout(function() {
+                        location.reload(true); // Forçar recarregar a página do servidor
+                    }, 500); // Aguardar 500ms antes de recarregar
+                });
+            },
+            error: function (xhr, status, error) {
+                // Mostrar um alerta de erro com animação
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro ao atualizar o evento: ' + error,
+                    showClass: {
+                        popup: 'animate__animated animate__shakeX'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 
 
