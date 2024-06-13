@@ -79,9 +79,8 @@
                                         echo '<div class="featured-image">';
                                         echo '<img src="' . htmlspecialchars($row['foto']) . '" alt="">';
                                         echo '</div>';
-                                        echo '<h2 class="entry-title"><a href="#">' . htmlspecialchars($row['titulo']) . '</a></h2>';
+                                        echo '<h2 class="entry-title">' . htmlspecialchars($row['titulo']) . '</a></h2>';
                                         echo '<p>' . htmlspecialchars($row['descricao']) . '</p>';
-                                        echo '<a href="#">Read more</a>';
                                         echo '</div>';
                                     }
                                 } else {
