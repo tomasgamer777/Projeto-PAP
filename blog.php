@@ -44,46 +44,79 @@
 				</div>
 			</header> <!-- .site-header -->
 			
-			<main class="main-content">
-				<div class="fullwidth-block inner-content">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-7">
-								<div class="content">
-									<h2 class="entry-title">Blog</h2>
-			
-									<?php
-									// Assuming $posts is an array containing data fetched from the database
-									foreach ($posts as $post) {
-										$dia = $post['dia'];
-										$mes = $post['mes'];
-										$titulo = $post['titulo'];
-										$descricao = $post['descricao'];
-										$foto = $post['foto'];
-									?>
-			
-									<div class="post">
-										<div class="entry-date">
-											<div class="date"><?php echo $dia; ?></div>
-											<span class="month"><?php echo $mes; ?></span>
-										</div>
-										<div class="featured-image">
-											<img src="<?php echo $foto; ?>" alt="">
-										</div>
-										<h2 class="entry-title"><a href="#"><?php echo $titulo; ?></a></h2>
-										<p><?php echo $descricao; ?></p>
-										<a href="#">Read more</a>
-									</div>
-			
-									<?php } // End foreach ?>
-			
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> <!-- .testimonial-section -->
-			
-			</main> <!-- .main-content -->
+			<?php
+// Exemplo básico de conexão com o banco de dados
+$servername = "seu_servidor";
+$username = "seu_usuario";
+$password = "sua_senha";
+$dbname = "seu_banco_de_dados";
+
+// Conectando ao banco de dados
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificando a conexão
+if ($conn->connect_error) {
+    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+}
+
+// Query SQL para selecionar os posts da tabela blog
+$sql = "SELECT dia, mes, titulo, descricao, foto FROM blog";
+$result = $conn->query($sql);
+
+?>
+
+<main class="main-content">
+    <div class="fullwidth-block inner-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="content">
+                        <h2 class="entry-title">Blog</h2>
+
+                        <?php
+                        // Verificar se há resultados
+                        if ($result->num_rows > 0) {
+                            // Iterar sobre os resultados
+                            while ($row = $result->fetch_assoc()) {
+                                $dia = $row['dia'];
+                                $mes = $row['mes'];
+                                $titulo = $row['titulo'];
+                                $descricao = $row['descricao'];
+                                $foto = $row['foto'];
+                        ?>
+
+                        <div class="post">
+                            <div class="entry-date">
+                                <div class="date"><?php echo $dia; ?></div>
+                                <span class="month"><?php echo $mes; ?></span>
+                            </div>
+                            <div class="featured-image">
+                                <img src="<?php echo $foto; ?>" alt="">
+                            </div>
+                            <h2 class="entry-title"><a href="#"><?php echo $titulo; ?></a></h2>
+                            <p><?php echo $descricao; ?></p>
+                            <a href="#">Read more</a>
+                        </div>
+
+                        <?php
+                            } // Fim do loop while
+                        } else {
+                            echo "Não foram encontrados resultados.";
+                        }
+                        ?>
+
+                        <?php
+                        // Fechar conexão com o banco de dados
+                        $conn->close();
+                        ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- .testimonial-section -->
+
+</main> <!-- .main-content -->
 
 			<footer class="site-footer">
 				<div class="container">
