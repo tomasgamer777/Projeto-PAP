@@ -129,7 +129,7 @@
         </div>
       </div>
       <ul class="nav">
-        <li class="nav-item active ">
+        <li class="nav-item ">
           <a class="nav-link" href="dashboard.html">
             <i class="material-icons">dashboard</i>
             <p> Menu Principal </p>
@@ -176,12 +176,12 @@
           <div class="collapse" id="website">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" href="add_users.html">
+                <a class="nav-link" href="edithomepage.php">
                   <i class="material-icons"> house </i>
                   <span class="sidebar-normal"> Página Principal </span>
                 </a>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item active ">
                 <a class="nav-link" href="editgalery.php">
                   <i class="material-icons"> collections </i>
                   <span class="sidebar-normal"> Galeria </span>

@@ -186,7 +186,7 @@
           <div class="collapse" id="website">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" href="add_users.html">
+                <a class="nav-link" href="edithomepage.php">
                   <i class="material-icons"> house </i>
                   <span class="sidebar-normal"> Página Principal </span>
                 </a>
