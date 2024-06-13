@@ -504,39 +504,33 @@ $(document).ready(function() {
         dateInput.val(dateInput.val().toUpperCase());
 
         $.ajax({
-    type: "POST",
-    url: "editblog.php",
-    data: formData,
-    processData: false,
-    contentType: false,
-    success: function(response) {
-        // Verifique o conteúdo da resposta
-        console.log(response); // Verifica o que está sendo retornado
-
-        // Exemplo de como acessar os dados retornados
-        if (response.status === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: response.message
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro!',
-                text: response.message
-            });
-        }
-    },
-    error: function(xhr, status, error) {
-        console.log(xhr.responseText); // Exibe detalhes do erro no console
-        Swal.fire({
-            icon: 'error',
-            title: 'Erro!',
-            text: 'Erro ao processar a requisição.'
+            type: "POST",
+            url: "update_blog.php", // Arquivo PHP para processar a atualização
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Exibir mensagem de sucesso usando SweetAlert2
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: JSON.parse(response).success,
+                    timer: 2000, // Tempo em milissegundos (2 segundos)
+                    showConfirmButton: false
+                }).then(() => {
+                    $('#editModal').modal('hide');
+                    location.reload(); // Recarregar a página
+                });
+            },
+            error: function(xhr, status, error) {
+                // Exibir mensagem de erro usando SweetAlert2
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: JSON.parse(xhr.responseText).error
+                });
+            }
         });
-    }
-});
     });
 });
 </script>
