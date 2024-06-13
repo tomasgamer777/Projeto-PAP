@@ -505,7 +505,7 @@ $(document).ready(function() {
 
         $.ajax({
     type: "POST",
-    url: "edit_blog.php",
+    url: "update_blog.php",
     data: formData,
     processData: false,
     contentType: false,
