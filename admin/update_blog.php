@@ -1,107 +1,104 @@
 <?php
-// Conexão com o banco de dados
-$servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
+// Verifica se o formulário foi submetido
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Conexão com o banco de dados (substitua com suas próprias credenciais)
+    $servername = "localhost";
+    $username = "seu_usuario";
+    $password = "sua_senha";
+    $dbname = "banda";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Cria conexão
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica a conexão
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Obtendo os dados do formulário
-$id = $_POST['id'];
-$dia = $_POST['dia'];
-$mes = strtoupper($_POST['mes']); // Garantir que o mês esteja em maiúsculas
-$titulo = $_POST['titulo_1'];
-$legenda = $_POST['legenda_1'];
-
-// Função para redimensionar a imagem
-function resizeImage($file, $width, $height, $output) {
-    list($original_width, $original_height) = getimagesize($file);
-
-    $src = imagecreatefromstring(file_get_contents($file));
-    $dst = imagecreatetruecolor($width, $height);
-
-    // Manter a transparência para PNG e GIF
-    if (exif_imagetype($file) == IMAGETYPE_PNG) {
-        imagealphablending($dst, false);
-        imagesavealpha($dst, true);
-        $transparent = imagecolorallocatealpha($dst, 255, 255, 255, 127);
-        imagefilledrectangle($dst, 0, 0, $width, $height, $transparent);
-    } elseif (exif_imagetype($file) == IMAGETYPE_GIF) {
-        $transparent_index = imagecolortransparent($src);
-        if ($transparent_index >= 0) {
-            $transparent_color = imagecolorsforindex($src, $transparent_index);
-            $transparent_index = imagecolorallocate($dst, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
-            imagefill($dst, 0, 0, $transparent_index);
-            imagecolortransparent($dst, $transparent_index);
-        }
+    // Verifica conexão
+    if ($conn->connect_error) {
+        die("Conexão falhou: " . $conn->connect_error);
     }
 
-    imagecopyresampled($dst, $src, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
-    imagejpeg($dst, $output, 90); // Salvar a imagem redimensionada como JPEG com qualidade 90
+    // Inicia a sessão para usar variáveis de sessão
+    session_start();
 
-    imagedestroy($src);
-    imagedestroy($dst);
-}
+    // Obtém os dados do formulário
+    $id = $_POST['id'];
+    $dia = $_POST['dia'];
+    $mes = $_POST['mes'];
+    $titulo = $_POST['titulo_1'];
+    $legenda = $_POST['legenda_1'];
 
-// Tratamento da imagem
-if(isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
-    $target_dir = "../dummy/";
-    $target_file = $target_dir . basename($_FILES["foto"]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    // Verifica se um novo arquivo de imagem foi enviado
+    if ($_FILES['foto']['name']) {
+        $target_dir = "../dummy/";
+        $target_file = $target_dir . basename($_FILES["foto"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Verificar se é uma imagem real ou falsa
-    $check = getimagesize($_FILES["foto"]["tmp_name"]);
-    if($check !== false) {
-        // Verificar se o arquivo já existe
+        // Verifica se o arquivo de imagem é uma imagem real
+        $check = getimagesize($_FILES["foto"]["tmp_name"]);
+        if ($check === false) {
+            echo "Erro: O arquivo enviado não é uma imagem válida.";
+            $uploadOk = 0;
+        }
+
+        // Verifica se o arquivo já existe
         if (file_exists($target_file)) {
-            echo json_encode(["error" => "Desculpe, o arquivo já existe."]);
-            exit;
+            echo "Erro: Já existe um arquivo com este nome.";
+            $uploadOk = 0;
         }
-        // Verificar o tamanho do arquivo
-        if ($_FILES["foto"]["size"] > 5000000) { // 5MB de limite
-            echo json_encode(["error" => "Desculpe, o seu arquivo é muito grande."]);
-            exit;
+
+        // Limita o tamanho do arquivo de imagem (opcional)
+        if ($_FILES["foto"]["size"] > 500000) {
+            echo "Erro: O arquivo é muito grande.";
+            $uploadOk = 0;
         }
-        // Permitir certos formatos de arquivo
-        if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" ) {
-            echo json_encode(["error" => "Desculpe, apenas arquivos JPG, JPEG, PNG e GIF são permitidos."]);
-            exit;
+
+        // Permitir apenas certos formatos de arquivo de imagem
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif") {
+            echo "Erro: Apenas arquivos JPG, JPEG, PNG e GIF são permitidos.";
+            $uploadOk = 0;
         }
-        // Tentar redimensionar e mover o arquivo para o diretório de destino
-        $resized_file = $target_dir . 'resized_' . basename($_FILES["foto"]["name"]);
-        resizeImage($_FILES["foto"]["tmp_name"], 600, 300, $resized_file);
-        if (file_exists($resized_file)) {
-            $foto = "dummy/" . 'resized_' . basename($_FILES["foto"]["name"]);
-        } else {
-            echo json_encode(["error" => "Desculpe, houve um erro ao enviar seu arquivo."]);
-            exit;
+
+        // Se tudo estiver correto, tenta fazer o upload da imagem
+        if ($uploadOk) {
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                // Atualiza o caminho da imagem no banco de dados
+                $foto_caminho = "dummy/" . basename($_FILES["foto"]["name"]);
+                $sql_update = "UPDATE blog SET dia='$dia', mes='$mes', titulo='$titulo', descricao='$legenda', foto='$foto_caminho' WHERE id='$id'";
+
+                if ($conn->query($sql_update) === TRUE) {
+                    echo "Registro atualizado com sucesso.";
+                } else {
+                    echo "Erro ao atualizar o registro: " . $conn->error;
+                }
+
+                // Excluir a imagem antiga do servidor (opcional)
+                $sql_select_foto_antiga = "SELECT foto FROM blog WHERE id='$id'";
+                $result = $conn->query($sql_select_foto_antiga);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $foto_antiga = "../" . $row['foto'];
+                    if (file_exists($foto_antiga)) {
+                        unlink($foto_antiga);
+                    }
+                }
+            } else {
+                echo "Erro ao fazer o upload do arquivo.";
+            }
         }
     } else {
-        echo json_encode(["error" => "Arquivo não é uma imagem."]);
-        exit;
+        // Caso não tenha sido enviado um novo arquivo de imagem, atualiza apenas os outros campos
+        $sql_update = "UPDATE blog SET dia='$dia', mes='$mes', titulo='$titulo', descricao='$legenda' WHERE id='$id'";
+
+        if ($conn->query($sql_update) === TRUE) {
+            echo "Registro atualizado com sucesso.";
+        } else {
+            echo "Erro ao atualizar o registro: " . $conn->error;
+        }
     }
+
+    // Fecha a conexão com o banco de dados
+    $conn->close();
 } else {
-    // Se nenhuma nova foto foi enviada, mantenha a foto existente
-    $foto = $_POST['foto'];
+    echo "Erro: Método de requisição inválido.";
 }
-
-// Atualizar a entrada no banco de dados
-$sql = "UPDATE blog SET dia=?, mes=?, titulo=?, descricao=?, foto=? WHERE id=?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssi", $dia, $mes, $titulo, $legenda, $foto, $id);
-
-if ($stmt->execute()) {
-    echo json_encode(["success" => "Evento atualizado com sucesso."]);
-} else {
-    echo json_encode(["error" => "Erro ao atualizar o evento: " . $conn->error]);
-}
-
-$stmt->close();
-$conn->close();
 ?>
