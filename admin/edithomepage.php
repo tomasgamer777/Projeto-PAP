@@ -678,7 +678,7 @@ $(document).on('click', '.edit2', function () {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
     $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Botão que disparou o modal
+        var button = $(event.relatedTarget); 
         var id = button.data('id');
         var dia = button.data('dia');
         var mes = button.data('mes');
@@ -687,8 +687,8 @@ $(document).on('click', '.edit2', function () {
 
         var modal = $(this);
         modal.find('#editId').val(id);
-        modal.find('#editDia').val(Dia);
-        modal.find('#editMes').val(Mes);
+        modal.find('#editDia').val(dia); 
+        modal.find('#editMes').val(mes); 
         modal.find('#editTitulo').val(titulo);
         modal.find('#editLegenda').val(legenda);
     });
