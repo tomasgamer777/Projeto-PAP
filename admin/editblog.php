@@ -510,35 +510,36 @@ $(document).ready(function() {
     processData: false,
     contentType: false,
     success: function(response) {
-        console.log(response); // Verificar o conteúdo da resposta
+      console.log(response); // Verificar o conteúdo da resposta
 
-        // Exemplo de como acessar os dados retornados
-        if (response.status === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: response.message
-            });
-          }).then(() => {
-                    $('#editModal').modal('hide');
-                    location.reload(); // Recarregar a página
-                });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro!',
-                text: response.message
-            });
-        }
-    },
-    error: function(xhr, status, error) {
-        console.log(xhr.responseText); // Exibir detalhes do erro no console
-        Swal.fire({
-            icon: 'error',
-            title: 'Erro!',
-            text: 'Erro ao processar a requisição.'
-        });
-    }
+// Exemplo de como acessar os dados retornados
+if (response.status === 'success') {
+    Swal.fire({
+        icon: 'success',
+        title: 'Sucesso!',
+        text: response.message
+    }).then(() => {
+        $('#editModal').modal('hide'); // Esconder o modal após o sucesso
+        setTimeout(function() {
+            location.reload(true); // Recarregar a página após 500ms
+        }, 500);
+    });
+} else {
+    Swal.fire({
+        icon: 'error',
+        title: 'Erro!',
+        text: response.message
+    });
+}
+},
+error: function(xhr, status, error) {
+console.log(xhr.responseText); // Exibir detalhes do erro no console
+Swal.fire({
+    icon: 'error',
+    title: 'Erro!',
+    text: 'Erro ao processar a requisição.'
+});
+}
 });
     });
 });
