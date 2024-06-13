@@ -101,4 +101,28 @@ $dbname = "banda";
 } else {
     echo "Erro: Método de requisição inválido.";
 }
+
+// Depuração: Verifique se o formulário está sendo submetido corretamente
+var_dump($_POST);
+var_dump($_FILES);
+
+// Depuração: Verifique o resultado do movimento do arquivo
+if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+    echo "Arquivo movido com sucesso para: " . $target_file;
+} else {
+    echo "Erro ao mover o arquivo.";
+}
+
+// Depuração: Verifique o caminho da imagem após o upload
+echo "Novo caminho da imagem: " . $foto_caminho;
+
+// Depuração: Verifique se o SQL de atualização foi construído corretamente
+echo "SQL de atualização: " . $sql_update;
+
+// Depuração: Verifique se a consulta SQL foi executada com sucesso
+if ($conn->query($sql_update) === TRUE) {
+    echo "Registro atualizado com sucesso.";
+} else {
+    echo "Erro ao atualizar o registro: " . $conn->error;
+}
 ?>
