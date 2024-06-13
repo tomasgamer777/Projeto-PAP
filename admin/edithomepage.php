@@ -667,7 +667,7 @@ $(document).on('click', '.edit2', function () {
                                 echo "<td>" . $row["id"] . "</td>";
                                 echo "<td><img src='../" . $row["header"] . "' class='img-thumbnail' style='max-width:100px; max-height:100px;'></td>";
                                 echo '<td class="text-right">
-                                  <button class="btn btn-link btn-warning btn-just-icon edit2" 
+                                  <button class="btn btn-link btn-warning btn-just-icon edit3" 
                                           data-id="' . $row["id"] . '" 
                                           data-header="' . $row["header"] . '">
                                       <i class="material-icons">edit</i>
@@ -742,7 +742,7 @@ function showCurrentImage(imageUrl) {
 }
 
 // Abrir o modal de edição ao clicar no botão de edição na datatable
-$(document).on('click', '.edit2', function () {
+$(document).on('click', '.edit3', function () {
     var id = $(this).data('id');
     var header = $(this).data('header'); // Certifique-se de que 'foto' é o nome correto do atributo data
 
