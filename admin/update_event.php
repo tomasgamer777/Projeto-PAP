@@ -11,11 +11,12 @@ if ($conn->connect_error) {
 }
 
 $id = $_POST['id'];
-$date = strtoupper($_POST['date']); // Certificar-se que a data está em maiúsculas
+$dia = $_POST['dia'];
+$mes = strtoupper($_POST['mes']); // Certificar-se que a data está em maiúsculas
 $titulo = $_POST['titulo_1'];
 $legenda = $_POST['legenda_1'];
 
-$sql = "UPDATE homepage SET date='$date', titulo_1='$titulo', legenda_1='$legenda' WHERE id='$id'";
+$sql = "UPDATE homepage SET dia='$dia', mes='$mes' titulo_1='$titulo', legenda_1='$legenda' WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";

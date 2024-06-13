@@ -290,7 +290,8 @@
                                     <thead>
                                         <tr>
                                             <th>Código</th>
-                                            <th>Data</th>
+                                            <th>Dia</th>
+                                            <th>Mês</th>
                                             <th>Título</th>
                                             <th>Legenda</th>
                                             <th class="disabled-sorting text-right">Ações</th>
@@ -299,7 +300,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>Código</th>
-                                            <th>Data</th>
+                                            <th>Dia</th>
+                                            <th>Mês</th>
                                             <th>Título</th>
                                             <th>Legenda</th>
                                             <th class="text-right">Ações</th>
@@ -327,11 +329,12 @@
                                         while ($row = $result->fetch_assoc()) {
                                             echo "<tr>";
                                             echo "<td>" . $row["id"] . "</td>";
-                                            echo "<td>" . $row["date"] . "</td>";
+                                            echo "<td>" . $row["dia"] . "</td>";
+                                            echo "<td>" . $row["mes"] . "</td>";
                                             echo "<td>" . $row["titulo_1"] . "</td>";
                                             echo "<td>" . $row["legenda_1"] . "</td>";
                                             echo '<td class="text-right">
-                                                     <button class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#editModal" data-id="' . $row["id"] . '" data-date="' . $row["date"] . '" data-titulo="' . $row["titulo_1"] . '" data-legenda="' . $row["legenda_1"] . '"><i class="material-icons">edit</i></button>
+                                                     <button class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#editModal" data-id="' . $row["id"] . '" data-dia="' . $row["dia"] . '" data-mes="' . $row["mes"] . '" data-titulo="' . $row["titulo_1"] . '" data-legenda="' . $row["legenda_1"] . '"><i class="material-icons">edit</i></button>
                                                   </td>';
                                             echo "</tr>";
                                         }
@@ -361,7 +364,7 @@
                 <div class="card-icon">
                     <i class="material-icons">assignment</i>
                 </div>
-                <h4 class="card-title">Lista de Eventos (Segunda Datatable)</h4>
+                <h4 class="card-title">Lista de Eventos Importantes</h4>
             </div>
             <div class="card-body">
                 <div class="toolbar">
@@ -638,8 +641,12 @@ $(document).on('click', '.edit2', function () {
                 <form id="editForm">
                     <input type="hidden" id="editId" name="id">
                     <div class="form-group">
-                        <label for="editDate">Data <small class="text-muted">(dia e mês)</small></label>
-                        <input type="text" class="form-control text-uppercase" id="editDate" name="date" placeholder="DD-MM">
+                        <label for="editDate">Dia <small class="text-muted"></small></label>
+                        <input type="text" class="form-control text-uppercase" id="editdia" name="dia" placeholder="DD">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDate">Mês <small class="text-muted"></small></label>
+                        <input type="text" class="form-control text-uppercase" id="editMes" name="mes" placeholder="MM">
                     </div>
                     <div class="form-group">
                         <label for="editTitulo">Título</label>
@@ -673,13 +680,15 @@ $(document).on('click', '.edit2', function () {
     $('#editModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Botão que disparou o modal
         var id = button.data('id');
-        var date = button.data('date');
+        var dia = button.data('dia');
+        var mes = button.data('mes');
         var titulo = button.data('titulo');
         var legenda = button.data('legenda');
 
         var modal = $(this);
         modal.find('#editId').val(id);
-        modal.find('#editDate').val(date);
+        modal.find('#editDia').val(Dia);
+        modal.find('#editMes').val(Mes);
         modal.find('#editTitulo').val(titulo);
         modal.find('#editLegenda').val(legenda);
     });
@@ -687,7 +696,7 @@ $(document).on('click', '.edit2', function () {
     $('#saveChanges').on('click', function () {
         var form = $('#editForm');
         // Transformando a data para maiúsculas antes de enviar
-        var dateInput = $('#editDate');
+        var dateInput = $('#editMes');
         dateInput.val(dateInput.val().toUpperCase());
 
         $.ajax({
