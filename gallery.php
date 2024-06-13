@@ -23,9 +23,9 @@
 	<body>
 		
 		<div id="site-content">
-			<header class="site-header">
+		<header class="site-header">
 				<div class="container">
-					<a href="index.html" id="branding">
+					<a href="index.php" id="branding">
 						<img src="dummy/logo1.png" alt="Site Title">
 						<small class="site-description"></small>
 					</a> <!-- #branding -->
@@ -33,9 +33,9 @@
 					<nav class="main-navigation">
 						<button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item"><a href="index.html">Página Principal</a></li>
+							<li class="menu-item"><a href="index.php">Página Principal</a></li>
 							<li class="menu-item"><a href="about.html">A Banda</a></li>
-							<li class="menu-item current-menu-item"><a href="gallery.html">Galeria</a></li>
+							<li class="menu-item current-menu-item"><a href="gallery.php">Galeria</a></li>
 							<li class="menu-item"><a href="download.html">..</a></li>
 							<li class="menu-item"><a href="blog.html">..</a></li>
 							<li class="menu-item"><a href="contact.html">Contacte-nos</a></li>
