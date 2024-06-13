@@ -98,7 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_update->affected_rows > 0) {
             $response = array(
                 'status' => 'success',
-                'message' => 'Dados atualizados com sucesso!'
+                'message' => 'Dados atualizados com sucesso!',
+                'foto' => $newPhotoPathInDB  // opcional: enviar novos dados de volta
             );
         } else {
             $response = array(
@@ -106,9 +107,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'message' => 'Nenhum dado foi atualizado.'
             );
         }
-
-        $stmt_update->close();
-    }
+        
+        // Retorna a resposta JSON
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
 
     // Fecha a conexão com o banco de dados e retorna a resposta em formato JSON
     $conn->close();
