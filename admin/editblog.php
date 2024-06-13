@@ -276,6 +276,11 @@
         </div>
       </nav>
       <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+            
+        </div>
+    </div>
 <!-- Modal de Edição (Segunda Datatable) -->
 <div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="editModal2Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
