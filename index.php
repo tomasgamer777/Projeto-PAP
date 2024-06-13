@@ -151,41 +151,49 @@
 					</div> <!-- .container -->
 				</div> <!-- .upcoming-event-section -->
 
-				<div class="fullwidth-block why-chooseus-section">
-					<div class="container">
-						<h2 class="section-title">Eventos importantes em que a banda participou</h2>
+				<?php
+				$servername = "localhost";
+				$username = "tomas";
+				$password = "!h01fFw35";
+				$dbname = "banda";
 
-						<div class="row">
-							<div class="col-md-4">
-								<div class="feature">
-									<figure class="cut-corner">
-										<img src="dummy/homepage/braga1cortado.jpg" alt="">
-									</figure>
-									<h3 class="feature-title">Concurso de bandas Filarmónicas de Braga 2020</h3>
-									<p>O Concurso de Bandas Filarmónicas de Braga pretende ser um encontro de bandas, onde todos contribuem para o reforço da visibilidade e da importância destas instituições no meio social, cultural e artístico do nosso país. E onde a nossa grande banda conseguiu o 4º lugar.</p>
-								</div> <!-- .feature -->
-							</div>
-							<div class="col-md-4">
-								<div class="feature">
-									<figure class="cut-corner">
-										<img src="dummy/homepage/hemancortado.jpg" alt="">
-									</figure>
-									<h3 class="feature-title">Concerto solidário com a participação do grande Herman José</h3>
-									<p>Descrição...</p>
-								</div> <!-- .feature -->
-							</div>
-							<div class="col-md-4">
-								<div class="feature">
-									<figure class="cut-corner">
-										<img src="dummy/homepage/concertocortado.jpg" alt="">
-									</figure>
-									<h3 class="feature-title">nome concerto...</h3>
-									<p>descrição....</p>
-								</div> <!-- .feature -->
-							</div>
-						</div>
-					</div> <!-- .container -->
-				</div> <!-- .why-chooseus-section -->
+				$conn = new mysqli($servername, $username, $password, $dbname);
+
+				if ($conn->connect_error) {
+					die("Connection failed: " . $conn->connect_error);
+				}
+
+				$sql = "SELECT foto, titulo_2, legenda_2 FROM homepage WHERE titulo_2 IS NOT NULL";
+				$result = $conn->query($sql);
+
+				if ($result->num_rows > 0) {
+					echo '<div class="fullwidth-block why-chooseus-section">';
+					echo '<div class="container">';
+					echo '<h2 class="section-title">Eventos importantes em que a banda participou</h2>';
+					echo '<div class="row">';
+
+					while ($row = $result->fetch_assoc()) {
+						echo '<div class="col-md-4">';
+						echo '<div class="feature">';
+						echo '<figure class="cut-corner">';
+						echo '<img src="' . $row["foto"] . '" alt="">';
+						echo '</figure>';
+						echo '<h3 class="feature-title">' . $row["titulo_2"] . '</h3>';
+						echo '<p>' . $row["legenda_2"] . '</p>';
+						echo '</div> <!-- .feature -->';
+						echo '</div>';
+					}
+
+					echo '</div>';
+					echo '</div> <!-- .container -->';
+					echo '</div> <!-- .why-chooseus-section -->';
+				} else {
+					echo "<p>Nenhum evento importante encontrado.</p>";
+				}
+
+				$conn->close();
+				?>
+
 			</main> <!-- .main-content -->
 
 			<footer class="site-footer">
