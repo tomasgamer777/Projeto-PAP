@@ -388,7 +388,6 @@
 </div>
 
 <!-- Modal de Edição -->
-<!-- Modal de Edição -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -401,7 +400,8 @@
             <div class="modal-body">
                 <form id="editForm" enctype="multipart/form-data">
                     <input type="hidden" id="editId" name="id">
-                    <input type="hidden" id="editFoto" name="foto">
+                    <input type="hidden" id="editFoto" name="foto"> <!-- Campo oculto para guardar o caminho da foto -->
+
                     <div class="form-group">
                         <label for="editDia">Dia <small class="text-muted"></small></label>
                         <input type="text" class="form-control text-uppercase" id="editDia" name="dia" placeholder="DD">
@@ -474,16 +474,12 @@ $(document).ready(function() {
 
     // Evento de clique no botão de edição
     $('.edit2').on('click', function() {
-        console.log("Edit button clicked");
-
         var id = $(this).data('id');
         var dia = $(this).data('dia');
         var mes = $(this).data('mes');
         var titulo = $(this).data('titulo');
         var legenda = $(this).data('legenda');
         var foto = $(this).data('foto');
-
-        console.log("Data retrieved:", { id, dia, mes, titulo, legenda, foto });
 
         // Preencher os campos do modal com os dados obtidos
         $('#editId').val(id);
@@ -493,6 +489,7 @@ $(document).ready(function() {
         $('#editLegenda').val(legenda);
         $('#editFoto').val(foto);
         $('#currentFoto').attr('src', '../' + foto);
+        $('#previewFoto').attr('src', '').hide(); // Limpar e ocultar a pré-visualização anterior
 
         // Abrir o modal de edição
         $('#editModal').modal('show');
@@ -514,22 +511,34 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             success: function(response) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso!',
-                    text: 'Evento atualizado com sucesso!',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
-                }).then(() => {
-                    $('#editModal').modal('hide');
-                    setTimeout(function() {
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: response.success,
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    }).then(() => {
+                        $('#editModal').modal('hide');
                         location.reload(true); // Forçar recarregar a página do servidor
-                    }, 500); // Aguardar 500ms antes de recarregar
-                });
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: response.error,
+                        showClass: {
+                            popup: 'animate__animated animate__shakeX'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    });
+                }
             },
             error: function(xhr, status, error) {
                 Swal.fire({
@@ -548,6 +557,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 
 
