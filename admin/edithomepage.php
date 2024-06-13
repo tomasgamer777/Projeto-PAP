@@ -658,7 +658,7 @@ $(document).on('click', '.edit2', function () {
                         }
 
                         // Consulta SQL para selecionar os dados da segunda datatable
-                        $sql = "SELECT id, header homepage WHERE header IS NOT NULL";
+                        $sql = "SELECT id, header FROM homepage WHERE header IS NOT NULL";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
