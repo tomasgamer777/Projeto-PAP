@@ -505,7 +505,7 @@ $(document).ready(function() {
 
         $.ajax({
     type: "POST",
-    url: "update_blog.php",
+    url: "editblog.php",
     data: formData,
     processData: false,
     contentType: false,
@@ -519,6 +519,10 @@ $(document).ready(function() {
                 title: 'Sucesso!',
                 text: response.message
             });
+          }).then(() => {
+                    $('#editModal').modal('hide');
+                    location.reload(); // Recarregar a página
+                });
         } else {
             Swal.fire({
                 icon: 'error',
