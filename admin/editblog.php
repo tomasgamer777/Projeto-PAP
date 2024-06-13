@@ -388,6 +388,7 @@
 </div>
 
 <!-- Modal de Edição -->
+<!-- Modal de Edição -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -423,7 +424,8 @@
                     </div>
                     <div class="form-group">
                         <label for="editFotoUpload">Alterar Foto</label>
-                        <input type="file" class="form-control" id="editFotoUpload" name="foto">
+                        <input type="file" class="form-control-file" id="editFotoUpload" name="foto" accept="image/*">
+                        <img id="previewFoto" src="#" alt="Preview da Foto" style="max-width: 100%; display: none;">
                     </div>
                     <button type="button" class="btn btn-primary" id="saveChanges">Salvar Mudanças</button>
                 </form>
@@ -431,6 +433,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -453,6 +456,20 @@ $(document).ready(function() {
     // Ajustar a altura do textarea enquanto digita
     $('#editLegenda').on('input', function () {
         adjustTextareaHeight(this);
+    });
+
+    // Pré-visualização da imagem ao selecionar um arquivo
+    $('#editFotoUpload').on('change', function(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#previewFoto').attr('src', e.target.result).show();
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
     });
 
     // Evento de clique no botão de edição
