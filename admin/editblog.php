@@ -60,6 +60,14 @@
         }
     </style>
 
+<style>
+    .form-control.textarea-autosize {
+        overflow-y: hidden; /* Esconde a barra de rolagem vertical */
+        resize: none; /* Desativa a redimensionamento manual */
+    }
+</style>
+
+
   <script>
     (function(w, d, s, l, i) {
       w[l] = w[l] || [];
@@ -407,7 +415,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editLegenda">Legenda</label>
-                        <input type="text" class="form-control" id="editLegenda" name="legenda_1">
+                        <textarea class="form-control" id="editLegenda" name="legenda_1" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="currentFoto">Foto Atual</label>
@@ -424,13 +432,28 @@
     </div>
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 $(document).ready(function() {
-    console.log("DOM is ready");
+    // Função para ajustar automaticamente a altura do textarea
+    function adjustTextareaHeight(textarea) {
+        $(textarea).css('height', 'auto');
+        $(textarea).css('height', textarea.scrollHeight + 'px');
+    }
+
+    // Ao abrir o modal, ajustar a altura do textarea inicialmente
+    $('#editModal').on('shown.bs.modal', function () {
+        adjustTextareaHeight($('#editLegenda')[0]);
+    });
+
+    // Ajustar a altura do textarea enquanto digita
+    $('#editLegenda').on('input', function () {
+        adjustTextareaHeight(this);
+    });
 
     // Evento de clique no botão de edição
     $('.edit2').on('click', function() {
