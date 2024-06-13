@@ -641,11 +641,11 @@ $(document).on('click', '.edit2', function () {
                 <form id="editForm">
                     <input type="hidden" id="editId" name="id">
                     <div class="form-group">
-                        <label for="editDate">Dia <small class="text-muted"></small></label>
+                        <label for="editDia">Dia <small class="text-muted"></small></label>
                         <input type="text" class="form-control text-uppercase" id="editdia" name="dia" placeholder="DD">
                     </div>
                     <div class="form-group">
-                        <label for="editDate">Mês <small class="text-muted"></small></label>
+                        <label for="editMes">Mês <small class="text-muted"></small></label>
                         <input type="text" class="form-control text-uppercase" id="editMes" name="mes" placeholder="MM">
                     </div>
                     <div class="form-group">
