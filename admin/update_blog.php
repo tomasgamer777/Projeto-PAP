@@ -12,13 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Obtendo os dados do formulário
-$id = $_POST['id'];
-$dia = $_POST['dia'];
-$mes = strtoupper($_POST['mes']); // Garantir que o mês esteja em maiúsculas
-$titulo = $_POST['titulo_1'];
-$legenda = $_POST['legenda_1'];
-
 // Função para redimensionar a imagem
 function resizeImage($file, $width, $height, $output) {
     list($original_width, $original_height) = getimagesize($file);
@@ -77,31 +70,38 @@ if(isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
         $resized_file = $target_dir . 'resized_' . basename($_FILES["foto"]["name"]);
         resizeImage($_FILES["foto"]["tmp_name"], 600, 300, $resized_file);
         if (file_exists($resized_file)) {
-            $foto = "dummy/" . 'resized_' . basename($_FILES["foto"]["name"]);
+            $foto = 'dummy/' . 'resized_' . basename($_FILES["foto"]["name"]);
+            // Atualizar o caminho da imagem no banco de dados
+            $id = $_POST['id'];
+            $sql_update = "UPDATE blog SET foto=? WHERE id=?";
+            $stmt_update = $conn->prepare($sql_update);
+            $stmt_update->bind_param("si", $foto, $id);
+            if ($stmt_update->execute()) {
+                echo json_encode(["success" => "Evento atualizado com sucesso.", "foto" => $foto]);
+            } else {
+                echo json_encode(["error" => "Erro ao atualizar o caminho da imagem no banco de dados."]);
+            }
+            $stmt_update->close();
         } else {
             echo json_encode(["error" => "Desculpe, houve um erro ao enviar seu arquivo."]);
-            exit;
         }
     } else {
         echo json_encode(["error" => "Arquivo não é uma imagem."]);
-        exit;
     }
 } else {
     // Se nenhuma nova foto foi enviada, mantenha a foto existente
     $foto = $_POST['foto'];
+    $id = $_POST['id'];
+    $sql_update = "UPDATE blog SET foto=? WHERE id=?";
+    $stmt_update = $conn->prepare($sql_update);
+    $stmt_update->bind_param("si", $foto, $id);
+    if ($stmt_update->execute()) {
+        echo json_encode(["success" => "Evento atualizado com sucesso.", "foto" => $foto]);
+    } else {
+        echo json_encode(["error" => "Erro ao atualizar o caminho da imagem no banco de dados."]);
+    }
+    $stmt_update->close();
 }
 
-// Atualizar a entrada no banco de dados
-$sql = "UPDATE blog SET dia=?, mes=?, titulo=?, descricao=?, foto=? WHERE id=?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssi", $dia, $mes, $titulo, $legenda, $foto, $id);
-
-if ($stmt->execute()) {
-    echo json_encode(["success" => "Evento atualizado com sucesso."]);
-} else {
-    echo json_encode(["error" => "Erro ao atualizar o evento: " . $conn->error]);
-}
-
-$stmt->close();
 $conn->close();
 ?>
