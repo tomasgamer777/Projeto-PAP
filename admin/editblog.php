@@ -489,7 +489,6 @@ $(document).ready(function() {
         $('#editLegenda').val(legenda);
         $('#editFoto').val(foto);
         $('#currentFoto').attr('src', '../' + foto);
-        $('#previewFoto').attr('src', '').hide(); // Limpar e ocultar a pré-visualização anterior
 
         // Abrir o modal de edição
         $('#editModal').modal('show');
@@ -511,52 +510,31 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             success: function(response) {
-                if (response.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sucesso!',
-                        text: response.success,
-                        showClass: {
-                            popup: 'animate__animated animate__fadeInDown'
-                        },
-                        hideClass: {
-                            popup: 'animate__animated animate__fadeOutUp'
-                        }
-                    }).then(() => {
-                        $('#editModal').modal('hide');
-                        location.reload(true); // Forçar recarregar a página do servidor
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro!',
-                        text: response.error,
-                        showClass: {
-                            popup: 'animate__animated animate__shakeX'
-                        },
-                        hideClass: {
-                            popup: 'animate__animated animate__fadeOutUp'
-                        }
-                    });
-                }
+                // Exibir mensagem de sucesso usando SweetAlert2
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: JSON.parse(response).success,
+                    timer: 2000, // Tempo em milissegundos (2 segundos)
+                    showConfirmButton: false
+                }).then(() => {
+                    $('#editModal').modal('hide');
+                    location.reload(); // Recarregar a página
+                });
             },
             error: function(xhr, status, error) {
+                // Exibir mensagem de erro usando SweetAlert2
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro!',
-                    text: 'Erro ao atualizar o evento: ' + error,
-                    showClass: {
-                        popup: 'animate__animated animate__shakeX'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
+                    text: JSON.parse(xhr.responseText).error
                 });
             }
         });
     });
 });
 </script>
+
 
 
 
