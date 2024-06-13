@@ -184,6 +184,12 @@
                     <span class="sidebar-normal"> Galeria </span>
                   </a>
                 </li>
+                <li class="nav-item ">
+                <a class="nav-link" href="editblog.php">
+                  <i class="material-icons"> newspaper </i>
+                  <span class="sidebar-normal"> Blog </span>
+                </a>
+              </li>
               </ul>
             </div>
           </li>
