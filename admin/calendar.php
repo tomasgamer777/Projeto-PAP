@@ -64,54 +64,66 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            events: '/api/eventos', // Endpoint para carregar eventos
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: '/api/eventos', // Endpoint para carregar eventos
 
-            // Função para adicionar novo evento
-            selectable: true,
-            select: function(info) {
-                var title = prompt('Digite o título do evento:');
-                if (title) {
-                    var eventData = {
-                        title: title,
-                        start: info.startStr,
-                        end: info.endStr
-                    };
-
-                    // Renderiza o evento no calendário
-                    calendar.addEvent(eventData);
-
-                    // Envia o evento para o backend
-                    $.ajax({
-                        url: '/api/salvar_evento.php',
-                        type: 'POST',
-                        data: {
+        // Função para adicionar novo evento
+        selectable: true,
+        select: function(info) {
+            Swal.fire({
+                title: 'Adicionar novo evento',
+                html: '<input id="swal-input1" class="swal2-input" placeholder="Título">',
+                showCancelButton: true,
+                confirmButtonText: 'Salvar',
+                cancelButtonText: 'Cancelar',
+                preConfirm: () => {
+                    return document.getElementById('swal-input1').value;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var title = result.value;
+                    if (title) {
+                        var eventData = {
                             title: title,
                             start: info.startStr,
                             end: info.endStr
-                            // outros dados relevantes, se houver
-                        },
-                        success: function(response) {
-                            console.log('Evento salvo com sucesso!');
-                            // Lógica adicional após salvar o evento, se necessário
-                        },
-                        error: function(err) {
-                            console.error('Erro ao salvar evento:', err);
-                        }
-                    });
-                }
-            }
-        });
+                        };
 
-        calendar.render();
+                        // Renderiza o evento no calendário
+                        calendar.addEvent(eventData);
+
+                        // Envia o evento para o backend
+                        $.ajax({
+                            url: '/api/salvar_evento.php',
+                            type: 'POST',
+                            data: {
+                                title: title,
+                                start: info.startStr,
+                                end: info.endStr
+                            },
+                            success: function(response) {
+                                Swal.fire('Sucesso!', 'Evento salvo com sucesso!', 'success');
+                            },
+                            error: function(err) {
+                                Swal.fire('Erro!', 'Houve um problema ao salvar o evento.', 'error');
+                                console.error('Erro ao salvar evento:', err);
+                            }
+                        });
+                    }
+                }
+            });
+        }
     });
+
+    calendar.render();
+});
 </script>
 
 
@@ -315,22 +327,30 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <div class="header text-center">
-            <h3 class="title">Calendário de saidas da banda</h3>
-            <p class="category">Pequeno calendário com todos os eventos próximos da Banda 
-            </p>
-          </div>
-          <div class="row">
-            <div class="col-md-10 ml-auto mr-auto">
-              <div class="card card-calendar">
-                <div class="card-body ">
-                <div id='calendar'></div>
-                </div>
-              </div>
+            <div class="header text-center">
+                <h3 class="title">Calendário de saídas da banda</h3>
+                <p class="category">Pequeno calendário com todos os eventos próximos da Banda</p>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <div class="card card-calendar">
+                        <div class="card-body">
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+
+    <!-- Inclui jQuery (necessário para o FullCalendar e AJAX) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Inclui FullCalendar (pode ser uma versão minificada) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
+    <!-- Inclui SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <!-- Seus scripts personalizados -->
+    <script src="scripts/main.js"></script>
       
     </div>
   </div>
@@ -445,7 +465,8 @@
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
   <script src="assets/js/plugins/jquery-jvectormap.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
