@@ -15,8 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
     <!-- Inclui SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-    <!-- Seus scripts personalizados -->
-    <script src="scripts/main.js"></script>
+    
 
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css" rel="stylesheet" />
@@ -76,67 +75,68 @@
 </head>
 
 <script>
+    
     document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        events: '/api/eventos', // Endpoint para carregar eventos
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: '/api/eventos', // Endpoint para carregar eventos
 
-        // Função para adicionar novo evento
-        selectable: true,
-        select: function(info) {
-            Swal.fire({
-                title: 'Adicionar novo evento',
-                html: '<input id="swal-input1" class="swal2-input" placeholder="Título">',
-                showCancelButton: true,
-                confirmButtonText: 'Salvar',
-                cancelButtonText: 'Cancelar',
-                preConfirm: () => {
-                    return document.getElementById('swal-input1').value;
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    var title = result.value;
-                    if (title) {
-                        var eventData = {
-                            title: title,
-                            start: info.startStr,
-                            end: info.endStr
-                        };
+                // Função para adicionar novo evento
+                selectable: true,
+                select: function(info) {
+                    Swal.fire({
+                        title: 'Adicionar novo evento',
+                        html: '<input id="swal-input1" class="swal2-input" placeholder="Título">',
+                        showCancelButton: true,
+                        confirmButtonText: 'Salvar',
+                        cancelButtonText: 'Cancelar',
+                        preConfirm: () => {
+                            return document.getElementById('swal-input1').value;
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var title = result.value;
+                            if (title) {
+                                var eventData = {
+                                    title: title,
+                                    start: info.startStr,
+                                    end: info.endStr
+                                };
 
-                        // Renderiza o evento no calendário
-                        calendar.addEvent(eventData);
+                                // Renderiza o evento no calendário
+                                calendar.addEvent(eventData);
 
-                        // Envia o evento para o backend
-                        $.ajax({
-                            url: '/api/salvar_evento.php',
-                            type: 'POST',
-                            data: {
-                                title: title,
-                                start: info.startStr,
-                                end: info.endStr
-                            },
-                            success: function(response) {
-                                Swal.fire('Sucesso!', 'Evento salvo com sucesso!', 'success');
-                            },
-                            error: function(err) {
-                                Swal.fire('Erro!', 'Houve um problema ao salvar o evento.', 'error');
-                                console.error('Erro ao salvar evento:', err);
+                                // Envia o evento para o backend
+                                $.ajax({
+                                    url: '/api/salvar_evento.php',
+                                    type: 'POST',
+                                    data: {
+                                        title: title,
+                                        start: info.startStr,
+                                        end: info.endStr
+                                    },
+                                    success: function(response) {
+                                        Swal.fire('Sucesso!', 'Evento salvo com sucesso!', 'success');
+                                    },
+                                    error: function(err) {
+                                        Swal.fire('Erro!', 'Houve um problema ao salvar o evento.', 'error');
+                                        console.error('Erro ao salvar evento:', err);
+                                    }
+                                });
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             });
-        }
-    });
 
-    calendar.render();
-});
+            calendar.render();
+        });
 </script>
 
 
