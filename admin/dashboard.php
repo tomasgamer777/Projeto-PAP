@@ -10,6 +10,7 @@ function checkSession() {
 
     if (!isset($_SESSION['user_id'])) {
         echo "Sessão não iniciada. Redirecionando para login.<br>";
+        header("Location: login/login.html");
         exit();
     }
 
@@ -17,6 +18,7 @@ function checkSession() {
         echo "Sessão expirada por inatividade. Redirecionando para login.<br>";
         session_unset();
         session_destroy();
+        header("Location: login/login.html");
         exit();
     }
 
