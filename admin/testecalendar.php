@@ -1,18 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
-
-// Criar conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar conexão
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,6 +103,7 @@ if (isset($_GET['action'])) {
             $events[] = $row;
         }
         echo json_encode($events);
+        exit; // Adicione esta linha para garantir que o script PHP não continue a gerar saída HTML indesejada.
     } elseif ($_GET['action'] == 'add') {
         // Adicionar evento
         $title = $_POST['title'];
