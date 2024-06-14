@@ -1,16 +1,24 @@
 <?php
 session_start();
 
+// Definir tempo de vida da sessão em segundos (por exemplo, 30 minutos)
+$session_lifetime = 1800; // 30 minutos em segundos
+
+// Definir tempo de vida do cookie da sessão (em dias)
+$cookie_lifetime = 0; // 0 significa que o cookie dura até o fechamento do navegador
+
+session_set_cookie_params($cookie_lifetime);
+ini_set('session.gc_maxlifetime', $session_lifetime);
+
+// Função de verificação de sessão
 function checkSession() {
-    // Verifica se o usuário está logado
     if (!isset($_SESSION['user_id'])) {
         echo "Sessão não iniciada. Redirecionando para login.";
         header("Location: login/login.html");
         exit();
     }
 
-    // Verifica a inatividade
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) {
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_lifetime)) {
         echo "Sessão expirada por inatividade. Redirecionando para login.";
         session_unset();
         session_destroy();
@@ -18,17 +26,11 @@ function checkSession() {
         exit();
     }
 
-    // Atualiza o timestamp da última atividade
     $_SESSION['last_activity'] = time();
 }
 
-// Chama a função de verificação de sessão
 checkSession();
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
