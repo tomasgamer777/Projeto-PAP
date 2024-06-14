@@ -92,7 +92,24 @@
 </html>
 
 <?php
-// Verificar a ação do AJAX
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$servername = "localhost";
+$username = "tomas";
+$password = "!h01fFw35";
+$dbname = "banda";
+
+// Criar conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexão
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Verificar ação do AJAX
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'list') {
         // Listar eventos
@@ -103,20 +120,27 @@ if (isset($_GET['action'])) {
             $events[] = $row;
         }
         echo json_encode($events);
-        exit; // Adicione esta linha para garantir que o script PHP não continue a gerar saída HTML indesejada.
+        exit; // Terminar a execução aqui para garantir que nada mais seja enviado junto com o JSON
     } elseif ($_GET['action'] == 'add') {
         // Adicionar evento
-        $title = $_POST['title'];
-        $start = $_POST['start'];
-        $end = $_POST['end'];
-        $sql = "INSERT INTO events (title, start, end) VALUES ('$title', '$start', '$end')";
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+        if (isset($_POST['title']) && isset($_POST['start']) && isset($_POST['end'])) {
+            $title = $_POST['title'];
+            $start = $_POST['start'];
+            $end = $_POST['end'];
+            $sql = "INSERT INTO events (title, start, end) VALUES ('$title', '$start', '$end')";
+            if ($conn->query($sql) === TRUE) {
+                echo json_encode(array("success" => true));
+            } else {
+                echo json_encode(array("success" => false, "error" => $conn->error));
+            }
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo json_encode(array("success" => false, "error" => "Parâmetros ausentes"));
         }
+        exit; // Terminar a execução aqui para garantir que nada mais seja enviado junto com o JSON
     }
 }
 
+// Fechar a conexão com o banco de dados
 $conn->close();
 ?>
+
