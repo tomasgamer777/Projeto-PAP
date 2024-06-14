@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+function checkSession() {
+    // Verifica se o usuário está logado
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.html");
+        exit();
+    }
+
+    // Verifica a inatividade
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) {
+        // Sessão expirou, redireciona para login
+        session_unset();
+        session_destroy();
+        header("Location: login.html");
+        exit();
+    }
+
+    // Atualiza o timestamp da última atividade
+    $_SESSION['last_activity'] = time();
+}
+
+// Chama a função de verificação de sessão
+checkSession();
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 

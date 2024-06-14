@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
@@ -31,6 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 // Verificar se a senha fornecida pelo usuário corresponde à senha armazenada no banco de dados
                 if (password_verify($password_user, $row['password'])) {
+                    // Iniciar sessão
+                    $_SESSION['user_id'] = $row['id'];
+                    $_SESSION['user_email'] = $row['email'];
+                    $_SESSION['user_type'] = $row['tipo'];
+                    $_SESSION['last_activity'] = time();
+
                     // Verificar se o usuário é um administrador (tipo = 4)
                     if ($row['tipo'] == 4) {
                         // Retorna um JSON indicando sucesso
@@ -56,4 +64,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn->close();
 }
+
+// Função para verificar a sessão do usuário e inatividade
+function checkSession() {
+    // Verifica se o usuário está logado
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.html");
+        exit();
+    }
+
+    // Verifica a inatividade
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) {
+        // Sessão expirou, redireciona para login
+        session_unset();
+        session_destroy();
+        header("Location: login.html");
+        exit();
+    }
+
+    // Atualiza o timestamp da última atividade
+    $_SESSION['last_activity'] = time();
+}
+
+// Chama a função de verificação de sessão em todas as páginas de admin
+checkSession();
 ?>
