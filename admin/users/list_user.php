@@ -112,10 +112,10 @@ checkSession();
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-        <a href="../dashboard.html" class="simple-text logo-mini">
+        <a href="../dashboard.php" class="simple-text logo-mini">
           AM
         </a>
-        <a href="../dashboard.html"class="simple-text logo-normal">
+        <a href="../dashboard.php"class="simple-text logo-normal">
           ADMIN
         </a>
       </div>
@@ -157,7 +157,7 @@ checkSession();
         </div>
         <ul class="nav">
           <li class="nav-item  ">
-            <a class="nav-link" href="../dashboard.html">
+            <a class="nav-link" href="../dashboard.php">
               <i class="material-icons">dashboard</i>
               <p> Menu Principal </p>
             </a>
@@ -172,7 +172,7 @@ checkSession();
             <div class="collapse" id="formsExamples">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="add_users.html">
+                  <a class="nav-link" href="add_users.php">
                     <i class="material-icons"> person_add_alt </i>
                     <span class="sidebar-normal"> Adicionar Utilizador </span>
                   </a>
@@ -187,7 +187,7 @@ checkSession();
             </div>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="../calendar.html">
+            <a class="nav-link" href="../calendar.php">
               <i class="material-icons">calendar_today</i>
               <p> Calendário </p>
             </a>
@@ -202,7 +202,7 @@ checkSession();
             <div class="collapse" id="website">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="../edithomepage.html">
+                  <a class="nav-link" href="../edithomepage.php">
                     <i class="material-icons"> house </i>
                     <span class="sidebar-normal"> Página Principal </span>
                   </a>
