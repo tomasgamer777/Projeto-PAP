@@ -62,6 +62,19 @@
   <!-- End Google Tag Manager -->
 </head>
 
+<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+
+
 <body class="">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
@@ -271,7 +284,7 @@
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-calendar">
                 <div class="card-body ">
-                  <div id="fullCalendar"></div>
+                <div id='calendar'></div>
                 </div>
               </div>
             </div>
