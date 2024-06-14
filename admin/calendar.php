@@ -169,6 +169,7 @@
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
@@ -223,176 +224,45 @@
   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.8/index.global.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-    initialView: 'dayGridMonth',
-    selectable: true,
-    selectHelper: true,
-    editable: true,
-    events: {
-      url: 'fetch-events.php', // Certifique-se que este caminho está correto
-      method: 'GET',
-      failure: function() {
-        alert('There was an error while fetching events!');
-      }
-    },
-    select: function(info) {
-      var title = prompt('Event Title:');
-      var eventData;
-      if (title) {
-        eventData = {
-          title: title,
-          start: info.startStr,
-          end: info.endStr
-        };
-        calendar.addEvent(eventData);
-      }
-      calendar.unselect();
-    }
-  });
-  calendar.render();
-});
-
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        initialView: 'dayGridMonth',
+        selectable: true,
+        selectHelper: true,
+        editable: true,
+        events: {
+          url: 'fetch-events.php',
+          method: 'GET',
+          failure: function() {
+            alert('There was an error while fetching events!');
+          }
+        },
+        select: function(info) {
+          var title = prompt('Event Title:');
+          var eventData;
+          if (title) {
+            eventData = {
+              title: title,
+              start: info.startStr,
+              end: info.endStr
+            };
+            calendar.addEvent(eventData);
+          }
+          calendar.unselect();
+        }
+      });
+      calendar.render();
+    });
   </script>
 
-  <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-      <a href="#" data-toggle="dropdown">
-        <i class="fa fa-cog fa-2x"> </i>
-      </a>
-      <ul class="dropdown-menu">
-        <li class="header-title"> Filtros do Menu</li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger active-color">
-            <div class="badge-colors ml-auto mr-auto">
-              <span class="badge filter badge-purple" data-color="purple"></span>
-              <span class="badge filter badge-azure" data-color="azure"></span>
-              <span class="badge filter badge-green" data-color="green"></span>
-              <span class="badge filter badge-warning" data-color="orange"></span>
-              <span class="badge filter badge-danger" data-color="danger"></span>
-              <span class="badge filter badge-rose active" data-color="rose"></span>
-            </div>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="header-title">Fundo do menu</li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger background-color">
-            <div class="ml-auto mr-auto">
-              <span class="badge filter badge-black active" data-background-color="black"></span>
-              <span class="badge filter badge-white" data-background-color="white"></span>
-              <span class="badge filter badge-red" data-background-color="red"></span>
-            </div>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger">
-            <p>Mini Menu</p>
-            <label class="ml-auto">
-              <div class="togglebutton switch-sidebar-mini">
-                <label>
-                  <input type="checkbox">
-                  <span class="toggle"></span>
-                </label>
-              </div>
-            </label>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger">
-            <p>Imagem no menu</p>
-            <label class="switch-mini ml-auto">
-              <div class="togglebutton switch-sidebar-image">
-                <label>
-                  <input type="checkbox" checked="">
-                  <span class="toggle"></span>
-                </label>
-              </div>
-            </label>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="header-title">Fundos</li>
-        <li class="active">
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-1.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-2.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-3.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-4.jpg" alt="">
-          </a>
-        </li>
-        
-          <br>
-          <br>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js"></script>
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap-material-design.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- Plugin for the momentJs  -->
-  <script src="assets/js/plugins/moment.min.js"></script>
-  <!--  Plugin for Sweet Alert -->
-  <script src="assets/js/plugins/sweetalert2.js"></script>
-  <!-- Forms Validations Plugin -->
-  <script src="assets/js/plugins/jquery.validate.min.js"></script>
-  <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="assets/js/plugins/bootstrap-selectpicker.js"></script>
-  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-  <script src="assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
-  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
-  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
-  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
-  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="assets/js/plugins/jquery-jvectormap.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="assets/js/plugins/nouislider.min.js"></script>
-  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-  <!-- Library for adding dinamically elements -->
-  <script src="assets/js/plugins/arrive.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Chartist JS -->
-  <script src="assets/js/plugins/chartist.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="assets/demo/demo.js"></script>
+
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
