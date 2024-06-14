@@ -101,7 +101,7 @@
         </main>
         <!-- .main-content -->
 
-        footer class="site-footer">
+        <footer class="site-footer">
 				<div class="container">
 					<img src="dummy/logo-footer.png" alt="Site Name">
 					
