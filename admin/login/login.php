@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION['user_id'] = $row['id']; // Definir a variável de sessão
                         $_SESSION['last_activity'] = time(); // Inicializar a última atividade
                         echo json_encode(array("success" => true));
+                        error_log("Login bem-sucedido. Sessão iniciada para o usuário ID: " . $_SESSION['user_id']); // Adicionar mensagem de depuração
                         exit;
                     } else {
                         echo json_encode(array("success" => true, "message" => "Login bem sucedido como usuário normal. Não tem permissões de administrador."));

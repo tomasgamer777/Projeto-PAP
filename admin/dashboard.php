@@ -7,22 +7,28 @@ function checkSession() {
 
     // Adicionar mensagens de depuração
     echo "Verificando sessão...<br>";
+    error_log("Verificando sessão...");
 
     if (!isset($_SESSION['user_id'])) {
         echo "Sessão não iniciada. Redirecionando para login.<br>";
+        error_log("Sessão não iniciada. Redirecionando para login.");
+        header("Location: login/login.html");
         exit();
     }
 
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_timeout)) {
         echo "Sessão expirada por inatividade. Redirecionando para login.<br>";
+        error_log("Sessão expirada por inatividade. Redirecionando para login.");
         session_unset();
         session_destroy();
+        header("Location: login/login.html");
         exit();
     }
 
     // Atualizar a última atividade
     $_SESSION['last_activity'] = time();
     echo "Sessão ativa. Última atividade atualizada.<br>";
+    error_log("Sessão ativa. Última atividade atualizada.");
 }
 
 checkSession();
