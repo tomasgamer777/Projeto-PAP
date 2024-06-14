@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "password";
-$dbname = "calendario_db";
+$username = "tomas";
+$password = "!h01fFw35";
+$dbname = "banda";
 
 // Criar conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
