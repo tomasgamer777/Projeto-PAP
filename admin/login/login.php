@@ -1,7 +1,6 @@
 <?php
-session_start();
+session_start(); // Iniciar sessão
 
-// Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
     $username = "tomas";
@@ -31,14 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo json_encode(array("success" => false, "message" => "Utilizador desativado."));
             } else {
                 if (password_verify($password_user, $row['password'])) {
-                    // Iniciar sessão
-                    $_SESSION['user_id'] = $row['id'];
-                    $_SESSION['user_email'] = $row['email'];
-                    $_SESSION['user_type'] = $row['tipo'];
-                    $_SESSION['last_activity'] = time();
-
-                    // Verificar se o usuário é um administrador (tipo = 4)
                     if ($row['tipo'] == 4) {
+                        $_SESSION['user_id'] = $row['id']; // Definir a variável de sessão
+                        $_SESSION['last_activity'] = time(); // Inicializar a última atividade
                         echo json_encode(array("success" => true));
                         exit;
                     } else {

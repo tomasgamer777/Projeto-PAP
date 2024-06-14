@@ -1,29 +1,33 @@
 <?php
-session_start();
+session_start(); // Iniciar sessão
 
 function checkSession() {
-    // Verifica se o usuário está logado
+    // Tempo de expiração em segundos (5 minutos)
+    $session_timeout = 300;
+
     if (!isset($_SESSION['user_id'])) {
-        header("Location: login/login.html");
+        // Se a sessão não estiver definida, redirecionar para a página de login
+        header("Location: ../login/login.html");
         exit();
     }
 
-    // Verifica a inatividade
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) {
-        // Sessão expirou, redireciona para login
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $session_timeout)) {
+        // Se a sessão expirar por inatividade, destruir a sessão e redirecionar para a página de login
         session_unset();
         session_destroy();
-        header("Location: login/login.html");
+        header("Location: ../login/login.html");
         exit();
     }
 
-    // Atualiza o timestamp da última atividade
+    // Atualizar a última atividade
     $_SESSION['last_activity'] = time();
 }
 
-// Chama a função de verificação de sessão
+// Chamar a função para verificar a sessão
 checkSession();
 ?>
+
+
 
 
 
