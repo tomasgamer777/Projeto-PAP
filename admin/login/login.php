@@ -1,6 +1,5 @@
 <?php
-session_start(); // Iniciar a sessão no início do script
-
+// Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
     $username = "tomas";
@@ -17,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Dados do formulário
     $email = $_POST['email'];
-    $password_user = $_POST['password'];
+    $password_user = $_POST['password']; // Usar uma variável diferente para a senha fornecida pelo usuário
 
     // Consulta SQL para verificar se o usuário e a senha correspondem
     $sql = "SELECT * FROM users WHERE email='$email'";
@@ -27,26 +26,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             if ($row['status'] == 1) {
+                // Usuário está desativado, retorna uma mensagem de erro
                 echo json_encode(array("success" => false, "message" => "Utilizador desativado."));
             } else {
+                // Verificar se a senha fornecida pelo usuário corresponde à senha armazenada no banco de dados
                 if (password_verify($password_user, $row['password'])) {
+                    // Verificar se o usuário é um administrador (tipo = 4)
                     if ($row['tipo'] == 4) {
-                        $_SESSION['user_id'] = $row['id']; // Definir a variável de sessão
-                        $_SESSION['last_activity'] = time(); // Inicializar a última atividade
+                        // Retorna um JSON indicando sucesso
                         echo json_encode(array("success" => true));
-                        error_log("Login bem-sucedido. Sessão iniciada para o usuário ID: " . $_SESSION['user_id']); // Adicionar mensagem de depuração
-                        exit;
+                        exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
                     } else {
+                        // Retorna um JSON indicando sucesso
                         echo json_encode(array("success" => true, "message" => "Login bem sucedido como usuário normal. Não tem permissões de administrador."));
                     }
                 } else {
+                    // Retorna uma mensagem de erro
                     echo json_encode(array("success" => false, "message" => "Senha incorreta."));
                 }
             }
         } else {
+            // Retorna uma mensagem de erro
             echo json_encode(array("success" => false, "message" => "Utilizador não encontrado."));
         }
     } else {
+        // Retorna uma mensagem de erro
         echo json_encode(array("success" => false, "message" => "Erro na consulta SQL: " . $conn->error));
     }
 
