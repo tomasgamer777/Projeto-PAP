@@ -10,24 +10,18 @@
     Material Dashboard PRO by Creative Tim
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!-- Extra details for Live View on GitHub Pages -->
-  <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
-  <!--  Social tags      -->
   <meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, material dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, material design, material dashboard bootstrap 4 dashboard">
   <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
-  <!-- Schema.org markup for Google+ -->
   <meta itemprop="name" content="Material Dashboard PRO by Creative Tim">
   <meta itemprop="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
   <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
-  <!-- Twitter Card data -->
   <meta name="twitter:card" content="product">
   <meta name="twitter:site" content="@creativetim">
   <meta name="twitter:title" content="Material Dashboard PRO by Creative Tim">
   <meta name="twitter:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
   <meta name="twitter:creator" content="@creativetim">
   <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
-  <!-- Open Graph data -->
   <meta property="fb:app_id" content="655968634437471">
   <meta property="og:title" content="Material Dashboard PRO by Creative Tim" />
   <meta property="og:type" content="article" />
@@ -35,217 +29,131 @@
   <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg" />
   <meta property="og:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design." />
   <meta property="og:site_name" content="Creative Tim" />
-  <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- CSS Files -->
   <link href="assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
-  <!-- End Google Tag Manager -->
+  <script src="https://www.googletagmanager.com/gtm.js?id=GTM-NKDMSK6"></script>
 </head>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            events: 'api/eventos.php', // Endpoint para carregar eventos
-
-            // Função para adicionar novo evento
-            selectable: true,
-            select: function(info) {
-                var title = prompt('Digite o título do evento:');
-                if (title) {
-                    var eventData = {
-                        title: title,
-                        start: info.startStr,
-                        end: info.endStr
-                    };
-
-                    // Renderiza o evento no calendário
-                    calendar.addEvent(eventData);
-
-                    // Envia o evento para o backend
-                    $.ajax({
-                        url: 'api/salvar_evento.php',
-                        type: 'POST',
-                        data: {
-                            title: title,
-                            start: info.startStr,
-                            end: info.endStr
-                            // outros dados relevantes, se houver
-                        },
-                        success: function(response) {
-                            console.log('Evento salvo com sucesso!');
-                            // Lógica adicional após salvar o evento, se necessário
-                        },
-                        error: function(err) {
-                            console.error('Erro ao salvar evento:', err);
-                        }
-                    });
-                }
-            }
-        });
-
-        calendar.render();
-    });
-</script>
-
-
 <body class="">
-  <!-- Extra details for Live View on GitHub Pages -->
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-    <div class="logo">
-      <a href="dashboard.php" class="simple-text logo-mini">
-        AM
-      </a>
-      <a href="dashboard.php"class="simple-text logo-normal">
-        ADMIN
-      </a>
-    </div>
-    <div class="sidebar-wrapper">
-      <div class="user">
-        <div class="photo">
-          <img src="assets/img/faces/avatar.jpg" />
-        </div>
-        <div class="user-info">
-          <a data-toggle="collapse" href="#collapseExample" class="username">
-            <span>
-              Tomás Calçada
-              <b class="caret"></b>
-            </span>
-          </a>
-          <div class="collapse" id="collapseExample">
-            <ul class="nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="sidebar-mini"> P </span>
-                  <span class="sidebar-normal"> Perfil </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="sidebar-mini"> EP </span>
-                  <span class="sidebar-normal"> Editar Perfil </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="sidebar-mini"> D </span>
-                  <span class="sidebar-normal"> Definições </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="logo">
+        <a href="dashboard.php" class="simple-text logo-mini">
+          AM
+        </a>
+        <a href="dashboard.php" class="simple-text logo-normal">
+          ADMIN
+        </a>
       </div>
-      <ul class="nav">
-        <li class="nav-item ">
-          <a class="nav-link" href="dashboard.php">
-            <i class="material-icons">dashboard</i>
-            <p> Menu Principal </p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" data-toggle="collapse" href="#utilizadores">
-            <i class="material-icons">person</i>
-            <p> Utilizadores
-              <b class="caret"></b>
-            </p>
-          </a>
-          <div class="collapse" id="utilizadores">
-            <ul class="nav">
-              <li class="nav-item ">
-                <a class="nav-link" href="users/add_users.php">
-                  <i class="material-icons"> person_add_alt </i>
-                  <span class="sidebar-normal"> Adicionar Utilizadores </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="users/list_user.php">
-                  <i class="material-icons"> list </i>
-                  <span class="sidebar-normal"> lista de Utilizadores </span>
-                </a>
-              </li>
-            </ul>
+      <div class="sidebar-wrapper">
+        <div class="user">
+          <div class="photo">
+            <img src="assets/img/faces/avatar.jpg" />
           </div>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="calendar.php">
-            <i class="material-icons">calendar_today</i>
-            <p> Calendário </p>
-          </a>
-        </li>
-        
-        <li class="nav-item ">
-          <a class="nav-link" data-toggle="collapse" href="#website">
-            <i class="material-icons">public</i>
-            <p> Editar Website
-              <b class="caret"></b>
-            </p>
-          </a>
-          <div class="collapse" id="website">
-            <ul class="nav">
-              <li class="nav-item ">
-                <a class="nav-link" href="edithomepage.php">
-                  <i class="material-icons"> house </i>
-                  <span class="sidebar-normal"> Página Principal </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="editgalery.php">
-                  <i class="material-icons"> collections </i>
-                  <span class="sidebar-normal"> Galeria </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="editblog.php">
-                  <i class="material-icons"> newspaper </i>
-                  <span class="sidebar-normal"> Blog </span>
-                </a>
-              </li>
-            </ul>
+          <div class="user-info">
+            <a data-toggle="collapse" href="#collapseExample" class="username">
+              <span>
+                Tomás Calçada
+                <b class="caret"></b>
+              </span>
+            </a>
+            <div class="collapse" id="collapseExample">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="sidebar-mini"> P </span>
+                    <span class="sidebar-normal"> Perfil </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="sidebar-mini"> EP </span>
+                    <span class="sidebar-normal"> Editar Perfil </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="sidebar-mini"> D </span>
+                    <span class="sidebar-normal"> Definições </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </li>
-      </ul>
+        </div>
+        <ul class="nav">
+          <li class="nav-item ">
+            <a class="nav-link" href="dashboard.php">
+              <i class="material-icons">dashboard</i>
+              <p> Menu Principal </p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#utilizadores">
+              <i class="material-icons">person</i>
+              <p> Utilizadores
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse" id="utilizadores">
+              <ul class="nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="users/add_users.php">
+                    <i class="material-icons"> person_add_alt </i>
+                    <span class="sidebar-normal"> Adicionar Utilizadores </span>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="users/list_user.php">
+                    <i class="material-icons"> list </i>
+                    <span class="sidebar-normal"> lista de Utilizadores </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="calendar.php">
+              <i class="material-icons">calendar_today</i>
+              <p> Calendário </p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#website">
+              <i class="material-icons">public</i>
+              <p> Editar Website
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse" id="website">
+              <ul class="nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="edithomepage.php">
+                    <i class="material-icons"> house </i>
+                    <span class="sidebar-normal"> Página Principal </span>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="editgalery.php">
+                    <i class="material-icons"> collections </i>
+                    <span class="sidebar-normal"> Galeria </span>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="editblog.php">
+                    <i class="material-icons"> newspaper </i>
+                    <span class="sidebar-normal"> Blog </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="main-panel">
-      <!-- Navbar -->
+    <div class="main-panel">
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
@@ -261,79 +169,98 @@
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">notificações</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="javascript:void(0)" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
-                    Conta
+                    Account
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Perfil</a>
-                  <a class="dropdown-item" href="#">Definições</a>
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
+                  <a class="dropdown-item" href="logout.php">Log out</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <div class="header text-center">
-            <h3 class="title">Calendário de saidas da banda</h3>
-            <p class="category">Pequeno calendário com todos os eventos próximos da Banda 
-            </p>
-          </div>
           <div class="row">
-            <div class="col-md-10 ml-auto mr-auto">
-              <div class="card card-calendar">
-                <div class="card-body ">
-                <div id='calendar'></div>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">today</i>
+                  </div>
+                  <h4 class="card-title">Calendário</h4>
+                </div>
+                <div class="card-body">
+                  <div id="calendar"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   </div>
+  <!-- Core JS Files -->
+  <script src="assets/js/core/jquery.min.js"></script>
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="assets/js/plugins/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.8/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    initialView: 'dayGridMonth',
+    selectable: true,
+    selectHelper: true,
+    editable: true,
+    events: {
+      url: 'fetch-events.php', // Certifique-se que este caminho está correto
+      method: 'GET',
+      failure: function() {
+        alert('There was an error while fetching events!');
+      }
+    },
+    select: function(info) {
+      var title = prompt('Event Title:');
+      var eventData;
+      if (title) {
+        eventData = {
+          title: title,
+          start: info.startStr,
+          end: info.endStr
+        };
+        calendar.addEvent(eventData);
+      }
+      calendar.unselect();
+    }
+  });
+  calendar.render();
+});
+
+  </script>
+
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
@@ -445,7 +372,7 @@
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
   <script src="assets/js/plugins/jquery-jvectormap.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
