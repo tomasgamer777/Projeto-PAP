@@ -3,18 +3,13 @@
 
 header('Content-Type: application/json');
 
-$servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verifica a conexão
+// Conecta ao banco de dados
+$conn = new mysqli('localhost', 'usuario', 'senha', 'nome_do_banco');
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    http_response_code(500);
+    echo json_encode(['error' => 'Erro na conexão com o banco de dados: ' . $conn->connect_error]);
+    exit();
 }
-
 
 // Define o intervalo de datas para filtrar os eventos
 $start = isset($_GET['start']) ? $conn->real_escape_string($_GET['start']) : '';

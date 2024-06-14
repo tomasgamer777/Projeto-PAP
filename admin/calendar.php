@@ -300,7 +300,7 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                events: 'api/eventos', // Endpoint para carregar eventos
+                events: 'api/eventos.php', // Endpoint para carregar eventos
 
                 // Função para adicionar novo evento
                 selectable: true,
