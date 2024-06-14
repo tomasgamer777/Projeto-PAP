@@ -1,5 +1,5 @@
 <?php
-session_start(); // Iniciar sessão
+session_start(); // Iniciar a sessão no início do script
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servername = "localhost";
