@@ -42,9 +42,9 @@ if (isset($_GET['action'])) {
             echo json_encode(array("error" => "Erro ao adicionar evento: " . $conn->error));
         }
     }
-    $conn->close();
-    exit();
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
