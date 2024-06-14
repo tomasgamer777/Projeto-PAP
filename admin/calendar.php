@@ -90,7 +90,7 @@
 
                     // Envia o evento para o backend
                     $.ajax({
-                        url: '/api/salvar_evento.php',
+                        url: 'api/salvar_evento.php',
                         type: 'POST',
                         data: {
                             title: title,
