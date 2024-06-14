@@ -9,7 +9,41 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar conexão
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode(array("error" => "Connection failed: " . $conn->connect_error)));
+}
+
+// Definir cabeçalho de resposta para JSON
+header('Content-Type: application/json');
+
+// Verificar a ação do AJAX
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'list') {
+        // Listar eventos
+        $sql = "SELECT * FROM events";
+        $result = $conn->query($sql);
+        $events = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $events[] = $row;
+            }
+            echo json_encode($events);
+        } else {
+            echo json_encode(array("error" => "Erro ao buscar eventos: " . $conn->error));
+        }
+    } elseif ($_GET['action'] == 'add') {
+        // Adicionar evento
+        $title = $_POST['title'];
+        $start = $_POST['start'];
+        $end = $_POST['end'];
+        $sql = "INSERT INTO events (title, start, end) VALUES ('$title', '$start', '$end')";
+        if ($conn->query($sql) === TRUE) {
+            echo json_encode(array("success" => "Evento adicionado com sucesso"));
+        } else {
+            echo json_encode(array("error" => "Erro ao adicionar evento: " . $conn->error));
+        }
+    }
+    $conn->close();
+    exit();
 }
 ?>
 
@@ -55,7 +89,7 @@ if ($conn->connect_error) {
                         url: 'calendar.php?action=list',
                         type: 'GET',
                         success: function(data) {
-                            var events = JSON.parse(data).map(event => {
+                            var events = data.map(event => {
                                 return {
                                     id: event.id,
                                     title: event.title,
@@ -64,6 +98,10 @@ if ($conn->connect_error) {
                                 };
                             });
                             callback(events);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Erro ao buscar eventos: ", error);
+                            console.log("Resposta do servidor: ", xhr.responseText);
                         }
                     });
                 },
@@ -90,9 +128,18 @@ if ($conn->connect_error) {
                                     url: 'calendar.php?action=add',
                                     type: 'POST',
                                     data: eventData,
-                                    success: function() {
-                                        $('#calendar').fullCalendar('refetchEvents');
-                                        Swal.fire('Salvo!', 'Seu evento foi salvo com sucesso.', 'success');
+                                    success: function(response) {
+                                        if (response.success) {
+                                            $('#calendar').fullCalendar('refetchEvents');
+                                            Swal.fire('Salvo!', 'Seu evento foi salvo com sucesso.', 'success');
+                                        } else {
+                                            Swal.fire('Erro!', response.error, 'error');
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        Swal.fire('Erro!', 'Erro ao salvar evento.', 'error');
+                                        console.error("Erro ao salvar evento: ", error);
+                                        console.log("Resposta do servidor: ", xhr.responseText);
                                     }
                                 });
                             }
@@ -105,32 +152,3 @@ if ($conn->connect_error) {
     </script>
 </body>
 </html>
-
-<?php
-// Verificar a ação do AJAX
-if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'list') {
-        // Listar eventos
-        $sql = "SELECT * FROM events";
-        $result = $conn->query($sql);
-        $events = [];
-        while ($row = $result->fetch_assoc()) {
-            $events[] = $row;
-        }
-        echo json_encode($events);
-    } elseif ($_GET['action'] == 'add') {
-        // Adicionar evento
-        $title = $_POST['title'];
-        $start = $_POST['start'];
-        $end = $_POST['end'];
-        $sql = "INSERT INTO events (title, start, end) VALUES ('$title', '$start', '$end')";
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-}
-
-$conn->close();
-?>
