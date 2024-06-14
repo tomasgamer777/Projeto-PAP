@@ -271,82 +271,16 @@
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-calendar">
                 <div class="card-body ">
-                <div id="calendar"></div>
-  
-  <form id="addEventForm" class="mt-3">
-    <label for="eventName">Nome do Evento:</label>
-    <input type="text" id="eventName" required>
-    <label for="eventDate">Data do Evento:</label>
-    <input type="date" id="eventDate" required>
-    <button type="submit">Adicionar Evento</button>
-  </form>
-
-  <ul class="event-list mt-3" id="eventList">
-    <!-- Lista de eventos será preenchida dinamicamente -->
-  </ul>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      var events = []; // Array para armazenar eventos temporariamente
-
-      $('#calendar').fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay'
-        },
-        defaultView: 'month',
-        editable: true,
-        selectable: true,
-        select: function(start, end) {
-          // Ao selecionar uma data, abre o modal para adicionar evento
-          var title = prompt('Nome do Evento:');
-          var eventData;
-          if (title) {
-            eventData = {
-              title: title,
-              start: start,
-              end: end
-            };
-            $('#calendar').fullCalendar('renderEvent', eventData, true); // Adiciona evento ao calendário
-            events.push(eventData); // Adiciona evento ao array de eventos
-            updateEventList(); // Atualiza a lista de eventos na página
-          }
-          $('#calendar').fullCalendar('unselect');
-        },
-        events: events // Carrega eventos inicialmente vazios
-      });
-
-      $('#addEventForm').submit(function(event) {
-        event.preventDefault();
-        var eventName = $('#eventName').val();
-        var eventDate = $('#eventDate').val();
-        var start = moment(eventDate).startOf('day');
-        var end = moment(eventDate).endOf('day');
-        var eventData = {
-          title: eventName,
-          start: start,
-          end: end
-        };
-        $('#calendar').fullCalendar('renderEvent', eventData, true); // Adiciona evento ao calendário
-        events.push(eventData); // Adiciona evento ao array de eventos
-        updateEventList(); // Atualiza a lista de eventos na página
-        $('#eventName').val('');
-        $('#eventDate').val('');
-      });
-
-      function updateEventList() {
-        $('#eventList').empty();
-        events.forEach(function(event, index) {
-          var eventDate = moment(event.start).format('DD/MM/YYYY');
-          $('#eventList').append('<li>' + event.title + ' - ' + eventDate + '</li>');
-        });
-      }
-    });
-  </script>
+                  <div id="fullCalendar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
