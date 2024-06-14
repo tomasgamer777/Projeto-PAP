@@ -4,7 +4,7 @@ session_start();
 function checkSession() {
     // Verifica se o usuário está logado
     if (!isset($_SESSION['user_id'])) {
-        header("Location: login/login.html");
+        header("Location: ../login/login.html");
         exit();
     }
 
@@ -13,7 +13,7 @@ function checkSession() {
         // Sessão expirou, redireciona para login
         session_unset();
         session_destroy();
-        header("Location: login/login.html");
+        header("Location: ../login/login.html");
         exit();
     }
 
