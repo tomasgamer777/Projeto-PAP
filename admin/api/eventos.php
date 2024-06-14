@@ -1,16 +1,20 @@
 <?php
 // eventos.php
 
-// Configura a resposta como JSON
 header('Content-Type: application/json');
 
-// Conecta ao banco de dados (substitua com suas configurações)
-$conn = new mysqli('localhost', 'usuario', 'senha', 'nome_do_banco');
+$servername = "localhost";
+$username = "tomas";
+$password = "!h01fFw35";
+$dbname = "banda";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verifica a conexão
 if ($conn->connect_error) {
-    http_response_code(500); // Erro interno do servidor
-    echo json_encode(['error' => 'Erro na conexão com o banco de dados: ' . $conn->connect_error]);
-    exit();
+    die("Connection failed: " . $conn->connect_error);
 }
+
 
 // Define o intervalo de datas para filtrar os eventos
 $start = isset($_GET['start']) ? $conn->real_escape_string($_GET['start']) : '';
@@ -32,8 +36,6 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Retorna os eventos como JSON
 echo json_encode($events);
-
 $conn->close();
 ?>
