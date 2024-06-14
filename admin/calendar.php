@@ -1,27 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon.ico">
-  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Material Dashboard PRO by Creative Tim
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
+  <!--  Social tags      -->
   <meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, material dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, material design, material dashboard bootstrap 4 dashboard">
   <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
+  <!-- Schema.org markup for Google+ -->
   <meta itemprop="name" content="Material Dashboard PRO by Creative Tim">
   <meta itemprop="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
   <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
+  <!-- Twitter Card data -->
   <meta name="twitter:card" content="product">
   <meta name="twitter:site" content="@creativetim">
   <meta name="twitter:title" content="Material Dashboard PRO by Creative Tim">
   <meta name="twitter:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
   <meta name="twitter:creator" content="@creativetim">
   <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
+  <!-- Open Graph data -->
   <meta property="fb:app_id" content="655968634437471">
   <meta property="og:title" content="Material Dashboard PRO by Creative Tim" />
   <meta property="og:type" content="article" />
@@ -29,131 +36,164 @@
   <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg" />
   <meta property="og:description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design." />
   <meta property="og:site_name" content="Creative Tim" />
+  <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <link href="assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
-  <link href="assets/demo/demo.css" rel="stylesheet" />
-  <script src="https://www.googletagmanager.com/gtm.js?id=GTM-NKDMSK6"></script>
+  <!-- CSS Files -->
+  <link href="../assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
+  </script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body class="">
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="assets/img/sidebar-1.jpg">
-      <div class="logo">
-        <a href="dashboard.php" class="simple-text logo-mini">
-          AM
-        </a>
-        <a href="dashboard.php" class="simple-text logo-normal">
-          ADMIN
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <div class="user">
-          <div class="photo">
-            <img src="assets/img/faces/avatar.jpg" />
-          </div>
-          <div class="user-info">
-            <a data-toggle="collapse" href="#collapseExample" class="username">
-              <span>
-                Tomás Calçada
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> EP </span>
-                    <span class="sidebar-normal"> Editar Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> D </span>
-                    <span class="sidebar-normal"> Definições </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+    <div class="logo">
+      <a href="dashboard.php" class="simple-text logo-mini">
+        AM
+      </a>
+      <a href="dashboard.php"class="simple-text logo-normal">
+        ADMIN
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <div class="user">
+        <div class="photo">
+          <img src="assets/img/faces/avatar.jpg" />
+        </div>
+        <div class="user-info">
+          <a data-toggle="collapse" href="#collapseExample" class="username">
+            <span>
+              Tomás Calçada
+              <b class="caret"></b>
+            </span>
+          </a>
+          <div class="collapse" id="collapseExample">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="sidebar-mini"> P </span>
+                  <span class="sidebar-normal"> Perfil </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="sidebar-mini"> EP </span>
+                  <span class="sidebar-normal"> Editar Perfil </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="sidebar-mini"> D </span>
+                  <span class="sidebar-normal"> Definições </span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <ul class="nav">
-          <li class="nav-item ">
-            <a class="nav-link" href="dashboard.php">
-              <i class="material-icons">dashboard</i>
-              <p> Menu Principal </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#utilizadores">
-              <i class="material-icons">person</i>
-              <p> Utilizadores
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="utilizadores">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="users/add_users.php">
-                    <i class="material-icons"> person_add_alt </i>
-                    <span class="sidebar-normal"> Adicionar Utilizadores </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="users/list_user.php">
-                    <i class="material-icons"> list </i>
-                    <span class="sidebar-normal"> lista de Utilizadores </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="calendar.php">
-              <i class="material-icons">calendar_today</i>
-              <p> Calendário </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#website">
-              <i class="material-icons">public</i>
-              <p> Editar Website
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="website">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="edithomepage.php">
-                    <i class="material-icons"> house </i>
-                    <span class="sidebar-normal"> Página Principal </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="editgalery.php">
-                    <i class="material-icons"> collections </i>
-                    <span class="sidebar-normal"> Galeria </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="editblog.php">
-                    <i class="material-icons"> newspaper </i>
-                    <span class="sidebar-normal"> Blog </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
       </div>
+      <ul class="nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="dashboard.php">
+            <i class="material-icons">dashboard</i>
+            <p> Menu Principal </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#utilizadores">
+            <i class="material-icons">person</i>
+            <p> Utilizadores
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="utilizadores">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="users/add_users.php">
+                  <i class="material-icons"> person_add_alt </i>
+                  <span class="sidebar-normal"> Adicionar Utilizadores </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="users/list_user.php">
+                  <i class="material-icons"> list </i>
+                  <span class="sidebar-normal"> lista de Utilizadores </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="calendar.php">
+            <i class="material-icons">calendar_today</i>
+            <p> Calendário </p>
+          </a>
+        </li>
+        
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#website">
+            <i class="material-icons">public</i>
+            <p> Editar Website
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="website">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="edithomepage.php">
+                  <i class="material-icons"> house </i>
+                  <span class="sidebar-normal"> Página Principal </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="editgalery.php">
+                  <i class="material-icons"> collections </i>
+                  <span class="sidebar-normal"> Galeria </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="editblog.php">
+                  <i class="material-icons"> newspaper </i>
+                  <span class="sidebar-normal"> Blog </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="main-panel">
+  </div>
+  <div class="main-panel">
+      <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
@@ -169,104 +209,122 @@
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
             <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="javascript:void(0)" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">notificações</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
-                    Account
+                    Conta
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="#">Definições</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="logout.php">Log out</a>
+                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
+          <div class="header text-center">
+            <h3 class="title">FullCalendar.io</h3>
+            <p class="category">Handcrafted by our friends from
+              <a target="_blank" href="https://fullcalendar.io/">FullCalendar.io</a>. Please checkout their
+              <a href="https://fullcalendar.io/docs/" target="_blank">full documentation.</a>
+            </p>
+          </div>
           <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-rose card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">today</i>
-                  </div>
-                  <h4 class="card-title">Calendário</h4>
-                </div>
-                <div class="card-body">
-                  <div id="calendar"></div>
+            <div class="col-md-10 ml-auto mr-auto">
+              <div class="card card-calendar">
+                <div class="card-body ">
+                  <div id="fullCalendar"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com">
+                  Creative Tim
+                </a>
+              </li>
+              <li>
+                <a href="https://creative-tim.com/presentation">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="http://blog.creative-tim.com">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/license">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
-  <!-- Core JS Files -->
-  <script src="assets/js/core/jquery.min.js"></script>
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap-material-design.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <script src="assets/js/plugins/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.8/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.8/index.global.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        initialView: 'dayGridMonth',
-        selectable: true,
-        selectHelper: true,
-        editable: true,
-        events: {
-          url: 'fetch-events.php',
-          method: 'GET',
-          failure: function() {
-            alert('There was an error while fetching events!');
-          }
-        },
-        select: function(info) {
-          var title = prompt('Event Title:');
-          var eventData;
-          if (title) {
-            eventData = {
-              title: title,
-              start: info.startStr,
-              end: info.endStr
-            };
-            calendar.addEvent(eventData);
-          }
-          calendar.unselect();
-        }
-      });
-      calendar.render();
-    });
-  </script>
-
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
         <i class="fa fa-cog fa-2x"> </i>
       </a>
       <ul class="dropdown-menu">
-        <li class="header-title"> Filtros do Menu</li>
+        <li class="header-title"> Sidebar Filters</li>
         <li class="adjustments-line">
           <a href="javascript:void(0)" class="switch-trigger active-color">
             <div class="badge-colors ml-auto mr-auto">
@@ -280,7 +338,7 @@
             <div class="clearfix"></div>
           </a>
         </li>
-        <li class="header-title">Fundo do menu</li>
+        <li class="header-title">Sidebar Background</li>
         <li class="adjustments-line">
           <a href="javascript:void(0)" class="switch-trigger background-color">
             <div class="ml-auto mr-auto">
@@ -293,7 +351,7 @@
         </li>
         <li class="adjustments-line">
           <a href="javascript:void(0)" class="switch-trigger">
-            <p>Mini Menu</p>
+            <p>Sidebar Mini</p>
             <label class="ml-auto">
               <div class="togglebutton switch-sidebar-mini">
                 <label>
@@ -307,7 +365,7 @@
         </li>
         <li class="adjustments-line">
           <a href="javascript:void(0)" class="switch-trigger">
-            <p>Imagem no menu</p>
+            <p>Sidebar Images</p>
             <label class="switch-mini ml-auto">
               <div class="togglebutton switch-sidebar-image">
                 <label>
@@ -319,28 +377,43 @@
             <div class="clearfix"></div>
           </a>
         </li>
-        <li class="header-title">Fundos</li>
+        <li class="header-title">Images</li>
         <li class="active">
           <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-1.jpg" alt="">
+            <img src="../assets/img/sidebar-1.jpg" alt="">
           </a>
         </li>
         <li>
           <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-2.jpg" alt="">
+            <img src="../assets/img/sidebar-2.jpg" alt="">
           </a>
         </li>
         <li>
           <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-3.jpg" alt="">
+            <img src="../assets/img/sidebar-3.jpg" alt="">
           </a>
         </li>
         <li>
           <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="assets/img/sidebar-4.jpg" alt="">
+            <img src="../assets/img/sidebar-4.jpg" alt="">
           </a>
         </li>
-        
+        <li class="button-container">
+          <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-rose btn-block btn-fill">Buy Now</a>
+          <a href="https://demos.creative-tim.com/material-dashboard-pro/docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
+            Documentation
+          </a>
+          <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-info btn-block">
+            Get Free Demo!
+          </a>
+        </li>
+        <li class="button-container github-star">
+          <a class="github-button" href="https://github.com/creativetimofficial/ct-material-dashboard-pro" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+        </li>
+        <li class="header-title">Thank you for 95 shares!</li>
+        <li class="button-container text-center">
+          <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
+          <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
           <br>
           <br>
         </li>
@@ -348,50 +421,50 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js"></script>
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap-material-design.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- Plugin for the momentJs  -->
-  <script src="assets/js/plugins/moment.min.js"></script>
+  <script src="../assets/js/plugins/moment.min.js"></script>
   <!--  Plugin for Sweet Alert -->
-  <script src="assets/js/plugins/sweetalert2.js"></script>
+  <script src="../assets/js/plugins/sweetalert2.js"></script>
   <!-- Forms Validations Plugin -->
-  <script src="assets/js/plugins/jquery.validate.min.js"></script>
+  <script src="../assets/js/plugins/jquery.validate.min.js"></script>
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+  <script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
   <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="assets/js/plugins/bootstrap-selectpicker.js"></script>
+  <script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-  <script src="assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+  <script src="../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
+  <script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
+  <script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+  <script src="../assets/js/plugins/fullcalendar.min.js"></script>
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="assets/js/plugins/jquery-jvectormap.js"></script>
+  <script src="../assets/js/plugins/jquery-jvectormap.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="assets/js/plugins/nouislider.min.js"></script>
+  <script src="../assets/js/plugins/nouislider.min.js"></script>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- Library for adding dinamically elements -->
-  <script src="assets/js/plugins/arrive.min.js"></script>
+  <script src="../assets/js/plugins/arrive.min.js"></script>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Chartist JS -->
-  <script src="assets/js/plugins/chartist.min.js"></script>
+  <script src="../assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
+  <script src="../assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="assets/demo/demo.js"></script>
+  <script src="../assets/demo/demo.js"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -564,7 +637,7 @@
     });
   </script>
   <!-- Sharrre libray -->
-  <script src="assets/demo/jquery.sharrre.js"></script>
+  <script src="../assets/demo/jquery.sharrre.js"></script>
   <script>
     $(document).ready(function() {
 
