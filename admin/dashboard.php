@@ -5,6 +5,9 @@ function checkSession() {
     // Tempo de expiração em segundos (5 minutos)
     $session_timeout = 300;
 
+    // Adicionar mensagens de depuração
+    echo "Verificando sessão...<br>";
+
     if (!isset($_SESSION['user_id'])) {
         echo "Sessão não iniciada. Redirecionando para login.<br>";
         header("Location: login/login.html");
@@ -26,7 +29,6 @@ function checkSession() {
 
 checkSession();
 ?>
-
 
 
 
