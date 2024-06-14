@@ -473,8 +473,10 @@
       .then(response => response.json())
       .then(data => {
           if(data.success){
+              // Iniciar sessão no lado do cliente (exemplo com localStorage)
+              localStorage.setItem('loggedIn', 'true');
               // Redirecionamento para o dashboard
-              window.location.href = "../dashboard.php";
+              window.location.href = "admin/dashboard.php";
           } else {
               // Exibição do SweetAlert com a mensagem de erro
               swal("Erro", data.message, "error");
@@ -485,6 +487,7 @@
       });
   });
 </script>
+
 
 
 </body>

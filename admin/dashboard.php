@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 // Definir tempo de vida da sessão em segundos (por exemplo, 30 minutos)
 $session_lifetime = 1800; // 30 minutos em segundos
 
@@ -10,7 +8,12 @@ $cookie_lifetime = 0; // 0 significa que o cookie dura até o fechamento do nave
 session_set_cookie_params($cookie_lifetime);
 ini_set('session.gc_maxlifetime', $session_lifetime);
 
-// Função de verificação de sessão
+session_start(); // Iniciar a sessão depois de definir as configurações
+
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
 function checkSession() {
     if (!isset($_SESSION['user_id'])) {
         echo "Sessão não iniciada. Redirecionando para login.";
@@ -31,6 +34,7 @@ function checkSession() {
 
 checkSession();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
