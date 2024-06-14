@@ -45,9 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo json_encode(array("success" => true));
                         exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
                     } else {
-                        // Retorna um JSON indicando sucesso
-                        echo json_encode(array("success" => true, "message" => "Login bem sucedido como usuário normal. Não tem permissões de administrador."));
-                    }
                 } else {
                     // Retorna uma mensagem de erro
                     echo json_encode(array("success" => false, "message" => "Senha incorreta."));
