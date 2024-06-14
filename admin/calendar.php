@@ -72,7 +72,7 @@
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
-            events: '/api/eventos.php', // Endpoint para carregar eventos
+            events: 'api/eventos.php', // Endpoint para carregar eventos
 
             // Função para adicionar novo evento
             selectable: true,
@@ -90,7 +90,7 @@
 
                     // Envia o evento para o backend
                     $.ajax({
-                        url: '/api/salvar_evento.php',
+                        url: 'api/salvar_evento.php',
                         type: 'POST',
                         data: {
                             title: title,
