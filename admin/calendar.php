@@ -63,16 +63,56 @@
 </head>
 
 <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: '/api/eventos', // Endpoint para carregar eventos
 
-    </script>
+            // Função para adicionar novo evento
+            selectable: true,
+            select: function(info) {
+                var title = prompt('Digite o título do evento:');
+                if (title) {
+                    var eventData = {
+                        title: title,
+                        start: info.startStr,
+                        end: info.endStr
+                    };
+
+                    // Renderiza o evento no calendário
+                    calendar.addEvent(eventData);
+
+                    // Envia o evento para o backend
+                    $.ajax({
+                        url: '/api/salvar_evento.php',
+                        type: 'POST',
+                        data: {
+                            title: title,
+                            start: info.startStr,
+                            end: info.endStr
+                            // outros dados relevantes, se houver
+                        },
+                        success: function(response) {
+                            console.log('Evento salvo com sucesso!');
+                            // Lógica adicional após salvar o evento, se necessário
+                        },
+                        error: function(err) {
+                            console.error('Erro ao salvar evento:', err);
+                        }
+                    });
+                }
+            }
+        });
+
+        calendar.render();
+    });
+</script>
 
 
 <body class="">
