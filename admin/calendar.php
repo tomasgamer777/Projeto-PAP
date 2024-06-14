@@ -265,7 +265,7 @@
                   <a class="dropdown-item" href="#">Perfil</a>
                   <a class="dropdown-item" href="#">Definições</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Terminar sessão</a>
+                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
                 </div>
               </li>
             </ul>
