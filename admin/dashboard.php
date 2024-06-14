@@ -7,7 +7,7 @@ function checkSession() {
 
     if (!isset($_SESSION['user_id'])) {
         // Se a sessão não estiver definida, redirecionar para a página de login
-        header("Location: ../login/login.html");
+        header("Location: login/login.html");
         exit();
     }
 
@@ -15,7 +15,7 @@ function checkSession() {
         // Se a sessão expirar por inatividade, destruir a sessão e redirecionar para a página de login
         session_unset();
         session_destroy();
-        header("Location: ../login/login.html");
+        header("Location: login/login.html");
         exit();
     }
 
