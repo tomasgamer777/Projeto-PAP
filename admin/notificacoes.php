@@ -365,7 +365,7 @@ $conn->close();
         console.log('Responder por Email: ' + email + ', Assunto: ' + assunto);
 
         // Redirecionamento básico sem parâmetros adicionais
-        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação";
+        window.location.href = "";
     }
 </script>
 
