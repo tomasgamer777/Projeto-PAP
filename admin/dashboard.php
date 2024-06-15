@@ -100,7 +100,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
         ADMIN
       </a>
     </div>
-    <<div class="sidebar-wrapper">
+    <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
                 <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
