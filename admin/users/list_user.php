@@ -119,7 +119,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        <?php echo htmlspecialchars($user_name)1; ?>
+                        <?php echo htmlspecialchars($user_name1); ?>
                         <b class="caret"></b>
                     </span>
                 </a>
