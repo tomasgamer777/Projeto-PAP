@@ -345,6 +345,70 @@ $conn->close();
     </div>
 </div>
 
+<!-- Biblioteca jQuery (caso não esteja incluída) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Biblioteca SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Bootstrap CSS (caso necessário para o modal) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Botão para exibir modal -->
+<button class="btn btn-success btn-sm" onclick="exibirModalResposta('exemplo@email.com', 'Assunto da Notificação')">Responder por Email</button>
+
+<!-- Modal para responder email -->
+<div class="modal fade" id="modalRespostaEmail" tabindex="-1" aria-labelledby="modalRespostaEmailLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalRespostaEmailLabel">Responder por Email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="formRespostaEmail">
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea class="form-control" id="mensagem" name="mensagem" rows="3" placeholder="Digite sua resposta..."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="enviarEmail()">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function exibirModalResposta(email, assunto) {
+    $('#modalRespostaEmail').modal('show');
+    $('#modalRespostaEmailLabel').text('Responder por Email - ' + email);
+    $('#mensagem').val(''); // Limpar campo de mensagem
+  }
+
+  function enviarEmail() {
+    var email = 'tomascalcada10@gmail.com'; // Substituir pelo email real
+    var assunto = 'Assunto da Notificação'; // Substituir pelo assunto real
+    var mensagem = $('#mensagem').val();
+
+    // Aqui você pode fazer uma requisição AJAX para enviar o email
+    // Exemplo com SweetAlert2 apenas para demonstração
+    Swal.fire({
+      icon: 'success',
+      title: 'Email enviado!',
+      text: 'Sua resposta foi enviada para ' + email,
+      showConfirmButton: false,
+      timer: 1500
+    });
+
+    $('#modalRespostaEmail').modal('hide');
+  }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
  function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
@@ -354,7 +418,7 @@ $conn->close();
                   '<strong>Email:</strong> ' + email + '<br>' +
                   '<strong>Assunto:</strong> ' + assunto + '<br>' +
                   '<strong>Mensagem:</strong> ' + mensagem +
-                  '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
+                  '<br><br><button class="btn btn-success btn-sm" onclick="exibirModalResposta(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
             icon: 'info',
             confirmButtonText: 'Fechar'
         });
