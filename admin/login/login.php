@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['user_type'] = $row['tipo'];
                     $_SESSION['last_activity'] = time();
                     $_SESSION['user_name'] = $row['nome']; // Nome do usuário
+                    $_SESSION['user_surname'] = $row['sobrenome'];
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
                     $_SESSION['user_photo'] = $row['foto']; // URL da foto do usuário
 
