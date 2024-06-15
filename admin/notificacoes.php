@@ -385,7 +385,7 @@ $conn->close();
         <form id="formRespostaEmail">
           <div class="form-group">
             <label for="mensagem">Mensagem</label>
-            <textarea class="form-control" id="mensagem" name="mensagem" rows="5" placeholder="Digite sua resposta..."><?php echo "Prezado(a) " . $noti_nome . ",\n\n"; ?></textarea>
+            <textarea class="form-control" id="mensagem" name="mensagem" rows="5" placeholder="Digite sua resposta..."><?php echo "Prezado(a) "; ?></textarea>
           </div>
         </form>
       </div>
