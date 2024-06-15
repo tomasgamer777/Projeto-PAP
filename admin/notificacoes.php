@@ -329,7 +329,7 @@ $conn->close();
                     echo '<h3 class="card-title">' . htmlspecialchars($noti_assunto) . '</h3>';
                     echo '</div>';
                     echo '<div class="card-footer">';
-                    echo '<button class="btn btn-info btn-sm" onclick="mostrarDetalhes(' . $noti_id . ')">Ver Detalhes</button>';
+                    echo '<button class="btn btn-info btn-sm" onclick="exibirDetalhesComSweetAlert(' . $noti_id . ')">Ver Detalhes</button>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
