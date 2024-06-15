@@ -433,16 +433,10 @@ $conn->close();
     var assunto = $('#notiAssunto').text();
     var mensagem = $('#mensagem').val();
 
-    // Aqui você pode fazer uma requisição AJAX para enviar o email
-    // Exemplo com SweetAlert2 apenas para demonstração
-    Swal.fire({
-      icon: 'success',
-      title: 'Email enviado!',
-      text: 'Sua resposta foi enviada para ' + email,
-      showConfirmButton: false,
-      timer: 1500
-    });
+    // Abrir link mailto para simular envio de email
+    window.open('mailto:' + email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(mensagem));
 
+    // Fechar modal de resposta
     $('#modalRespostaEmail').modal('hide');
   }
 </script>
