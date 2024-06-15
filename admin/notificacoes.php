@@ -418,7 +418,7 @@ function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
               '<strong>Email:</strong> ' + email + '<br>' +
               '<strong>Assunto:</strong> ' + assunto + '<br>' +
               '<strong>Mensagem:</strong> ' + mensagem +
-              '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
+              '<br><br><button class="btn btn-success btn-sm" onclick="exibirModalResposta(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
         icon: 'info',
         confirmButtonText: 'Fechar'
     });
