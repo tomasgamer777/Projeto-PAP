@@ -17,6 +17,28 @@ $user_name1 = $user_name . $user_surname;
 $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
+<?php
+
+$servername = "localhost";
+    $username = "tomas";
+    $password = "!h01fFw35";
+    $dbname = "banda";
+// Conexão ao banco de dados
+$conn = new mysqli("host", "username", "password", "database");
+
+// Verificação da conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+// Consulta para selecionar as notificações da tabela noti
+$noti_query = "SELECT * FROM noti";
+$noti_result = $conn->query($noti_query);
+
+// Fechar a conexão
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
