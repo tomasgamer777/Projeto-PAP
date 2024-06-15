@@ -283,62 +283,46 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Notification Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='notifications.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">notifications</i>
-                            </div>
-                            <p class="card-category">Notificações</p>
-                            <h3 class="card-title"><?php echo $noti_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Total Users Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='users/list_user.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">person</i>
-                            </div>
-                            <p class="card-category">Total de Utilizadores</p>
-                            <h3 class="card-title"><?php echo $users_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pending Users Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='users/list_user.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-danger card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">person_add</i>
-                            </div>
-                            <p class="card-category">Utilizadores Pendentes</p>
-                            <h3 class="card-title"><?php echo $pending_users_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid">
+        <div class="row">
+            <?php
+            // Verifica se há notificações para exibir
+            if ($noti_result->num_rows > 0) {
+                // Loop através das notificações
+                while ($row = $noti_result->fetch_assoc()) {
+                    $noti_id = $row['id'];
+                    $noti_message = $row['message'];
+                    $noti_email = $row['email'];
+
+                    // HTML para cada notificação
+                    echo '<div class="col-lg-4 col-md-6 col-sm-6">';
+                    echo '<div class="card card-stats">';
+                    echo '<div class="card-header card-header-warning card-header-icon">';
+                    echo '<div class="card-icon">';
+                    echo '<i class="material-icons">notifications</i>';
+                    echo '</div>';
+                    echo '<p class="card-category">Notificação</p>';
+                    echo '<h3 class="card-title">' . htmlspecialchars($noti_message) . '</h3>';
+                    echo '</div>';
+                    echo '<div class="card-footer">';
+                    echo '<div class="stats">';
+                    echo '<i class="material-icons">email</i>';
+                    echo '<a href="mailto:' . htmlspecialchars($noti_email) . '" class="btn btn-info btn-sm">Responder por Email</a>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                // Se não houver notificações
+                echo '<div class="col-md-12">';
+                echo '<div class="alert alert-info">Não há notificações disponíveis.</div>';
+                echo '</div>';
+            }
+            ?>
         </div>
     </div>
+</div>
 
                   <footer class="footer">
                     <div class="container-fluid">
