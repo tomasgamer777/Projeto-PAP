@@ -2,10 +2,16 @@
 session_start();
 
 // Incluir a função checkAdmin do login.php
-require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
+require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
-// Conteúdo da página de administrador
+// Recuperar dados do usuário da sessão
+$user_name = $_SESSION['user_name'];
+$user_email = $_SESSION['user_email'];
+$user_photo = $_SESSION['user_photo'];
+
+// Construir o caminho completo da foto do usuário
+$user_photo_path = 'users/' . $user_photo;
 ?>
 
 <!DOCTYPE html>
@@ -94,18 +100,18 @@ checkAdmin();
         ADMIN
       </a>
     </div>
-    <div class="sidebar-wrapper">
-      <div class="user">
-        <div class="photo">
-          <img src="assets/img/faces/avatar.jpg" />
-        </div>
-        <div class="user-info">
-          <a data-toggle="collapse" href="#collapseExample" class="username">
-            <span>
-              Tomás Calçada
-              <b class="caret"></b>
-            </span>
-          </a>
+    <<div class="sidebar-wrapper">
+        <div class="user">
+            <div class="photo">
+                <img src="<?php echo htmlspecialchars($user_photo); ?>" alt="Foto do utilizador" />
+            </div>
+            <div class="user-info">
+                <a data-toggle="collapse" href="#collapseExample" class="username">
+                    <span>
+                        <?php echo htmlspecialchars($user_name); ?>
+                        <b class="caret"></b>
+                    </span>
+                </a>
           <div class="collapse" id="collapseExample">
             <ul class="nav">
               <li class="nav-item">
