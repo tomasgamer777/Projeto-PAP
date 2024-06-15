@@ -423,18 +423,23 @@ $conn->close();
     $('#modalRespostaEmail').modal('show');
     var email = $('#notiEmail').text();
     var assunto = $('#notiAssunto').text();
+    var mensagemOriginal = $('#notiMensagem').text(); // Captura a mensagem original da notificação
     $('#modalRespostaEmailLabel').text('Responder por Email - ' + email);
-    $('#mensagem').val(''); // Limpar campo de mensagem
+    $('#mensagem').val(mensagemOriginal + '\n\n'); // Inclui a mensagem original no campo de resposta
   }
 
   // Função para enviar email
   function enviarEmail() {
     var email = $('#notiEmail').text();
     var assunto = $('#notiAssunto').text();
-    var mensagem = $('#mensagem').val();
+    var mensagemOriginal = $('#notiMensagem').text();
+    var mensagemResposta = $('#mensagem').val();
+
+    // Combinar mensagem original com a mensagem de resposta
+    var mensagemCompleta = mensagemOriginal + '\n\n' + mensagemResposta;
 
     // Abrir link mailto para simular envio de email
-    window.open('mailto:' + email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(mensagem));
+    window.open('mailto:' + email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(mensagemCompleta));
 
     // Fechar modal de resposta
     $('#modalRespostaEmail').modal('hide');
