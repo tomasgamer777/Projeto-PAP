@@ -411,19 +411,18 @@ $conn->close();
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
- function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
-        Swal.fire({
-            title: 'Detalhes da Notificação',
-            html: '<strong>Nome:</strong> ' + nome + '<br>' +
-                  '<strong>Email:</strong> ' + email + '<br>' +
-                  '<strong>Assunto:</strong> ' + assunto + '<br>' +
-                  '<strong>Mensagem:</strong> ' + mensagem +
-                  
-                  '<br><br><button class="btn btn-success btn-sm" onclick="exibirModalResposta(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button> 
-            icon: 'info',
-            confirmButtonText: 'Fechar'
-        });
-    }
+function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
+    Swal.fire({
+        title: 'Detalhes da Notificação',
+        html: '<strong>Nome:</strong> ' + nome + '<br>' +
+              '<strong>Email:</strong> ' + email + '<br>' +
+              '<strong>Assunto:</strong> ' + assunto + '<br>' +
+              '<strong>Mensagem:</strong> ' + mensagem +
+              '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
+        icon: 'info',
+        confirmButtonText: 'Fechar'
+    });
+}
 
     function responderEmail(email, assunto) {
         // Preparar o formulário dinamicamente
