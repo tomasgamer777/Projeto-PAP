@@ -581,22 +581,22 @@ $user_photo_path = '/admin/users/' . $user_photo;
               <li class="header-title">Fundos</li>
               <li class="active">
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                  <img src="assets/img/sidebar-1.jpg" alt="">
+                  <img src="../assets/img/sidebar-1.jpg" alt="">
                 </a>
               </li>
               <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                  <img src="assets/img/sidebar-2.jpg" alt="">
+                  <img src="../assets/img/sidebar-2.jpg" alt="">
                 </a>
               </li>
               <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                  <img src="assets/img/sidebar-3.jpg" alt="">
+                  <img src="../assets/img/sidebar-3.jpg" alt="">
                 </a>
               </li>
               <li>
                 <a class="img-holder switch-trigger" href="javascript:void(0)">
-                  <img src="assets/img/sidebar-4.jpg" alt="">
+                  <img src="../assets/img/sidebar-4.jpg" alt="">
                 </a>
               </li>
               
