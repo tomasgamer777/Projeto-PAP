@@ -313,8 +313,10 @@ $conn->close();
                 // Loop através das notificações
                 while ($row = $noti_result->fetch_assoc()) {
                     $noti_id = $row['id'];
-                    $noti_mensagem = $row['mensagem'];
+                    $noti_nome = $row['nome'];
                     $noti_email = $row['email'];
+                    $noti_assunto = $row['assunto'];
+                    $noti_mensagem = $row['mensagem'];
 
                     // HTML para cada notificação
                     echo '<div class="col-lg-4 col-md-6 col-sm-6">';
@@ -324,15 +326,21 @@ $conn->close();
                     echo '<i class="material-icons">notifications</i>';
                     echo '</div>';
                     echo '<p class="card-category">Notificação</p>';
-                    echo '<h3 class="card-title">' . htmlspecialchars($noti_mensagem) . '</h3>';
+                    echo '<h3 class="card-title">' . htmlspecialchars($noti_assunto) . '</h3>';
                     echo '</div>';
                     echo '<div class="card-footer">';
-                    echo '<div class="stats">';
-                    echo '<i class="material-icons">email</i>';
-                    echo '<a href="mailto:' . htmlspecialchars($noti_email) . '?subject=Resposta%20à%20Notificação&body=Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A"' . htmlspecialchars($noti_mensagem) . '".%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A">Responder por Email</a>';
+                    echo '<button class="btn btn-info btn-sm" onclick="mostrarDetalhes(' . $noti_id . ')">Ver Detalhes</button>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+
+                    // Detalhes da notificação ocultos inicialmente
+                    echo '<div id="detalhes-' . $noti_id . '" class="detalhes-notificacao" style="display: none;">';
+                    echo '<p><strong>Nome:</strong> ' . htmlspecialchars($noti_nome) . '</p>';
+                    echo '<p><strong>Email:</strong> ' . htmlspecialchars($noti_email) . '</p>';
+                    echo '<p><strong>Assunto:</strong> ' . htmlspecialchars($noti_assunto) . '</p>';
+                    echo '<p><strong>Mensagem:</strong> ' . htmlspecialchars($noti_mensagem) . '</p>';
+                    echo '<button class="btn btn-success btn-sm" onclick="responderEmail(\'' . htmlspecialchars($noti_email) . '\', \'' . htmlspecialchars($noti_assunto) . '\')">Responder por Email</button>';
                     echo '</div>';
                 }
             } else {
