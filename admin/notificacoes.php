@@ -361,7 +361,6 @@ function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
 }
 
 function responderEmail(email, assunto) {
-    // Abrir uma nova janela com o cliente de email padrão do usuário
     var mailtoLink = 'mailto:' + email + '?subject=' + encodeURIComponent(assunto);
     var newWindow = window.open(mailtoLink, '_blank');
     if (newWindow) {
