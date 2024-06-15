@@ -360,11 +360,9 @@ $conn->close();
         });
     }
 
-    function responderEmail(email, assunto) {
-        alert('Responder por Email: ' + email + ', Assunto: ' + assunto);
-
-        // Redirecionamento básico sem parâmetros adicionais
-        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação";
+    ffunction responderEmail(email, assunto) {
+        var body = "Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A%0D%0A'" + assunto + "'.%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A";
+        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação&body=" + body;
     }
 </script>
 
