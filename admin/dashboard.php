@@ -281,7 +281,7 @@ $conn->close();
         </p>
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="#">Notificações</a>
+        <a class="dropdown-item" href="#">Tem $noti_count notificações</a>
     </div>
 </li>
               <li class="nav-item dropdown">
