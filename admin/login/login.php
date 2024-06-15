@@ -60,9 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['loggedin'] = true;
                     $_SESSION['user_type'] = $row['tipo'];
                     $_SESSION['last_activity'] = time();
-                    $_SESSION['user_name'] = $row['name']; // Nome do usuário
+                    $_SESSION['user_name'] = $row['nome']; // Nome do usuário
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
-                    $_SESSION['user_photo'] = $row['photo']; // URL da foto do usuário
+                    $_SESSION['user_photo'] = $row['foto']; // URL da foto do usuário
 
                     // Verificar se o usuário é um administrador (tipo = 4)
                     if ($row['tipo'] == 4) {
