@@ -385,7 +385,7 @@ $conn->close();
         <form id="formRespostaEmail">
           <div class="form-group">
             <label for="mensagem">Mensagem</label>
-            <textarea class="form-control" id="mensagem" name="mensagem" rows="3" placeholder="Digite sua resposta..."></textarea>
+            <textarea class="form-control" id="mensagem" name="mensagem" rows="5" placeholder="Digite sua resposta..."><?php echo "Prezado(a) " . $noti_nome . ",\n\n"; ?></textarea>
           </div>
         </form>
       </div>
@@ -421,25 +421,16 @@ $conn->close();
   // Função para exibir modal de resposta por email
   function exibirModalResposta() {
     $('#modalRespostaEmail').modal('show');
-    var email = $('#notiEmail').text();
-    var assunto = $('#notiAssunto').text();
-    var mensagemOriginal = $('#notiMensagem').text(); // Captura a mensagem original da notificação
-    $('#modalRespostaEmailLabel').text('Responder por Email - ' + email);
-    $('#mensagem').val(mensagemOriginal + '\n\n'); // Inclui a mensagem original no campo de resposta
   }
 
   // Função para enviar email
   function enviarEmail() {
     var email = $('#notiEmail').text();
     var assunto = $('#notiAssunto').text();
-    var mensagemOriginal = $('#notiMensagem').text();
-    var mensagemResposta = $('#mensagem').val();
-
-    // Combinar mensagem original com a mensagem de resposta
-    var mensagemCompleta = mensagemOriginal + '\n\n' + mensagemResposta;
+    var mensagem = $('#mensagem').val();
 
     // Abrir link mailto para simular envio de email
-    window.open('mailto:' + email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(mensagemCompleta));
+    window.open('mailto:' + email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(mensagem));
 
     // Fechar modal de resposta
     $('#modalRespostaEmail').modal('hide');
