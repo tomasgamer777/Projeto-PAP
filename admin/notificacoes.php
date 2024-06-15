@@ -307,69 +307,45 @@ $conn->close();
       <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <?php
-            // Verifica se há notificações para exibir
-            if ($noti_result->num_rows > 0) {
-                // Loop através das notificações
-                while ($row = $noti_result->fetch_assoc()) {
-                    $noti_id = $row['id'];
-                    $noti_nome = $row['nome'];
-                    $noti_email = $row['email'];
-                    $noti_assunto = $row['assunto'];
-                    $noti_mensagem = $row['mensagem'];
-
-                    // HTML para cada notificação
-                    echo '<div class="col-lg-4 col-md-6 col-sm-6">';
-                    echo '<div class="card card-stats">';
-                    echo '<div class="card-header card-header-warning card-header-icon">';
-                    echo '<div class="card-icon">';
-                    echo '<i class="material-icons">notifications</i>';
-                    echo '</div>';
-                    echo '<p class="card-category">Notificação</p>';
-                    echo '<h3 class="card-title">' . htmlspecialchars($noti_assunto) . '</h3>';
-                    echo '</div>';
-                    echo '<div class="card-footer">';
-                    echo '<button class="btn btn-info btn-sm" onclick="exibirDetalhesComSweetAlert(' . $noti_id . ', \'' . htmlspecialchars($noti_nome) . '\', \'' . htmlspecialchars($noti_email) . '\', \'' . htmlspecialchars($noti_assunto) . '\', \'' . htmlspecialchars($noti_mensagem) . '\')">Ver Detalhes</button>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-            } else {
-                // Se não houver notificações
-                echo '<div class="col-md-12">';
-                echo '<div class="alert alert-info">Não há notificações disponíveis.</div>';
-                echo '</div>';
-            }
-            ?>
+            <!-- Exibir detalhes da notificação -->
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon" onclick="exibirDetalhesComSweetAlert('1', 'Nome do Usuário', 'exemplo@email.com', 'Assunto da Notificação', 'Conteúdo da Mensagem')">
+                        <div class="card-icon">
+                            <i class="material-icons">notifications</i>
+                        </div>
+                        <p class="card-category">Notificações</p>
+                        <h3 class="card-title">1</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Atualizado agora
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
-    Swal.fire({
-        title: 'Detalhes da Notificação',
-        html: '<strong>Nome:</strong> ' + nome + '<br>' +
-              '<strong>Email:</strong> ' + email + '<br>' +
-              '<strong>Assunto:</strong> ' + assunto + '<br>' +
-              '<strong>Mensagem:</strong> ' + mensagem +
-              '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
-        icon: 'info',
-        confirmButtonText: 'Fechar'
-    });
-}
-
-function responderEmail(email, assunto) {
-    var mailtoLink = 'mailto:' + email + '?subject=' + encodeURIComponent(assunto);
-    var newWindow = window.open(mailtoLink, '_blank');
-    if (newWindow) {
-        newWindow.focus();
-    } else {
-        alert('Por favor, habilite pop-ups para esta página para responder ao email.');
+    function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
+        Swal.fire({
+            title: 'Detalhes da Notificação',
+            html: '<strong>Nome:</strong> ' + nome + '<br>' +
+                  '<strong>Email:</strong> ' + email + '<br>' +
+                  '<strong>Assunto:</strong> ' + assunto + '<br>' +
+                  '<strong>Mensagem:</strong> ' + mensagem +
+                  '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
+            icon: 'info',
+            confirmButtonText: 'Fechar'
+        });
     }
-}
 
+    function responderEmail(email, assunto) {
+        // Abrir uma nova página para responder ao email
+        window.open('mailto:' + email + '?subject=' + encodeURIComponent(assunto), '_blank');
+    }
 </script>
 
 
