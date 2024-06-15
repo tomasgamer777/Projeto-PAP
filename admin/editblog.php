@@ -641,8 +641,6 @@ Swal.fire({
                       <br>
                     </li>
                   </ul>
-                </div>
-              </div> 
     </div>
   </div>
   <!--   Core JS Files   -->
