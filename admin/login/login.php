@@ -17,7 +17,7 @@ function checkAdmin() {
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) { // 300 segundos = 5 minutos
         session_unset();
         session_destroy();
-        header('Location: /login/login.html'); // Caminho relativo para a página de login
+        header('Location: login/login.html'); // Caminho relativo para a página de login
         exit;
     }
 
