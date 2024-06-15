@@ -353,6 +353,22 @@ $conn->close();
         </div>
     </div>
 </div>
+<script>
+    function mostrarDetalhes(notiId) {
+        var detalhes = document.getElementById('detalhes-' + notiId);
+        if (detalhes.style.display === 'none') {
+            detalhes.style.display = 'block';
+        } else {
+            detalhes.style.display = 'none';
+        }
+    }
+
+    function responderEmail(email, assunto) {
+        var body = "Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A%0D%0A'" + assunto + "'.%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A";
+        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação&body=" + body;
+    }
+</script>
+
                   <footer class="footer">
                     <div class="container-fluid">
                       <nav class="float-left">
