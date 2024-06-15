@@ -361,13 +361,13 @@ $conn->close();
     }
 
     function responderEmail(email, assunto) {
-        // Teste básico para verificar se a função está sendo chamada
-        console.log('Responder por Email: ' + email + ', Assunto: ' + assunto);
+        alert('Responder por Email: ' + email + ', Assunto: ' + assunto);
 
         // Redirecionamento básico sem parâmetros adicionais
-        window.location.href = "";
+        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação";
     }
 </script>
+
 
                   <footer class="footer">
                     <div class="container-fluid">
