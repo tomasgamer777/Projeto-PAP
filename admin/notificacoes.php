@@ -348,22 +348,17 @@ $conn->close();
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
-        Swal.fire({
-            title: 'Detalhes da Notificação',
-            html: '<strong>Nome:</strong> ' + nome + '<br>' +
-                  '<strong>Email:</strong> ' + email + '<br>' +
-                  '<strong>Assunto:</strong> ' + assunto + '<br>' +
-                  '<strong>Mensagem:</strong> ' + mensagem +
-                  '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
-            icon: 'info',
-            confirmButtonText: 'Fechar'
-        });
-    }
-
-    function responderEmail(email, assunto) {
-        var body = "Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A%0D%0A'" + assunto + "'.%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A";
-        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação&body=" + body;
-    }
+    Swal.fire({
+        title: 'Detalhes da Notificação',
+        html: '<strong>Nome:</strong> ' + nome + '<br>' +
+              '<strong>Email:</strong> ' + email + '<br>' +
+              '<strong>Assunto:</strong> ' + assunto + '<br>' +
+              '<strong>Mensagem:</strong> ' + mensagem +
+              '<br><br><a href="mailto:' + email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(mensagem) + '" class="btn btn-success btn-sm">Responder por Email</a>',
+        icon: 'info',
+        confirmButtonText: 'Fechar'
+    });
+}
 </script>
 
 
