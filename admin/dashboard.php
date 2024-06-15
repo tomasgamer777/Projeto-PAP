@@ -18,32 +18,22 @@ $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
 <?php
+
+    $servername = "localhost";
+    $username = "tomas";
+    $password = "!h01fFw35";
+    $dbname = "banda";
 // Conexão ao banco de dados
-$servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli("host", "username", "password", "database");
 
 // Verificação da conexão
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Consulta para contagem de notificações
-$noti_query = "SELECT COUNT(*) as total_noti FROM noti";
+// Consulta para selecionar as notificações da tabela noti
+$noti_query = "SELECT * FROM noti";
 $noti_result = $conn->query($noti_query);
-$noti_count = $noti_result->fetch_assoc()['total_noti'];
-
-// Consulta para contagem de utilizadores
-$users_query = "SELECT COUNT(*) as total_users FROM users";
-$users_result = $conn->query($users_query);
-$users_count = $users_result->fetch_assoc()['total_users'];
-
-// Consulta para contagem de utilizadores pendentes
-$pending_users_query = "SELECT COUNT(*) as pending_users FROM users WHERE tipo = 0";
-$pending_users_result = $conn->query($pending_users_query);
-$pending_users_count = $pending_users_result->fetch_assoc()['pending_users'];
 
 // Fechar a conexão
 $conn->close();
@@ -314,62 +304,46 @@ $conn->close();
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Notification Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='notificacoes.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">notifications</i>
-                            </div>
-                            <p class="card-category">Notificações</p>
-                            <h3 class="card-title"><?php echo $noti_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Total Users Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='users/list_user.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">person</i>
-                            </div>
-                            <p class="card-category">Total de Utilizadores</p>
-                            <h3 class="card-title"><?php echo $users_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pending Users Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='users/list_user.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-danger card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">person_add</i>
-                            </div>
-                            <p class="card-category">Utilizadores Pendentes</p>
-                            <h3 class="card-title"><?php echo $pending_users_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid">
+        <div class="row">
+            <?php
+            // Verifica se há notificações para exibir
+            if ($noti_result->num_rows > 0) {
+                // Loop através das notificações
+                while ($row = $noti_result->fetch_assoc()) {
+                    $noti_id = $row['id'];
+                    $noti_message = $row['message'];
+                    $noti_email = $row['email'];
+
+                    // HTML para cada notificação
+                    echo '<div class="col-lg-4 col-md-6 col-sm-6">';
+                    echo '<div class="card card-stats">';
+                    echo '<div class="card-header card-header-warning card-header-icon">';
+                    echo '<div class="card-icon">';
+                    echo '<i class="material-icons">notifications</i>';
+                    echo '</div>';
+                    echo '<p class="card-category">Notificação</p>';
+                    echo '<h3 class="card-title">' . htmlspecialchars($noti_message) . '</h3>';
+                    echo '</div>';
+                    echo '<div class="card-footer">';
+                    echo '<div class="stats">';
+                    echo '<i class="material-icons">email</i>';
+                    echo '<a href="mailto:' . htmlspecialchars($noti_email) . '" class="btn btn-info btn-sm">Responder por Email</a>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                // Se não houver notificações
+                echo '<div class="col-md-12">';
+                echo '<div class="alert alert-info">Não há notificações disponíveis.</div>';
+                echo '</div>';
+            }
+            ?>
         </div>
     </div>
+</div>
 
                   <footer class="footer">
                     <div class="container-fluid">
