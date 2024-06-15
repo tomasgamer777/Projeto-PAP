@@ -1,4 +1,12 @@
+<?php
+session_start();
 
+// Incluir a função checkAdmin do login.php
+require_once __DIR__ . '../login/login.php'; // Ajuste o caminho conforme necessário
+checkAdmin();
+
+// Conteúdo da página de administrador
+?>
 
 
 
