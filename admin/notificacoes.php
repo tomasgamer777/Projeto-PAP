@@ -353,6 +353,8 @@ $conn->close();
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     function mostrarDetalhes(notiId) {
         var detalhes = document.getElementById('detalhes-' + notiId);
@@ -366,6 +368,18 @@ $conn->close();
     function responderEmail(email, assunto) {
         var body = "Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A%0D%0A'" + assunto + "'.%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A";
         window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação&body=" + body;
+    }
+
+    function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
+        Swal.fire({
+            title: 'Detalhes da Notificação',
+            html: '<strong>Nome:</strong> ' + nome + '<br>' +
+                  '<strong>Email:</strong> ' + email + '<br>' +
+                  '<strong>Assunto:</strong> ' + assunto + '<br>' +
+                  '<strong>Mensagem:</strong> ' + mensagem,
+            icon: 'info',
+            confirmButtonText: 'Fechar'
+        });
     }
 </script>
 
