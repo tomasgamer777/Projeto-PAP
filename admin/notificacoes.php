@@ -347,7 +347,7 @@ $conn->close();
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-  function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
+ function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
         Swal.fire({
             title: 'Detalhes da Notificação',
             html: '<strong>Nome:</strong> ' + nome + '<br>' +
@@ -361,8 +361,22 @@ $conn->close();
     }
 
     function responderEmail(email, assunto) {
-        // Abrir uma nova página para responder ao email
-        window.open('mailto:' + email + '?subject=' + encodeURIComponent(assunto), '_blank');
+        // Preparar o formulário dinamicamente
+        var form = document.createElement('form');
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', 'mailto:' + email + '?subject=' + encodeURIComponent(assunto));
+        form.setAttribute('target', '_blank');
+
+        // Adicionar um campo de texto para a mensagem
+        var messageInput = document.createElement('textarea');
+        messageInput.setAttribute('name', 'body');
+        messageInput.textContent = 'Digite aqui sua resposta...';
+        form.appendChild(messageInput);
+
+        // Submeter o formulário
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
     }
 
 </script>
