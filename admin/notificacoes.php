@@ -291,7 +291,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 // Loop através das notificações
                 while ($row = $noti_result->fetch_assoc()) {
                     $noti_id = $row['id'];
-                    $noti_message = $row['message'];
+                    $noti_mensagem = $row['mensagem'];
                     $noti_email = $row['email'];
 
                     // HTML para cada notificação
@@ -302,12 +302,12 @@ $user_photo_path = '/admin/users/' . $user_photo;
                     echo '<i class="material-icons">notifications</i>';
                     echo '</div>';
                     echo '<p class="card-category">Notificação</p>';
-                    echo '<h3 class="card-title">' . htmlspecialchars($noti_message) . '</h3>';
+                    echo '<h3 class="card-title">' . htmlspecialchars($noti_mensagem) . '</h3>';
                     echo '</div>';
                     echo '<div class="card-footer">';
                     echo '<div class="stats">';
                     echo '<i class="material-icons">email</i>';
-                    echo '<a href="mailto:' . htmlspecialchars($noti_email) . '" class="btn btn-info btn-sm">Responder por Email</a>';
+                    echo '<a href="mailto:' . htmlspecialchars($noti_email) . '?subject=Resposta%20à%20Notificação&body=Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A"' . htmlspecialchars($noti_mensagem) . '".%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A">Responder por Email</a>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -323,7 +323,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
     </div>
 </div>
-
                   <footer class="footer">
                     <div class="container-fluid">
                       <nav class="float-left">
