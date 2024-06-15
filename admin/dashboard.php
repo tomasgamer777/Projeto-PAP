@@ -103,7 +103,7 @@ $user_photo_path = '/users/' . $user_photo;
     <<div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="<?php echo htmlspecialchars($user_photo); ?>" alt="Foto do utilizador" />
+                <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
