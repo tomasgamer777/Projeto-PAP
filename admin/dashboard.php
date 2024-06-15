@@ -2,7 +2,7 @@
 session_start();
 
 // Incluir a função checkAdmin do login.php
-require_once __DIR__ . 'admin/login/login.php'; // Ajuste o caminho conforme necessário
+require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
 // Recuperar dados do usuário da sessão

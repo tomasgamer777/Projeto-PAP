@@ -7,8 +7,11 @@ checkAdmin();
 
 // Recuperar dados do usuário da sessão
 $user_name = $_SESSION['user_name'];
+$user_surname = $_SESSION['user_surname'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
+
+$user_name1 = $user_name . $user_surname;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
@@ -116,7 +119,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                        <?php echo htmlspecialchars($user_name); ?>
+                        <?php echo htmlspecialchars($user_name)1; ?>
                         <b class="caret"></b>
                     </span>
                 </a>
