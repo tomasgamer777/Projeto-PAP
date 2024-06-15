@@ -377,9 +377,9 @@ $user_photo_path = '/admin/users/' . $user_photo;
                           </div>
                           </div>
                         </div>
-                        <!-- <button type="button" class="btn btn-round btn-default dropdown-toggle btn-link" data-toggle="dropdown">
+                        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-link" data-toggle="dropdown">
 7 days
-</button> -->
+</button>
                         <div class="row">
                           <div class="col-md-4">
                             <div class="card card-chart">
