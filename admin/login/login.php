@@ -4,7 +4,7 @@ session_start();
 // Função para verificar se o usuário está logado e é administrador
 function checkAdmin() {
     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        header('Location: login.html'); // Caminho relativo para a página de login
+        header('Location: /login/login.html'); // Caminho relativo para a página de login
         exit;
     }
 
@@ -17,7 +17,7 @@ function checkAdmin() {
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) { // 300 segundos = 5 minutos
         session_unset();
         session_destroy();
-        header('Location: login.html'); // Caminho relativo para a página de login
+        header('Location: /login/login.html'); // Caminho relativo para a página de login
         exit;
     }
 
