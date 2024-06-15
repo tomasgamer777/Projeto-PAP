@@ -2,8 +2,9 @@
 session_start();
 
 // Incluir a função checkAdmin do login.php
-require_once __DIR__ . 'login/login.html'; // Ajuste o caminho conforme necessário
+require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -1091,5 +1092,3 @@ checkAdmin();
 </body>
 
 </html>
-
-?>
