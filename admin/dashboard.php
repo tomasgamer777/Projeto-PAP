@@ -282,7 +282,7 @@ $conn->close();
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">
-                      Notificações 
+                      Notificações:   
                       <?php if ($noti_count > 0): ?>
                           <span class="badge badge-info"><?php echo $noti_count; ?></span>
                       <?php endif; ?>
