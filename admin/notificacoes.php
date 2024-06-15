@@ -355,7 +355,7 @@ $conn->close();
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- Botão para exibir modal -->
-<button class="btn btn-success btn-sm" onclick="exibirModalResposta('exemplo@email.com', 'Assunto da Notificação')">Responder por Email</button>
+
 
 <!-- Modal para responder email -->
 <div class="modal fade" id="modalRespostaEmail" tabindex="-1" aria-labelledby="modalRespostaEmailLabel" aria-hidden="true">
@@ -418,7 +418,8 @@ $conn->close();
                   '<strong>Email:</strong> ' + email + '<br>' +
                   '<strong>Assunto:</strong> ' + assunto + '<br>' +
                   '<strong>Mensagem:</strong> ' + mensagem +
-                  '<br><br><button class="btn btn-success btn-sm" onclick="exibirModalResposta(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
+                  
+                  '<br><br><button class="btn btn-success btn-sm" onclick="exibirModalResposta(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button> 
             icon: 'info',
             confirmButtonText: 'Fechar'
         });
