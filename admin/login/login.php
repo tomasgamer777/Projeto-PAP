@@ -4,12 +4,12 @@ session_start();
 // Função para verificar se o usuário está logado e é administrador
 function checkAdmin() {
     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        header('Location: login/login.html'); // Caminho relativo para a página de login
+        header('Location: login.html'); // Caminho relativo para a página de login
         exit;
     }
 
     if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 4) {
-        header('Location: no_permission.php'); // Caminho relativo para a página de permissão negada
+        header('Location: ../no_permission.php'); // Caminho relativo para a página de permissão negada
         exit;
     }
 
@@ -17,11 +17,11 @@ function checkAdmin() {
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) { // 300 segundos = 5 minutos
         session_unset();
         session_destroy();
-        header('Location: login/login.html'); // Caminho relativo para a página de login
+        header('Location: login.html'); // Caminho relativo para a página de login
         exit;
     }
 
-    $_SESSION['last_activity'] = time(); // atualizar tempo da última atividade
+    $_SESSION['last_activity'] = time(); // Atualizar tempo da última atividade
 }
 
 // Verificar se o formulário foi enviado
@@ -60,6 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['loggedin'] = true;
                     $_SESSION['user_type'] = $row['tipo'];
                     $_SESSION['last_activity'] = time();
+                    $_SESSION['user_name'] = $row['name']; // Nome do usuário
+                    $_SESSION['user_email'] = $row['email']; // Email do usuário
+                    $_SESSION['user_photo'] = $row['photo']; // URL da foto do usuário
 
                     // Verificar se o usuário é um administrador (tipo = 4)
                     if ($row['tipo'] == 4) {
