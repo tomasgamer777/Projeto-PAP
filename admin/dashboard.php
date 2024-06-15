@@ -17,6 +17,38 @@ $user_name1 = $user_name . $user_surname;
 $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
+<?php
+// Conexão ao banco de dados
+$servername = "localhost";
+$username = "tomas";
+$password = "!h01fFw35";
+$dbname = "banda";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificação da conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+// Consulta para contagem de notificações
+$noti_query = "SELECT COUNT(*) as total_noti FROM noti";
+$noti_result = $conn->query($noti_query);
+$noti_count = $noti_result->fetch_assoc()['total_noti'];
+
+// Consulta para contagem de utilizadores
+$users_query = "SELECT COUNT(*) as total_users FROM users";
+$users_result = $conn->query($users_query);
+$users_count = $users_result->fetch_assoc()['total_users'];
+
+// Consulta para contagem de utilizadores pendentes
+$pending_users_query = "SELECT COUNT(*) as pending_users FROM users WHERE tipo = 0";
+$pending_users_result = $conn->query($pending_users_query);
+$pending_users_count = $pending_users_result->fetch_assoc()['pending_users'];
+
+// Fechar a conexão
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -270,132 +302,62 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </nav>
       <!-- End Navbar -->
       <div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Notification Count -->
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">notifications</i>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Notification Count -->
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="card card-stats" onclick="location.href='notifications.php';" style="cursor: pointer;">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">notifications</i>
+                            </div>
+                            <p class="card-category">Notificações</p>
+                            <h3 class="card-title"><?php echo $noti_count; ?></h3>
                         </div>
-                        <p class="card-category">Notificações</p>
-                        <h3 class="card-title">123</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Atualizado agora
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Total Users Count -->
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">person</i>
-                        </div>
-                        <p class="card-category">Total de Utilizadores</p>
-                        <h3 class="card-title">450</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Atualizado agora
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Atualizado agora
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Pending Users Count -->
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-danger card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">person_add</i>
+                <!-- Total Users Count -->
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="card card-stats" onclick="location.href='users.php';" style="cursor: pointer;">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">person</i>
+                            </div>
+                            <p class="card-category">Total de Utilizadores</p>
+                            <h3 class="card-title"><?php echo $users_count; ?></h3>
                         </div>
-                        <p class="card-category">Utilizadores Pendentes</p>
-                        <h3 class="card-title">12</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Atualizado agora
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Daily Sales -->
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">shopping_cart</i>
-                        </div>
-                        <p class="card-category">Vendas Diárias</p>
-                        <h3 class="card-title">1234</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Atualizado agora
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Atualizado agora
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Website Visits -->
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-rose card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">equalizer</i>
+                <!-- Pending Users Count -->
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="card card-stats" onclick="location.href='pending_users.php';" style="cursor: pointer;">
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">person_add</i>
+                            </div>
+                            <p class="card-category">Utilizadores Pendentes</p>
+                            <h3 class="card-title"><?php echo $pending_users_count; ?></h3>
                         </div>
-                        <p class="card-category">Visitas ao Site</p>
-                        <h3 class="card-title">75.521</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Atualizado agora
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Revenue -->
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">store</i>
-                        </div>
-                        <p class="card-category">Receita</p>
-                        <h3 class="card-title">$34,245</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">date_range</i> Últimas 24 Horas
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Followers -->
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="fa fa-twitter"></i>
-                        </div>
-                        <p class="card-category">Seguidores</p>
-                        <h3 class="card-title">+245</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Atualizado agora
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Atualizado agora
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
                   <footer class="footer">
                     <div class="container-fluid">
