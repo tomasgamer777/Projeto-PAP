@@ -347,18 +347,30 @@ $conn->close();
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-    function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
+function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
     Swal.fire({
         title: 'Detalhes da Notificação',
         html: '<strong>Nome:</strong> ' + nome + '<br>' +
               '<strong>Email:</strong> ' + email + '<br>' +
               '<strong>Assunto:</strong> ' + assunto + '<br>' +
               '<strong>Mensagem:</strong> ' + mensagem +
-              '<br><br><a href="mailto:' + email + '?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent(mensagem) + '" class="btn btn-success btn-sm">Responder por Email</a>',
+              '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
         icon: 'info',
         confirmButtonText: 'Fechar'
     });
 }
+
+function responderEmail(email, assunto) {
+    // Abrir uma nova janela com o cliente de email padrão do usuário
+    var mailtoLink = 'mailto:' + email + '?subject=' + encodeURIComponent(assunto);
+    var newWindow = window.open(mailtoLink, '_blank');
+    if (newWindow) {
+        newWindow.focus();
+    } else {
+        alert('Por favor, habilite pop-ups para esta página para responder ao email.');
+    }
+}
+
 </script>
 
 
