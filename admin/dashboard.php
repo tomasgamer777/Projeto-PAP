@@ -318,7 +318,7 @@ $conn->close();
             <div class="row">
                 <!-- Notification Count -->
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='notifications.php';" style="cursor: pointer;">
+                    <div class="card card-stats" onclick="location.href='notificacoes.php';" style="cursor: pointer;">
                         <div class="card-header card-header-warning card-header-icon">
                             <div class="card-icon">
                                 <i class="material-icons">notifications</i>
