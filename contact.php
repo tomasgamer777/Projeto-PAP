@@ -2,10 +2,10 @@
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Conectar ao banco de dados (substitua com suas credenciais)
-    $servername = "localhost";
-    $username = "seu_usuario";
-    $password = "sua_senha";
-    $dbname = "seu_banco_de_dados";
+	$servername = "localhost";
+    $username = "tomas";
+    $password = "!h01fFw35";
+    $dbname = "banda";
 
     // Criar conexão
     $conn = new mysqli($servername, $username, $password, $dbname);
