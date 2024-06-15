@@ -198,10 +198,10 @@ $conn->close();
             <p> Calendário </p>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item ">
           <a class="nav-link" href="notificacoes.php">
             <i class="material-icons">notifications</i>
-            <p> Notifiações </p>
+            <p> Notificações </p>
           </a>
         </li>
         <li class="nav-item ">

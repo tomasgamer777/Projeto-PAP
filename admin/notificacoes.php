@@ -169,7 +169,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
         <li class="nav-item active">
           <a class="nav-link" href="notificacoes.php">
             <i class="material-icons">notifications</i>
-            <p> Notifiações </p>
+            <p> Notificações </p>
           </a>
         </li>
         
