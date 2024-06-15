@@ -329,18 +329,9 @@ $conn->close();
                     echo '<h3 class="card-title">' . htmlspecialchars($noti_assunto) . '</h3>';
                     echo '</div>';
                     echo '<div class="card-footer">';
-                    echo '<button class="btn btn-info btn-sm" onclick="exibirDetalhesComSweetAlert(' . $noti_id . ')">Ver Detalhes</button>';
+                    echo '<button class="btn btn-info btn-sm" onclick="exibirDetalhesComSweetAlert(' . $noti_id . ', \'' . htmlspecialchars($noti_nome) . '\', \'' . htmlspecialchars($noti_email) . '\', \'' . htmlspecialchars($noti_assunto) . '\', \'' . htmlspecialchars($noti_mensagem) . '\')">Ver Detalhes</button>';
                     echo '</div>';
                     echo '</div>';
-                    echo '</div>';
-
-                    // Detalhes da notificação ocultos inicialmente
-                    echo '<div id="detalhes-' . $noti_id . '" class="detalhes-notificacao" style="display: none;">';
-                    echo '<p><strong>Nome:</strong> ' . htmlspecialchars($noti_nome) . '</p>';
-                    echo '<p><strong>Email:</strong> ' . htmlspecialchars($noti_email) . '</p>';
-                    echo '<p><strong>Assunto:</strong> ' . htmlspecialchars($noti_assunto) . '</p>';
-                    echo '<p><strong>Mensagem:</strong> ' . htmlspecialchars($noti_mensagem) . '</p>';
-                    echo '<button class="btn btn-success btn-sm" onclick="responderEmail(\'' . htmlspecialchars($noti_email) . '\', \'' . htmlspecialchars($noti_assunto) . '\')">Responder por Email</button>';
                     echo '</div>';
                 }
             } else {
@@ -356,30 +347,22 @@ $conn->close();
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-    function mostrarDetalhes(notiId) {
-        var detalhes = document.getElementById('detalhes-' + notiId);
-        if (detalhes.style.display === 'none') {
-            detalhes.style.display = 'block';
-        } else {
-            detalhes.style.display = 'none';
-        }
-    }
-
-    function responderEmail(email, assunto) {
-        var body = "Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A%0D%0A'" + assunto + "'.%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A";
-        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação&body=" + body;
-    }
-
     function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
         Swal.fire({
             title: 'Detalhes da Notificação',
             html: '<strong>Nome:</strong> ' + nome + '<br>' +
                   '<strong>Email:</strong> ' + email + '<br>' +
                   '<strong>Assunto:</strong> ' + assunto + '<br>' +
-                  '<strong>Mensagem:</strong> ' + mensagem,
+                  '<strong>Mensagem:</strong> ' + mensagem +
+                  '<br><br><button class="btn btn-success btn-sm" onclick="responderEmail(\'' + email + '\', \'' + assunto + '\')">Responder por Email</button>',
             icon: 'info',
             confirmButtonText: 'Fechar'
         });
+    }
+
+    function responderEmail(email, assunto) {
+        var body = "Olá,%0D%0A%0D%0AQuero responder à sua notificação:%0D%0A%0D%0A'" + assunto + "'.%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A";
+        window.location.href = "mailto:" + email + "?subject=Resposta%20à%20Notificação&body=" + body;
     }
 </script>
 
