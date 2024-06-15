@@ -24,7 +24,7 @@ $servername = "localhost";
     $password = "!h01fFw35";
     $dbname = "banda";
 // Conexão ao banco de dados
-$conn = new mysqli("host", "username", "password", "database");
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificação da conexão
 if ($conn->connect_error) {
