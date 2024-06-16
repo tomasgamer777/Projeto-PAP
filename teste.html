@@ -1,350 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-    <title>Band Template - Formulário de Inscrição</title>
-    <!-- Loading third party fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css">
-    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Loading main css file -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="css/bootstrap-select.min.css">
-
-    <style>
-        .form-section {
-            padding: 50px 0;
-            background-color: #f9f9f9;
-        }
-
-        .form-section .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .form-section .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2em;
-        }
-
-        .form-group label {
-            font-weight: 600;
-        }
-
-        .form-control, .selectpicker {
-            border-radius: 0;
-            box-shadow: none;
-            border-color: #ddd;
-        }
-
-        .btn-primary {
-            background-color: #333;
-            border-color: #333;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #555;
-            border-color: #555;
-        }
-
-        footer.site-footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background-color: #333;
-            color: #fff;
-        }
-
-        footer.site-footer .social-links a {
-            color: #fff;
-            margin: 0 10px;
-        }
-    </style>
-
-    <!--[if lt IE 9]>
-    <script src="js/ie-support/html5.js"></script>
-    <script src="js/ie-support/respond.js"></script>
-    <![endif]-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wizard Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* Custom styles for wizard form */
+    body {
+      background-color: #f0f0f0;
+      padding-top: 60px;
+    }
+    .wizard-container {
+      padding: 20px;
+    }
+    .wizard-card {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    .wizard-navigation {
+      margin-bottom: 20px;
+    }
+    .wizard-navigation ul.nav-pills {
+      background-color: #e91e63;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .wizard-navigation ul.nav-pills li.nav-item a.nav-link {
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .wizard-navigation ul.nav-pills li.nav-item a.nav-link.active {
+      background-color: #ffffff;
+      color: #e91e63;
+      border-radius: 5px;
+    }
+    .wizard-card .card-body {
+      padding: 20px;
+    }
+    .form-control-lg {
+      margin-bottom: 15px;
+    }
+    .btn-previous {
+      margin-right: 10px;
+    }
+    .btn-next {
+      margin-left: 10px;
+    }
+  </style>
 </head>
-<body class="header-collapse">
-
-    <div id="site-content">
-        <header class="site-header">
-            <div class="container">
-                <a href="index.php" id="branding">
-                    <img src="dummy/logo1.png" alt="Site Title">
-                    <small class="site-description"></small>
-                </a>
-                <nav class="main-navigation">
-                    <button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
-                    <ul class="menu">
-                        <li class="menu-item current-menu-item"><a href="index.php">Página Principal</a></li>
-                        <li class="menu-item"><a href="about.html">A Banda</a></li>
-                        <li class="menu-item"><a href="gallery.php">Galeria</a></li>
-                        <li class="menu-item"><a href="download.html">Discografia</a></li>
-                        <li class="menu-item"><a href="blog.php">Blog</a></li>
-                        <li class="menu-item"><a href="contact.php">Contacte-nos</a></li>
-                    </ul>
-                </nav>
-                <div class="mobile-menu"></div>
+<body>
+  <div class="container-fluid">
+    <div class="col-md-8 col-12 mr-auto ml-auto">
+      <!-- Wizard container -->
+      <div class="wizard-container">
+        <div class="card wizard-card" data-color="rose" id="wizardProfile">
+          <form id="userForm" method="POST" enctype="multipart/form-data">
+            <!-- Card Header -->
+            <div class="card-header text-center">
+              <h3 class="card-title">Personaliza o Utilizador</h3>
             </div>
-        </header>
-
-        <div class="content">
-            <div class="container-fluid">
-              <div class="col-md-8 col-12 mr-auto ml-auto">
-                  <!--      Wizard container        -->
-                  <div class="wizard-container">
-                      <div class="card card-wizard" data-color="rose" id="wizardProfile">
-                        <form id="userForm" method="POST" enctype="multipart/form-data">
-                              <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-                              <div class="card-header text-center">
-                                  <h3 class="card-title">
-                                      Personaliza o Utilizador
-                                  </h3>
-                              </div>
-                              <div class="wizard-navigation">
-                                  <ul class="nav nav-pills">
-                                      <li class="nav-item">
-                                          <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
-                                              Informações Básicas
-                                          </a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="#address" data-toggle="tab" role="tab">
-                                              Sobre
-                                          </a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="#account" data-toggle="tab" role="tab">
-                                              Função
-                                          </a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              <div class="card-body">
-                                  <div class="tab-content">
-                                          <div class="tab-pane active" id="about">
-                                            <h5 class="info-text"> Informações Básicas</h5>
-                                            <div class="row justify-content-center">
-                                              <div class="col-sm-4">
-                                                <div class="picture-container">
-                                                  <div class="picture">
-                                                    <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif" onchange="resizeImage(event)">
-                                                  </div>
-                                                  <h6 class="description">Foto de Perfil</h6>
-                                                </div>
-                                              </div>
-                                              <div class="col-sm-6">
-                                                  <div class="input-group form-control-lg">
-                                                      <div class="input-group-prepend">
-                                                          <span class="input-group-text">
-                                                              <i class="material-icons">face</i>
-                                                          </span>
-                                                      </div>
-                                                      <div class="form-group">
-                                                          <label for="exampleInput1" class="bmd-label-floating">Primeiro Nome</label>
-                                                          <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
-                                                      </div>
-                                                  </div>
-                                                  <div class="input-group form-control-lg">
-                                                      <div class="input-group-prepend">
-                                                          <span class="input-group-text">
-                                                              <i class="material-icons">record_voice_over</i>
-                                                          </span>
-                                                      </div>
-                                                      <div class="form-group">
-                                                          <label for="exampleInput11" class="bmd-label-floating">Sobrenome</label>
-                                                          <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="col-lg-10 mt-3">
-                                                  <div class="input-group form-control-lg">
-                                                      <div class="input-group-prepend">
-                                                          <span class="input-group-text">
-                                                              <i class="material-icons">email</i>
-                                                          </span>
-                                                      </div>
-                                                      <div class="form-group">
-                                                          <label for="exampleInput1" class="bmd-label-floating">Email </label>
-                                                          <input type="email" class="form-control" id="exampleemail" name="email" required>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="col-lg-10 mt-3">
-                                                  <div class="input-group form-control-lg">
-                                                      <div class="input-group-prepend">
-                                                          <span class="input-group-text">
-                                                              <i class="material-icons">password</i>
-                                                          </span>
-                                                      </div>
-                                                      <div class="form-group">
-                                                          <label for="exampleInput1" class="bmd-label-floating">Password </label>
-                                                          <input type="password" class="form-control" id="examplepassword" name="password" required>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="tab-pane" id="account">
-                                        <h5 class="info-text"> Qual é a função do Utilizador? </h5>
-                                        <div class="row justify-content-center">
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-radio">
-                                                            <input type="radio" name="jobb" value="4" id="admin">
-                                                            <div class="icon">
-                                                                <i class="material-icons">admin_panel_settings</i>
-                                                            </div>
-                                                            <h6>Admin</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-radio">
-                                                            <input type="radio" name="jobb" value="2" id="musico">
-                                                            <div class="icon">
-                                                                <i class="material-icons">piano</i>
-                                                            </div>
-                                                            <h6>Músico</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-radio">
-                                                            <input type="radio" name="jobb" value="3" id="socio">
-                                                            <div class="icon">
-                                                                <i class="material-icons">payments</i>
-                                                            </div>
-                                                            <h6>Sócio</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <style>
-                                      .error-message {
-                                          color: red;
-                                          display: none;
-                                      }
-                                  </style>
-                                    <div class="tab-pane" id="address">
-                                      <div class="row justify-content-center">
-                                          <div class="col-sm-12">
-                                              <h5 class="info-text">Mais informações sobre o Utilizador</h5>
-                                          </div>
-                                          <div class="col-sm-7">
-                                              <div class="form-group">
-                                                  <label>Data de Nascimento</label>
-                                                  <input type="text" class="form-control datepicker" id="data_nascimento" name="data_nascimento">
-                                              </div>
-                                          </div>
-                                          <div class="col-sm-3">
-                                              <div class="form-group">
-                                                  <label>Rua</label>
-                                                  <input type="text" class="form-control" name="rua">
-                                              </div>
-                                          </div>
-                                          <div class="col-sm-3">
-                                            <div class="form-group">
-                                              <label>Telefone</label>
-                                              <input type="text" class="form-control" id="telefone" name="telefone" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                            </div>
-                                          </div>
-                                          <div class="col-sm-3">
-                                            <div class="form-group">
-                                              <label>NIF</label>
-                                              <input type="text" class="form-control" id="nif" name="nif" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                            </div>
-                                          </div>
-                                          
-                                          <div class="col-sm-5">
-                                              <div class="form-group select-wizard">
-                                                  <label>Distrito</label>
-                                                  <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
-                                                      <option value="Aveiro">Aveiro</option>
-                                                      <option value="Beja">Beja</option>
-                                                      <option value="Braga">Braga</option>
-                                                      <option value="Bragança">Bragança</option>
-                                                      <option value="Castelo Branco">Castelo Branco</option>
-                                                      <option value="Coimbra">Coimbra</option>
-                                                      <option value="Évora">Évora</option>
-                                                      <option value="Faro">Faro</option>
-                                                      <option value="Guarda">Guarda</option>
-                                                      <option value="Leiria">Leiria</option>
-                                                      <option value="Lisboa">Lisboa</option>
-                                                      <option value="Portalegre">Portalegre</option>
-                                                      <option value="Porto">Porto</option>
-                                                      <option value="Setúbal">Setúbal</option>
-                                                      <option value="Viana do Castelo">Viana do Castelo</option>
-                                                      <option value="Vila Real">Vila Real</option>
-                                                      <option value="Viseu">Viseu</option>
-                                                  </select>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="card-footer">
-                                <div class="mr-auto">
-                                  <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Voltar">
-                                </div>
-                                <div class="ml-auto">
-                                  <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Proximo">
-                                  <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" formaction="add_users1.php">
-                                </div>
-                                <div class="clearfix"></div>
-                              </div>
-                            </form>
+            <!-- Wizard Navigation -->
+            <div class="wizard-navigation">
+              <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#about" data-toggle="tab" role="tab">Informações Básicas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#address" data-toggle="tab" role="tab">Sobre</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#account" data-toggle="tab" role="tab">Função</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="tab-content">
+                <!-- Tab 1: Informações Básicas -->
+                <div class="tab-pane active" id="about">
+                  <h5 class="info-text">Informações Básicas</h5>
+                  <div class="row justify-content-center">
+                    <div class="col-sm-4">
+                      <div class="picture-container">
+                        <div class="picture">
+                          <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                          <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif" onchange="resizeImage(event)">
+                        </div>
+                        <h6 class="description">Foto de Perfil</h6>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="exampleInput1">Primeiro Nome</label>
+                        <input type="text" class="form-control form-control-lg" id="exampleInput1" name="firstname" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInput11">Sobrenome</label>
+                        <input type="text" class="form-control form-control-lg" id="exampleInput11" name="lastname" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleemail">Email</label>
+                        <input type="email" class="form-control form-control-lg" id="exampleemail" name="email" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="examplepassword">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="examplepassword" name="password" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Tab 2: Sobre -->
+                <div class="tab-pane" id="address">
+                  <h5 class="info-text">Mais informações sobre o Utilizador</h5>
+                  <div class="row justify-content-center">
+                    <div class="col-sm-7">
+                      <div class="form-group">
+                        <label>Data de Nascimento</label>
+                        <input type="text" class="form-control form-control-lg datepicker" id="data_nascimento" name="data_nascimento">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Rua</label>
+                        <input type="text" class="form-control form-control-lg" name="rua">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="text" class="form-control form-control-lg" id="telefone" name="telefone" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>NIF</label>
+                        <input type="text" class="form-control form-control-lg" id="nif" name="nif" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="form-group select-wizard">
+                        <label>Distrito</label>
+                        <select class="selectpicker form-control-lg" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
+                          <option value="Aveiro">Aveiro</option>
+                          <option value="Beja">Beja</option>
+                          <option value="Braga">Braga</option>
+                          <option value="Bragança">Bragança</option>
+                          <option value="Castelo Branco">Castelo Branco</option>
+                          <option value="Coimbra">Coimbra</option>
+                          <option value="Évora">Évora</option>
+                          <option value="Faro">Faro</option>
+                          <option value="Guarda">Guarda</option>
+                          <option value="Leiria">Leiria</option>
+                          <option value="Lisboa">Lisboa</option>
+                          <option value="Portalegre">Portalegre</option>
+                          <option value="Porto">Porto</option>
+                          <option value="Setúbal">Setúbal</option>
+                          <option value="Viana do Castelo">Viana do Castelo</option>
+                          <option value="Vila Real">Vila Real</option>
+                          <option value="Viseu">Viseu</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Tab 3: Função -->
+                <div class="tab-pane" id="account">
+                  <h5 class="info-text">Qual é a função do Utilizador?</h5>
+                  <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="choice" data-toggle="wizard-radio">
+                            <input type="radio" name="jobb" value="4" id="admin">
+                            <div class="icon">
+                              <i class="material-icons">admin_panel_settings</i>
+                            </div>
+                            <h6>Admin</h6>
                           </div>
                         </div>
-                        <!-- wizard container -->
+                        <div class="col-sm-4">
+                          <div class="choice" data-toggle="wizard-radio">
+                            <input type="radio" name="jobb" value="2" id="musico">
+                            <div class="icon">
+                              <i class="material-icons">piano</i>
+                            </div>
+                            <h6>Músico</h6>
+                          </div>
+                        </div><div class="col-sm-4">
+                            <div class="choice" data-toggle="wizard-radio">
+                              <input type="radio" name="jobb" value="3" id="socio">
+                              <div class="icon">
+                                <i class="material-icons">payments</i>
+                              </div>
+                              <h6>Sócio</h6>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-        <footer class="site-footer">
-            <div class="container">
-                <img src="dummy/logo-footer.png" alt="Site Name">
-                <address>
-                    <p>Av. Salazar 7, 3440-183 Pinheiro de Ázere <br><a href="tel:968987358">(351) 968987358</a> <br> <a href="mailto:sofilepi@gmail.com">sofilepi@gmail.com</a></p>
-                </address>
-                <div class="social-links">
-                    <a href="#"><i class="fa fa-facebook-square"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
+              <!-- Card Footer -->
+              <div class="card-footer">
+                <div class="float-left">
+                  <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Voltar">
                 </div>
-                <p class="copy">Copyright 2014 Company Name. Designed by Themezy. All right reserved</p>
-            </div>
-        </footer>
+                <div class="float-right">
+                  <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Próximo">
+                  <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" formaction="add_users1.php">
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Wizard container -->
+      </div>
     </div>
-
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-
+  
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+    <!-- Optional: Add your own scripts here -->
     <script>
-        $(document).ready(function() {
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy'
+      // Script to handle wizard navigation
+      $(document).ready(function() {
+        // Initialize the wizard
+        $('#wizardProfile').bootstrapWizard({
+          'tabClass': 'nav nav-pills',
+          'nextSelector': '.btn-next',
+          'previousSelector': '.btn-previous',
+  
+          onNext: function(tab, navigation, index) {
+            var $valid = $('#userForm').valid();
+            if (!$valid) {
+              $validator.focusInvalid();
+              return false;
+            }
+          },
+  
+          onTabClick: function(tab, navigation, index) {
+            return false;
+          },
+  
+          onTabShow: function(tab, navigation, index) {
+            var $total = navigation.find('li').length;
+            var $current = index + 1;
+            var $percent = ($current / $total) * 100;
+            $('#wizardProfile').find('.progress-bar').css({
+              width: $percent + '%'
             });
-            $('.selectpicker').selectpicker();
+          }
         });
+      });
+  
+      // Example function to resize image preview
+      function resizeImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function() {
+          var dataURL = reader.result;
+          var output = document.getElementById('wizardPicturePreview');
+          output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
     </script>
-</body>
-</html>
+  </body>
+  </html>
