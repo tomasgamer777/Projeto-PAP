@@ -61,7 +61,17 @@ $conn->close();
     Admin menu SFLP
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!-- Canonical SEO -->
+  <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
+  <!--  Social tags      -->
+  <meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, bootstrap 4 dashboard, bootstrap 4, css3 dashboard, bootstrap 4 admin, material dashboard bootstrap 4 dashboard, frontend, responsive bootstrap 4 dashboard, material design, material dashboard bootstrap 4 dashboard">
+  <meta name="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="Material Dashboard PRO by Creative Tim">
+  <meta itemprop="description" content="Material Dashboard PRO is a Premium Material Bootstrap 4 Admin with a fresh, new design inspired by Google's Material Design.">
+  <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg">
+  <!-- Twitter Card data -->
   <meta name="twitter:card" content="product">
   <meta name="twitter:site" content="@creativetim">
   <meta name="twitter:title" content="Material Dashboard PRO by Creative Tim">
@@ -82,24 +92,8 @@ $conn->close();
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
-  <!-- End Google Tag Manager -->
+  <link href="assets/demo/demo.css" rel="stylesheet" />
+  
 </head>
 
 <body class="">
@@ -380,7 +374,93 @@ $conn->close();
                   </footer>
                 </div>
               </div>
-              
+              <div class="fixed-plugin">
+                <div class="dropdown show-dropdown">
+                  <a href="#" data-toggle="dropdown">
+                    <i class="fa fa-cog fa-2x"> </i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="header-title"> Filtros do Menu</li>
+                    <li class="adjustments-line">
+                      <a href="javascript:void(0)" class="switch-trigger active-color">
+                        <div class="badge-colors ml-auto mr-auto">
+                          <span class="badge filter badge-purple" data-color="purple"></span>
+                          <span class="badge filter badge-azure" data-color="azure"></span>
+                          <span class="badge filter badge-green" data-color="green"></span>
+                          <span class="badge filter badge-warning" data-color="orange"></span>
+                          <span class="badge filter badge-danger" data-color="danger"></span>
+                          <span class="badge filter badge-rose active" data-color="rose"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                      </a>
+                    </li>
+                    <li class="header-title">Fundo do menu</li>
+                    <li class="adjustments-line">
+                      <a href="javascript:void(0)" class="switch-trigger background-color">
+                        <div class="ml-auto mr-auto">
+                          <span class="badge filter badge-black active" data-background-color="black"></span>
+                          <span class="badge filter badge-white" data-background-color="white"></span>
+                          <span class="badge filter badge-red" data-background-color="red"></span>
+                        </div>
+                        <div class="clearfix"></div>
+                      </a>
+                    </li>
+                    <li class="adjustments-line">
+                      <a href="javascript:void(0)" class="switch-trigger">
+                        <p>Mini Menu</p>
+                        <label class="ml-auto">
+                          <div class="togglebutton switch-sidebar-mini">
+                            <label>
+                              <input type="checkbox">
+                              <span class="toggle"></span>
+                            </label>
+                          </div>
+                        </label>
+                        <div class="clearfix"></div>
+                      </a>
+                    </li>
+                    <li class="adjustments-line">
+                      <a href="javascript:void(0)" class="switch-trigger">
+                        <p>Imagem no menu</p>
+                        <label class="switch-mini ml-auto">
+                          <div class="togglebutton switch-sidebar-image">
+                            <label>
+                              <input type="checkbox" checked="">
+                              <span class="toggle"></span>
+                            </label>
+                          </div>
+                        </label>
+                        <div class="clearfix"></div>
+                      </a>
+                    </li>
+                    <li class="header-title">Fundos</li>
+                    <li class="active">
+                      <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="assets/img/sidebar-1.jpg" alt="">
+                      </a>
+                    </li>
+                    <li>
+                      <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="assets/img/sidebar-2.jpg" alt="">
+                      </a>
+                    </li>
+                    <li>
+                      <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="assets/img/sidebar-3.jpg" alt="">
+                      </a>
+                    </li>
+                    <li>
+                      <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="assets/img/sidebar-4.jpg" alt="">
+                      </a>
+                    </li>
+                    
+                      <br>
+                      <br>
+                    </li>
+                  </ul>
+                </div>
+              </div>
               <!--   Core JS Files   -->
               <script src="assets/js/core/jquery.min.js"></script>
               <script src="assets/js/core/popper.min.js"></script>
@@ -597,8 +677,118 @@ $conn->close();
                   });
                 });
               </script>
-             
-              
+              <!-- Sharrre libray -->
+              <script src="assets/demo/jquery.sharrre.js"></script>
+              <script>
+                $(document).ready(function() {
+
+
+                  $('#facebook').sharrre({
+                    share: {
+                      facebook: true
+                    },
+                    enableHover: false,
+                    enableTracking: false,
+                    enableCounter: false,
+                    click: function(api, options) {
+                      api.simulateClick();
+                      api.openPopup('facebook');
+                    },
+                    template: '<i class="fab fa-facebook-f"></i> Facebook',
+                    url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
+                  });
+
+                  $('#google').sharrre({
+                    share: {
+                      googlePlus: true
+                    },
+                    enableCounter: false,
+                    enableHover: false,
+                    enableTracking: true,
+                    click: function(api, options) {
+                      api.simulateClick();
+                      api.openPopup('googlePlus');
+                    },
+                    template: '<i class="fab fa-google-plus"></i> Google',
+                    url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
+                  });
+
+                  $('#twitter').sharrre({
+                    share: {
+                      twitter: true
+                    },
+                    enableHover: false,
+                    enableTracking: false,
+                    enableCounter: false,
+                    buttons: {
+                      twitter: {
+                        via: 'CreativeTim'
+                      }
+                    },
+                    click: function(api, options) {
+                      api.simulateClick();
+                      api.openPopup('twitter');
+                    },
+                    template: '<i class="fab fa-twitter"></i> Twitter',
+                    url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
+                  });
+
+
+                  var _gaq = _gaq || [];
+                  _gaq.push(['_setAccount', 'UA-46172202-1']);
+                  _gaq.push(['_trackPageview']);
+
+                  (function() {
+                    var ga = document.createElement('script');
+                    ga.type = 'text/javascript';
+                    ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(ga, s);
+                  })();
+
+                  // Facebook Pixel Code Don't Delete
+                  ! function(f, b, e, v, n, t, s) {
+                    if (f.fbq) return;
+                    n = f.fbq = function() {
+                      n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    };
+                    if (!f._fbq) f._fbq = n;
+                    n.push = n;
+                    n.loaded = !0;
+                    n.version = '2.0';
+                    n.queue = [];
+                    t = b.createElement(e);
+                    t.async = !0;
+                    t.src = v;
+                    s = b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t, s)
+                  }(window,
+                    document, 'script', '//connect.facebook.net/en_US/fbevents.js');
+
+                  try {
+                    fbq('init', '111649226022273');
+                    fbq('track', "PageView");
+
+                  } catch (err) {
+                    console.log('Facebook Track Error:', err);
+                  }
+
+                });
+              </script>
+              <noscript>
+                <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
+              </noscript>
+              <script>
+                $(document).ready(function() {
+                  // Javascript method's body can be found in assets/js/demos.js
+                  md.initDashboardPageCharts();
+
+                  md.initVectorMap();
+
+                });
+              </script>
 </body>
 
 </html>
