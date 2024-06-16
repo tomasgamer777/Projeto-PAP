@@ -240,6 +240,22 @@ $conn->close();
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Conta
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="">Perfil</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
       <!-- End Navbar -->
       <div class="content">
