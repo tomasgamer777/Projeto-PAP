@@ -711,15 +711,7 @@ $conn->close();
               <noscript>
                 <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
               </noscript>
-              <script>
-                $(document).ready(function() {
-                  // Javascript method's body can be found in assets/js/demos.js
-                  md.initDashboardPageCharts();
-
-                  md.initVectorMap();
-
-                });
-              </script>
+              
 </body>
 
 </html>
