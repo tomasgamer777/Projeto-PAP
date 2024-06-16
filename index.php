@@ -38,14 +38,13 @@
         position: relative;
         min-width: 100%;
         box-sizing: border-box;
-        height: 100vh; /* Ajuste a altura conforme necessário */
     }
 
     .lazy-bg {
         background-size: cover;
         background-position: center center;
         width: 100%;
-        height: 100%;
+        height: 100vh; /* Ajuste a altura conforme necessário */
         background-repeat: no-repeat;
     }
 
@@ -53,14 +52,6 @@
     @media (max-width: 768px) {
         .slides li {
             height: 50vh; /* Ajuste para dispositivos móveis */
-        }
-
-        .container {
-            padding: 20px;
-        }
-
-        .slide-title, .slide-subtitle, .slide-desc {
-            font-size: smaller; /* Ajuste o tamanho da fonte conforme necessário */
         }
     }
 </style>
@@ -183,7 +174,6 @@
                     } else {
                         echo "<p>Nenhum evento encontrado.</p>";
                     }
-
                     $conn->close();
                     ?>
                 </div> <!-- .container -->
