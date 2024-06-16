@@ -19,6 +19,54 @@
 
 	</head>
 
+<style>
+	.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    width: 100%;
+}
+
+.slides {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+.slides li {
+    position: relative;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.lazy-bg {
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100vh; /* Ajuste a altura conforme necessário */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .lazy-bg {
+        height: 50vh; /* Ajuste para dispositivos móveis */
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .slide-title, .slide-subtitle, .slide-desc {
+        font-size: smaller; /* Ajuste o tamanho da fonte conforme necessário */
+    }
+}
+</style>
+
 	<body class="header-collapse">
 		
 		<div id="site-content">
@@ -45,38 +93,32 @@
 			</header> <!-- .site-header -->
 			
 			<div class="hero">
-				<div class="slider">
-					<ul class="slides">
-						<li class="lazy-bg" data-background="dummy/slide-1.jpg">
-							<div class="container">
-								<h2 class="slide-title">&nbsp</h2>
-								<h3 class="slide-subtitle">&nbsp</h3>
-								<p class="slide-desc">&nbsp <br>&nbsp</p>
-
-								
-							</div>
-						</li>
-						<li class="lazy-bg" data-background="dummy/slide-2.jpg">
-							<div class="container">
-									<h2 class="slide-title">&nbsp</h2>
-									<h3 class="slide-subtitle">&nbsp</h3>
-									<p class="slide-desc">&nbsp <br>&nbsp</p>
-
-									
-							</div>
-						</li>
-						<li class="lazy-bg" data-background="dummy/slide-3.jpg">
-							<div class="container">
-									<h2 class="slide-title">&nbsp</h2>
-									<h3 class="slide-subtitle">&nbsp</h3>
-									<p class="slide-desc">&nbsp <br>&nbsp</p>
-
-									
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
+        <div class="slider">
+            <ul class="slides">
+                <li class="lazy-bg" data-background="dummy/slide-1.jpg">
+                    <div class="container">
+                        <h2 class="slide-title">&nbsp</h2>
+                        <h3 class="slide-subtitle">&nbsp</h3>
+                        <p class="slide-desc">&nbsp <br>&nbsp</p>
+                    </div>
+                </li>
+                <li class="lazy-bg" data-background="dummy/slide-2.jpg">
+                    <div class="container">
+                        <h2 class="slide-title">&nbsp</h2>
+                        <h3 class="slide-subtitle">&nbsp</h3>
+                        <p class="slide-desc">&nbsp <br>&nbsp</p>
+                    </div>
+                </li>
+                <li class="lazy-bg" data-background="dummy/slide-3.jpg">
+                    <div class="container">
+                        <h2 class="slide-title">&nbsp</h2>
+                        <h3 class="slide-subtitle">&nbsp</h3>
+                        <p class="slide-desc">&nbsp <br>&nbsp</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 			
 			<main class="main-content">
 				<div class="fullwidth-block testimonial-section">
