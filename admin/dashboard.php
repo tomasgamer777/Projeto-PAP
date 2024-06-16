@@ -239,9 +239,9 @@ $conn->close();
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
-          
+          <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              <li class="nav-item"><div class="collapse navbar-collapse justify-content-end">
+              <li class="nav-item">
                 <a class="nav-link" href="dashboard.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">
