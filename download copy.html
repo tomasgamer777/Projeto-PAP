@@ -19,11 +19,15 @@
         .form-section {
             padding: 50px 0;
             background-color: #f9f9f9;
+            margin-top: 100px; /* To avoid overlap with the header */
         }
 
         .form-section .container {
             max-width: 800px;
             margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .form-section .section-title {
@@ -32,8 +36,14 @@
             font-size: 2em;
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+
         .form-group label {
             font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
         }
 
         .form-control, .selectpicker {
@@ -103,32 +113,32 @@
                     <h2 class="section-title">Formulário de Inscrição</h2>
                     <form action="submit_form.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label>Nome</label>
-                            <input type="text" class="form-control" name="nome" required>
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
                         </div>
                         <div class="form-group">
-                            <label>Sobrenome</label>
-                            <input type="text" class="form-control" name="sobrenome" required>
+                            <label for="sobrenome">Sobrenome</label>
+                            <input type="text" class="form-control" id="sobrenome" name="sobrenome" required>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" name="email" required>
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label>Telefone</label>
-                            <input type="tel" class="form-control" name="telefone" required>
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" class="form-control" id="telefone" name="telefone" required>
                         </div>
                         <div class="form-group">
-                            <label>Data de Nascimento</label>
+                            <label for="data_nascimento">Data de Nascimento</label>
                             <input type="text" class="form-control datepicker" id="data_nascimento" name="data_nascimento" required>
                         </div>
                         <div class="form-group">
-                            <label>Morada</label>
-                            <input type="text" class="form-control" name="morada" required>
+                            <label for="morada">Morada</label>
+                            <input type="text" class="form-control" id="morada" name="morada" required>
                         </div>
                         <div class="form-group select-wizard">
-                            <label>Distrito</label>
-                            <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Selecione o Distrito" name="distrito" required>
+                            <label for="distrito">Distrito</label>
+                            <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Selecione o Distrito" id="distrito" name="distrito" required>
                                 <option value="Aveiro">Aveiro</option>
                                 <option value="Beja">Beja</option>
                                 <option value="Braga">Braga</option>
@@ -149,16 +159,16 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Código Postal</label>
-                            <input type="text" class="form-control" name="codigo_postal" required>
+                            <label for="codigo_postal">Código Postal</label>
+                            <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" required>
                         </div>
                         <div class="form-group">
-                            <label>NIF</label>
-                            <input type="text" class="form-control" name="nif" required>
+                            <label for="nif">NIF</label>
+                            <input type="text" class="form-control" id="nif" name="nif" required>
                         </div>
                         <div class="form-group">
-                            <label>Foto</label>
-                            <input type="file" class="form-control" name="foto" accept="image/*" required>
+                            <label for="foto">Foto</label>
+                            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Enviar</button>
                     </form>
@@ -185,18 +195,21 @@
 
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.min.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
-
     <script>
-        $(document).ready(function() {
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy'
-            });
-            $('.selectpicker').selectpicker();
+        // Datepicker initialization
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true
         });
+
+        // Select picker initialization
+        $('.selectpicker').selectpicker();
     </script>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
