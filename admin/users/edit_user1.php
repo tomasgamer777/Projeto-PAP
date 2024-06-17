@@ -262,29 +262,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
       <!-- End Navbar -->
 
       <script>
-        function fetchUserData(userId) {
-            fetch('get_user_data.php?user_id=' +  <?php echo htmlspecialchars($user_id); ?>)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("user_id").value = data.user_id;
-                    document.getElementById("nome").value = data.nome;
-                    document.getElementById("sobrenome").value = data.sobrenome;
-                    document.getElementById("email").value = data.email;
-                    document.getElementById("telef").value = data.telef;
-                    document.getElementById("morada").value = data.morada;
-                    document.getElementById("tipo").value = data.tipo;
-                    document.getElementById("status").value = data.status;
-                    document.getElementById("data_nasc").value = data.data_nasc;
-                    document.getElementById("cod_postal").value = data.cod_postal;
-                    document.getElementById("nif").value = data.nif;
-                    document.querySelector(`select[name="distrito"] option[value="${data.distrito}"]`).selected = true;
-
-                    if (data.foto) {
-                        document.getElementById("wizardPicturePreview").src = data.foto;
-                    }
-                })
-                .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
-        }
 
         function previewProfilePicture() {
             const fileInput = document.getElementById('wizard-picture');
@@ -353,7 +330,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                                                     <label class="bmd-label-floating" for="nome">Nome</label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="sobrenome" value="<?php echo htmlspecialchars($user_surname); ?>">
+                                                    <input type="text" class="form-control" id="sobrenome" value="<?php echo htmlspecialchars($user_surname11); ?>">
                                                     <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
                                                 </div>
                                                 <div class="form-group">
