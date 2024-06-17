@@ -230,149 +230,149 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <script>
-    $(document).ready(function() {
-      $('#calendar').fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay'
-        },
-        editable: true,
-        eventLimit: true,
-        events: 'fetch-events.php',
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end) {
-          Swal.fire({
-            title: 'Adicionar Evento',
-            html:
-              '<input id="swal-input1" class="swal2-input" placeholder="Título do Evento">' +
-              '<input id="swal-input2" class="swal2-input" placeholder="Data de Início" disabled>',
-            focusConfirm: false,
-            preConfirm: () => {
-              const title = document.getElementById('swal-input1').value;
-              const start = moment(start).format('YYYY-MM-DD HH:mm:ss');
-              const end = moment(end).format('YYYY-MM-DD HH:mm:ss');
-              if (!title) {
-                Swal.showValidationMessage('Título do evento é obrigatório');
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      editable: true,
+      eventLimit: true,
+      events: 'fetch-events.php',
+      selectable: true,
+      selectHelper: true,
+      select: function(startSelect, endSelect) { // Renomeando os parâmetros para evitar conflito
+        Swal.fire({
+          title: 'Adicionar Evento',
+          html:
+            '<input id="swal-input1" class="swal2-input" placeholder="Título do Evento">' +
+            '<input id="swal-input2" class="swal2-input" placeholder="Data de Início" disabled>',
+          focusConfirm: false,
+          preConfirm: () => {
+            const title = document.getElementById('swal-input1').value;
+            const start = moment(startSelect).format('YYYY-MM-DD HH:mm:ss'); // Usando startSelect
+            const end = moment(endSelect).format('YYYY-MM-DD HH:mm:ss'); // Usando endSelect
+            if (!title) {
+              Swal.showValidationMessage('Título do evento é obrigatório');
+            }
+            return { title, start, end };
+          },
+          showCancelButton: true,
+          confirmButtonText: 'Adicionar',
+          cancelButtonText: 'Cancelar',
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: 'add-event.php',
+              type: 'POST',
+              data: {
+                title: result.value.title,
+                start: result.value.start,
+                end: result.value.end
+              },
+              success: function(response) {
+                Swal.fire({
+                  title: 'Sucesso!',
+                  text: 'Evento adicionado com sucesso.',
+                  icon: 'success',
+                  timer: 1500,
+                  timerProgressBar: true,
+                  showConfirmButton: false
+                });
+                $('#calendar').fullCalendar('refetchEvents');
+              },
+              error: function(xhr, status, error) {
+                Swal.fire({
+                  title: 'Erro!',
+                  text: 'Ocorreu um erro ao adicionar o evento.',
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+                });
               }
-              return { title, start, end };
-            },
-            showCancelButton: true,
-            confirmButtonText: 'Adicionar',
-            cancelButtonText: 'Cancelar',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                url: 'add-event.php',
-                type: 'POST',
-                data: {
-                  title: result.value.title,
-                  start: result.value.start,
-                  end: result.value.end
-                },
-                success: function(response) {
-                  Swal.fire({
-                    title: 'Sucesso!',
-                    text: 'Evento adicionado com sucesso.',
-                    icon: 'success',
-                    timer: 1500,
-                    timerProgressBar: true,
-                    showConfirmButton: false
-                  });
-                  $('#calendar').fullCalendar('refetchEvents');
-                },
-                error: function(xhr, status, error) {
-                  Swal.fire({
-                    title: 'Erro!',
-                    text: 'Ocorreu um erro ao adicionar o evento.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                  });
-                }
-              });
-            }
-          });
-        },
-        editable: true,
-        eventDrop: function(event, delta, revertFunc) {
-          const start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
-          const end = moment(event.end).format('YYYY-MM-DD HH:mm:ss');
-          $.ajax({
-            url: 'update-event.php',
-            type: 'POST',
-            data: {
-              id: event.id,
-              title: event.title,
-              start: start,
-              end: end
-            },
-            success: function(response) {
-              Swal.fire({
-                title: 'Sucesso!',
-                text: 'Evento atualizado com sucesso.',
-                icon: 'success',
-                timer: 1500,
-                timerProgressBar: true,
-                showConfirmButton: false
-              });
-            },
-            error: function(xhr, status, error) {
-              revertFunc();
-              Swal.fire({
-                title: 'Erro!',
-                text: 'Ocorreu um erro ao atualizar o evento.',
-                icon: 'error',
-                confirmButtonText: 'OK'
-              });
-            }
-          });
-        },
-        eventClick: function(event) {
-          Swal.fire({
-            title: 'Eliminar Evento',
-            text: 'Tem certeza que deseja eliminar este evento?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim, eliminar',
-            cancelButtonText: 'Cancelar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                url: 'delete-event.php',
-                type: 'POST',
-                data: {
-                  id: event.id
-                },
-                success: function(response) {
-                  Swal.fire({
-                    title: 'Eliminado!',
-                    text: 'O evento foi eliminado com sucesso.',
-                    icon: 'success',
-                    timer: 1500,
-                    timerProgressBar: true,
-                    showConfirmButton: false
-                  });
-                  $('#calendar').fullCalendar('refetchEvents');
-                },
-                error: function(xhr, status, error) {
-                  Swal.fire({
-                    title: 'Erro!',
-                    text: 'Ocorreu um erro ao eliminar o evento.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                  });
-                }
-              });
-            }
-          });
-        }
-      });
+            });
+          }
+        });
+      },
+      editable: true,
+      eventDrop: function(event, delta, revertFunc) {
+        const start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
+        const end = moment(event.end).format('YYYY-MM-DD HH:mm:ss');
+        $.ajax({
+          url: 'update-event.php',
+          type: 'POST',
+          data: {
+            id: event.id,
+            title: event.title,
+            start: start,
+            end: end
+          },
+          success: function(response) {
+            Swal.fire({
+              title: 'Sucesso!',
+              text: 'Evento atualizado com sucesso.',
+              icon: 'success',
+              timer: 1500,
+              timerProgressBar: true,
+              showConfirmButton: false
+            });
+          },
+          error: function(xhr, status, error) {
+            revertFunc();
+            Swal.fire({
+              title: 'Erro!',
+              text: 'Ocorreu um erro ao atualizar o evento.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
+        });
+      },
+      eventClick: function(event) {
+        Swal.fire({
+          title: 'Eliminar Evento',
+          text: 'Tem certeza que deseja eliminar este evento?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sim, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: 'delete-event.php',
+              type: 'POST',
+              data: {
+                id: event.id
+              },
+              success: function(response) {
+                Swal.fire({
+                  title: 'Eliminado!',
+                  text: 'O evento foi eliminado com sucesso.',
+                  icon: 'success',
+                  timer: 1500,
+                  timerProgressBar: true,
+                  showConfirmButton: false
+                });
+                $('#calendar').fullCalendar('refetchEvents');
+              },
+              error: function(xhr, status, error) {
+                Swal.fire({
+                  title: 'Erro!',
+                  text: 'Ocorreu um erro ao eliminar o evento.',
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+                });
+              }
+            });
+          }
+        });
+      }
     });
-  </script>
+  });
+</script>
 </body>
 </html>
