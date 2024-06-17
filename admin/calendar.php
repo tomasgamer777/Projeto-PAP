@@ -35,11 +35,11 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link href="assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
-</head>
 
-  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css' rel='stylesheet' />
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
+  <!-- FullCalendar CSS -->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.css' rel='stylesheet' />
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+</head>
 
 <body class="">
   <div class="wrapper ">
@@ -173,18 +173,15 @@ $user_photo_path = '/admin/users/' . $user_photo;
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
-                  <?php if ($noti_count > 0): ?>
-                      <span class="notification"><?php echo $noti_count; ?></span>
-                  <?php endif; ?>
+                  <span class="notification">5</span>
                   <p class="d-lg-none d-md-block">Some Actions</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="notificacoes.php">
-                      Notificações:   
-                      <?php if ($noti_count > 0): ?>
-                          <span class="badge badge-info"><?php echo $noti_count; ?></span>
-                      <?php endif; ?>
-                  </a>
+                  <a class="dropdown-item" href="#">Notification 1</a>
+                  <a class="dropdown-item" href="#">Notification 2</a>
+                  <a class="dropdown-item" href="#">Notification 3</a>
+                  <a class="dropdown-item" href="#">Notification 4</a>
+                  <a class="dropdown-item" href="#">Notification 5</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -193,13 +190,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   <p class="d-lg-none d-md-block">Conta</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="">Perfil</a>
+                  <a class="dropdown-item" href="#">Perfil</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
+                  <a class="dropdown-item" href="login/logout.php">Terminar sessão</a>
                 </div>
-              </li>
-            </ul>
-            </div>
               </li>
             </ul>
           </div>
@@ -210,11 +204,9 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-rose card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">calendar_today</i>
-                  </div>
+                <div class="card-header card-header-primary">
                   <h4 class="card-title">Calendário</h4>
+                  <p class="card-category">Gerencie seus eventos</p>
                 </div>
                 <div class="card-body">
                   <div id="calendar"></div>
@@ -226,51 +218,15 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </div>
     </div>
   </div>
-  <!--   Core JS Files   -->
+
+  <!-- Core JS Files -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
-  <!-- Plugin for the momentJs  -->
-  <script src="assets/js/plugins/moment.min.js"></script>
-  <!--  Plugin for Sweet Alert -->
-  <script src="assets/js/plugins/sweetalert2.js"></script>
-  <!-- Forms Validations Plugin -->
-  <script src="assets/js/plugins/jquery.validate.min.js"></script>
-  <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="assets/js/plugins/bootstrap-selectpicker.js"></script>
-  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-  <script src="assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
-  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
-  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
-
-
-  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="assets/js/plugins/jquery-jvectormap.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="assets/js/plugins/nouislider.min.js"></script>
-  <!-- Library for adding dinamically elements -->
-  <script src="assets/js/plugins/arrive.min.js"></script>
-  <!-- Chartist JS -->
-  <script src="assets/js/plugins/chartist.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="assets/demo/demo.js"></script>
-
-  <!-- Script para inicializar o FullCalendar -->
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- FullCalendar JS -->
+  <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <script>
     $(document).ready(function() {
       $('#calendar').fullCalendar({
@@ -280,116 +236,63 @@ $user_photo_path = '/admin/users/' . $user_photo;
           right: 'month,agendaWeek,agendaDay'
         },
         editable: true,
-        events: '/admin/calendar/fetch-events.php',
+        eventLimit: true,
+        events: 'fetch-events.php',
         selectable: true,
         selectHelper: true,
         select: function(start, end) {
           var title = prompt('Event Title:');
           if (title) {
-            var eventData = {
-              title: title,
-              start: start.format(),
-              end: end.format()
-            };
+            var start = moment(start).format('YYYY-MM-DD HH:mm:ss');
+            var end = moment(end).format('YYYY-MM-DD HH:mm:ss');
             $.ajax({
-              url: '/admin/calendar/add-event.php',
-              method: 'POST',
-              data: JSON.stringify(eventData),
-              contentType: 'application/json',
-              success: function(response) {
-                if (response.status === 'success') {
-                  $('#calendar').fullCalendar('renderEvent', eventData, true);
-                } else {
-                  alert('Erro ao adicionar evento');
-                }
+              url: 'add-event.php',
+              data: 'title='+ title +'&start='+ start +'&end='+ end,
+              type: "POST",
+              success: function(json) {
+                alert('Added Successfully');
+                $('#calendar').fullCalendar('renderEvent',
+                  {
+                    title: title,
+                    start: start,
+                    end: end
+                  },
+                  true
+                );
               }
             });
+            $('#calendar').fullCalendar('unselect');
           }
-          $('#calendar').fullCalendar('unselect');
+        },
+        editable: true,
+        eventDrop: function(event, delta, revertFunc) {
+          var start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
+          var end = moment(event.end).format('YYYY-MM-DD HH:mm:ss');
+          $.ajax({
+            url: 'update-event.php',
+            data: 'title='+ event.title +'&start='+ start +'&end='+ end +'&id='+ event.id,
+            type: "POST",
+            success: function(json) {
+              alert("Updated Successfully");
+            }
+          });
         },
         eventClick: function(event) {
-          var title = prompt('Event Title:', event.title);
-          if (title) {
-            event.title = title;
+          var deleteMsg = confirm("Do you really want to delete?");
+          if(deleteMsg) {
             $.ajax({
-              url: '/admin/calendar/update-event.php',
-              method: 'POST',
-              data: JSON.stringify({
-                id: event.id,
-                title: event.title,
-                start: event.start.format(),
-                end: event.end ? event.end.format() : null
-              }),
-              contentType: 'application/json',
-              success: function(response) {
-                if (response.status === 'success') {
-                  $('#calendar').fullCalendar('updateEvent', event);
-                } else {
-                  alert('Erro ao atualizar evento');
-                }
+              type: "POST",
+              url: "delete-event.php",
+              data: "&id=" + event.id,
+              success: function(json) {
+                $('#calendar').fullCalendar('removeEvents', event.id);
+                alert("Deleted Successfully");
               }
             });
           }
-        },
-        eventDrop: function(event) {
-          $.ajax({
-            url: '/admin/calendar/update-event.php',
-            method: 'POST',
-            data: JSON.stringify({
-              id: event.id,
-              title: event.title,
-              start: event.start.format(),
-              end: event.end ? event.end.format() : null
-            }),
-            contentType: 'application/json',
-            success: function(response) {
-              if (response.status !== 'success') {
-                alert('Erro ao atualizar evento');
-              }
-            }
-          });
-        },
-        eventResize: function(event) {
-          $.ajax({
-            url: '/admin/calendar/update-event.php',
-            method: 'POST',
-            data: JSON.stringify({
-              id: event.id,
-              title: event.title,
-              start: event.start.format(),
-              end: event.end ? event.end.format() : null
-            }),
-            contentType: 'application/json',
-            success: function(response) {
-              if (response.status !== 'success') {
-                alert('Erro ao atualizar evento');
-              }
-            }
-          });
-        },
-        eventRender: function(event, element) {
-          element.append("<span class='closeon'>X</span>");
-          element.find(".closeon").on('click', function() {
-            if (confirm("Deseja realmente excluir este evento?")) {
-              $.ajax({
-                url: '/admin/calendar/delete-event.php',
-                method: 'POST',
-                data: JSON.stringify({ id: event.id }),
-                contentType: 'application/json',
-                success: function(response) {
-                  if (response.status === 'success') {
-                    $('#calendar').fullCalendar('removeEvents', event.id);
-                  } else {
-                    alert('Erro ao excluir evento');
-                  }
-                }
-              });
-            }
-          });
         }
       });
     });
   </script>
 </body>
-
 </html>
