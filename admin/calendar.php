@@ -35,10 +35,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link href="assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
-
   <!-- FullCalendar CSS -->
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.css' rel='stylesheet' />
-  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <!-- SweetAlert CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 
 <body class="">
@@ -173,24 +173,27 @@ $user_photo_path = '/admin/users/' . $user_photo;
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
+                  <?php if ($noti_count > 0): ?>
+                      <span class="notification"><?php echo $noti_count; ?></span>
+                  <?php endif; ?>
                   <p class="d-lg-none d-md-block">Some Actions</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Notification 1</a>
-                  <a class="dropdown-item" href="#">Notification 2</a>
-                  <a class="dropdown-item" href="#">Notification 3</a>
-                  <a class="dropdown-item" href="#">Notification 4</a>
-                  <a class="dropdown-item" href="#">Notification 5</a>
+                  <a class="dropdown-item" href="notificacoes.php">
+                      Notificações:   
+                      <?php if ($noti_count > 0): ?>
+                          <span class="badge badge-info"><?php echo $noti_count; ?></span>
+                      <?php endif; ?>
+                  </a>
                 </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">person</i>
+                <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">Conta</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="">Perfil</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="login/logout.php">Terminar sessão</a>
                 </div>
@@ -205,8 +208,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Calendário</h4>
-                  <p class="card-category">Gerencie seus eventos</p>
+                  <h4 class="card-title ">Calendário</h4>
+                  <p class="card-category"> Gerencie seus eventos</p>
                 </div>
                 <div class="card-body">
                   <div id="calendar"></div>
@@ -225,74 +228,132 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- FullCalendar JS -->
-  <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
+  <!-- SweetAlert JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-    $(document).ready(function() {
-      $('#calendar').fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay'
-        },
-        editable: true,
-        eventLimit: true,
-        events: 'fetch-events.php',
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end) {
-          var title = prompt('Event Title:');
-          if (title) {
-            var start = moment(start).format('YYYY-MM-DD HH:mm:ss');
-            var end = moment(end).format('YYYY-MM-DD HH:mm:ss');
-            $.ajax({
-              url: 'add-event.php',
-              data: 'title='+ title +'&start='+ start +'&end='+ end,
-              type: "POST",
-              success: function(json) {
-                alert('Added Successfully');
-                $('#calendar').fullCalendar('renderEvent',
-                  {
-                    title: title,
-                    start: start,
-                    end: end
-                  },
-                  true
-                );
-              }
-            });
-            $('#calendar').fullCalendar('unselect');
-          }
-        },
-        editable: true,
-        eventDrop: function(event, delta, revertFunc) {
-          var start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
-          var end = moment(event.end).format('YYYY-MM-DD HH:mm:ss');
-          $.ajax({
-            url: 'update-event.php',
-            data: 'title='+ event.title +'&start='+ start +'&end='+ end +'&id='+ event.id,
-            type: "POST",
-            success: function(json) {
-              alert("Updated Successfully");
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+      editable: true,
+      events: 'fetch-events.php', // Endereço que retorna os eventos em JSON
+      selectable: true,
+      selectHelper: true,
+      select: function(start, end, allDay) {
+        Swal.fire({
+          title: 'Adicionar Evento',
+          html: '<input id="event-title" class="swal2-input" placeholder="Título">',
+          showCancelButton: true,
+          confirmButtonText: 'Salvar',
+          cancelButtonText: 'Cancelar',
+          preConfirm: () => {
+            const title = document.getElementById('event-title').value;
+            if (!title) {
+              Swal.showValidationMessage('O título é obrigatório');
             }
-          });
-        },
-        eventClick: function(event) {
-          var deleteMsg = confirm("Do you really want to delete?");
-          if(deleteMsg) {
+            return { title: title };
+          }
+        }).then((result) => {
+          if (result.value) {
+            var title = result.value.title;
+            if (title) {
+              var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
+              var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
+              $.ajax({
+                url: 'add-event.php',
+                type: 'POST',
+                data: { title: title, start: start, end: end },
+                success: function() {
+                  Swal.fire('Evento adicionado', '', 'success');
+                  $('#calendar').fullCalendar('refetchEvents');
+                }
+              });
+            }
+          }
+        });
+      },
+      eventClick: function(event) {
+        Swal.fire({
+          title: 'Editar/Excluir Evento',
+          html: '<input id="event-title" class="swal2-input" value="' + event.title + '">',
+          showCancelButton: true,
+          showDenyButton: true,
+          confirmButtonText: 'Salvar',
+          denyButtonText: 'Excluir',
+          cancelButtonText: 'Cancelar',
+          preConfirm: () => {
+            const title = document.getElementById('event-title').value;
+            if (!title) {
+              Swal.showValidationMessage('O título é obrigatório');
+            }
+            return { title: title };
+          }
+        }).then((result) => {
+          if (result.isConfirmed) {
+            var title = result.value.title;
             $.ajax({
-              type: "POST",
-              url: "delete-event.php",
-              data: "&id=" + event.id,
-              success: function(json) {
-                $('#calendar').fullCalendar('removeEvents', event.id);
-                alert("Deleted Successfully");
+              url: 'update-event.php',
+              type: 'POST',
+              data: { id: event.id, title: title },
+              success: function() {
+                Swal.fire('Evento atualizado', '', 'success');
+                $('#calendar').fullCalendar('refetchEvents');
+              }
+            });
+          } else if (result.isDenied) {
+            Swal.fire({
+              title: 'Você tem certeza?',
+              text: 'Não será possível reverter isso!',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Sim, excluir!',
+              cancelButtonText: 'Cancelar'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                  url: 'delete-event.php',
+                  type: 'POST',
+                  data: { id: event.id },
+                  success: function() {
+                    Swal.fire('Evento excluído', '', 'success');
+                    $('#calendar').fullCalendar('refetchEvents');
+                  }
+                });
               }
             });
           }
-        }
-      });
+        });
+      },
+      editable: true,
+      eventResize: function(event) {
+        var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+        var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+        var id = event.id;
+        $.ajax({
+          url: 'update-event.php',
+          type: 'POST',
+          data: { id: id, start: start, end: end },
+          success: function() {
+            Swal.fire('Evento atualizado', '', 'success');
+            $('#calendar').fullCalendar('refetchEvents');
+          }
+        });
+      },
+      eventDrop: function(event) {
+        var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+        var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+        var id = event.id;
+        $.ajax({
+          url: 'update-event.php',
+          type: 'POST',
+          data: { id: id, start: start, end: end },
+          success: function() {
+            Swal.fire('Evento atualizado', '', 'success');
+            $('#calendar').fullCalendar('refetchEvents');
+          }
+        });
+      }
     });
-  </script>
+  });
+</script>
 </body>
 </html>
