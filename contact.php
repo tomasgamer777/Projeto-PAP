@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<li class="menu-item"><a href="index.php">Página Principal</a></li>
 							<li class="menu-item"><a href="about.html">A Banda</a></li>
 							<li class="menu-item"><a href="gallery.php">Galeria</a></li>
-							<li class="menu-item"><a href="download.html">Discografia</a></li>
+							
 							<li class="menu-item"><a href="blog.php">Blog</a></li>
 							<li class="menu-item current-menu-item"><a href="contact.php">Contacte-nos</a></li>
 						</ul> <!-- .menu -->
