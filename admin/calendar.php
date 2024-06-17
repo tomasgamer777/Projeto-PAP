@@ -35,10 +35,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link href="assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+
   <!-- FullCalendar CSS -->
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.css' rel='stylesheet' />
-  <!-- SweetAlert CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 </head>
 
 <body class="">
@@ -173,27 +173,24 @@ $user_photo_path = '/admin/users/' . $user_photo;
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
-                  <?php if ($noti_count > 0): ?>
-                      <span class="notification"><?php echo $noti_count; ?></span>
-                  <?php endif; ?>
+                  <span class="notification">5</span>
                   <p class="d-lg-none d-md-block">Some Actions</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="notificacoes.php">
-                      Notificações:   
-                      <?php if ($noti_count > 0): ?>
-                          <span class="badge badge-info"><?php echo $noti_count; ?></span>
-                      <?php endif; ?>
-                  </a>
+                  <a class="dropdown-item" href="#">Notification 1</a>
+                  <a class="dropdown-item" href="#">Notification 2</a>
+                  <a class="dropdown-item" href="#">Notification 3</a>
+                    <a class="dropdown-item" href="#">Notification 4</a>
+                  <a class="dropdown-item" href="#">Notification 5</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="material-icons">person</i>
+                  <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">Conta</p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="">Perfil</a>
+                  <a class="dropdown-item" href="#">Perfil</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="login/logout.php">Terminar sessão</a>
                 </div>
@@ -208,8 +205,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Calendário</h4>
-                  <p class="card-category"> Gerencie seus eventos</p>
+                  <h4 class="card-title">Calendário</h4>
+                  <p class="card-category">Gerencie seus eventos</p>
                 </div>
                 <div class="card-body">
                   <div id="calendar"></div>
@@ -228,9 +225,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- FullCalendar JS -->
+  <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
-  <!-- SweetAlert JS -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
   $(document).ready(function() {
     $('#calendar').fullCalendar({
