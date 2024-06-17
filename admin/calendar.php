@@ -37,6 +37,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
 
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css' rel='stylesheet' />
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
+
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="assets/img/sidebar-1.jpg">
@@ -213,7 +217,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   <h4 class="card-title">Calendário</h4>
                 </div>
                 <div class="card-body">
-                  <div id="fullCalendar" class="full-calendar"></div>
+                  <div id="calendar"></div>
                 </div>
               </div>
             </div>
@@ -245,8 +249,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="assets/js/plugins/jasny-bootstrap.min.js"></script>
-  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src="assets/js/plugins/fullcalendar.min.js"></script>
+
+
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
   <script src="assets/js/plugins/jquery-jvectormap.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
@@ -263,67 +267,127 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="assets/demo/demo.js"></script>
 
   <!-- Script para inicializar o FullCalendar -->
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
   <script>
     $(document).ready(function() {
-
-      // Função para buscar eventos
-      var fetchEvents = function(start, end, timezone, callback) {
-        // Aqui você deve implementar a lógica para buscar eventos do backend
-        // Por exemplo, você pode usar AJAX para chamar um script PHP que retorna os eventos
-        // Suponha que você tenha um script PHP para buscar os eventos chamado fetch_events.php
-
-        $.ajax({
-          url: 'fetch_events.php',
-          dataType: 'json',
-          success: function(data) {
-            var events = [];
-            $(data).each(function() {
-              events.push({
-                title: $(this).attr('title'),
-                start: $(this).attr('start'),
-                end: $(this).attr('end')
-              });
-            });
-            callback(events);
-          }
-        });
-      };
-
-      // Configuração inicial do FullCalendar
-      $('#fullCalendar').fullCalendar({
+      $('#calendar').fullCalendar({
         header: {
           left: 'prev,next today',
           center: 'title',
           right: 'month,agendaWeek,agendaDay'
         },
-        defaultView: 'month', // Visualização padrão do calendário
-        editable: true, // Permite arrastar e redimensionar eventos
-        droppable: true, // Permite soltar elementos no calendário
-
-        events: fetchEvents, // Função para buscar eventos ao iniciar o calendário
-
+        editable: true,
+        events: '/admin/calendar/fetch-events.php',
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end) {
+          var title = prompt('Event Title:');
+          if (title) {
+            var eventData = {
+              title: title,
+              start: start.format(),
+              end: end.format()
+            };
+            $.ajax({
+              url: '/admin/calendar/add-event.php',
+              method: 'POST',
+              data: JSON.stringify(eventData),
+              contentType: 'application/json',
+              success: function(response) {
+                if (response.status === 'success') {
+                  $('#calendar').fullCalendar('renderEvent', eventData, true);
+                } else {
+                  alert('Erro ao adicionar evento');
+                }
+              }
+            });
+          }
+          $('#calendar').fullCalendar('unselect');
+        },
         eventClick: function(event) {
-          // Ação ao clicar em um evento
-          alert('Evento: ' + event.title);
-          // Aqui você pode implementar a lógica para exibir mais detalhes do evento
+          var title = prompt('Event Title:', event.title);
+          if (title) {
+            event.title = title;
+            $.ajax({
+              url: '/admin/calendar/update-event.php',
+              method: 'POST',
+              data: JSON.stringify({
+                id: event.id,
+                title: event.title,
+                start: event.start.format(),
+                end: event.end ? event.end.format() : null
+              }),
+              contentType: 'application/json',
+              success: function(response) {
+                if (response.status === 'success') {
+                  $('#calendar').fullCalendar('updateEvent', event);
+                } else {
+                  alert('Erro ao atualizar evento');
+                }
+              }
+            });
+          }
         },
-
-        eventDrop: function(event, delta, revertFunc) {
-          // Ação ao arrastar e soltar um evento
-          alert(event.title + ' foi movido para ' + event.start.format());
-          // Aqui você pode implementar a lógica para atualizar a posição do evento no backend
+        eventDrop: function(event) {
+          $.ajax({
+            url: '/admin/calendar/update-event.php',
+            method: 'POST',
+            data: JSON.stringify({
+              id: event.id,
+              title: event.title,
+              start: event.start.format(),
+              end: event.end ? event.end.format() : null
+            }),
+            contentType: 'application/json',
+            success: function(response) {
+              if (response.status !== 'success') {
+                alert('Erro ao atualizar evento');
+              }
+            }
+          });
         },
-
-        eventResize: function(event, delta, revertFunc) {
-          // Ação ao redimensionar um evento
-          alert(event.title + ' foi redimensionado');
-          // Aqui você pode implementar a lógica para atualizar a duração do evento no backend
+        eventResize: function(event) {
+          $.ajax({
+            url: '/admin/calendar/update-event.php',
+            method: 'POST',
+            data: JSON.stringify({
+              id: event.id,
+              title: event.title,
+              start: event.start.format(),
+              end: event.end ? event.end.format() : null
+            }),
+            contentType: 'application/json',
+            success: function(response) {
+              if (response.status !== 'success') {
+                alert('Erro ao atualizar evento');
+              }
+            }
+          });
         },
-
-        // Idioma do calendário
-        locale: 'pt-br'
+        eventRender: function(event, element) {
+          element.append("<span class='closeon'>X</span>");
+          element.find(".closeon").on('click', function() {
+            if (confirm("Deseja realmente excluir este evento?")) {
+              $.ajax({
+                url: '/admin/calendar/delete-event.php',
+                method: 'POST',
+                data: JSON.stringify({ id: event.id }),
+                contentType: 'application/json',
+                success: function(response) {
+                  if (response.status === 'success') {
+                    $('#calendar').fullCalendar('removeEvents', event.id);
+                  } else {
+                    alert('Erro ao excluir evento');
+                  }
+                }
+              });
+            }
+          });
+        }
       });
-
     });
   </script>
 </body>
