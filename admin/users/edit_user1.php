@@ -275,277 +275,246 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   </h4>
                 </div>
                 <div class="card-body">
-                  <form id="editProfileForm">
-    <div class="row">
-        <div class="col-md-5">
-            <div class="form-group">
-                <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
-                <label class="bmd-label-floating" for="user_id">Código</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="picture-container">
-                <div class="picture">
-                    <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
+                <form id="editProfileForm">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
+                    <label class="bmd-label-floating" for="user_id">Código</label>
                 </div>
-                <h6 class="description">Foto de Perfil</h6>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control" id="nome" placeholder=" ">
-                <label class="bmd-label-floating" for="nome">Nome</label>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="picture-container">
+                    <div class="picture">
+                        <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                        <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
+                    </div>
+                    <h6 class="description">Foto de Perfil</h6>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="sobrenome" placeholder=" ">
-                <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="email" placeholder=" ">
-                <label class="bmd-label-floating" for="email">Email</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <input type="text" class="form-control" id="morada" placeholder=" ">
-                <label class="bmd-label-floating" for="morada">Morada</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="telef" placeholder=" ">
-                <label class="bmd-label-floating" for="telef">Telefone</label>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nome" placeholder=" ">
+                    <label class="bmd-label-floating" for="nome">Nome</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="email" placeholder=" ">
+                    <label class="bmd-label-floating" for="email">Email</label>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="data_nasc" placeholder=" ">
-                <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="morada" placeholder=" ">
+                    <label class="bmd-label-floating" for="morada">Morada</label>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="distrito">Distrito</label>
-                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
-                    <option value="Aveiro">Aveiro</option>
-                    <option value="Beja">Beja</option>
-                    <option value="Braga">Braga</option>
-                    <option value="Bragança">Bragança</option>
-                    <option value="Castelo Branco">Castelo Branco</option>
-                    <option value="Coimbra">Coimbra</option>
-                    <option value="Évora">Évora</option>
-                    <option value="Faro">Faro</option>
-                    <option value="Guarda">Guarda</option>
-                    <option value="Leiria">Leiria</option>
-                    <option value="Lisboa">Lisboa</option>
-                    <option value="Portalegre">Portalegre</option>
-                    <option value="Porto">Porto</option>
-                    <option value="Setúbal">Setúbal</option>
-                    <option value="Viana do Castelo">Viana do Castelo</option>
-                    <option value="Vila Real">Vila Real</option>
-                    <option value="Viseu">Viseu</option>
-                </select>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="telef" placeholder=" ">
+                    <label class="bmd-label-floating" for="telef">Telefone</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="data_nasc" placeholder=" ">
+                    <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="distrito">Distrito</label>
+                    <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
+                        <option value="Aveiro">Aveiro</option>
+                        <option value="Beja">Beja</option>
+                        <option value="Braga">Braga</option>
+                        <option value="Bragança">Bragança</option>
+                        <option value="Castelo Branco">Castelo Branco</option>
+                        <option value="Coimbra">Coimbra</option>
+                        <option value="Évora">Évora</option>
+                        <option value="Faro">Faro</option>
+                        <option value="Guarda">Guarda</option>
+                        <option value="Leiria">Leiria</option>
+                        <option value="Lisboa">Lisboa</option>
+                        <option value="Portalegre">Portalegre</></option>
+                        <option value="Porto">Porto</option>
+                        <option value="Setúbal">Setúbal</option>
+                        <option value="Viana do Castelo">Viana do Castelo</option>
+                        <option value="Vila Real">Vila Real</option>
+                        <option value="Viseu">Viseu</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="cod_postal" placeholder=" ">
-                <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="cod_postal" placeholder=" ">
+                    <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nif" placeholder=" ">
+                    <label class="bmd-label-floating" for="nif">NIF</label>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="nif" placeholder=" ">
-                <label class="bmd-label-floating" for="nif">NIF</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <h4 class="title"></h4>
-                
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="tipo">Tipo</label>
-                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
-                    <option disabled selected>Tipo</option>
-                    <option value="0">Para aceitar</option>
-                    <option value="1">Aluno</option>
-                    <option value="2">Músico</option>
-                    <option value="3">Sócio</option>
-                    <option value="4">Admin</option>
-                    <option value="5">Encarregado de educação</option>
-                    <option value="6">Professor</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
-    <div class="clearfix"></div>
-</form>
+        <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
+        <div class="clearfix"></div>
+    </form>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Função para preencher o formulário com dados do usuário
-    function fillForm(userData) {
-        document.getElementById("user_id").value = userData.user_id;
-        document.getElementById("nome").value = userData.nome;
-        document.getElementById("sobrenome").value = userData.sobrenome;
-        document.getElementById("email").value = userData.email;
-        document.getElementById("telef").value = userData.telef;
-        document.getElementById("morada").value = userData.morada;
-        document.getElementById("data_nasc").value = userData.data_nasc;
-        document.getElementById("cod_postal").value = userData.cod_postal;
-        document.getElementById("nif").value = userData.nif;
-        document.getElementById("distrito").value = userData.distrito;
-        // Atualiza o texto do toggle button conforme o estado
-        const estadoToggle = document.querySelector('.toggle');
-        const estadoText = document.querySelector('.state-text');
-        if (userData.estado === "Ativo") {
-            estadoText.innerText = "Ativo";
-            estadoToggle.style.left = "25px";
-        } else {
-            estadoText.innerText = "Inativo";
-            estadoToggle.style.left = "0";
-        }
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Função para preencher o formulário com dados do usuário
+        function fillForm(userData) {
+            document.getElementById("user_id").value = userData.user_id;
+            document.getElementById("nome").value = userData.nome;
+            document.getElementById("sobrenome").value = userData.sobrenome;
+            document.getElementById("email").value = userData.email;
+            document.getElementById("telef").value = userData.telef;
+            document.getElementById("morada").value = userData.morada;
+            document.getElementById("data_nasc").value = userData.data_nasc;
+            document.getElementById("cod_postal").value = userData.cod_postal;
+            document.getElementById("nif").value = userData.nif;
+            document.getElementById("distrito").value = userData.distrito;
 
-        // Exibir a foto de perfil, se existir
-        if (userData.foto) {
-            document.getElementById("wizardPicturePreview").src = userData.foto;
-        } else {
-            // Se não houver foto, exibir a imagem padrão
-            document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
-        }
-
-        // Forçar a atualização do campo de tipo e distrito para exibir a opção selecionada
-        $('.selectpicker').selectpicker('refresh');
-    }
-
-    // Requisição para obter dados do usuário
-    fetch('get_user_info.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                fillForm(data.data);
+            // Exibir a foto de perfil, se existir
+            if (userData.foto) {
+                document.getElementById("wizardPicturePreview").src = userData.foto;
             } else {
-                console.error("Erro ao obter dados do usuário: ", data.message);
+                // Se não houver foto, exibir a imagem padrão
+                document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
             }
-        })
-        .catch(error => console.error('Erro na requisição: ', error));
 
-    // Preview da foto de perfil
-    previewProfilePicture();
+            // Forçar a atualização do campo de distrito para exibir a opção selecionada
+            $('.selectpicker').selectpicker('refresh');
+        }
 
-    // Função para visualizar a foto de perfil
-    function previewProfilePicture() {
-        const fileInput = document.getElementById('wizard-picture');
-        const previewImage = document.getElementById('wizardPicturePreview');
+        // Requisição para obter dados do usuário
+        fetch('get_user_info.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    fillForm(data.data);
+                } else {
+                    console.error("Erro ao obter dados do usuário: ", data.message);
+                }
+            })
+            .catch(error => console.error('Erro na requisição: ', error));
 
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-            };
+        // Preview da foto de perfil
+        previewProfilePicture();
 
+        // Função para visualizar a foto de perfil
+        function previewProfilePicture() {
+            const fileInput = document.getElementById('wizard-picture');
+            const previewImage = document.getElementById('wizardPicturePreview');
+
+            fileInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                };
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        document.getElementById("updateButton").addEventListener("click", function() {
+            // Coletar todas as informações do formulário
+            var formData = new FormData();
+            formData.append("user_id", document.getElementById("user_id").value);
+            formData.append("nome", document.getElementById("nome").value);
+            formData.append("sobrenome", document.getElementById("sobrenome").value);
+            formData.append("email", document.getElementById("email").value);
+            formData.append("telef", document.getElementById("telef").value);
+            formData.append("morada", document.getElementById("morada").value);
+            formData.append("data_nasc", document.getElementById("data_nasc").value);
+            formData.append("cod_postal", document.getElementById("cod_postal").value);
+            formData.append("nif", document.getElementById("nif").value);
+            formData.append("distrito", document.querySelector('select[name="distrito"]').value);
+
+            // Verificar se há uma imagem para redimensionar e enviar
+            var fileInput = document.getElementById('wizard-picture');
+            var file = fileInput.files[0];
             if (file) {
-                reader.readAsDataURL(file);
+                resizeImage(file, 320, 320, function(resizedBlob) {
+                    formData.append("profile_picture", resizedBlob, file.name);
+
+                    // Enviar os dados para o servidor via AJAX
+                    sendFormData(formData);
+                });
+            } else {
+                // Enviar apenas os dados do formulário sem a imagem
+                sendFormData(formData);
             }
         });
-    }
 
-    document.getElementById("updateButton").addEventListener("click", function() {
-        // Coletar todas as informações do formulário
-        var formData = new FormData();
-        formData.append("user_id", document.getElementById("user_id").value);
-        formData.append("nome", document.getElementById("nome").value);
-        formData.append("sobrenome", document.getElementById("sobrenome").value);
-        formData.append("email", document.getElementById("email").value);
-        formData.append("telef", document.getElementById("telef").value);
-        formData.append("morada", document.getElementById("morada").value);
-        formData.append("data_nasc", document.getElementById("data_nasc").value);
-        formData.append("cod_postal", document.getElementById("cod_postal").value);
-        formData.append("nif", document.getElementById("nif").value);
-        formData.append("distrito", document.querySelector('select[name="distrito"]').value);
+        function sendFormData(formData) {
+            fetch('update_user.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Usuário atualizado com sucesso!');
+                } else {
+                    alert('Erro ao atualizar usuário: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Erro na requisição: ', error));
+        }
 
-        // Verificar se há uma imagem para redimensionar e enviar
-        var fileInput = document.getElementById('wizard-picture');
-        var file = fileInput.files[0];
-        if (file) {
-            resizeImage(file, 320, 320, function(resizedBlob) {
-                formData.append("profile_picture", resizedBlob, file.name);
+        function resizeImage(file, maxWidth, maxHeight, callback) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    let width = img.width;
+                    let height = img.height;
 
-                // Enviar os dados para o servidor via AJAX
-                sendFormData(formData);
-            });
-        } else {
-            // Enviar apenas os dados do formulário sem a imagem
-            sendFormData(formData);
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height *= maxWidth / width;
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width *= maxHeight / height;
+                            height = maxHeight;
+                        }
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    canvas.toBlob(callback, file.type, 0.95);
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
         }
     });
-    
-    function sendFormData(formData) {
-        fetch('update_user.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Usuário atualizado com sucesso!');
-            } else {
-                alert('Erro ao atualizar usuário: ' + data.message);
-            }
-        })
-        .catch(error => console.error('Erro na requisição: ', error));
-    }
-
-    function resizeImage(file, maxWidth, maxHeight, callback) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            const img = new Image();
-            img.onload = function() {
-                let width = img.width;
-                let height = img.height;
-
-                if (width > height) {
-                    if (width > maxWidth) {
-                        height *= maxWidth / width;
-                        width = maxWidth;
-                    }
-                } else {
-                    if (height > maxHeight) {
-                        width *= maxHeight / height;
-                        height = maxHeight;
-                    }
-                }
-
-                const canvas = document.createElement('canvas');
-                canvas.width = width;
-                canvas.height = height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, width, height);
-                canvas.toBlob(callback, file.type, 0.95);
-            };
-            img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
-</script>
-
+    </script>
+    <script src="path/to/jquery.js"></script>
+    <script src="path/to/bootstrap.js"></script>
+    <script src="path/to/bootstrap-select.js"></script>
                 </div>
               </div>
             </div>
