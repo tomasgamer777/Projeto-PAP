@@ -203,7 +203,6 @@
 
         <footer class="site-footer">
             <div class="container">
-                <img src="" alt="Site Name">
 
                 <address>
                     <p>Av. Salazar 7, 3440-183 Pinheiro de Ázere <br><a href="tel:968987358">(351) 968987358</a> <br> <a href="mailto:sofilepi@gmail.com">sofilepi@gmail.com</a></p> 
