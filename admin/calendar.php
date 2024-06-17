@@ -242,7 +242,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
       events: 'fetch-events.php',
       selectable: true,
       selectHelper: true,
-      select: function(startSelect, endSelect) { // Renomeando os parâmetros para evitar conflito
+      select: function(startSelect, endSelect) {
+        // Adicionar evento
         Swal.fire({
           title: 'Adicionar Evento',
           html:
@@ -251,8 +252,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
           focusConfirm: false,
           preConfirm: () => {
             const title = document.getElementById('swal-input1').value;
-            const start = moment(startSelect).format('YYYY-MM-DD HH:mm:ss'); // Usando startSelect
-            const end = moment(endSelect).format('YYYY-MM-DD HH:mm:ss'); // Usando endSelect
+            const start = moment(startSelect).format('YYYY-MM-DD HH:mm:ss');
+            const end = moment(endSelect).format('YYYY-MM-DD HH:mm:ss');
             if (!title) {
               Swal.showValidationMessage('Título do evento é obrigatório');
             }
@@ -298,6 +299,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
       },
       editable: true,
       eventDrop: function(event, delta, revertFunc) {
+        // Atualizar evento arrastado
         const start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
         const end = moment(event.end).format('YYYY-MM-DD HH:mm:ss');
         $.ajax({
@@ -331,27 +333,39 @@ $user_photo_path = '/admin/users/' . $user_photo;
         });
       },
       eventClick: function(event) {
+        // Editar ou eliminar evento existente
         Swal.fire({
-          title: 'Eliminar Evento',
-          text: 'Tem certeza que deseja eliminar este evento?',
-          icon: 'warning',
+          title: 'Editar ou Eliminar Evento',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Sim, eliminar',
-          cancelButtonText: 'Cancelar'
+          confirmButtonText: 'Editar',
+          cancelButtonText: 'Eliminar',
+          showCloseButton: true,
+          html: '<input id="swal-input1" class="swal2-input" value="' + event.title + '">' +
+                '<input id="swal-input2" class="swal2-input" value="' + moment(event.start).format('YYYY-MM-DD HH:mm:ss') + '" disabled>',
         }).then((result) => {
           if (result.isConfirmed) {
+            const title = document.getElementById('swal-input1').value;
+            const start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
+            const end = moment(event.end).format('YYYY-MM-DD HH:mm:ss');
+            if (!title) {
+              Swal.showValidationMessage('Título do evento é obrigatório');
+              return false;
+            }
             $.ajax({
-              url: 'delete-event.php',
+              url: 'update-event.php',
               type: 'POST',
               data: {
-                id: event.id
+                id: event.id,
+                title: title,
+                start: start,
+                end: end
               },
               success: function(response) {
                 Swal.fire({
-                  title: 'Eliminado!',
-                  text: 'O evento foi eliminado com sucesso.',
+                  title: 'Sucesso!',
+                  text: 'Evento atualizado com sucesso.',
                   icon: 'success',
                   timer: 1500,
                   timerProgressBar: true,
@@ -362,9 +376,49 @@ $user_photo_path = '/admin/users/' . $user_photo;
               error: function(xhr, status, error) {
                 Swal.fire({
                   title: 'Erro!',
-                  text: 'Ocorreu um erro ao eliminar o evento.',
+                  text: 'Ocorreu um erro ao atualizar o evento.',
                   icon: 'error',
                   confirmButtonText: 'OK'
+                });
+              }
+            });
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire({
+              title: 'Eliminar Evento',
+              text: 'Tem certeza que deseja eliminar este evento?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Sim, eliminar',
+              cancelButtonText: 'Cancelar'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                  url: 'delete-event.php',
+                  type: 'POST',
+                  data: {
+                    id: event.id
+                  },
+                  success: function(response) {
+                    Swal.fire({
+                      title: 'Eliminado!',
+                      text: 'O evento foi eliminado com sucesso.',
+                      icon: 'success',
+                      timer: 1500,
+                      timerProgressBar: true,
+                      showConfirmButton: false
+                    });
+                    $('#calendar').fullCalendar('refetchEvents');
+                  },
+                  error: function(xhr, status, error) {
+                    Swal.fire({
+                      title: 'Erro!',
+                      text: 'Ocorreu um erro ao eliminar o evento.',
+                      icon: 'error',
+                      confirmButtonText: 'OK'
+                    });
+                  }
                 });
               }
             });
@@ -374,5 +428,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
     });
   });
 </script>
+
 </body>
 </html>
