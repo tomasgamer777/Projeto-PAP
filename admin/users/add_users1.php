@@ -1,77 +1,110 @@
 <?php
-// Configurações da base de dados
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    echo json_encode(["success" => false, "message" => "Usuário não está logado."]);
+    exit;
+}
+
+// Conectar ao banco de dados
 $servername = "localhost";
 $username = "tomas";
 $password = "!h01fFw35";
 $dbname = "banda";
 
-// Cria a conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica a conexão
 if ($conn->connect_error) {
-    die(json_encode(["status" => "error", "message" => "Connection failed: " . $conn->connect_error]));
+    die("Falha na conexão: " . $conn->connect_error);
 }
 
-function converterData($data) {
-    $data_parts = explode('/', $data);
-    return $data_parts[2] . '-' . $data_parts[1] . '-' . $data_parts[0];
-}
+// Receber os dados do formulário
+$user_id = $_POST['user_id'] ?? '';
+$nome = $_POST['nome'] ?? '';
+$sobrenome = $_POST['sobrenome'] ?? '';
+$email = $_POST['email'] ?? '';
+$telef = $_POST['telef'] ?? '';
+$morada = $_POST['morada'] ?? '';
+$data_nasc = $_POST['data_nasc'] ?? '';
+$cod_postal = $_POST['cod_postal'] ?? '';
+$nif = $_POST['nif'] ?? '';
+$distrito = $_POST['distrito'] ?? '';
+$profile_picture = null;
 
-// Captura os dados do formulário
-$firstname = $conn->real_escape_string($_POST['firstname']);
-$lastname = $conn->real_escape_string($_POST['lastname']);
-$email = $conn->real_escape_string($_POST['email']);
-$password = $conn->real_escape_string($_POST['password']);
-$data_nascimento = $_POST['data_nascimento'];
-$rua = $conn->real_escape_string($_POST['rua']);
-$telefone = $conn->real_escape_string($_POST['telefone']);
-$nif = $conn->real_escape_string($_POST['nif']);
-$distrito = $conn->real_escape_string($_POST['distrito']);
-$jobb = $conn->real_escape_string($_POST['jobb']);
-$status = 2;
+// Verificar se uma nova imagem de perfil foi enviada
+if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+    $fileTmpPath = $_FILES['profile_picture']['tmp_name'];
+    $fileName = $_FILES['profile_picture']['name'];
+    $fileSize = $_FILES['profile_picture']['size'];
+    $fileType = $_FILES['profile_picture']['type'];
+    $fileNameCmps = explode(".", $fileName);
+    $fileExtension = strtolower(end($fileNameCmps));
 
-if (!empty($data_nascimento)) {
-    $data_nascimento_formatada = converterData($data_nascimento);
-} else {
-    $data_nascimento_formatada = null; 
-}
+    // Verificar se o arquivo é uma imagem válida
+    $allowedfileExtensions = ['jpg', 'gif', 'png'];
+    if (in_array($fileExtension, $allowedfileExtensions)) {
+        // Limpar o nome do arquivo
+        $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
-$profile_picture = '';
-if(isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] == 0){
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-    $file_type = mime_content_type($_FILES['profile_picture']['tmp_name']);
+        // Caminho para onde a imagem será movida
+        $uploadFileDir = './uploaded_images/';
+        $dest_path = $uploadFileDir . $newFileName;
 
-    if(in_array($file_type, $allowed_types)) {
-        $target_dir = "fotosperfil/";
-        $file_name = uniqid() . "_" . basename($_FILES["profile_picture"]["name"]);
-        $target_file = $target_dir . $file_name;
-        if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)) {
-            $profile_picture = $target_file;
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            $profile_picture = $dest_path;
         } else {
-            echo json_encode(["status" => "error", "message" => "Erro ao fazer upload da imagem."]);
+            echo json_encode(["success" => false, "message" => "Erro ao mover o arquivo de imagem."]);
             exit;
         }
     } else {
-        echo json_encode(["status" => "error", "message" => "Por favor, envie um arquivo de imagem válido (jpeg, png, gif)."]);
+        echo json_encode(["success" => false, "message" => "Formato de arquivo não suportado."]);
         exit;
     }
 }
 
-// Encripta a senha
-$hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-// Prepara a consulta SQL
-$sql = "INSERT INTO users (nome, sobrenome, email, password, morada, telef, nif, distrito, data_nasc, tipo, status, foto) 
-        VALUES ('$firstname', '$lastname', '$email', '$hashed_password', '$rua', '$telefone', '$nif', '$distrito', '$data_nascimento_formatada', '$jobb', '$status', '$profile_picture')";
-
-// Executa a consulta
-if ($conn->query($sql) === TRUE) {
-    echo json_encode(["status" => "success", "message" => "Novo registro criado com sucesso"]);
-} else {
-    echo json_encode(["status" => "error", "message" => "Erro: " . $sql . "<br>" . $conn->error]);
+// Verificar se os campos obrigatórios estão vazios
+if (empty($user_id) || empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nasc) || empty($cod_postal) || empty($nif) || empty($distrito)) {
+    echo json_encode(["success" => false, "message" => "Todos os campos devem ser preenchidos."]);
+    exit;
 }
 
-// Fecha a conexão
+// Atualizar as informações do usuário no banco de dados
+$sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?";
+$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito];
+
+if ($profile_picture) {
+    $sql .= ", foto=? WHERE user_id=?";
+    $params[] = $profile_picture;
+    $params[] = $user_id;
+} else {
+    $sql .= " WHERE user_id=?";
+    $params[] = $user_id;
+}
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param(str_repeat("s", count($params)), ...$params);
+
+if ($stmt->execute()) {
+    // Atualizar os dados da sessão
+    $_SESSION['user_name'] = $nome;
+    $_SESSION['user_surname'] = $sobrenome;
+    $_SESSION['user_email'] = $email;
+    $_SESSION['telef'] = $telef;
+    $_SESSION['morada'] = $morada;
+    $_SESSION['data_nasc'] = $data_nasc;
+    $_SESSION['cod_postal'] = $cod_postal;
+    $_SESSION['nif'] = $nif;
+    $_SESSION['distrito'] = $distrito;
+    if ($profile_picture) {
+        $_SESSION['user_photo'] = $profile_picture;
+    }
+
+    echo json_encode(["success" => true, "message" => "Usuário atualizado com sucesso."]);
+} else {
+    echo json_encode(["success" => false, "message" => "Erro ao atualizar usuário: " . $stmt->error]);
+}
+
+$stmt->close();
 $conn->close();
 ?>
