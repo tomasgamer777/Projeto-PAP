@@ -369,148 +369,187 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 </div>
             </div>
         </div>
+        <div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <h4 class="title">Estado</h4>
+            <div class="togglebutton">
+                <label>
+                    <input type="checkbox" id="estado" name="estado" class="toggle-btn" disabled>
+                    <span class="toggle"></span>
+                </label>
+                <span class="state-text" id="estadoText"></span> 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <input type="text" class="form-control" id="tipo" readonly>
+        </div>
+    </div>
+</div>
+
         <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
         <div class="clearfix"></div>
     </form>
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Função para preencher o formulário com dados do usuário
-        function fillForm(userData) {
-            document.getElementById("user_id").value = userData.user_id;
-            document.getElementById("nome").value = userData.nome;
-            document.getElementById("sobrenome").value = userData.sobrenome;
-            document.getElementById("email").value = userData.email;
-            document.getElementById("telef").value = userData.telef;
-            document.getElementById("morada").value = userData.morada;
-            document.getElementById("data_nasc").value = userData.data_nasc;
-            document.getElementById("cod_postal").value = userData.cod_postal;
-            document.getElementById("nif").value = userData.nif;
-            document.getElementById("distrito").value = userData.distrito;
+    // Função para preencher o formulário com dados do usuário
+    function fillForm(userData) {
+        document.getElementById("user_id").value = userData.user_id;
+        document.getElementById("nome").value = userData.nome;
+        document.getElementById("sobrenome").value = userData.sobrenome;
+        document.getElementById("email").value = userData.email;
+        document.getElementById("telef").value = userData.telef;
+        document.getElementById("morada").value = userData.morada;
+        document.getElementById("data_nasc").value = userData.data_nasc;
+        document.getElementById("cod_postal").value = userData.cod_postal;
+        document.getElementById("nif").value = userData.nif;
+        document.getElementById("distrito").value = userData.distrito;
 
-            // Exibir a foto de perfil, se existir
-            if (userData.foto) {
-                document.getElementById("wizardPicturePreview").src = userData.foto;
+        // Atualiza o texto do toggle button conforme o estado
+        const estadoToggle = document.querySelector('.toggle');
+        const estadoText = document.getElementById('estadoText');
+        if (userData.estado === "Ativo") {
+            estadoText.innerText = "Ativo";
+            estadoToggle.style.left = "25px";
+        } else {
+            estadoText.innerText = "Inativo";
+            estadoToggle.style.left = "0";
+        }
+
+        // Preencher o campo tipo
+        document.getElementById("tipo").value = userData.tipo;
+
+        // Exibir a foto de perfil, se existir
+        if (userData.foto) {
+            document.getElementById("wizardPicturePreview").src = userData.foto;
+        } else {
+            // Se não houver foto, exibir a imagem padrão
+            document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
+        }
+
+        // Forçar a atualização do campo de tipo e distrito para exibir a opção selecionada
+        $('.selectpicker').selectpicker('refresh');
+    }
+
+    // Requisição para obter dados do usuário
+    fetch('get_user_info.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                fillForm(data.data);
             } else {
-                // Se não houver foto, exibir a imagem padrão
-                document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
+                console.error("Erro ao obter dados do usuário: ", data.message);
             }
+        })
+        .catch(error => console.error('Erro na requisição: ', error));
 
-            // Forçar a atualização do campo de distrito para exibir a opção selecionada
-            $('.selectpicker').selectpicker('refresh');
-        }
+    // Preview da foto de perfil
+    previewProfilePicture();
 
-        // Requisição para obter dados do usuário
-        fetch('get_user_info.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    fillForm(data.data);
-                } else {
-                    console.error("Erro ao obter dados do usuário: ", data.message);
-                }
-            })
-            .catch(error => console.error('Erro na requisição: ', error));
+    // Função para visualizar a foto de perfil
+    function previewProfilePicture() {
+        const fileInput = document.getElementById('wizard-picture');
+        const previewImage = document.getElementById('wizardPicturePreview');
 
-        // Preview da foto de perfil
-        previewProfilePicture();
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+            };
 
-        // Função para visualizar a foto de perfil
-        function previewProfilePicture() {
-            const fileInput = document.getElementById('wizard-picture');
-            const previewImage = document.getElementById('wizardPicturePreview');
-
-            fileInput.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    previewImage.src = e.target.result;
-                };
-
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-
-        document.getElementById("updateButton").addEventListener("click", function() {
-            // Coletar todas as informações do formulário
-            var formData = new FormData();
-            formData.append("user_id", document.getElementById("user_id").value);
-            formData.append("nome", document.getElementById("nome").value);
-            formData.append("sobrenome", document.getElementById("sobrenome").value);
-            formData.append("email", document.getElementById("email").value);
-            formData.append("telef", document.getElementById("telef").value);
-            formData.append("morada", document.getElementById("morada").value);
-            formData.append("data_nasc", document.getElementById("data_nasc").value);
-            formData.append("cod_postal", document.getElementById("cod_postal").value);
-            formData.append("nif", document.getElementById("nif").value);
-            formData.append("distrito", document.querySelector('select[name="distrito"]').value);
-
-            // Verificar se há uma imagem para redimensionar e enviar
-            var fileInput = document.getElementById('wizard-picture');
-            var file = fileInput.files[0];
             if (file) {
-                resizeImage(file, 320, 320, function(resizedBlob) {
-                    formData.append("profile_picture", resizedBlob, file.name);
-
-                    // Enviar os dados para o servidor via AJAX
-                    sendFormData(formData);
-                });
-            } else {
-                // Enviar apenas os dados do formulário sem a imagem
-                sendFormData(formData);
+                reader.readAsDataURL(file);
             }
         });
+    }
 
-        function sendFormData(formData) {
-            fetch('update_user.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Usuário atualizado com sucesso!');
-                } else {
-                    alert('Erro ao atualizar usuário: ' + data.message);
-                }
-            })
-            .catch(error => console.error('Erro na requisição: ', error));
-        }
+    // Função para enviar os dados do formulário
+    document.getElementById("updateButton").addEventListener("click", function() {
+        // Coletar todas as informações do formulário
+        var formData = new FormData();
+        formData.append("user_id", document.getElementById("user_id").value);
+        formData.append("nome", document.getElementById("nome").value);
+        formData.append("sobrenome", document.getElementById("sobrenome").value);
+        formData.append("email", document.getElementById("email").value);
+        formData.append("telef", document.getElementById("telef").value);
+        formData.append("morada", document.getElementById("morada").value);
+        formData.append("data_nasc", document.getElementById("data_nasc").value);
+        formData.append("cod_postal", document.getElementById("cod_postal").value);
+        formData.append("nif", document.getElementById("nif").value);
+        formData.append("distrito", document.querySelector('select[name="distrito"]').value);
 
-        function resizeImage(file, maxWidth, maxHeight, callback) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const img = new Image();
-                img.onload = function() {
-                    let width = img.width;
-                    let height = img.height;
+        // Verificar se há uma imagem para redimensionar e enviar
+        var fileInput = document.getElementById('wizard-picture');
+        var file = fileInput.files[0];
+        if (file) {
+            resizeImage(file, 320, 320, function(resizedBlob) {
+                formData.append("profile_picture", resizedBlob, file.name);
 
-                    if (width > height) {
-                        if (width > maxWidth) {
-                            height *= maxWidth / width;
-                            width = maxWidth;
-                        }
-                    } else {
-                        if (height > maxHeight) {
-                            width *= maxHeight / height;
-                            height = maxHeight;
-                        }
-                    }
-
-                    const canvas = document.createElement('canvas');
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    canvas.toBlob(callback, file.type, 0.95);
-                };
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
+                // Enviar os dados para o servidor via AJAX
+                sendFormData(formData);
+            });
+        } else {
+            // Enviar apenas os dados do formulário sem a imagem
+            sendFormData(formData);
         }
     });
+
+    // Função para enviar os dados do formulário via AJAX
+    function sendFormData(formData) {
+        fetch('update_user.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Usuário atualizado com sucesso!');
+            } else {
+                alert('Erro ao atualizar usuário: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Erro na requisição: ', error));
+    }
+
+    // Função para redimensionar a imagem
+    function resizeImage(file, maxWidth, maxHeight, callback) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                canvas.toBlob(callback, file.type, 0.95);
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
     </script>
     <script src="path/to/jquery.js"></script>
     <script src="path/to/bootstrap.js"></script>
