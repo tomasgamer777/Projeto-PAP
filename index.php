@@ -112,7 +112,6 @@
             <div class="fullwidth-block testimonial-section">
                 <div class="container">
                     <div class="quote-slider">
-                        <ul class="slides">
                             <li>
                                 <blockquote>
                                     <p>&nbsp</p>
@@ -120,7 +119,6 @@
                                     <span>&nbsp</span>
                                 </blockquote>
                             </li>
-                        </ul>
                     </div>
                 </div>
             </div> <!-- .testimonial-section -->
