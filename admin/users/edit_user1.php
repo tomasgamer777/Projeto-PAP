@@ -291,53 +291,46 @@ $user_photo_path = '/admin/users/' . $user_photo;
         });
     </script>
 
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="card">
-                <div class="card-header card-header-icon card-header-rose">
-                  <div class="card-icon">
-                    <i class="material-icons">perm_identity</i>
-                  </div>
-                  <h4 class="card-title">Editar utilizador -
-                    <small class="category">Atualize o formulário</small>
-                  </h4>
-                </div>
-                <div class="card-body">
-                  <form id="editProfileForm">
-                    <div class="row">
-                    <div class="col-md-5">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="user_id" value="<?php echo htmlspecialchars($user_id); ?>" disabled>
-                        <label class="bmd-label-floating" for="user_id">Código</label>
-                    </div>
-                </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="picture-container">
-                                <div class="picture">
-                                    <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
+<div class="content">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header card-header-icon card-header-rose">
+                                    <div class="card-icon">
+                                        <i class="material-icons">perm_identity</i>
+                                    </div>
+                                    <h4 class="card-title">Editar utilizador -
+                                        <small class="category">Atualize o formulário</small>
+                                    </h4>
                                 </div>
-                                <h6 class="description">Foto de Perfil</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
+                                <div class="card-body">
+                                    <form id="editProfileForm">
+                                        <div class="row">
+                                            <!-- Campo de ID do usuário -->
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="user_id" value="<?php echo htmlspecialchars($user_id); ?>" disabled>
+                                                    <label class="bmd-label-floating" for="user_id">Código</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <!-- Campos para nome, sobrenome e email -->
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" id="nome" value="<?php echo htmlspecialchars($user_name); ?>">
                                                     <label class="bmd-label-floating" for="nome">Nome</label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="sobrenome" value="<?php echo htmlspecialchars($user_surname11); ?>">
+                                                    <input type="text" class="form-control" id="sobrenome" value="<?php echo htmlspecialchars($user_surname); ?>">
                                                     <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="email" class="form-control" id="email" value="<?php echo htmlspecialchars($user_email); ?>">
                                                     <label class="bmd-label-floating" for="email">Email</label>
                                                 </div>
-                                            </div>  
+                                            </div> 
                     </div>
                     <div class="row">
                         <div class="col-md-12">
