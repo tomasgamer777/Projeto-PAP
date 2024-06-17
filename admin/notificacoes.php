@@ -318,32 +318,31 @@ $conn->close();
     </div>
 </div>
 
-<!-- Modal para exibir detalhes da notificação -->
+<!-- Modal para detalhes da notificação -->
 <div class="modal fade" id="modalDetalhesNotificacao" tabindex="-1" role="dialog" aria-labelledby="modalDetalhesNotificacaoLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalDetalhesNotificacaoLabel">Detalhes da Notificação</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      <!-- Conteúdo do modal (detalhes da notificação) -->
       <div class="modal-body">
         <input type="hidden" id="notiId">
+        <!-- Detalhes da notificação exibidos aqui -->
         <strong>Nome:</strong> <span id="notiNome"></span><br>
         <strong>Email:</strong> <span id="notiEmail"></span><br>
         <strong>Assunto:</strong> <span id="notiAssunto"></span><br>
         <strong>Mensagem:</strong><br>
         <p id="notiMensagem"></p>
       </div>
+      <!-- Rodapé do modal (botões de ação) -->
       <div class="modal-footer">
+        <!-- Botão para excluir a notificação -->
+        <button type="button" class="btn btn-danger btn-sm" id="btnExcluirNotificacao">Excluir</button>
         <button type="button" class="btn btn-info btn-sm" data-dismiss="modal" onclick="exibirModalResposta()">Responder por Email</button>
-        <button type="button" class="btn btn-danger btn-sm" onclick="excluirNotificacao()">Excluir</button>
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
 </div>
+
 <!-- Modal para responder por email -->
 <div class="modal fade" id="modalRespostaEmail" tabindex="-1" aria-labelledby="modalRespostaEmailLabel" aria-hidden="true">
   <div class="modal-dialog">
