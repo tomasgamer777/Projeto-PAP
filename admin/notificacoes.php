@@ -338,12 +338,12 @@ $conn->close();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info btn-sm" data-dismiss="modal" onclick="exibirModalResposta()">Responder por Email</button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="excluirNotificacao()">Excluir</button>
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
 </div>
-
 <!-- Modal para responder por email -->
 <div class="modal fade" id="modalRespostaEmail" tabindex="-1" aria-labelledby="modalRespostaEmailLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -407,6 +407,55 @@ $conn->close();
 
     // Fechar modal de resposta
     $('#modalRespostaEmail').modal('hide');
+  }
+   // Função para excluir a notificação
+   function excluirNotificacao() {
+    var notiId = $('#notiId').val();
+
+    Swal.fire({
+      title: 'Confirmar Exclusão',
+      text: 'Tem certeza que deseja excluir esta notificação?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sim, Excluir',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Aqui você faria o AJAX para excluir a notificação com o ID notiId
+        // Exemplo de AJAX fictício para excluir a notificação
+        $.ajax({
+          url: 'excluir-notificacao.php',
+          type: 'POST',
+          data: { id: notiId },
+          success: function(response) {
+            // Exibindo uma mensagem de sucesso com SweetAlert2
+            Swal.fire({
+              title: 'Excluído!',
+              text: 'A notificação foi excluída com sucesso.',
+              icon: 'success',
+              timer: 1500,
+              timerProgressBar: true,
+              showConfirmButton: false
+            });
+
+            // Fechar o modal de detalhes após a exclusão
+            $('#modalDetalhesNotificacao').modal('hide');
+            // Aqui você pode recarregar a lista de notificações ou tomar outra ação necessária
+          },
+          error: function(xhr, status, error) {
+            // Exibindo mensagem de erro com SweetAlert2
+            Swal.fire({
+              title: 'Erro!',
+              text: 'Ocorreu um erro ao excluir a notificação.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
+        });
+      }
+    });
   }
 </script>
 
