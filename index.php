@@ -109,17 +109,7 @@
         </div>
 
         <main class="main-content">
-            <div class="fullwidth-block testimonial-section">
-                <div class="container">
-                            <li>
-                                <blockquote>
-                                    <p>&nbsp</p>
-                                    <cite>&nbsp</cite>
-                                    <span>&nbsp</span>
-                                </blockquote>
-                            </li>
-                </div>
-            </div> <!-- .testimonial-section -->
+            
 
             <div class="fullwidth-block upcoming-event-section" data-bg-color="#191919">
                 <div class="container">
