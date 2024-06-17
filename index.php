@@ -109,6 +109,7 @@
         </div>
 
         <main class="main-content">
+            
             <div class="fullwidth-block upcoming-event-section" data-bg-color="#191919">
                 <div class="container">
                     <header class="section-header">
