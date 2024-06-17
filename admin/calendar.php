@@ -228,128 +228,71 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <script>
-  $(document).ready(function() {
-    $('#calendar').fullCalendar({
-      editable: true,
-      events: 'fetch-events.php', // Endereço que retorna os eventos em JSON
-      selectable: true,
-      selectHelper: true,
-      select: function(start, end, allDay) {
-        Swal.fire({
-          title: 'Adicionar Evento',
-          html: '<input id="event-title" class="swal2-input" placeholder="Título">',
-          showCancelButton: true,
-          confirmButtonText: 'Salvar',
-          cancelButtonText: 'Cancelar',
-          preConfirm: () => {
-            const title = document.getElementById('event-title').value;
-            if (!title) {
-              Swal.showValidationMessage('O título é obrigatório');
-            }
-            return { title: title };
-          }
-        }).then((result) => {
-          if (result.value) {
-            var title = result.value.title;
-            if (title) {
-              var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-              var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-              $.ajax({
-                url: 'add-event.php',
-                type: 'POST',
-                data: { title: title, start: start, end: end },
-                success: function() {
-                  Swal.fire('Evento adicionado', '', 'success');
-                  $('#calendar').fullCalendar('refetchEvents');
-                }
-              });
-            }
-          }
-        });
-      },
-      eventClick: function(event) {
-        Swal.fire({
-          title: 'Editar/Excluir Evento',
-          html: '<input id="event-title" class="swal2-input" value="' + event.title + '">',
-          showCancelButton: true,
-          showDenyButton: true,
-          confirmButtonText: 'Salvar',
-          denyButtonText: 'Excluir',
-          cancelButtonText: 'Cancelar',
-          preConfirm: () => {
-            const title = document.getElementById('event-title').value;
-            if (!title) {
-              Swal.showValidationMessage('O título é obrigatório');
-            }
-            return { title: title };
-          }
-        }).then((result) => {
-          if (result.isConfirmed) {
-            var title = result.value.title;
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        eventLimit: true,
+        events: 'fetch-events.php',
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end) {
+          var title = prompt('Event Title:');
+          if (title) {
+            var start = moment(start).format('YYYY-MM-DD HH:mm:ss');
+            var end = moment(end).format('YYYY-MM-DD HH:mm:ss');
             $.ajax({
-              url: 'update-event.php',
-              type: 'POST',
-              data: { id: event.id, title: title },
-              success: function() {
-                Swal.fire('Evento atualizado', '', 'success');
-                $('#calendar').fullCalendar('refetchEvents');
+              url: 'add-event.php',
+              data: 'title='+ title +'&start='+ start +'&end='+ end,
+              type: "POST",
+              success: function(json) {
+                alert('Added Successfully');
+                $('#calendar').fullCalendar('renderEvent',
+                  {
+                    title: title,
+                    start: start,
+                    end: end
+                  },
+                  true
+                );
               }
             });
-          } else if (result.isDenied) {
-            Swal.fire({
-              title: 'Você tem certeza?',
-              text: 'Não será possível reverter isso!',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Sim, excluir!',
-              cancelButtonText: 'Cancelar'
-            }).then((result) => {
-              if (result.value) {
-                $.ajax({
-                  url: 'delete-event.php',
-                  type: 'POST',
-                  data: { id: event.id },
-                  success: function() {
-                    Swal.fire('Evento excluído', '', 'success');
-                    $('#calendar').fullCalendar('refetchEvents');
-                  }
-                });
+            $('#calendar').fullCalendar('unselect');
+          }
+        },
+        editable: true,
+        eventDrop: function(event, delta, revertFunc) {
+          var start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
+          var end = moment(event.end).format('YYYY-MM-DD HH:mm:ss');
+          $.ajax({
+            url: 'update-event.php',
+            data: 'title='+ event.title +'&start='+ start +'&end='+ end +'&id='+ event.id,
+            type: "POST",
+            success: function(json) {
+              alert("Updated Successfully");
+            }
+          });
+        },
+        eventClick: function(event) {
+          var deleteMsg = confirm("Do you really want to delete?");
+          if(deleteMsg) {
+            $.ajax({
+              type: "POST",
+              url: "delete-event.php",
+              data: "&id=" + event.id,
+              success: function(json) {
+                $('#calendar').fullCalendar('removeEvents', event.id);
+                alert("Deleted Successfully");
               }
             });
           }
-        });
-      },
-      editable: true,
-      eventResize: function(event) {
-        var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-        var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-        var id = event.id;
-        $.ajax({
-          url: 'update-event.php',
-          type: 'POST',
-          data: { id: id, start: start, end: end },
-          success: function() {
-            Swal.fire('Evento atualizado', '', 'success');
-            $('#calendar').fullCalendar('refetchEvents');
-          }
-        });
-      },
-      eventDrop: function(event) {
-        var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
-        var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
-        var id = event.id;
-        $.ajax({
-          url: 'update-event.php',
-          type: 'POST',
-          data: { id: id, start: start, end: end },
-          success: function() {
-            Swal.fire('Evento atualizado', '', 'success');
-            $('#calendar').fullCalendar('refetchEvents');
-          }
-        });
-      }
+        }
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
