@@ -472,6 +472,7 @@ function excluirNotificacao() {
 </script>
 
 
+
                   <footer class="footer">
                     <div class="container-fluid">
                       <nav class="float-left">
