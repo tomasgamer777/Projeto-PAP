@@ -209,11 +209,8 @@
                 </address> 
 
                 <div class="social-links">
-                    <a href="#"><i class="fa fa-facebook-square"></i></a>
-                    <a href="#"><i class="fa fa-youtube"></i></a>
-                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                </div> <!-- .social-links -->
+                    <a href="www.facebook.com/sflpinheirense/"><i class="fa fa-facebook-square"></i></a>
+                    <a href="https://www.youtube.com/@bandamusicaldepinheirodeazere"><i class="fa fa-youtube"></i></a>
 
                 <p class="copy">Copyright 2014 Company Name. Designed by Themezy. All right reserved</p>
             </div>
