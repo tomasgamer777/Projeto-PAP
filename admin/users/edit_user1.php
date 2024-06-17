@@ -416,9 +416,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cod_postal").value = userData.cod_postal;
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
-        document.getElementById("estado").checked = (userData.estado === "Ativo");
-        document.getElementById("tipo").value = userData.tipo;
-
         // Atualiza o texto do toggle button conforme o estado
         const estadoToggle = document.querySelector('.toggle');
         const estadoText = document.querySelector('.state-text');
@@ -484,8 +481,6 @@ document.addEventListener("DOMContentLoaded", function() {
         formData.append("email", document.getElementById("email").value);
         formData.append("telef", document.getElementById("telef").value);
         formData.append("morada", document.getElementById("morada").value);
-        formData.append("tipo", document.getElementById("tipo").value);
-        formData.append("estado", document.getElementById("estado").checked ? "Ativo" : "Inativo");
         formData.append("data_nasc", document.getElementById("data_nasc").value);
         formData.append("cod_postal", document.getElementById("cod_postal").value);
         formData.append("nif", document.getElementById("nif").value);
