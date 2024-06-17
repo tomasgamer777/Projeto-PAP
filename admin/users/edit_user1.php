@@ -740,7 +740,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
 
     function sendFormData(formData) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "update_user.php", true);
+        xhr.open("POST", "update_user1.php", true);
         xhr.onload = function() {
             try {
                 var response = JSON.parse(xhr.responseText);
