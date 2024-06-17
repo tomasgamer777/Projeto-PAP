@@ -330,12 +330,12 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 <div class="card-body">
                   <form id="editProfileForm">
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
-                                <label class="bmd-label-floating" for="user_id">Código</label>
-                            </div>
-                        </div>
+                    <div class="col-md-5">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="user_id" value="<?php echo htmlspecialchars($user_id); ?>" disabled>
+                        <label class="bmd-label-floating" for="user_id">Código</label>
+                    </div>
+                </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -348,19 +348,19 @@ $user_photo_path = '/admin/users/' . $user_photo;
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="nome" placeholder=" ">
-                                <label class="bmd-label-floating" for="nome">Nome</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="sobrenome" placeholder=" ">
-                                <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="email" placeholder=" ">
-                                <label class="bmd-label-floating" for="email">Email</label>
-                            </div>
-                        </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="nome" value="<?php echo htmlspecialchars($user_name); ?>">
+                                                    <label class="bmd-label-floating" for="nome">Nome</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="sobrenome" value="<?php echo htmlspecialchars($user_surname); ?>">
+                                                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="email" value="<?php echo htmlspecialchars($user_email); ?>">
+                                                    <label class="bmd-label-floating" for="email">Email</label>
+                                                </div>
+                                            </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
