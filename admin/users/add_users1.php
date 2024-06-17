@@ -31,6 +31,9 @@ $cod_postal = $_POST['cod_postal'] ?? '';
 $nif = $_POST['nif'] ?? '';
 $distrito = $_POST['distrito'] ?? '';
 $profile_picture = null;
+$tipo = $tipo;
+$status = $status;
+
 
 // Verificar se uma nova imagem de perfil foi enviada
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
@@ -70,8 +73,8 @@ if (empty($user_id) || empty($nome) || empty($sobrenome) || empty($email) || emp
 }
 
 // Atualizar as informações do usuário no banco de dados
-$sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?";
-$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito];
+$sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?, tipo=?, status=?";
+$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $tipo, $status];
 
 if ($profile_picture) {
     $sql .= ", foto=? WHERE user_id=?";
@@ -99,6 +102,7 @@ if ($stmt->execute()) {
     if ($profile_picture) {
         $_SESSION['user_photo'] = $profile_picture;
     }
+
 
     echo json_encode(["success" => true, "message" => "Usuário atualizado com sucesso."]);
 } else {
