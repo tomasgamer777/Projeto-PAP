@@ -275,7 +275,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   </h4>
                 </div>
                 <div class="card-body">
-                <form id="editProfileForm">
+                  <form id="editProfileForm">
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
@@ -369,6 +369,35 @@ $user_photo_path = '/admin/users/' . $user_photo;
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h4 class="title">Estado</h4>
+                <div class="togglebutton">
+                    <label>
+                        <input type="checkbox" id="estado" name="estado" class="toggle-btn">
+                        <span class="toggle"></span>
+                    </label>
+                    <span class="state-text"></span> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="tipo">Tipo</label>
+                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
+                    <option disabled selected>Tipo</option>
+                    <option value="0">Para aceitar</option>
+                    <option value="1">Aluno</option>
+                    <option value="2">Músico</option>
+                    <option value="3">Sócio</option>
+                    <option value="4">Admin</option>
+                    <option value="5">Encarregado de educação</option>
+                    <option value="6">Professor</option>
+                </select>
+            </div>
+        </div>
+    </div>
     <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
     <div class="clearfix"></div>
 </form>
@@ -446,52 +475,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Função para redimensionar a imagem antes de enviar
-    function resizeImage(file, maxWidth, maxHeight, callback) {
-        const reader = new FileReader();
-
-        reader.onload = function(event) {
-            const img = new Image();
-            img.onload = function() {
-                let canvas = document.createElement('canvas');
-                let ctx = canvas.getContext('2d');
-
-                // Calcula o novo tamanho da imagem
-                let ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
-                canvas.width = img.width * ratio;
-                canvas.height = img.height * ratio;
-
-                // Redimensiona a imagem e desenha no canvas
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                // Converte a imagem redimensionada para blob e chama o callback
-                canvas.toBlob(callback, file.type);
-            };
-            img.src = event.target.result;
-        };
-
-        reader.readAsDataURL(file);
-    }
-
-    // Função para enviar os dados do formulário via AJAX
-    function sendFormData(formData) {
-        fetch('update_user_info.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Informações atualizadas com sucesso!");
-            } else {
-                alert("Erro ao atualizar informações: " + data.message);
-            }
-        })
-        .catch(error => console.error('Erro ao enviar os dados: ', error));
-    }
-
-    // Evento do botão de atualização
     document.getElementById("updateButton").addEventListener("click", function() {
+        // Coletar todas as informações do formulário
         var formData = new FormData();
         formData.append("user_id", document.getElementById("user_id").value);
         formData.append("nome", document.getElementById("nome").value);
@@ -504,24 +489,39 @@ document.addEventListener("DOMContentLoaded", function() {
         formData.append("data_nasc", document.getElementById("data_nasc").value);
         formData.append("cod_postal", document.getElementById("cod_postal").value);
         formData.append("nif", document.getElementById("nif").value);
-        formData.append("distrito", document.getElementById("distrito").value);
+        formData.append("distrito", document.querySelector('select[name="distrito"]').value);
 
+        // Verificar se há uma imagem para redimensionar e enviar
         var fileInput = document.getElementById('wizard-picture');
         var file = fileInput.files[0];
         if (file) {
             resizeImage(file, 320, 320, function(resizedBlob) {
                 formData.append("profile_picture", resizedBlob, file.name);
+
+                // Enviar os dados para o servidor via AJAX
                 sendFormData(formData);
             });
         } else {
+            // Enviar apenas os dados do formulário sem a imagem
             sendFormData(formData);
         }
     });
-});
-</script>
-
-
-<script>
+    
+    function sendFormData(formData) {
+        fetch('update_user.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Usuário atualizado com sucesso!');
+            } else {
+                alert('Erro ao atualizar usuário: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Erro na requisição: ', error));
+    }
 
     function resizeImage(file, maxWidth, maxHeight, callback) {
         const reader = new FileReader();
