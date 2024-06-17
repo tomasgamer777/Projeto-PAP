@@ -292,7 +292,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
               end: end.format()
             };
             $.ajax({
-              url: '/admin/calendar/add-event.php',
+              url: 'calendar/add-event.php',
               method: 'POST',
               data: JSON.stringify(eventData),
               contentType: 'application/json',
