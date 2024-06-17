@@ -372,6 +372,18 @@ $user_photo_path = '/admin/users/' . $user_photo;
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
+                <h4 class="title">Estado</h4>
+                <div class="togglebutton">
+                    <label>
+                        <input type="checkbox" id="estado" name="estado" class="toggle-btn">
+                        <span class="toggle"></span>
+                    </label>
+                    <span class="state-text"></span> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
                 <label for="tipo">Tipo</label>
                 <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
                     <option disabled selected>Tipo</option>
