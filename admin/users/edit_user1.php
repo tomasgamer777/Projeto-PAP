@@ -9,9 +9,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 // Conectar ao banco de dados
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "nome_do_banco";
+$username = "tomas";
+$password = "!h01fFw35";
+$dbname = "banda";
+
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
