@@ -369,7 +369,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
             </div>
         </div>
     </div>
-    
+    <div class="row">
+    </div>
     <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
     <div class="clearfix"></div>
 </form>
