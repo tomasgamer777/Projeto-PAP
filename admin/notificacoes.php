@@ -278,44 +278,44 @@ $conn->close();
       </nav>
       <!-- End Navbar -->
       <div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <?php
-      // Verifica se há notificações para exibir
-      if ($noti_result->num_rows > 0) {
-          // Loop através das notificações
-          while ($row = $noti_result->fetch_assoc()) {
-              $noti_id = $row['id'];
-              $noti_nome = $row['nome'];
-              $noti_email = $row['email'];
-              $noti_assunto = $row['assunto'];
-              $noti_mensagem = $row['mensagem'];
+    <div class="container-fluid">
+        <div class="row">
+            <?php
+            // Verifica se há notificações para exibir
+            if ($noti_result->num_rows > 0) {
+                // Loop através das notificações
+                while ($row = $noti_result->fetch_assoc()) {
+                    $noti_id = $row['id'];
+                    $noti_nome = $row['nome'];
+                    $noti_email = $row['email'];
+                    $noti_assunto = $row['assunto'];
+                    $noti_mensagem = $row['mensagem'];
 
-              // HTML para cada notificação
-              echo '<div class="col-lg-4 col-md-6 col-sm-6">';
-              echo '<div class="card card-stats">';
-              echo '<div class="card-header card-header-warning card-header-icon">';
-              echo '<div class="card-icon">';
-              echo '<i class="material-icons">notifications</i>';
-              echo '</div>';
-              echo '<p class="card-category">Notificação</p>';
-              echo '<h3 class="card-title">' . htmlspecialchars($noti_assunto) . '</h3>';
-              echo '</div>';
-              echo '<div class="card-footer">';
-              echo '<button class="btn btn-info btn-sm" onclick="exibirDetalhesComSweetAlert(' . $noti_id . ', \'' . htmlspecialchars($noti_nome) . '\', \'' . htmlspecialchars($noti_email) . '\', \'' . htmlspecialchars($noti_assunto) . '\', \'' . htmlspecialchars($noti_mensagem) . '\')">Ver Detalhes</button>';
-              echo '</div>';
-              echo '</div>';
-              echo '</div>';
-          }
-      } else {
-          // Se não houver notificações
-          echo '<div class="col-md-12">';
-          echo '<div class="alert alert-info">Não há notificações disponíveis.</div>';
-          echo '</div>';
-      }
-      ?>
+                    // HTML para cada notificação
+                    echo '<div class="col-lg-4 col-md-6 col-sm-6">';
+                    echo '<div class="card card-stats">';
+                    echo '<div class="card-header card-header-warning card-header-icon">';
+                    echo '<div class="card-icon">';
+                    echo '<i class="material-icons">notifications</i>';
+                    echo '</div>';
+                    echo '<p class="card-category">Notificação</p>';
+                    echo '<h3 class="card-title">' . htmlspecialchars($noti_assunto) . '</h3>';
+                    echo '</div>';
+                    echo '<div class="card-footer">';
+                    echo '<button class="btn btn-info btn-sm" onclick="exibirDetalhesComSweetAlert(' . $noti_id . ', \'' . htmlspecialchars($noti_nome) . '\', \'' . htmlspecialchars($noti_email) . '\', \'' . htmlspecialchars($noti_assunto) . '\', \'' . htmlspecialchars($noti_mensagem) . '\')">Ver Detalhes</button>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                // Se não houver notificações
+                echo '<div class="col-md-12">';
+                echo '<div class="alert alert-info">Não há notificações disponíveis.</div>';
+                echo '</div>';
+            }
+            ?>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Modal para exibir detalhes da notificação -->
@@ -376,33 +376,24 @@ $conn->close();
 <!-- Biblioteca SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Bootstrap JS (caso necessário para o modal) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Bootstrap CSS (caso necessário para o modal) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <script>
-  // Função para exibir detalhes da notificação em um modal com SweetAlert2
+  // Função para exibir detalhes da notificação em um modal
   function exibirDetalhesComSweetAlert(notiId, nome, email, assunto, mensagem) {
-    Swal.fire({
-      title: 'Detalhes da Notificação',
-      html:
-        '<input type="hidden" id="notiId">' +
-        '<strong>Nome:</strong> <span id="notiNome">' + nome + '</span><br>' +
-        '<strong>Email:</strong> <span id="notiEmail">' + email + '</span><br>' +
-        '<strong>Assunto:</strong> <span id="notiAssunto">' + assunto + '</span><br>' +
-        '<strong>Mensagem:</strong><br><p id="notiMensagem">' + mensagem + '</p>',
-      showCloseButton: true,
-      showCancelButton: false,
-      focusConfirm: false,
-      confirmButtonText: 'Responder por Email',
-      confirmButtonColor: '#3085d6',
-      cancelButtonText: 'Fechar',
-      cancelButtonColor: '#d33',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Abrir modal de resposta por email
-        $('#modalRespostaEmail').modal('show');
-      }
-    });
+    $('#modalDetalhesNotificacao').modal('show');
+    $('#modalDetalhesNotificacaoLabel').text('Detalhes da Notificação');
+    $('#notiId').val(notiId);
+    $('#notiNome').text(nome);
+    $('#notiEmail').text(email);
+    $('#notiAssunto').text(assunto);
+    $('#notiMensagem').text(mensagem);
+  }
+
+  // Função para exibir modal de resposta por email
+  function exibirModalResposta() {
+    $('#modalRespostaEmail').modal('show');
   }
 
   // Função para enviar email
@@ -418,7 +409,6 @@ $conn->close();
     $('#modalRespostaEmail').modal('hide');
   }
 </script>
-
 
 
 
