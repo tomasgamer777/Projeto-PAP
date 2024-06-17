@@ -408,44 +408,58 @@ $conn->close();
     // Fechar modal de resposta
     $('#modalRespostaEmail').modal('hide');
   }
-   // Função para excluir a notificação
-   function excluirNotificacao() {
+   
+</script>
+
+<script>
+$(document).ready(function() {
+  // Evento ao clicar no botão de excluir notificação
+  $('#btnExcluirNotificacao').click(function() {
     var notiId = $('#notiId').val();
 
+    // Confirmar exclusão com SweetAlert2
     Swal.fire({
-      title: 'Confirmar Exclusão',
+      title: 'Excluir Notificação',
       text: 'Tem certeza que deseja excluir esta notificação?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sim, Excluir',
-      cancelButtonText: 'Cancelar'
+      confirmButtonText: 'Sim, excluir'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Aqui você faria o AJAX para excluir a notificação com o ID notiId
-        // Exemplo de AJAX fictício para excluir a notificação
+        // Requisição AJAX para excluir notificação
         $.ajax({
-          url: 'excluir-notificacao.php',
+          url: 'excluir-notificacao.php', // Caminho para o arquivo PHP
           type: 'POST',
-          data: { id: notiId },
+          data: { id: notiId }, // Dados a serem enviados (ID da notificação)
           success: function(response) {
-            // Exibindo uma mensagem de sucesso com SweetAlert2
-            Swal.fire({
-              title: 'Excluído!',
-              text: 'A notificação foi excluída com sucesso.',
-              icon: 'success',
-              timer: 1500,
-              timerProgressBar: true,
-              showConfirmButton: false
-            });
+            // Verifica a resposta do servidor
+            if (response.status === 'success') {
+              // Notificação de sucesso com SweetAlert2
+              Swal.fire({
+                title: 'Excluído!',
+                text: 'Notificação excluída com sucesso.',
+                icon: 'success',
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false
+              });
 
-            // Fechar o modal de detalhes após a exclusão
-            $('#modalDetalhesNotificacao').modal('hide');
-            // Aqui você pode recarregar a lista de notificações ou tomar outra ação necessária
+              // Atualizar a interface ou fazer outras ações necessárias após a exclusão
+              // Por exemplo, recarregar uma lista de notificações, etc.
+            } else {
+              // Notificação de erro com SweetAlert2
+              Swal.fire({
+                title: 'Erro!',
+                text: 'Ocorreu um erro ao excluir a notificação.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
+            }
           },
           error: function(xhr, status, error) {
-            // Exibindo mensagem de erro com SweetAlert2
+            // Notificação de erro com SweetAlert2
             Swal.fire({
               title: 'Erro!',
               text: 'Ocorreu um erro ao excluir a notificação.',
@@ -456,10 +470,9 @@ $conn->close();
         });
       }
     });
-  }
+  });
+});
 </script>
-
-
 
                   <footer class="footer">
                     <div class="container-fluid">
