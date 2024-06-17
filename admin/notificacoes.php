@@ -277,7 +277,7 @@ $conn->close();
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="content">
+<div class="content">
   <div class="container-fluid">
     <div class="row">
       <?php
@@ -345,11 +345,11 @@ $conn->close();
 </div>
 
 <!-- Modal para responder por email -->
-<div class="modal fade" id="modalRespostaEmail" tabindex="-1" aria-labelledby="modalRespostaEmailLabel" aria-hidden="true">
+<div class="modal fade" id="modalRespostaEmail" tabindex="-1" aria-labelledby="modalRespostaEmail" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalRespostaEmailLabel">Responder por Email</h5>
+        <h5 class="modal-title" id="modalRespostaEmail">Responder por Email</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
