@@ -1,5 +1,4 @@
 <?php
-// salvar_evento.php
 
 // Verifica se os dados foram recebidos corretamente
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
