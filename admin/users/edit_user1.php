@@ -748,7 +748,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                     // Mostrar uma mensagem de sucesso com SweetAlert
                     swal("Sucesso", response.message, "success").then(() => {
                         // Redirecionar o usuário para a página desejada
-                        window.location.href = "list_user.php";
+                        
                     });
                 } else {
                     // Mostrar uma mensagem de erro com SweetAlert
