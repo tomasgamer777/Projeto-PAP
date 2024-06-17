@@ -17,37 +17,7 @@ $user_name1 = $user_name . $user_surname;
 $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
-<?php
-// Conexão ao banco de dados
-$servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificação da conexão
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-}
-
-// Consulta para contagem de notificações
-$noti_query = "SELECT COUNT(*) as total_noti FROM noti";
-$noti_result = $conn->query($noti_query);
-$noti_count = $noti_result->fetch_assoc()['total_noti'];
-
-// Consulta para contagem de utilizadores
-$users_query = "SELECT COUNT(*) as total_users FROM users";
-$users_result = $conn->query($users_query);
-$users_count = $users_result->fetch_assoc()['total_users'];
-
-// Consulta para contagem de utilizadores pendentes
-$pending_users_query = "SELECT COUNT(*) as pending_users FROM users WHERE tipo = 0";
-$pending_users_result = $conn->query($pending_users_query);
-$pending_users_count = $pending_users_result->fetch_assoc()['pending_users'];
-
-// Fechar a conexão
-$conn->close();
-?>
 
 <!DOCTYPE html>
 <html lang="en">
