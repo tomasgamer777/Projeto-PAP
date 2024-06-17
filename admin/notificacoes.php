@@ -473,24 +473,7 @@ function excluirNotificacao() {
 
 
 
-                  <footer class="footer">
-                    <div class="container-fluid">
-                      <nav class="float-left">
-                        <ul>
-                          <li>
-                            <a href="https://www.facebook.com/sflpinheirense?locale=pt_PT">
-                              Facebook
-                            </a>
-                          </li>
-                          <li>
-                            <a href="https://www.creative-tim.com/license">
-                              Licenças
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                  </footer>
+                 
                 </div>
               </div>
               <div class="fixed-plugin">
