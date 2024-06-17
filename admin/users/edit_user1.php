@@ -360,7 +360,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                                                     <input type="email" class="form-control" id="email" value="<?php echo htmlspecialchars($user_email); ?>">
                                                     <label class="bmd-label-floating" for="email">Email</label>
                                                 </div>
-                                            </div>
+                                            </div>  
                     </div>
                     <div class="row">
                         <div class="col-md-12">
