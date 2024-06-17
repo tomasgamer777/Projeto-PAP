@@ -6,24 +6,28 @@ require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme neces
 checkAdmin();
 
 // Recuperar dados do usuário da sessão
-$user_id = $_SESSION['user_id'];
+$user_id = $SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 $user_surname = $_SESSION['user_surname'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
-$user_name1 = $user_name . ' ' . $user_surname;
+$user_name1 = $user_name . $user_surname;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -63,113 +67,136 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link href="../assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  
 </head>
 
 <body class="">
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
-      <div class="logo">
-        <a href="../dashboard.php" class="simple-text logo-mini">AM</a>
-        <a href="../dashboard.php"class="simple-text logo-normal">ADMIN</a>
-      </div>
-      <div class="sidebar-wrapper">
-        <div class="user">
-          <div class="photo">
-            <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
-          </div>
-          <div class="user-info">
-            <a data-toggle="collapse" href="#collapseExample" class="username">
-              <span>
-                <?php echo htmlspecialchars($user_name1); ?>
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini">EP</span>
-                    <span class="sidebar-normal">Editar Perfil</span>
-                  </a>
-                </li>
-              </ul>
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+    <div class="logo">
+      <a href="../dashboard.php" class="simple-text logo-mini">
+        AM
+      </a>
+      <a href="../dashboard.php"class="simple-text logo-normal">
+        ADMIN
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+    <div class="user">
+            <div class="photo">
+                <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
             </div>
+            <div class="user-info">
+                <a data-toggle="collapse" href="#collapseExample" class="username">
+                    <span>
+                        <?php echo htmlspecialchars($user_name1); ?>
+                        <b class="caret"></b>
+                    </span>
+                </a>
+          <div class="collapse" id="collapseExample">
+            <ul class="nav">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="sidebar-mini"> EP </span>
+                  <span class="sidebar-normal"> Editar Perfil </span>
+                </a>
+              </li>
+              
+            </ul>
           </div>
         </div>
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="../dashboard.php">
-              <i class="material-icons">dashboard</i>
-              <p>Menu Principal</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-              <i class="material-icons">person</i>
-              <p>Utilizadores<b class="caret"></b></p>
-            </a>
-            <div class="collapse" id="formsExamples">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="../users/add_users.php">
-                    <i class="material-icons">person_add_alt</i>
-                    <span class="sidebar-normal">Adicionar Utilizador</span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="../users/list_user.php">
-                    <i class="material-icons">list</i>
-                    <span class="sidebar-normal">Lista de Utilizadores</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../calendar.php">
-              <i class="material-icons">calendar_today</i>
-              <p>Calendário</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../notificacoes.php">
-              <i class="material-icons">notifications</i>
-              <p>Notificações</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#website">
-              <i class="material-icons">public</i>
-              <p>Editar Website<b class="caret"></b></p>
-            </a>
-            <div class="collapse" id="website">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="../edithomepage.php">
-                    <i class="material-icons">house</i>
-                    <span class="sidebar-normal">Página Principal</span>
-                  </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="../editgalery.php">
-                    <i class="material-icons">collections</i>
-                    <span class="sidebar-normal">Galeria</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="../editblog.php">
-                    <i class="material-icons">newspaper</i>
-                    <span class="sidebar-normal">Blog</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
       </div>
+      <ul class="nav">
+        <li class="nav-item  ">
+          <a class="nav-link" href="../dashboard.php">
+            <i class="material-icons">dashboard</i>
+            <p> Menu Principal </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+            <i class="material-icons">person</i>
+            <p> Utilizadores
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="formsExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../users/add_users.php">
+                  <i class="material-icons"> person_add_alt </i>
+                  <span class="sidebar-normal"> Adicionar Utilizador </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../users/list_user.php">
+                  <i class="material-icons"> list </i>
+                  <span class="sidebar-normal"> lista de Utilizadores </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../calendar.php">
+            <i class="material-icons">calendar_today</i>
+            <p> Calendário </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../notificacoes.php">
+            <i class="material-icons">notifications</i>
+            <p> Notificações </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#website">
+            <i class="material-icons">public</i>
+            <p> Editar Website
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="website">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../edithomepage.php">
+                  <i class="material-icons"> house </i>
+                  <span class="sidebar-normal"> Página Principal </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../editgalery.php">
+                  <i class="material-icons"> collections </i>
+                  <span class="sidebar-normal"> Galeria </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="../editblog.php">
+                  <i class="material-icons"> newspaper </i>
+                  <span class="sidebar-normal"> Blog </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="main-panel">
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
+  </div>
+  <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-minimize">
@@ -178,117 +205,354 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Editar Perfil</a>
+            <a class="navbar-brand" href="../users/edit_user.html">Editar utilizador</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="../dashboard.php">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <?php if ($noti_count > 0): ?>
+                      <span class="notification"><?php echo $noti_count; ?></span>
+                  <?php endif; ?>
+                  <p class="d-lg-none d-md-block">
+                      Some Actions
+                  </p>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="../notificacoes.php">
+                      Notificações:   
+                      <?php if ($noti_count > 0): ?>
+                          <span class="badge badge-info"><?php echo $noti_count; ?></span>
+                      <?php endif; ?>
+                  </a>
+              </div>
+          </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Conta
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="">Perfil</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="../login/login.html">Terminar sessão</a>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
+      <!-- End Navbar -->
+
       <div class="content">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col-md-8">
               <div class="card">
-                <div class="card-header card-header-rose card-header-icon">
+                <div class="card-header card-header-icon card-header-rose">
                   <div class="card-icon">
-                    <i class="material-icons">person</i>
+                    <i class="material-icons">perm_identity</i>
                   </div>
-                  <h4 class="card-title">Editar Perfil</h4>
+                  <h4 class="card-title">Editar utilizador -
+                    <small class="category">Atualize o formulário</small>
+                  </h4>
                 </div>
                 <div class="card-body">
-                  <form id="profileForm">
+                  <form id="editProfileForm">
                     <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group">
-                          <label for="user_id" class="bmd-label-floating">ID do Utilizador</label>
-                          <input type="text" class="form-control" id="user_id" disabled>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
+                                <label class="bmd-label-floating" for="user_id">Código</label>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label for="nome" class="bmd-label-floating">Nome</label>
-                          <input type="text" class="form-control" id="nome">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="sobrenome" class="bmd-label-floating">Sobrenome</label>
-                          <input type="text" class="form-control" id="sobrenome">
-                        </div>
-                      </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="email" class="bmd-label-floating">Email</label>
-                          <input type="email" class="form-control" id="email">
+                        <div class="col-md-4">
+                            <div class="picture-container">
+                                <div class="picture">
+                                    <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
+                                </div>
+                                <h6 class="description">Foto de Perfil</h6>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="telef" class="bmd-label-floating">Telefone</label>
-                          <input type="text" class="form-control" id="telef">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nome" placeholder=" ">
+                                <label class="bmd-label-floating" for="nome">Nome</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                                <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email" placeholder=" ">
+                                <label class="bmd-label-floating" for="email">Email</label>
+                            </div>
                         </div>
-                      </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="morada" class="bmd-label-floating">Morada</label>
-                          <input type="text" class="form-control" id="morada">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="morada" placeholder=" ">
+                                <label class="bmd-label-floating" for="morada">Morada</label>
+                            </div>
                         </div>
-                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="telef" placeholder=" ">
+                                <label class="bmd-label-floating" for="telef">Telefone</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="data_nasc" placeholder=" ">
+                                <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="distrito">Distrito</label>
+                                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
+                                    <option value="Aveiro">Aveiro</option>
+                                    <option value="Beja">Beja</option>
+                                    <option value="Braga">Braga</option>
+                                    <option value="Bragança">Bragança</option>
+                                    <option value="Castelo Branco">Castelo Branco</option>
+                                    <option value="Coimbra">Coimbra</option>
+                                    <option value="Évora">Évora</option>
+                                    <option value="Faro">Faro</option>
+                                    <option value="Guarda">Guarda</option>
+                                    <option value="Leiria">Leiria</option>
+                                    <option value="Lisboa">Lisboa</option>
+                                    <option value="Portalegre">Portalegre</option>
+                                    <option value="Porto">Porto</option>
+                                    <option value="Setúbal">Setúbal</option>
+                                    <option value="Viana do Castelo">Viana do Castelo</option>
+                                    <option value="Vila Real">Vila Real</option>
+                                    <option value="Viseu">Viseu</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="cod_postal" placeholder=" ">
+                                <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="nif" placeholder=" ">
+                                <label class="bmd-label-floating" for="nif">NIF</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label for="data_nasc" class="bmd-label-floating">Data de Nascimento</label>
-                          <input type="date" class="form-control" id="data_nasc">
-                        </div>
+                          <h4 class="title">Estado</h4>
+                          <div class="togglebutton">
+                              <label>
+                                  <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
+                                  <span class="toggle"></span>
+                              </label>
+                              <span class="state-text"></span> 
+                          </div>
+                      </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label for="cod_postal" class="bmd-label-floating">Código Postal</label>
-                          <input type="text" class="form-control" id="cod_postal">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="nif" class="bmd-label-floating">NIF</label>
-                          <input type="text" class="form-control" id="nif">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="distrito" class="bmd-label-floating">Distrito</label>
-                          <select class="form-control" name="distrito" id="distrito">
-                            <!-- Add options here -->
+                          <label for="tipo">Tipo</label>
+                          <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
+                            <option disabled selected>Tipo</option>
+                            <option value="0">Para aceitar</option>
+                            <option value="1">Aluno</option>
+                            <option value="2">Músico</option>
+                            <option value="3">Sócio</option>
+                            <option value="4">Admin</option>
+                            <option value="5">Encarregado de educação</option>
+                            <option value="6">Professor</option>
                           </select>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="wizard-picture" class="bmd-label-floating">Foto do Perfil</label>
-                          <input type="file" id="wizard-picture">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do perfil" id="wizardPicturePreview" style="max-width: 100px;">
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-rose pull-right">Atualizar Perfil</button>
+                    <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
+
                     <div class="clearfix"></div>
-                  </form>
+                </form>
+
+                <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Função para preencher o formulário com dados do usuário
+    function fillForm(userData) {
+        document.getElementById("user_id").value = userData.user_id;
+        document.getElementById("nome").value = userData.nome;
+        document.getElementById("sobrenome").value = userData.sobrenome;
+        document.getElementById("email").value = userData.email;
+        if (userData.foto) {
+            document.getElementById("wizardPicturePreview").src = userData.foto;
+        }
+        // Preencha outros campos conforme necessário
+        document.getElementById("telef").value = userData.telef || '';
+        document.getElementById("morada").value = userData.morada || '';
+        document.getElementById("data_nasc").value = userData.data_nasc || '';
+        document.getElementById("cod_postal").value = userData.cod_postal || '';
+        document.getElementById("nif").value = userData.nif || '';
+        document.getElementById("distrito").value = userData.distrito || '';
+        document.getElementById("estado").checked = userData.estado === 'Ativo';
+        document.getElementById("tipo").value = userData.tipo || '';
+        document.querySelector('.selectpicker').selectpicker('refresh');
+    }
+
+    // Requisição para obter dados do usuário
+    fetch('get_user_info.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                fillForm(data.data);
+            } else {
+                console.error("Erro ao obter dados do usuário: ", data.message);
+            }
+        })
+        .catch(error => console.error('Erro na requisição: ', error));
+    
+    // Preview da foto de perfil
+    previewProfilePicture();
+
+    // Função para visualizar a foto de perfil
+    function previewProfilePicture() {
+        const fileInput = document.getElementById('wizard-picture');
+        const previewImage = document.getElementById('wizardPicturePreview');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    document.getElementById("updateButton").addEventListener("click", function() {
+        // Coletar todas as informações do formulário
+        var formData = new FormData();
+        formData.append("user_id", document.getElementById("user_id").value);
+        formData.append("nome", document.getElementById("nome").value);
+        formData.append("sobrenome", document.getElementById("sobrenome").value);
+        formData.append("email", document.getElementById("email").value);
+        formData.append("telef", document.getElementById("telef").value);
+        formData.append("morada", document.getElementById("morada").value);
+        formData.append("tipo", document.getElementById("tipo").value);
+        formData.append("estado", document.getElementById("estado").checked ? "Ativo" : "Inativo");
+        formData.append("data_nasc", document.getElementById("data_nasc").value);
+        formData.append("cod_postal", document.getElementById("cod_postal").value);
+        formData.append("nif", document.getElementById("nif").value);
+        formData.append("distrito", document.querySelector('select[name="distrito"]').value);
+
+        // Verificar se há uma imagem para redimensionar e enviar
+        var fileInput = document.getElementById('wizard-picture');
+        var file = fileInput.files[0];
+        if (file) {
+            resizeImage(file, 320, 320, function(resizedBlob) {
+                formData.append("profile_picture", resizedBlob, file.name);
+
+                // Enviar os dados para o servidor via AJAX
+                sendFormData(formData);
+            });
+        } else {
+            // Enviar apenas os dados do formulário sem a imagem
+            sendFormData(formData);
+        }
+    });
+    
+    function sendFormData(formData) {
+        fetch('update_user.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Usuário atualizado com sucesso!');
+            } else {
+                alert('Erro ao atualizar usuário: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Erro na requisição: ', error));
+    }
+
+    function resizeImage(file, maxWidth, maxHeight, callback) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                canvas.toBlob(callback, file.type, 0.95);
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
+    </div>
+  </div>
+
+  
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
@@ -464,110 +728,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
    
 
    <script>
-    window.onload = function() {
-        // Verificar se há um parâmetro 'user_id' na URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get('user_id');
-        
-        if (userId !== null) {
-            // Se 'user_id' estiver presente, buscar as informações do utilizador
-            fetchUserData(userId);
-        }
-    };
-
-    function fetchUserData(userId) {
-        fetch('get_user_data.php?user_id=' + userId)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("user_id").value = data.user_id;
-                document.getElementById("nome").value = data.nome;
-                document.getElementById("sobrenome").value = data.sobrenome;
-                document.getElementById("email").value = data.email;
-                document.getElementById("telef").value = data.telef;
-                document.getElementById("morada").value = data.morada;
-                document.getElementById("tipo").value = data.tipo;
-                document.getElementById("estado").checked = (data.status === "Ativo");
-
-                // Atualiza o texto do toggle button conforme o estado
-                const estadoToggle = document.querySelector('.toggle');
-                const estadoText = document.querySelector('.state-text');
-                if (data.status === "Ativo") {
-                    estadoText.innerText = "Ativo";
-                    estadoToggle.style.left = "25px";
-                } else {
-                    estadoText.innerText = "Inativo";
-                    estadoToggle.style.left = "0";
-                }
-
-                document.getElementById("data_nasc").value = data.data_nasc;
-                document.getElementById("cod_postal").value = data.cod_postal;
-                document.getElementById("nif").value = data.nif;
-                document.querySelector(`select[name="distrito"]`).value = data.distrito;
-
-                // Exibir a foto de perfil, se existir
-                if (data.foto) {
-                    document.getElementById("wizardPicturePreview").src = '' + data.foto;
-                } else {
-                    // Se não houver foto, exibir a imagem padrão
-                    document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
-                }
-
-                // Forçar a atualização do campo de tipo e distrito para exibir a opção selecionada
-                $('.selectpicker').selectpicker('refresh');
-            })
-            .catch(error => console.error('Erro ao buscar os dados do utilizador:', error));
-    }
-
-    function previewProfilePicture() {
-        const fileInput = document.getElementById('wizard-picture');
-        const previewImage = document.getElementById('wizardPicturePreview');
-
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-            };
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-
-
-    document.getElementById("updateButton").addEventListener("click", function() {
-        // Coletar todas as informações do formulário
-        var formData = new FormData();
-        formData.append("user_id", document.getElementById("user_id").value);
-        formData.append("nome", document.getElementById("nome").value);
-        formData.append("sobrenome", document.getElementById("sobrenome").value);
-        formData.append("email", document.getElementById("email").value);
-        formData.append("telef", document.getElementById("telef").value);
-        formData.append("morada", document.getElementById("morada").value);
-        formData.append("tipo", document.getElementById("tipo").value);
-        formData.append("estado", document.getElementById("estado").checked ? "Ativo" : "Inativo");
-        formData.append("data_nasc", document.getElementById("data_nasc").value);
-        formData.append("cod_postal", document.getElementById("cod_postal").value);
-        formData.append("nif", document.getElementById("nif").value);
-        formData.append("distrito", document.querySelector('select[name="distrito"]').value);
-
-        // Verificar se há uma imagem para redimensionar e enviar
-        var fileInput = document.getElementById('wizard-picture');
-        var file = fileInput.files[0];
-        if (file) {
-            resizeImage(file, 320, 320, function(resizedBlob) {
-                formData.append("profile_picture", resizedBlob, file.name);
-
-                // Enviar os dados para o servidor via AJAX
-                sendFormData(formData);
-            });
-        } else {
-            // Enviar apenas os dados do formulário sem a imagem
-            sendFormData(formData);
-        }
-    });
 
     function resizeImage(file, maxWidth, maxHeight, callback) {
         var img = document.createElement("img");
