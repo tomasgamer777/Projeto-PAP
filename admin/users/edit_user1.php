@@ -275,135 +275,134 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   </h4>
                 </div>
                 <div class="card-body">
-                  <form id="editProfileForm">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
-                                <label class="bmd-label-floating" for="user_id">Código</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="picture-container">
-                                <div class="picture">
-                                    <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
-                                </div>
-                                <h6 class="description">Foto de Perfil</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="nome" placeholder=" ">
-                                <label class="bmd-label-floating" for="nome">Nome</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="sobrenome" placeholder=" ">
-                                <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="email" placeholder=" ">
-                                <label class="bmd-label-floating" for="email">Email</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="morada" placeholder=" ">
-                                <label class="bmd-label-floating" for="morada">Morada</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="telef" placeholder=" ">
-                                <label class="bmd-label-floating" for="telef">Telefone</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="data_nasc" placeholder=" ">
-                                <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="distrito">Distrito</label>
-                                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
-                                    <option value="Aveiro">Aveiro</option>
-                                    <option value="Beja">Beja</option>
-                                    <option value="Braga">Braga</option>
-                                    <option value="Bragança">Bragança</option>
-                                    <option value="Castelo Branco">Castelo Branco</option>
-                                    <option value="Coimbra">Coimbra</option>
-                                    <option value="Évora">Évora</option>
-                                    <option value="Faro">Faro</option>
-                                    <option value="Guarda">Guarda</option>
-                                    <option value="Leiria">Leiria</option>
-                                    <option value="Lisboa">Lisboa</option>
-                                    <option value="Portalegre">Portalegre</option>
-                                    <option value="Porto">Porto</option>
-                                    <option value="Setúbal">Setúbal</option>
-                                    <option value="Viana do Castelo">Viana do Castelo</option>
-                                    <option value="Vila Real">Vila Real</option>
-                                    <option value="Viseu">Viseu</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="cod_postal" placeholder=" ">
-                                <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="nif" placeholder=" ">
-                                <label class="bmd-label-floating" for="nif">NIF</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <h4 class="title">Estado</h4>
-                          <div class="togglebutton">
-                              <label>
-                                  <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
-                                  <span class="toggle"></span>
-                              </label>
-                              <span class="state-text"></span> 
-                          </div>
-                      </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="tipo">Tipo</label>
-                          <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
-                            <option disabled selected>Tipo</option>
-                            <option value="0">Para aceitar</option>
-                            <option value="1">Aluno</option>
-                            <option value="2">Músico</option>
-                            <option value="3">Sócio</option>
-                            <option value="4">Admin</option>
-                            <option value="5">Encarregado de educação</option>
-                            <option value="6">Professor</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
+                <form id="editProfileForm">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
+                <label class="bmd-label-floating" for="user_id">Código</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="picture-container">
+                <div class="picture">
+                    <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
+                </div>
+                <h6 class="description">Foto de Perfil</h6>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" id="nome" placeholder=" ">
+                <label class="bmd-label-floating" for="nome">Nome</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email" placeholder=" ">
+                <label class="bmd-label-floating" for="email">Email</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control" id="morada" placeholder=" ">
+                <label class="bmd-label-floating" for="morada">Morada</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="telef" placeholder=" ">
+                <label class="bmd-label-floating" for="telef">Telefone</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="data_nasc" placeholder=" ">
+                <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="distrito">Distrito</label>
+                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
+                    <option value="Aveiro">Aveiro</option>
+                    <option value="Beja">Beja</option>
+                    <option value="Braga">Braga</option>
+                    <option value="Bragança">Bragança</option>
+                    <option value="Castelo Branco">Castelo Branco</option>
+                    <option value="Coimbra">Coimbra</option>
+                    <option value="Évora">Évora</option>
+                    <option value="Faro">Faro</option>
+                    <option value="Guarda">Guarda</option>
+                    <option value="Leiria">Leiria</option>
+                    <option value="Lisboa">Lisboa</option>
+                    <option value="Portalegre">Portalegre</option>
+                    <option value="Porto">Porto</option>
+                    <option value="Setúbal">Setúbal</option>
+                    <option value="Viana do Castelo">Viana do Castelo</option>
+                    <option value="Vila Real">Vila Real</option>
+                    <option value="Viseu">Viseu</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="cod_postal" placeholder=" ">
+                <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="nif" placeholder=" ">
+                <label class="bmd-label-floating" for="nif">NIF</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h4 class="title">Estado</h4>
+                <div class="togglebutton">
+                    <label>
+                        <input type="checkbox" id="estado" name="estado" class="toggle-btn">
+                        <span class="toggle"></span>
+                    </label>
+                    <span class="state-text"></span> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="tipo">Tipo</label>
+                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
+                    <option disabled selected>Tipo</option>
+                    <option value="0">Para aceitar</option>
+                    <option value="1">Aluno</option>
+                    <option value="2">Músico</option>
+                    <option value="3">Sócio</option>
+                    <option value="4">Admin</option>
+                    <option value="5">Encarregado de educação</option>
+                    <option value="6">Professor</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
+    <div class="clearfix"></div>
+</form>
 
-                    <div class="clearfix"></div>
-                </form>
-
-                <script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
@@ -411,19 +410,36 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("nome").value = userData.nome;
         document.getElementById("sobrenome").value = userData.sobrenome;
         document.getElementById("email").value = userData.email;
+        document.getElementById("telef").value = userData.telef;
+        document.getElementById("morada").value = userData.morada;
+        document.getElementById("data_nasc").value = userData.data_nasc;
+        document.getElementById("cod_postal").value = userData.cod_postal;
+        document.getElementById("nif").value = userData.nif;
+        document.getElementById("distrito").value = userData.distrito;
+        document.getElementById("estado").checked = (userData.estado === "Ativo");
+        document.getElementById("tipo").value = userData.tipo;
+
+        // Atualiza o texto do toggle button conforme o estado
+        const estadoToggle = document.querySelector('.toggle');
+        const estadoText = document.querySelector('.state-text');
+        if (userData.estado === "Ativo") {
+            estadoText.innerText = "Ativo";
+            estadoToggle.style.left = "25px";
+        } else {
+            estadoText.innerText = "Inativo";
+            estadoToggle.style.left = "0";
+        }
+
+        // Exibir a foto de perfil, se existir
         if (userData.foto) {
             document.getElementById("wizardPicturePreview").src = userData.foto;
+        } else {
+            // Se não houver foto, exibir a imagem padrão
+            document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
         }
-        // Preencha outros campos conforme necessário
-        document.getElementById("telef").value = userData.telef || '';
-        document.getElementById("morada").value = userData.morada || '';
-        document.getElementById("data_nasc").value = userData.data_nasc || '';
-        document.getElementById("cod_postal").value = userData.cod_postal || '';
-        document.getElementById("nif").value = userData.nif || '';
-        document.getElementById("distrito").value = userData.distrito || '';
-        document.getElementById("estado").checked = userData.estado === 'Ativo';
-        document.getElementById("tipo").value = userData.tipo || '';
-        document.querySelector('.selectpicker').selectpicker('refresh');
+
+        // Forçar a atualização do campo de tipo e distrito para exibir a opção selecionada
+        $('.selectpicker').selectpicker('refresh');
     }
 
     // Requisição para obter dados do usuário
@@ -437,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .catch(error => console.error('Erro na requisição: ', error));
-    
+
     // Preview da foto de perfil
     previewProfilePicture();
 
@@ -449,7 +465,6 @@ document.addEventListener("DOMContentLoaded", function() {
         fileInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
             const reader = new FileReader();
-
             reader.onload = function(e) {
                 previewImage.src = e.target.result;
             };
@@ -460,8 +475,52 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Função para redimensionar a imagem antes de enviar
+    function resizeImage(file, maxWidth, maxHeight, callback) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                let canvas = document.createElement('canvas');
+                let ctx = canvas.getContext('2d');
+
+                // Calcula o novo tamanho da imagem
+                let ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+                canvas.width = img.width * ratio;
+                canvas.height = img.height * ratio;
+
+                // Redimensiona a imagem e desenha no canvas
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                // Converte a imagem redimensionada para blob e chama o callback
+                canvas.toBlob(callback, file.type);
+            };
+            img.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    // Função para enviar os dados do formulário via AJAX
+    function sendFormData(formData) {
+        fetch('update_user_info.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Informações atualizadas com sucesso!");
+            } else {
+                alert("Erro ao atualizar informações: " + data.message);
+            }
+        })
+        .catch(error => console.error('Erro ao enviar os dados: ', error));
+    }
+
+    // Evento do botão de atualização
     document.getElementById("updateButton").addEventListener("click", function() {
-        // Coletar todas as informações do formulário
         var formData = new FormData();
         formData.append("user_id", document.getElementById("user_id").value);
         formData.append("nome", document.getElementById("nome").value);
@@ -474,39 +533,20 @@ document.addEventListener("DOMContentLoaded", function() {
         formData.append("data_nasc", document.getElementById("data_nasc").value);
         formData.append("cod_postal", document.getElementById("cod_postal").value);
         formData.append("nif", document.getElementById("nif").value);
-        formData.append("distrito", document.querySelector('select[name="distrito"]').value);
+        formData.append("distrito", document.getElementById("distrito").value);
 
-        // Verificar se há uma imagem para redimensionar e enviar
         var fileInput = document.getElementById('wizard-picture');
         var file = fileInput.files[0];
         if (file) {
             resizeImage(file, 320, 320, function(resizedBlob) {
                 formData.append("profile_picture", resizedBlob, file.name);
-
-                // Enviar os dados para o servidor via AJAX
                 sendFormData(formData);
             });
         } else {
-            // Enviar apenas os dados do formulário sem a imagem
             sendFormData(formData);
         }
     });
-    
-    function sendFormData(formData) {
-        fetch('update_user.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Usuário atualizado com sucesso!');
-            } else {
-                alert('Erro ao atualizar usuário: ' + data.message);
-            }
-        })
-        .catch(error => console.error('Erro na requisição: ', error));
-    }
+});
 
     function resizeImage(file, maxWidth, maxHeight, callback) {
         const reader = new FileReader();

@@ -62,7 +62,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['last_activity'] = time();
                     $_SESSION['user_name'] = $row['nome']; // Nome do usuário
                     $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['telef'] = $row['telef'];
+                    $_SESSION['data_nasc'] = $row['data_nasc'];
+                    $_SESSION['morada'] = $row['morada'];
+                    $_SESSION['distrito'] = $row['distrito'];
+                    $_SESSION['cod_postal'] = $row['cod_postal'];
                     $_SESSION['user_surname'] = $row['sobrenome'];
+                    $_SESSION['nif'] = $row['nif'];
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
                     $_SESSION['user_photo'] = $row['foto']; // URL da foto do usuário
 
