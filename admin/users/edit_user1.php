@@ -276,133 +276,135 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 </div>
                 <div class="card-body">
                 <form id="editProfileForm">
-    <div class="row">
-        <div class="col-md-5">
-            <div class="form-group">
-                <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
-                <label class="bmd-label-floating" for="user_id">Código</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="picture-container">
-                <div class="picture">
-                    <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                    <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
-                </div>
-                <h6 class="description">Foto de Perfil</h6>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control" id="nome" placeholder=" ">
-                <label class="bmd-label-floating" for="nome">Nome</label>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="sobrenome" placeholder=" ">
-                <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="email" placeholder=" ">
-                <label class="bmd-label-floating" for="email">Email</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <input type="text" class="form-control" id="morada" placeholder=" ">
-                <label class="bmd-label-floating" for="morada">Morada</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="telef" placeholder=" ">
-                <label class="bmd-label-floating" for="telef">Telefone</label>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="data_nasc" placeholder=" ">
-                <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="distrito">Distrito</label>
-                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
-                    <option value="Aveiro">Aveiro</option>
-                    <option value="Beja">Beja</option>
-                    <option value="Braga">Braga</option>
-                    <option value="Bragança">Bragança</option>
-                    <option value="Castelo Branco">Castelo Branco</option>
-                    <option value="Coimbra">Coimbra</option>
-                    <option value="Évora">Évora</option>
-                    <option value="Faro">Faro</option>
-                    <option value="Guarda">Guarda</option>
-                    <option value="Leiria">Leiria</option>
-                    <option value="Lisboa">Lisboa</option>
-                    <option value="Portalegre">Portalegre</option>
-                    <option value="Porto">Porto</option>
-                    <option value="Setúbal">Setúbal</option>
-                    <option value="Viana do Castelo">Viana do Castelo</option>
-                    <option value="Vila Real">Vila Real</option>
-                    <option value="Viseu">Viseu</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="cod_postal" placeholder=" ">
-                <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="nif" placeholder=" ">
-                <label class="bmd-label-floating" for="nif">NIF</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <h4 class="title">Estado</h4>
-                <div class="togglebutton">
-                    <label>
-                        <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
-                        <span class="toggle"></span>
-                    </label>
-                    <span class="state-text"></span> 
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="user_id" placeholder=" " disabled>
+                    <label class="bmd-label-floating" for="user_id">Código</label>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="tipo">Tipo</label>
-                <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
-                    <option value="0">Para aceitar</option>
-                    <option value="1">Aluno</option>
-                    <option value="2">Músico</option>
-                    <option value="3">Sócio</option>
-                    <option value="4">Admin</option>
-                    <option value="5">Encarregado de educação</option>
-                    <option value="6">Professor</option>
-                </select>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="picture-container">
+                    <div class="picture">
+                        <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                        <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
+                    </div>
+                    <h6 class="description">Foto de Perfil</h6>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nome" placeholder=" ">
+                    <label class="bmd-label-floating" for="nome">Nome</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="email" placeholder=" ">
+                    <label class="bmd-label-floating" for="email">Email</label>
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="morada" placeholder=" ">
+                    <label class="bmd-label-floating" for="morada">Morada</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="telef" placeholder=" ">
+                    <label class="bmd-label-floating" for="telef">Telefone</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="data_nasc" placeholder=" ">
+                    <label class="bmd-label-floating" for="data_nasc">Data de Nascimento</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="distrito">Distrito</label>
+                    <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="distrito" name="distrito">
+                        <option value="Aveiro">Aveiro</option>
+                        <option value="Beja">Beja</option>
+                        <option value="Braga">Braga</option>
+                        <option value="Bragança">Bragança</option>
+                        <option value="Castelo Branco">Castelo Branco</option>
+                        <option value="Coimbra">Coimbra</option>
+                        <option value="Évora">Évora</option>
+                        <option value="Faro">Faro</option>
+                        <option value="Guarda">Guarda</option>
+                        <option value="Leiria">Leiria</option>
+                        <option value="Lisboa">Lisboa</option>
+                        <option value="Portalegre">Portalegre</></option>
+                        <option value="Porto">Porto</option>
+                        <option value="Setúbal">Setúbal</option>
+                        <option value="Viana do Castelo">Viana do Castelo</option>
+                        <option value="Vila Real">Vila Real</option>
+                        <option value="Viseu">Viseu</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="cod_postal" placeholder=" ">
+                    <label class="bmd-label-floating" for="cod_postal">Código Postal</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nif" placeholder=" ">
+                    <label class="bmd-label-floating" for="nif">NIF</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+        <h4 class="title">Estado</h4>
+        <div class="togglebutton">
+            <label>
+                <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
+                <span class="toggle"></span>
+            </label>
+            <span class="state-text"></span> 
+        </div>
+        </div>
     </div>
-    <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
-    <div class="clearfix"></div>
-</form>
+    <div class="col-md-4">
+    <div class="form-group">
+    <label for="tipo">Tipo</label>
+    <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
+      <option disabled selected>Tipo</option>
+      <option value="0">Para aceitar</option>
+      <option value="1">Aluno</option>
+      <option value="2">Músico</option>
+      <option value="3">Sócio</option>
+      <option value="4">Admin</option>
+      <option value="5">Encarregado de educação</option>
+      <option value="6">Professor</option>
+    </select>
+  </div>
+    </div>
+</div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
+        <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
+        <div class="clearfix"></div>
+    </form>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
         document.getElementById("user_id").value = userData.user_id;
@@ -416,50 +418,18 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
 
-        // Atualiza o estado conforme o valor recebido
+        // Atualiza o texto do toggle button conforme o estado
         const estadoToggle = document.querySelector('.toggle');
-        const estadoText = document.querySelector('.state-text');
+        const estadoText = document.getElementById('estadoText');
         if (userData.estado === "Ativo") {
             estadoText.innerText = "Ativo";
-            estadoToggle.classList.remove('off');
-            estadoToggle.classList.add('on');
+            estadoToggle.style.left = "25px";
         } else {
             estadoText.innerText = "Inativo";
-            estadoToggle.classList.remove('on');
-            estadoToggle.classList.add('off');
+            estadoToggle.style.left = "0";
         }
 
-        // Atualiza o campo tipo selecionando a opção correta
-        document.getElementById("tipo").value = userData.tipo;
-
-        document.addEventListener("DOMContentLoaded", function() {
-    // Função para preencher o formulário com dados do usuário
-    function fillForm(userData) {
-        document.getElementById("user_id").value = userData.user_id;
-        document.getElementById("nome").value = userData.nome;
-        document.getElementById("sobrenome").value = userData.sobrenome;
-        document.getElementById("email").value = userData.email;
-        document.getElementById("telef").value = userData.telef;
-        document.getElementById("morada").value = userData.morada;
-        document.getElementById("data_nasc").value = userData.data_nasc;
-        document.getElementById("cod_postal").value = userData.cod_postal;
-        document.getElementById("nif").value = userData.nif;
-        document.getElementById("distrito").value = userData.distrito;
-
-        // Atualiza o estado conforme o valor recebido
-        const estadoToggle = document.querySelector('.toggle');
-        const estadoText = document.querySelector('.state-text');
-        if (userData.estado === "Ativo") {
-            estadoText.innerText = "Ativo";
-            estadoToggle.classList.remove('off');
-            estadoToggle.classList.add('on');
-        } else {
-            estadoText.innerText = "Inativo";
-            estadoToggle.classList.remove('on');
-            estadoToggle.classList.add('off');
-        }
-
-        // Atualiza o campo tipo selecionando a opção correta
+        // Preencher o campo tipo
         document.getElementById("tipo").value = userData.tipo;
 
         // Exibir a foto de perfil, se existir
@@ -588,8 +558,8 @@ document.addEventListener("DOMContentLoaded", function() {
         reader.readAsDataURL(file);
     }
 });
-</script>
 
+    </script>
     <script src="path/to/jquery.js"></script>
     <script src="path/to/bootstrap.js"></script>
     <script src="path/to/bootstrap-select.js"></script>
