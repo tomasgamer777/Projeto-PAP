@@ -103,7 +103,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="dashbard_musicos.php">
+                <a class="nav-link" href="dashboard_musicos.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">Stats</p>
                 </a>
