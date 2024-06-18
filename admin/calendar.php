@@ -218,9 +218,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
       </div>
 
-
-  <!-- Core JS Files -->
-  <script src="assets/js/core/jquery.min.js"></script>
+   <!-- Core JS Files -->
+   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -230,7 +229,9 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <!-- FullCalendar translation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.5/locale/pt.js"></script>
-  <!-- Custom JS -->
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
   $(document).ready(function() {
     $('#calendar').fullCalendar({
