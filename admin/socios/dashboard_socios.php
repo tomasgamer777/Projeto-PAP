@@ -2,7 +2,7 @@
 session_start();
 
 // Incluir a função checkAdmin do login.php
-require_once __DIR__ . 'admin/login/login.php'; // Ajuste o caminho conforme necessário
+'/admin/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
 // Construir o caminho completo da foto do usuário
