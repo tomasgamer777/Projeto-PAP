@@ -8,8 +8,12 @@ function checkAdmin() {
         exit;
     }
 
-    if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] == 3) {
-        header('Location: /admin/dashboard_socios.php'); // Caminho relativo para a página de permissão negada
+    if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 4) {
+        if ($_SESSION['user_type'] == 3) {
+            header('Location: /admin/dashboard_socios.php'); // Redireciona para o dashboard específico de sócios
+        } else {
+            header('Location: /permissao_negada.html'); // Caminho relativo para a página de permissão negada
+        }
         exit;
     }
 
@@ -79,24 +83,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Retorna um JSON indicando sucesso
                         echo json_encode(array("success" => true));
                         exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
-                    } else {
-                        // Retorna um JSON indicando sucesso
-                        echo json_encode(array("success" => true, "message" => "Login bem sucedido como usuário normal. Não tem permissões de administrador."));
-                    }
-                } else {
-                    // Retorna uma mensagem de erro
-                    echo json_encode(array("success" => false, "message" => "Senha incorreta."));
-                }
-            }
-        } else {
-            // Retorna uma mensagem de erro
-            echo json_encode(array("success" => false, "message" => "Utilizador não encontrado."));
-        }
-    } else {
-        // Retorna uma mensagem de erro
-        echo json_encode(array("success" => false, "message" => "Erro na consulta SQL: " . $conn->error));
-    }
-
-    $conn->close();
-}
-?>
+                    } else if ($row['tipo'] == 3
