@@ -6,6 +6,7 @@ require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessá
 checkAdmin();
 
 // Recuperar dados do usuário da sessão
+$user_id = $SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 $user_surname = $_SESSION['user_surname'];
 $user_email = $_SESSION['user_email'];
@@ -15,39 +16,55 @@ $user_name1 = $user_name . $user_surname;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
-?>
 
-<?php
-// Conexão ao banco de dados
-$servername = "localhost";
-$username = "tomas";
-$password = "!h01fFw35";
-$dbname = "banda";
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Lógica para pagamento de cotas
+$valor_cota = 100.00; // Valor da cota mensal
+$mes_atual = date('n'); // Obtém o mês atual
+$ano_atual = date('Y'); // Obtém o ano atual
 
-// Verificação da conexão
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+// Verifica se já existe registro para o mês atual no banco de dados
+$sql_check = "SELECT * FROM pag_cotas WHERE user_id = $user_id AND mes = $mes_atual AND ano = $ano_atual";
+$result_check = $conn->query($sql_check);
+
+if ($result_check->num_rows > 0) {
+    // Já existe um registro para este mês, verifica o status da cota
+    $row = $result_check->fetch_assoc();
+    $status_cota = $row['status_cota'];
+
+    if ($status_cota == 0) {
+        // Cota não paga este mês, adiciona novamente o valor da cota ao valor anterior
+        $valor_cota += $row['valor_cota'];
+
+        // Atualiza o valor da cota no banco de dados
+        $sql_update = "UPDATE pag_cotas SET valor_cota = $valor_cota WHERE user_id = $user_id AND mes = $mes_atual AND ano = $ano_atual";
+        if ($conn->query($sql_update) !== TRUE) {
+            echo "Error: " . $sql_update . "<br>" . $conn->error;
+        }
+    }
+} else {
+    // Não há registro para este mês, insere um novo registro com status inicial 0 (não pago)
+    $sql_insert = "INSERT INTO pag_cotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+    if ($conn->query($sql_insert) !== TRUE) {
+        echo "Error: " . $sql_insert . "<br>" . $conn->error;
+    }
 }
 
-// Consulta para contagem de notificações
-$noti_query = "SELECT COUNT(*) as total_noti FROM noti";
-$noti_result = $conn->query($noti_query);
-$noti_count = $noti_result->fetch_assoc()['total_noti'];
+// Obtém o valor total acumulado das cotas para exibição no dashboard
+$sql_total = "SELECT SUM(valor_cota) AS total_cotas FROM pag_cotas WHERE user_id = $user_id AND mes = $mes_atual AND ano = $ano_atual";
+$result_total = $conn->query($sql_total);
 
-// Consulta para contagem de utilizadores
-$users_query = "SELECT COUNT(*) as total_users FROM users";
-$users_result = $conn->query($users_query);
-$users_count = $users_result->fetch_assoc()['total_users'];
+if ($result_total->num_rows > 0) {
+    $row_total = $result_total->fetch_assoc();
+    $cotas_valor_total = $row_total['total_cotas'];
+} else {
+    $cotas_valor_total = $valor_cota; // Valor inicial se não houver registros ainda
+}
 
-// Consulta para contagem de utilizadores pendentes
-$pending_users_query = "SELECT COUNT(*) as pending_users FROM users WHERE tipo = 0";
-$pending_users_result = $conn->query($pending_users_query);
-$pending_users_count = $pending_users_result->fetch_assoc()['pending_users'];
-
-// Fechar a conexão
+// Fecha a conexão com o banco de dados
 $conn->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -287,62 +304,34 @@ $conn->close();
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Notification Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='notificacoes.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">notifications</i>
-                            </div>
-                            <p class="card-category">Notificações</p>
-                            <h3 class="card-title"><?php echo $noti_count; ?></h3>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Monthly Fee Payment -->
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">attach_money</i>
                         </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
+                        <p class="card-category">Pagamento de Cotas</p>
+                        <h3 class="card-title"><?php echo number_format($cotas_valor_total, 2, ',', '.'); ?></h3>
                     </div>
-                </div>
-                <!-- Total Users Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='users/list_user.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">person</i>
-                            </div>
-                            <p class="card-category">Total de Utilizadores</p>
-                            <h3 class="card-title"><?php echo $users_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pending Users Count -->
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="card card-stats" onclick="location.href='users/list_user.php';" style="cursor: pointer;">
-                        <div class="card-header card-header-danger card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">person_add</i>
-                            </div>
-                            <p class="card-category">Utilizadores Pendentes</p>
-                            <h3 class="card-title"><?php echo $pending_users_count; ?></h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">update</i> Atualizado agora
-                            </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <?php
+                                if ($status_cota == 0) {
+                                    echo "Valor da cota não pago este mês. Valor total atualizado.";
+                                } elseif ($status_cota == 1) {
+                                    echo "Cota deste mês já paga.";
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
                   <footer class="footer">
                     <div class="container-fluid">
