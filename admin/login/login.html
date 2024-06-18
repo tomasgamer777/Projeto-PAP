@@ -109,7 +109,7 @@
                             </span>
                         </div>
                         <div class="card-footer justify-content-center">
-                          <button type="submit" class="btn btn-rose btn-link btn-lg" id="loginButton">Login</button>
+                          <button type="button" class="btn btn-rose btn-link btn-lg" id="loginButton">Login</button>
                         </div>
                     </div>
                 </form>
@@ -117,6 +117,46 @@
         </div>
     </div>
     
+    <script>
+      document.getElementById("loginButton").addEventListener("click", function(event){
+          event.preventDefault(); // Impede o envio do formulário padrão
+
+          var form = document.getElementById("loginForm"); // Obtém o formulário
+
+          if (!form) {
+              console.error('Formulário não encontrado.');
+              return;
+          }
+
+          var formData = new FormData(form); // Cria um objeto FormData com os dados do formulário
+
+          fetch(form.action, {
+              method: 'POST',
+              body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+              if(data.success){
+                  // Iniciar sessão no lado do cliente (exemplo com localStorage)
+                  localStorage.setItem('loggedIn', 'true');
+                  // Verificar se há um campo de redirecionamento na resposta JSON
+                  if(data.redirect){
+                      window.location.href = data.redirect;
+                  } else {
+                      // Redirecionamento padrão para o dashboard
+                      window.location.href = "../dashboard.php";
+                  }
+              } else {
+                  // Exibição do SweetAlert com a mensagem de erro
+                  Swal.fire("Erro", data.message, "error");
+              }
+          })
+          .catch(error => {
+              console.error('Erro:', error);
+          });
+      });
+  </script>
+
       <footer class="footer">
         <div class="container">
           <nav class="float-left">
@@ -444,38 +484,7 @@
   </script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-  document.getElementById("loginButton").addEventListener("click", function(event){
-      event.preventDefault(); // Impede o envio do formulário padrão
-      var form = document.getElementById("loginForm"); // Obtém o formulário
-      var formData = new FormData(form); // Cria um objeto FormData com os dados do formulário
 
-      fetch(form.action, {
-          method: 'POST',
-          body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-          if(data.success){
-              // Iniciar sessão no lado do cliente (exemplo com localStorage)
-              localStorage.setItem('loggedIn', 'true');
-              // Verificar se há um campo de redirecionamento na resposta JSON
-              if(data.redirect){
-                  window.location.href = data.redirect;
-              } else {
-                  // Redirecionamento padrão para o dashboard
-                  window.location.href = "../dashboard.php";
-              }
-          } else {
-              // Exibição do SweetAlert com a mensagem de erro
-              Swal.fire("Erro", data.message, "error");
-          }
-      })
-      .catch(error => {
-          console.error('Erro:', error);
-      });
-  });
-</script>
 
 
 
