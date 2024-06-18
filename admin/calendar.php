@@ -225,7 +225,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- FullCalendar JS -->
-  <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <!-- FullCalendar translation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.5/locale/pt.js"></script>
