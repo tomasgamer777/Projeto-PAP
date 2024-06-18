@@ -73,13 +73,13 @@ $user_photo_path = '/admin/users/' . $user_photo;
           </div>
         </div>
         <ul class="nav">
-        <li class="nav-item active ">
+        <li class="nav-item  ">
           <a class="nav-link" href="dashboard_socios.php">
             <i class="material-icons">dashboard</i>
             <p> Pagamento de quotas </p>
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item active">
           <a class="nav-link" href="calendar.php">
             <i class="material-icons">calendar_today</i>
             <p> Calendário </p>
