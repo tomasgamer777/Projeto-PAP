@@ -206,7 +206,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title">Calendário</h4>
-                  <p class="card-category">Um pequeno calendário com todas as saidas da banda.</p>
+                  <p class="card-category">Agenda de Eventos</p>
                 </div>
                 <div class="card-body">
                   <div id="calendar"></div>
@@ -216,8 +216,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
   <!-- Core JS Files -->
   <script src="assets/js/core/jquery.min.js"></script>
@@ -227,9 +225,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- FullCalendar JS -->
+  <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <!-- FullCalendar translation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.5/locale/pt.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.5/locale/pt.js"></script>
 
   <script>
   $(document).ready(function() {
