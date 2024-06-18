@@ -76,7 +76,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
         <li class="nav-item active">
           <a class="nav-link" href="calendar.php">
             <i class="material-icons">calendar_today</i>
-            <p> Calendário das saídas da banda</p>
+            <p> Calendário</p>
           </a>
         </li>
       </ul>
