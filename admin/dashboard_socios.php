@@ -24,7 +24,7 @@ function checkAdmin() {
     $_SESSION['last_activity'] = time(); // Atualizar tempo da última atividade
 }
 
-// Verificar e conectar ao banco de dados
+// Conectar ao banco de dados
 $servername = "localhost";
 $username = "tomas";
 $password = "!h01fFw35";
@@ -53,27 +53,30 @@ $valor_cota = 100.00; // Valor da cota mensal
 $mes_atual = date('n'); // Obtém o mês atual
 $ano_atual = date('Y'); // Obtém o ano atual
 
-// Verifica se já existe registro para o mês atual no banco de dados
-$sql_check = "SELECT * FROM pag_cotas WHERE user_id = $user_id AND mes = $mes_atual AND ano = $ano_atual";
-$result_check = $conn->query($sql_check);
+// Verifica o registro mais recente no banco de dados para este usuário
+$sql_check_latest = "SELECT * FROM pag_cotas WHERE user_id = $user_id ORDER BY ano DESC, mes DESC LIMIT 1";
+$result_check_latest = $conn->query($sql_check_latest);
 
-if ($result_check->num_rows > 0) {
-    // Já existe um registro para este mês, verifica o status da cota
-    $row = $result_check->fetch_assoc();
-    $status_cota = $row['status_cota'];
+if ($result_check_latest->num_rows > 0) {
+    // Já existe um registro para este usuário
+    $row_latest = $result_check_latest->fetch_assoc();
+    $ultimo_mes = $row_latest['mes'];
+    $ultimo_ano = $row_latest['ano'];
+    $status_cota = $row_latest['status_cota'];
 
-    if ($status_cota == 0) {
-        // Cota não paga este mês, adiciona novamente o valor da cota ao valor anterior
-        $valor_cota += $row['valor_cota'];
+    // Verifica se mudou o mês ou ano e o status da última cota é 0
+    if (($mes_atual != $ultimo_mes || $ano_atual != $ultimo_ano) && $status_cota == 0) {
+        // Adiciona o valor da cota ao valor anterior
+        $valor_cota += $row_latest['valor_cota'];
 
-        // Atualiza o valor da cota no banco de dados
-        $sql_update = "UPDATE pag_cotas SET valor_cota = $valor_cota WHERE user_id = $user_id AND mes = $mes_atual AND ano = $ano_atual";
-        if ($conn->query($sql_update) !== TRUE) {
-            echo "Error: " . $sql_update . "<br>" . $conn->error;
+        // Insere um novo registro para o novo mês com o valor atualizado
+        $sql_insert = "INSERT INTO pag_cotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+        if ($conn->query($sql_insert) !== TRUE) {
+            echo "Error: " . $sql_insert . "<br>" . $conn->error;
         }
     }
 } else {
-    // Não há registro para este mês, insere um novo registro com status inicial 0 (não pago)
+    // Não há registro para este usuário, insere um novo registro com status inicial 0 (não pago)
     $sql_insert = "INSERT INTO pag_cotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
     if ($conn->query($sql_insert) !== TRUE) {
         echo "Error: " . $sql_insert . "<br>" . $conn->error;
