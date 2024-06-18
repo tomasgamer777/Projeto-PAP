@@ -1,32 +1,16 @@
 <?php
 session_start();
 
-// Função para verificar se o usuário está logado e é administrador
-function checkAdmin() {
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        header('Location: /admin/login/login.html'); // Caminho relativo para a página de login
-        exit;
-    }
-
-    if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 3) {
-        header('Location: /admin/dashboard_socios.php'); // Caminho relativo para a página de permissão negada
-        exit;
-    }
-
-    // Verificar inatividade
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) { // 300 segundos = 5 minutos
-        session_unset();
-        session_destroy();
-        header('Location: /admin/login/login.html'); // Caminho relativo para a página de login
-        exit;
-    }
-
-    $_SESSION['last_activity'] = time(); // Atualizar tempo da última atividade
-}
-
 // Incluir a função checkAdmin do login.php
 require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
+
+// Construir o caminho completo da foto do usuário
+$user_photo_path = '/admin/users/' . $user_photo;
+?>
+
+
+<?php
 
 // Conectar ao banco de dados
 $servername = "localhost";
