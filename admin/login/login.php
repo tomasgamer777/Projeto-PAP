@@ -83,4 +83,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Retorna um JSON indicando sucesso
                         echo json_encode(array("success" => true));
                         exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
-                    } else if ($row['tipo'] == 3
+                    } else if ($row['tipo'] == 3) {
+                        // Retorna um JSON indicando sucesso, mas redireciona para o dashboard de sócios
+                        echo json_encode(array("success" => true, "redirect" => "/admin/dashboard_socios.php"));
+                        exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
+                    } else {
+                        // Retorna um JSON indicando sucesso
+                        echo json_encode(array("success" => true, "message" => "Login bem sucedido como usuário normal. Não tem permissões de administrador."));
+                    }
+                } else {
+                    // Retorna uma mensagem de erro
+                    echo json_encode(array("success" => false, "message" => "Senha incorreta."));
+                }
+            }
+        } else {
+            // Retorna uma mensagem de erro
+            echo json_encode(array("success" => false, "message" => "Utilizador não encontrado."));
+        }
+    } else {
+        // Retorna uma mensagem de erro
+        echo json_encode(array("success" => false, "message" => "Erro na consulta SQL: " . $conn->error));
+    }
+
+    $conn->close();
+}
+?>
