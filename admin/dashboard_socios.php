@@ -5,14 +5,26 @@ session_start();
 require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
+// Conectar ao banco de dados
+$servername = "localhost";
+$username = "tomas";
+$password = "!h01fFw35";
+$dbname = "banda";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
 // Recuperar dados do usuário da sessão
-$user_id = $SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 $user_surname = $_SESSION['user_surname'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
-$user_name1 = $user_name . $user_surname;
+$user_name1 = $user_name . ' ' . $user_surname; // Corrigir para incluir espaço entre nome e sobrenome
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
@@ -50,7 +62,7 @@ if ($result_check->num_rows > 0) {
 }
 
 // Obtém o valor total acumulado das cotas para exibição no dashboard
-$sql_total = "SELECT SUM(valor_cota) AS total_cotas FROM pag_cotas WHERE user_id = $user_id AND mes = $mes_atual AND ano = $ano_atual";
+$sql_total = "SELECT SUM(valor_cota) AS total_cotas FROM pag_cotas WHERE user_id = $user_id";
 $result_total = $conn->query($sql_total);
 
 if ($result_total->num_rows > 0) {
@@ -304,34 +316,28 @@ $conn->close();
       </nav>
       <!-- End Navbar -->
       <div class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Monthly Fee Payment -->
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">attach_money</i>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Pagamento de Cotas -->
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-primary card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">attach_money</i>
+                            </div>
+                            <p class="card-category">Pagamento de Cotas</p>
+                            <h3 class="card-title">Valor Total: <?php echo number_format($cotas_valor_total, 2, ',', '.'); ?> €</h3>
                         </div>
-                        <p class="card-category">Pagamento de Cotas</p>
-                        <h3 class="card-title"><?php echo number_format($cotas_valor_total, 2, ',', '.'); ?></h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <?php
-                                if ($status_cota == 0) {
-                                    echo "Valor da cota não pago este mês. Valor total atualizado.";
-                                } elseif ($status_cota == 1) {
-                                    echo "Cota deste mês já paga.";
-                                }
-                            ?>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Atualizado agora
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
                   <footer class="footer">
                     <div class="container-fluid">
