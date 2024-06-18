@@ -103,7 +103,7 @@ $conn->close();
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Admin menu SFLP
+    Menu Sócios
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
@@ -156,11 +156,11 @@ $conn->close();
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-      <a href="dashboard.php" class="simple-text logo-mini">
-        AM
+      <a href="dashboard_socios.php" class="simple-text logo-mini">
+        MS
       </a>
-      <a href="dashboard.php"class="simple-text logo-normal">
-        ADMIN
+      <a href="dashboard_socios.php"class="simple-text logo-normal">
+        Menu Sócio
       </a>
     </div>
     <div class="sidebar-wrapper">

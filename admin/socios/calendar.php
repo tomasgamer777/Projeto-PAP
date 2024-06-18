@@ -24,7 +24,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>ADMIN SFLP</title>
+  <title>Menu Sócios</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
@@ -45,8 +45,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
       <div class="logo">
-        <a href="dashboard.php" class="simple-text logo-mini">AM</a>
-        <a href="dashboard.php" class="simple-text logo-normal">ADMIN</a>
+        <a href="dashboard_socios.php" class="simple-text logo-mini">Ms</a>
+        <a href="dashboard_socios.php" class="simple-text logo-normal">Menu Sócios</a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
@@ -109,24 +109,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="dashboard.php">
+                <a class="nav-link" href="dashboard_socios.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">Stats</p>
                 </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">Some Actions</p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Notification 1</a>
-                  <a class="dropdown-item" href="#">Notification 2</a>
-                  <a class="dropdown-item" href="#">Notification 3</a>
-                  <a class="dropdown-item" href="#">Notification 4</a>
-                  <a class="dropdown-item" href="#">Notification 5</a>
-                </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
