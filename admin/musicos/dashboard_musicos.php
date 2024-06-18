@@ -179,6 +179,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script>
   $(document).ready(function() {
     $('#calendar').fullCalendar({
+      locate: 'pt',
       header: {
         left: 'prev,next today',
         center: 'title',
