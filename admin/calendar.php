@@ -184,34 +184,35 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   <a class="dropdown-item" href="#">Notification 5</a>
                 </div>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
                   <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">Conta</p>
+                  <p class="d-lg-none d-md-block">Account</p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Perfil</a>
-                  <a class="dropdown-item" href="#">Configurações</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="logout.php">Sair</a>
-                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php">
+                  <i class="material-icons">exit_to_app</i>
+                  <p class="d-lg-none d-md-block">Logout</p>
+                </a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">calendar_today</i>
+                  </div>
                   <h4 class="card-title">Calendário</h4>
-                  <p class="card-category">Agenda de Eventos</p>
                 </div>
                 <div class="card-body">
-                  <div id="calendar"></div>
+                  <div id='calendar'></div>
                 </div>
               </div>
             </div>
@@ -226,12 +227,11 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- Plugin for the momentJs  -->
   <script src="assets/js/plugins/moment.min.js"></script>
+
   <!-- FullCalendar JS -->
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
-  <!-- FullCalendar translation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.5/locale/pt.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/locale/pt.js'></script>
   <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
