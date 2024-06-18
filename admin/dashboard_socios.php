@@ -49,7 +49,7 @@ $user_name1 = $user_name . ' ' . $user_surname; // Corrigir para incluir espaço
 $user_photo_path = '/admin/users/' . $user_photo;
 
 // Lógica para pagamento de cotas
-$valor_cota = 100.00; // Valor da cota mensal
+$valor_cota = 20.00; // Valor da cota mensal
 $mes_atual = date('n'); // Obtém o mês atual
 $ano_atual = date('Y'); // Obtém o ano atual
 
