@@ -216,7 +216,7 @@ $conn->close();
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="dashboard.html">Pagamento de quotas</a>
+            <a class="navbar-brand" href="dashboard_socios.html">Pagamento de quotas</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -227,7 +227,7 @@ $conn->close();
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="dashboard.php">
+                <a class="nav-link" href="dashboard_socios.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">
                     Stats
@@ -245,7 +245,7 @@ $conn->close();
                   </p>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="notificacoes.php">
+                  <a class="dropdown-item" >
                       Notificações:   
                       <?php if ($noti_count > 0): ?>
                           <span class="badge badge-info"><?php echo $noti_count; ?></span>
