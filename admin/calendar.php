@@ -17,7 +17,6 @@ $user_name1 = $user_name . $user_surname;
 $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -192,14 +191,16 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="#">Configurações</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="../login/login.html">Terminar sessão</a>
+                  <a class="dropdown-item" href="logout.php">Sair</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
@@ -217,6 +218,35 @@ $user_photo_path = '/admin/users/' . $user_photo;
           </div>
         </div>
       </div>
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com">Creative Tim</a>
+              </li>
+              <li>
+                <a href="https://creative-tim.com/presentation">About Us</a>
+              </li>
+              <li>
+                <a href="http://blog.creative-tim.com">Blog</a>
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/license">Licenses</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, feito com <i class="material-icons">favorite</i> por
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> para uma web melhor.
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
 
    <!-- Core JS Files -->
    <script src="assets/js/core/jquery.min.js"></script>
