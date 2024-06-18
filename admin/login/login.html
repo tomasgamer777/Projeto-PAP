@@ -447,7 +447,7 @@
 <script>
   document.getElementById("loginButton").addEventListener("click", function(event){
       event.preventDefault(); // Impede o envio do formulário padrão
-      var form = event.target.form; // Obtém o formulário
+      var form = document.getElementById("loginForm"); // Obtém o formulário
       var formData = new FormData(form); // Cria um objeto FormData com os dados do formulário
 
       fetch(form.action, {
@@ -459,11 +459,16 @@
           if(data.success){
               // Iniciar sessão no lado do cliente (exemplo com localStorage)
               localStorage.setItem('loggedIn', 'true');
-              // Redirecionamento para o dashboard
-              window.location.href = "../dashboard.php";
+              // Verificar se há um campo de redirecionamento na resposta JSON
+              if(data.redirect){
+                  window.location.href = data.redirect;
+              } else {
+                  // Redirecionamento padrão para o dashboard
+                  window.location.href = "../dashboard.php";
+              }
           } else {
               // Exibição do SweetAlert com a mensagem de erro
-              swal("Erro", data.message, "error");
+              Swal.fire("Erro", data.message, "error");
           }
       })
       .catch(error => {
