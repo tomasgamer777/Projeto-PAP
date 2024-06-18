@@ -18,7 +18,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
@@ -184,16 +184,17 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   <a class="dropdown-item" href="#">Notification 5</a>
                 </div>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
                   <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">Conta</p>
+                  <p class="d-lg-none d-md-block">Account</p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Perfil</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="../login/login.html">Terminar sessão</a>
-                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php">
+                  <i class="material-icons">exit_to_app</i>
+                  <p class="d-lg-none d-md-block">Logout</p>
+                </a>
               </li>
             </ul>
           </div>
@@ -204,18 +205,40 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">calendar_today</i>
+                  </div>
                   <h4 class="card-title">Calendário</h4>
-                  <p class="card-category">Um pequeno calendário com todas as saidas da banda.</p>
                 </div>
                 <div class="card-body">
-                  <div id="calendar"></div>
+                  <div id='calendar'></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="dashboard.php">Admin SFLP</a>
+              </li>
+              <li>
+                <a href="#"> Sobre Nós </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, com <i class="material-icons">favorite</i> por <a href="dashboard.php" target="_blank">Admin SFLP</a> para uma gestão melhor.
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 
@@ -224,14 +247,16 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- SweetAlert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="assets/js/plugins/moment.min.js"></script>
+
   <!-- FullCalendar JS -->
-  <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/locale/pt.js'></script>
+
   <script>
   $(document).ready(function() {
     $('#calendar').fullCalendar({
+      locale: 'pt',
       header: {
         left: 'prev,next today',
         center: 'title',
