@@ -218,38 +218,11 @@ $user_photo_path = '/admin/users/' . $user_photo;
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">Creative Tim</a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">About Us</a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">Blog</a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">Licenses</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, feito com <i class="material-icons">favorite</i> por
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> para uma web melhor.
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
 
-   <!-- Core JS Files -->
-   <script src="assets/js/core/jquery.min.js"></script>
+  <!-- Core JS Files -->
+  <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
