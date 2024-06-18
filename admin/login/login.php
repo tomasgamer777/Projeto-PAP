@@ -9,7 +9,7 @@ function checkAdmin() {
     }
 
     if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 3) {
-        header('Location: /admin/dashboard_socios.php'); // Caminho relativo para a página de permissão negada
+        header('Location: /admin/dashboard_socios1.php'); // Caminho relativo para a página de permissão negada
         exit;
     }
 
