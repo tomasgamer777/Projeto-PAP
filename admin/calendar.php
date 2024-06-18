@@ -17,8 +17,9 @@ $user_name1 = $user_name . $user_surname;
 $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
