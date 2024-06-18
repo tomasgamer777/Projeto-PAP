@@ -218,18 +218,19 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
       </div>
 
+
   <!-- Core JS Files -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- SweetAlert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Plugin for the momentJs  -->
+  <script src="assets/js/plugins/moment.min.js"></script>
   <!-- FullCalendar JS -->
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <!-- FullCalendar translation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.5/locale/pt.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.5/locale/pt.js"></script>
+  <!-- Custom JS -->
   <script>
   $(document).ready(function() {
     $('#calendar').fullCalendar({
