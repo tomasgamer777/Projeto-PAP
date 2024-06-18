@@ -37,7 +37,7 @@ $user_name1 = $user_name . ' ' . $user_surname; // Corrigir para incluir espaço
 $user_photo_path = '/admin/users/' . $user_photo;
 
 // Lógica para pagamento de quotas
-$valor_cota = 20.00; // Valor da cota mensal
+$valor_quotas = 20.00; // Valor da quotas mensal
 $mes_atual = date('n'); // Obtém o mês atual
 $ano_atual = date('Y'); // Obtém o ano atual
 
@@ -50,22 +50,22 @@ if ($result_check_latest->num_rows > 0) {
     $row_latest = $result_check_latest->fetch_assoc();
     $ultimo_mes = $row_latest['mes'];
     $ultimo_ano = $row_latest['ano'];
-    $status_cota = $row_latest['status_cota'];
+    $status_quotas = $row_latest['status_quotas'];
 
     // Verifica se mudou o mês ou ano
     if ($mes_atual != $ultimo_mes || $ano_atual != $ultimo_ano) {
-        if ($status_cota == 0) {
-            // Adiciona o valor da cota ao valor anterior
-            $valor_cota += $row_latest['valor_cota'];
+        if ($status_quotas == 0) {
+            // Adiciona o valor da quotas ao valor anterior
+            $valor_quotas += $row_latest['valor_quotas'];
 
             // Insere um novo registro para o novo mês com o valor atualizado
-            $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+            $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_quotas, valor_quotas) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_quotas)";
             if ($conn->query($sql_insert) !== TRUE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;
             }
-        } else if ($status_cota == 1) {
-            // Insere um novo registro para o novo mês com valor inicial da cota
-            $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+        } else if ($status_quotas == 1) {
+            // Insere um novo registro para o novo mês com valor inicial da quotas
+            $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_quotas, valor_quotas) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_quotas)";
             if ($conn->query($sql_insert) !== TRUE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;
             }
@@ -73,21 +73,21 @@ if ($result_check_latest->num_rows > 0) {
     }
 } else {
     // Não há registro para este usuário, insere um novo registro com status inicial 0 (não pago)
-    $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+    $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_quotas, valor_quotas) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_quotas)";
     if ($conn->query($sql_insert) !== TRUE) {
         echo "Error: " . $sql_insert . "<br>" . $conn->error;
     }
 }
 
 // Obtém o valor total acumulado das quotas para exibição no dashboard
-$sql_total = "SELECT SUM(valor_cota) AS total_quotas FROM pag_quotas WHERE user_id = $user_id";
+$sql_total = "SELECT SUM(valor_quotas) AS total_quotas FROM pag_quotas WHERE user_id = $user_id";
 $result_total = $conn->query($sql_total);
 
 if ($result_total->num_rows > 0) {
     $row_total = $result_total->fetch_assoc();
     $quotas_valor_total = $row_total['total_quotas'];
 } else {
-    $quotas_valor_total = $valor_cota; // Valor inicial se não houver registros ainda
+    $quotas_valor_total = $valor_quotas; // Valor inicial se não houver registros ainda
 }
 
 // Fecha a conexão com o banco de dados
