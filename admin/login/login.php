@@ -8,8 +8,16 @@ function checkAdmin() {
         exit;
     }
 
-    if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] == 3) {
-        header('Location: /admin/dashboard_socios.php'); // Caminho relativo para a página de permissão negada
+    if (!isset($_SESSION['user_type'])) {
+        header('Location: /permissao_negada.html'); // Caminho relativo para a página de permissão negada
+        exit;
+    }
+
+    if ($_SESSION['user_type'] == 3) {
+        header('Location: /admin/dashboard_socios.php'); // Redireciona para o dashboard específico de sócios
+        exit;
+    } elseif ($_SESSION['user_type'] != 4) {
+        header('Location: /permissao_negada.html'); // Caminho relativo para a página de permissão negada
         exit;
     }
 
@@ -78,6 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($row['tipo'] == 4) {
                         // Retorna um JSON indicando sucesso
                         echo json_encode(array("success" => true));
+                        exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
+                    } else if ($row['tipo'] == 3) {
+                        // Retorna um JSON indicando sucesso, mas redireciona para o dashboard de sócios
+                        echo json_encode(array("success" => true, "redirect" => "/admin/dashboard_socios.php"));
                         exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
                     } else {
                         // Retorna um JSON indicando sucesso
