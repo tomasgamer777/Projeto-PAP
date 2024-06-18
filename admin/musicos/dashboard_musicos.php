@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-// Incluir a função checkAdmin do login.php
-require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme necessário
-checkAdmin();
-
 // Recuperar dados do usuário da sessão
 $user_name = $_SESSION['user_name'];
 $user_surname = $_SESSION['user_surname'];
@@ -18,13 +14,13 @@ $user_photo_path = '/admin/users/' . $user_photo;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Menu Músicos</title>
+  <title>Menu Músico</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
@@ -45,8 +41,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
       <div class="logo">
-        <a href="dashbard_musicos.php" class="simple-text logo-mini">MM</a>
-        <a href="dashbard_musicos.php" class="simple-text logo-normal">Menu Músico</a>
+        <a href="dashboard.php" class="simple-text logo-mini">MM</a>
+        <a href="dashboard.php" class="simple-text logo-normal">Menu Músico</a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
@@ -73,17 +69,17 @@ $user_photo_path = '/admin/users/' . $user_photo;
           </div>
         </div>
         <ul class="nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="calendar.php">
-            <i class="material-icons">calendar_today</i>
-            <p> Calendário</p>
-          </a>
-        </li>
-      </ul>
+          <li class="nav-item active">
+            <a class="nav-link" href="calendar.php">
+              <i class="material-icons">calendar_today</i>
+              <p> Calendário </p>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
     <div class="main-panel">
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-minimize">
@@ -92,7 +88,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Calendário</a>
+            <a class="navbar-brand" href="calendar.php">Calendário</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -105,16 +101,39 @@ $user_photo_path = '/admin/users/' . $user_photo;
               <li class="nav-item">
                 <a class="nav-link" href="dashboard_musicos.php">
                   <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">Stats</p>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
                 </a>
               </li>
               <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <?php if ($noti_count > 0): ?>
+                      <span class="notification"><?php echo $noti_count; ?></span>
+                  <?php endif; ?>
+                  <p class="d-lg-none d-md-block">
+                      Some Actions
+                  </p>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" >
+                      Notificações:   
+                      <?php if ($noti_count > 0): ?>
+                          <span class="badge badge-info"><?php echo $noti_count; ?></span>
+                      <?php endif; ?>
+                  </a>
+              </div>
+          </li>
+              <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">Conta</p>
+                  <p class="d-lg-none d-md-block">
+                    Conta
+                  </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="">Perfil</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="../login/login.html">Terminar sessão</a>
                 </div>
@@ -128,12 +147,14 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-rose card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">calendar_today</i>
+                  </div>
                   <h4 class="card-title">Calendário</h4>
-                  <p class="card-category">Um pequeno calendário com todas as saidas da banda.</p>
                 </div>
                 <div class="card-body">
-                  <div id="calendar"></div>
+                  <div id='calendar'></div>
                 </div>
               </div>
             </div>
@@ -148,11 +169,13 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="../assets/js/plugins/moment.min.js"></script>
+
+  <!-- FullCalendar JS -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/locale/pt.js'></script>
   <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- FullCalendar JS -->
-  <script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js'></script>
   <script>
   $(document).ready(function() {
     $('#calendar').fullCalendar({
