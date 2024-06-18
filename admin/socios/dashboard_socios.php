@@ -193,7 +193,7 @@ $conn->close();
         <li class="nav-item active ">
           <a class="nav-link" href="dashboard_socios.php">
             <i class="material-icons">dashboard</i>
-            <p> Pagamento de Cótas </p>
+            <p> Pagamento de quotas </p>
           </a>
         </li>
         <li class="nav-item ">
@@ -216,7 +216,7 @@ $conn->close();
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="dashboard.html">Pagamento de Cótas</a>
+            <a class="navbar-brand" href="dashboard.html">Pagamento de quotas</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
