@@ -36,13 +36,13 @@ $user_name1 = $user_name . ' ' . $user_surname; // Corrigir para incluir espaço
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
 
-// Lógica para pagamento de cotas
+// Lógica para pagamento de quotas
 $valor_cota = 20.00; // Valor da cota mensal
 $mes_atual = date('n'); // Obtém o mês atual
 $ano_atual = date('Y'); // Obtém o ano atual
 
 // Verifica o registro mais recente no banco de dados para este usuário
-$sql_check_latest = "SELECT * FROM pag_cotas WHERE user_id = $user_id ORDER BY ano DESC, mes DESC LIMIT 1";
+$sql_check_latest = "SELECT * FROM pag_quotas WHERE user_id = $user_id ORDER BY ano DESC, mes DESC LIMIT 1";
 $result_check_latest = $conn->query($sql_check_latest);
 
 if ($result_check_latest->num_rows > 0) {
@@ -59,13 +59,13 @@ if ($result_check_latest->num_rows > 0) {
             $valor_cota += $row_latest['valor_cota'];
 
             // Insere um novo registro para o novo mês com o valor atualizado
-            $sql_insert = "INSERT INTO pag_cotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+            $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
             if ($conn->query($sql_insert) !== TRUE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;
             }
         } else if ($status_cota == 1) {
             // Insere um novo registro para o novo mês com valor inicial da cota
-            $sql_insert = "INSERT INTO pag_cotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+            $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
             if ($conn->query($sql_insert) !== TRUE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;
             }
@@ -73,21 +73,21 @@ if ($result_check_latest->num_rows > 0) {
     }
 } else {
     // Não há registro para este usuário, insere um novo registro com status inicial 0 (não pago)
-    $sql_insert = "INSERT INTO pag_cotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
+    $sql_insert = "INSERT INTO pag_quotas (user_id, mes, ano, status_cota, valor_cota) VALUES ($user_id, $mes_atual, $ano_atual, 0, $valor_cota)";
     if ($conn->query($sql_insert) !== TRUE) {
         echo "Error: " . $sql_insert . "<br>" . $conn->error;
     }
 }
 
-// Obtém o valor total acumulado das cotas para exibição no dashboard
-$sql_total = "SELECT SUM(valor_cota) AS total_cotas FROM pag_cotas WHERE user_id = $user_id";
+// Obtém o valor total acumulado das quotas para exibição no dashboard
+$sql_total = "SELECT SUM(valor_cota) AS total_quotas FROM pag_quotas WHERE user_id = $user_id";
 $result_total = $conn->query($sql_total);
 
 if ($result_total->num_rows > 0) {
     $row_total = $result_total->fetch_assoc();
-    $cotas_valor_total = $row_total['total_cotas'];
+    $quotas_valor_total = $row_total['total_quotas'];
 } else {
-    $cotas_valor_total = $valor_cota; // Valor inicial se não houver registros ainda
+    $quotas_valor_total = $valor_cota; // Valor inicial se não houver registros ainda
 }
 
 // Fecha a conexão com o banco de dados
@@ -274,15 +274,15 @@ $conn->close();
       <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- Pagamento de Cotas -->
+                <!-- Pagamento de quotas -->
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card card-stats">
                         <div class="card-header card-header-primary card-header-icon">
                             <div class="card-icon">
                                 <i class="material-icons">attach_money</i>
                             </div>
-                            <p class="card-category">Pagamento de Cotas</p>
-                            <h3 class="card-title">Valor Total: <?php echo number_format($cotas_valor_total, 2, ',', '.'); ?> €</h3>
+                            <p class="card-category">Pagamento de quotas</p>
+                            <h3 class="card-title">Valor Total: <?php echo number_format($quotas_valor_total, 2, ',', '.'); ?> €</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
