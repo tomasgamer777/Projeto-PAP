@@ -145,7 +145,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </div>
     </div>
     <div class="main-panel">
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-minimize">
@@ -154,7 +154,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Calendário</a>
+            <a class="navbar-brand" href="#pablo">Blog</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -167,34 +167,42 @@ $user_photo_path = '/admin/users/' . $user_photo;
               <li class="nav-item">
                 <a class="nav-link" href="dashboard.php">
                   <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">Stats</p>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
                 </a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">Some Actions</p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Notification 1</a>
-                  <a class="dropdown-item" href="#">Notification 2</a>
-                  <a class="dropdown-item" href="#">Notification 3</a>
-                  <a class="dropdown-item" href="#">Notification 4</a>
-                  <a class="dropdown-item" href="#">Notification 5</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
+                  <?php if ($noti_count > 0): ?>
+                      <span class="notification"><?php echo $noti_count; ?></span>
+                  <?php endif; ?>
+                  <p class="d-lg-none d-md-block">
+                      Some Actions
+                  </p>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="notificacoes.php">
+                      Notificações:   
+                      <?php if ($noti_count > 0): ?>
+                          <span class="badge badge-info"><?php echo $noti_count; ?></span>
+                      <?php endif; ?>
+                  </a>
+              </div>
+          </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">Account</p>
+                  <p class="d-lg-none d-md-block">
+                    Conta
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="logout.php">
-                  <i class="material-icons">exit_to_app</i>
-                  <p class="d-lg-none d-md-block">Logout</p>
-                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="">Perfil</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
+                </div>
               </li>
             </ul>
           </div>
