@@ -20,7 +20,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>ADMIN SFLP</title>
+  <title>Menu Sócio</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard-pro" />
@@ -42,7 +42,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
       <div class="logo">
         <a href="dashboard.php" class="simple-text logo-mini">AM</a>
-        <a href="dashboard.php" class="simple-text logo-normal">ADMIN</a>
+        <a href="dashboard.php" class="simple-text logo-normal">Menu Sócio</a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
@@ -70,72 +70,16 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
         <ul class="nav">
           <li class="nav-item ">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="dashboard_socios.php">
               <i class="material-icons">dashboard</i>
-              <p> Menu Principal </p>
+              <p> Pagamento de Quotas </p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#utilizadores">
-              <i class="material-icons">person</i>
-              <p> Utilizadores <b class="caret"></b></p>
-            </a>
-            <div class="collapse" id="utilizadores">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="users/add_users.php">
-                    <i class="material-icons"> person_add_alt </i>
-                    <span class="sidebar-normal"> Adicionar Utilizadores </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="users/list_user.php">
-                    <i class="material-icons"> list </i>
-                    <span class="sidebar-normal"> lista de Utilizadores </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="calendar.php">
               <i class="material-icons">calendar_today</i>
               <p> Calendário </p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="notificacoes.php">
-              <i class="material-icons">notifications</i>
-              <p> Notificações </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#website">
-              <i class="material-icons">public</i>
-              <p> Editar Website <b class="caret"></b></p>
-            </a>
-            <div class="collapse" id="website">
-              <ul class="nav">
-                <li class="nav-item ">
-                  <a class="nav-link" href="edithomepage.php">
-                    <i class="material-icons"> house </i>
-                    <span class="sidebar-normal"> Página Principal </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="editgalery.php">
-                    <i class="material-icons"> collections </i>
-                    <span class="sidebar-normal"> Galeria </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="editblog.php">
-                    <i class="material-icons"> newspaper </i>
-                    <span class="sidebar-normal"> Blog </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
         </ul>
       </div>
@@ -161,7 +105,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="dashboard.php">
+                <a class="nav-link" href="dashboard_socios.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">
                     Stats
@@ -179,7 +123,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   </p>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="notificacoes.php">
+                  <a class="dropdown-item" >
                       Notificações:   
                       <?php if ($noti_count > 0): ?>
                           <span class="badge badge-info"><?php echo $noti_count; ?></span>
@@ -197,7 +141,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="">Perfil</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
+                  <a class="dropdown-item" href="../login/login.html">Terminar sessão</a>
                 </div>
               </li>
             </ul>
