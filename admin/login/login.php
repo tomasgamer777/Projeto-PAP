@@ -83,6 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo json_encode(array("success" => true, "redirect" => "/admin/socios/dashboard_socios.php"));
                         exit; // Encerra o script para garantir que o redirecionamento funcione corretamente
                     } 
+                    else if ($row['tipo'] == 2) {
+                        echo json_encode(array("success" => true, "redirect" => "/admin/musicos/dashboard_musicos.php"));
+                        exit; 
+                    } 
                 } else {
                     // Retorna uma mensagem de erro
                     echo json_encode(array("success" => false, "message" => "Senha incorreta."));
