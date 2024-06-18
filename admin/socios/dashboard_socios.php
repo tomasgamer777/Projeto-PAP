@@ -37,7 +37,7 @@ $user_name1 = $user_name . ' ' . $user_surname; // Corrigir para incluir espaço
 $user_photo_path = '/admin/users/' . $user_photo;
 
 // Lógica para pagamento de cotas
-$valor_cota = 100.00; // Valor da cota mensal
+$valor_cota = 20.00; // Valor da cota mensal
 $mes_atual = date('n'); // Obtém o mês atual
 $ano_atual = date('Y'); // Obtém o ano atual
 
@@ -191,76 +191,16 @@ $conn->close();
       </div>
       <ul class="nav">
         <li class="nav-item active ">
-          <a class="nav-link" href="dashboard.php">
+          <a class="nav-link" href="dashboard_socios.php">
             <i class="material-icons">dashboard</i>
-            <p> Menu Principal </p>
+            <p> Pagamento de Cótas </p>
           </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" data-toggle="collapse" href="#utilizadores">
-            <i class="material-icons">person</i>
-            <p> Utilizadores
-              <b class="caret"></b>
-            </p>
-          </a>
-          <div class="collapse" id="utilizadores">
-            <ul class="nav">
-              <li class="nav-item ">
-                <a class="nav-link" href="users/add_users.php">
-                  <i class="material-icons"> person_add_alt </i>
-                  <span class="sidebar-normal"> Adicionar Utilizadores </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="users/list_user.php">
-                  <i class="material-icons"> list </i>
-                  <span class="sidebar-normal"> lista de Utilizadores </span>
-                </a>
-              </li>
-            </ul>
-          </div>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="calendar.php">
             <i class="material-icons">calendar_today</i>
             <p> Calendário </p>
           </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="notificacoes.php">
-            <i class="material-icons">notifications</i>
-            <p> Notificações </p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" data-toggle="collapse" href="#website">
-            <i class="material-icons">public</i>
-            <p> Editar Website
-              <b class="caret"></b>
-            </p>
-          </a>
-          <div class="collapse" id="website">
-            <ul class="nav">
-              <li class="nav-item ">
-                <a class="nav-link" href="edithomepage.php">
-                  <i class="material-icons"> house </i>
-                  <span class="sidebar-normal"> Página Principal </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="editgalery.php">
-                  <i class="material-icons"> collections </i>
-                  <span class="sidebar-normal"> Galeria </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="editblog.php">
-                  <i class="material-icons"> newspaper </i>
-                  <span class="sidebar-normal"> Blog </span>
-                </a>
-              </li>
-            </ul>
-          </div>
         </li>
       </ul>
     </div>
@@ -276,7 +216,7 @@ $conn->close();
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="dashboard.html">Menu Principal</a>
+            <a class="navbar-brand" href="dashboard.html">Pagamento de Cótas</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
