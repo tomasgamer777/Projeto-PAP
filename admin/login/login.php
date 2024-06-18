@@ -13,14 +13,6 @@ function checkAdmin() {
         exit;
     }
 
-    if ($_SESSION['user_type'] == 3) {
-        header('Location: /admin/dashboard_socios.php'); // Redireciona para o dashboard específico de sócios
-        exit;
-    } elseif ($_SESSION['user_type'] != 4) {
-        header('Location: /permissao_negada.html'); // Caminho relativo para a página de permissão negada
-        exit;
-    }
-
     // Verificar inatividade
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) { // 300 segundos = 5 minutos
         session_unset();
@@ -77,12 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['cod_postal'] = $row['cod_postal'];
                     $_SESSION['user_surname'] = $row['sobrenome'];
                     $_SESSION['nif'] = $row['nif'];
-                    $_SESSION['tipo'] = $row['tipo'];
                     $_SESSION['status'] = $row['status'];
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
                     $_SESSION['user_photo'] = $row['foto']; // URL da foto do usuário
 
-                    // Verificar se o usuário é um administrador (tipo = 4)
+                    // Verificar o tipo de usuário e redirecionar adequadamente
                     if ($row['tipo'] == 4) {
                         // Retorna um JSON indicando sucesso
                         echo json_encode(array("success" => true));
