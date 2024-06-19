@@ -495,24 +495,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 $(document).ready(function() {
-    $('#btnAddUser').on('click', function() {
-        console.log("Botão de adicionar clicado"); 
-        var fileInput = $('#wizard-picture')[0];
-        var file = fileInput.files[0];
+    $('#userForm').on('submit', function(e) {
+        e.preventDefault();
 
-        // Verifica se o arquivo é uma imagem
-        if (file && !file.type.startsWith('image/')) {
-            Swal.fire({
-                title: "Erro!",
-                text: "Por favor, envie um arquivo de imagem.",
-                icon: "error",
-                confirmButtonClass: "btn btn-danger",
-                buttonsStyling: false
-            });
-            return;
-        }
-
-        var formData = new FormData($('#userForm')[0]);
+        var formData = new FormData(this);
 
         $.ajax({
             url: 'add_users1.php',
@@ -520,41 +506,39 @@ $(document).ready(function() {
             data: formData,
             contentType: false,
             processData: false,
-            dataType: 'json', // Espera uma resposta JSON do servidor
             success: function(response) {
+                // Verifica a resposta do servidor
                 if (response.success) {
                     Swal.fire({
-                        title: "Bom trabalho!",
+                        icon: 'success',
+                        title: 'Sucesso!',
                         text: response.message,
-                        icon: "success",
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
+                        confirmButtonText: 'OK'
                     }).then(function() {
-                        // Redirecionar ou fazer qualquer outra ação após sucesso...
-                        window.location.href = "pagina_de_redirecionamento.php";
+                        // Redireciona ou realiza outras ações após o sucesso
+                        window.location.href = 'add_users.php';
                     });
                 } else {
                     Swal.fire({
-                        title: "Erro!",
+                        icon: 'error',
+                        title: 'Erro!',
                         text: response.message,
-                        icon: "error",
-                        confirmButtonClass: "btn btn-danger",
-                        buttonsStyling: false
+                        confirmButtonText: 'OK'
                     });
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 Swal.fire({
-                    title: "Erro!",
-                    text: "Erro ao criar o registro: " + errorThrown,
-                    icon: "error",
-                    confirmButtonClass: "btn btn-danger",
-                    buttonsStyling: false
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro ao enviar o formulário: ' + errorThrown,
+                    confirmButtonText: 'OK'
                 });
             }
         });
     });
 });
+
 </script>
 
 
