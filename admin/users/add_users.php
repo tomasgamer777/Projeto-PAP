@@ -465,7 +465,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                     </div>
                     <div class="ml-auto">
                       <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Proximo">
-                      <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" formaction="add_users1.php">
+                      <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" id ="userForm">
                     </div>
                     <div class="clearfix"></div>
                   </div>
