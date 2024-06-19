@@ -105,21 +105,9 @@ $user_photo_path = '/admin/users/' . $user_photo;
             <div class="collapse" id="collapseExample">
               <ul class="nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link" href="edit_user1.php">
                     <span class="sidebar-mini"> EP </span>
                     <span class="sidebar-normal"> Editar Perfil </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="sidebar-mini"> D </span>
-                    <span class="sidebar-normal"> Definições </span>
                   </a>
                 </li>
               </ul>
