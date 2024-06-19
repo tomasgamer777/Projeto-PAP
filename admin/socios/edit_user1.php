@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
-            document.getElementById("wizardPicturePreview").src = userData.foto;
+            document.getElementById("wizardPicturePreview").src = previewImage.src;
         } else {
             // Se não houver foto, exibir a imagem padrão
             document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
