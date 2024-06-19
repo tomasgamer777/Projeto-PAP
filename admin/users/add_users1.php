@@ -77,6 +77,9 @@ if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty
     send_json_response(false, "Todos os campos devem ser preenchidos.");
 }
 
+// Formatar a data de nascimento para o formato Y-m-d (que é o formato aceito pelo MySQL)
+$data_nascimento_formatada = date('Y-m-d', strtotime($data_nascimento));
+
 // Criptografar a senha
 $password_hashed = password_hash($password, PASSWORD_BCRYPT);
 
@@ -87,9 +90,9 @@ $sql = "INSERT INTO users (nome, sobrenome, email, password, telef, morada, data
 $stmt = $conn->prepare($sql);
 
 if ($profile_picture) {
-    $stmt->bind_param("ssssssssssiss", $nome, $sobrenome, $email, $password_hashed, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
+    $stmt->bind_param("ssssssssssiss", $nome, $sobrenome, $email, $password_hashed, $telef, $morada, $data_nascimento_formatada, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
 } else {
-    $stmt->bind_param("ssssssssssis", $nome, $sobrenome, $email, $password_hashed, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status);
+    $stmt->bind_param("ssssssssssis", $nome, $sobrenome, $email, $password_hashed, $telef, $morada, $data_nascimento_formatada, $cod_postal, $nif, $distrito, $tipo, $status);
 }
 
 if ($stmt->execute()) {
