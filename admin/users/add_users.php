@@ -70,7 +70,13 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   
 </head>
-
+<script>
+    $(document).ready(function() {
+        $("#data_nascimento").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    });
+</script>
 <body class="">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Google Tag Manager (noscript) -->
@@ -486,13 +492,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
 <!-- Inclua o jQuery UI -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Configuração do Datepicker -->
-<script>
-    $(document).ready(function() {
-        $("#data_nascimento").datepicker({
-            dateFormat: "dd/mm/yy"
-        });
-    });
-</script>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 $(document).ready(function() {
