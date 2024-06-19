@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Incluir a função checkAdmin do login.php
+require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme necessário
+checkAdmin();
+
 // Recuperar dados do usuário da sessão
 $user_name = $_SESSION['user_name'];
 $user_surname = $_SESSION['user_surname'];
