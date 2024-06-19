@@ -480,29 +480,36 @@ $user_photo_path = '/admin/users/' . $user_photo;
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $.ajax({
-    url: 'add_users1.php',
-    type: 'POST',
-    data: new FormData(document.getElementById('userForm')),
-    contentType: false,
-    processData: false,
-    success: function(response) {
-        try {
-            var jsonResponse = JSON.parse(response);
-            if (jsonResponse.success) {
-                alert(jsonResponse.message);
-            } else {
-                alert(jsonResponse.message);
-            }
-        } catch (e) {
-            console.error("Erro ao processar resposta JSON:", e, response);
-        }
-    },
-    error: function(xhr, status, error) {
-        console.error("Erro na requisição AJAX:", status, error);
-    }
-});
-</script>
+        $(document).ready(function () {
+            $('#userForm').on('submit', function (e) {
+                e.preventDefault(); // Evita o envio normal do formulário
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: 'add_users1.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        try {
+                            var jsonResponse = JSON.parse(response);
+                            if (jsonResponse.success) {
+                                alert(jsonResponse.message);
+                            } else {
+                                alert(jsonResponse.message);
+                            }
+                        } catch (e) {
+                            console.error("Erro ao processar resposta JSON:", e, response);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Erro na requisição AJAX:", status, error);
+                    }
+                });
+            });
+        });
+    </script>
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
