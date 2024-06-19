@@ -124,7 +124,7 @@ $conn->close();
             <ul class="nav">
               
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="users/edit_user1.php">
                   <span class="sidebar-mini"> EP </span>
                   <span class="sidebar-normal"> Editar Perfil </span>
                 </a>
