@@ -289,66 +289,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cod_postal").value = userData.cod_postal;
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
-
-        // Exibir a foto de perfil, se existir
-        if (userData.foto) {
-            document.getElementById("wizardPicturePreview").src = userData.foto;
-        } else {
-            // Se não houver foto, exibir a imagem padrão
-            document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
-        }
-
-        // Forçar a atualização do campo de tipo e distrito para exibir a opção selecionada
-        $('.selectpicker').selectpicker('refresh');
-    }
-
-    // Requisição para obter dados do usuário
-    fetch('get_user_info.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                fillForm(data.data);
-            } else {
-                console.error("Erro ao obter dados do usuário: ", data.message);
-            }
-        })
-        .catch(error => console.error('Erro na requisição: ', error));
-
-    // Preview da foto de perfil
-    previewProfilePicture();
-
-    // Função para visualizar a foto de perfil
-    function previewProfilePicture() {
-        const fileInput = document.getElementById('wizard-picture');
-        const previewImage = document.getElementById('wizardPicturePreview');
-
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-            };
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-
-    // Função para enviar os dados do formulário
-    document.addEventListener("DOMContentLoaded", function() {
-    // Função para preencher o formulário com dados do usuário
-    function fillForm(userData) {
-        document.getElementById("user_id").value = userData.user_id;
-        document.getElementById("nome").value = userData.nome;
-        document.getElementById("sobrenome").value = userData.sobrenome;
-        document.getElementById("email").value = userData.email;
-        document.getElementById("telef").value = userData.telef;
-        document.getElementById("morada").value = userData.morada;
-        document.getElementById("data_nasc").value = userData.data_nasc;
-        document.getElementById("cod_postal").value = userData.cod_postal;
-        document.getElementById("nif").value = userData.nif;
-        document.getElementById("distrito").value = userData.distrito;
         
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
