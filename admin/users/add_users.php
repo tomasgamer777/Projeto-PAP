@@ -463,38 +463,57 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-        $(document).ready(function () {
-            $('#userForm').on('submit', function (e) {
-                e.preventDefault(); // Evita o envio normal do formulário
-                var formData = new FormData(this);
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
-                $.ajax({
-                    url: 'add_users1.php',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        try {
-                            var jsonResponse = JSON.parse(response);
-                            if (jsonResponse.success) {
-                                alert(jsonResponse.message);
-                            } else {
-                                alert(jsonResponse.message);
-                            }
-                        } catch (e) {
-                            console.error("Erro ao processar resposta JSON:", e, response);
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Erro na requisição AJAX:", status, error);
-                    }
+<script>
+$(document).ready(function() {
+    $("#userForm").submit(function(e) {
+        e.preventDefault(); // Evita que o formulário seja submetido normalmente
+
+        // Enviar a requisição AJAX
+        $.ajax({
+            type: "POST",
+            url: "add_users1.php",
+            data: new FormData(this), // Usar FormData para enviar dados do formulário, incluindo arquivos
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function(response) {
+                if (response.success) {
+                    // Exibir SweetAlert de sucesso
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: response.message,
+                        showConfirmButton: false,
+                        timer: 1500 // Fecha automaticamente após 1,5 segundos
+                    }).then(function() {
+                        // Redirecionar ou fazer qualquer outra ação após sucesso
+                        window.location.href = "add_users.php";
+                    });
+                } else {
+                    // Exibir SweetAlert de erro
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: response.message
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Erro na requisição AJAX:", status, error);
+                // Exibir SweetAlert de erro genérico
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro ao processar requisição. Verifique o console para mais detalhes.'
                 });
-            });
+            }
         });
-    </script>
+    });
+});
+</script>
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
