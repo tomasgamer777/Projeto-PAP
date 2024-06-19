@@ -480,7 +480,18 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </div>
     </div>
   </div>
-
+<!-- Inclua o jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Inclua o jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- Configuração do Datepicker -->
+<script>
+    $(document).ready(function() {
+        $("#data_nascimento").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+    });
+</script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 $(document).ready(function() {
@@ -637,18 +648,7 @@ $(document).ready(function() {
     </div>
   </div>
 
-<!-- Inclua o jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Inclua o jQuery UI -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<!-- Configuração do Datepicker -->
-<script>
-    $(document).ready(function() {
-        $("#data_nascimento").datepicker({
-            dateFormat: "dd/mm/yy"
-        });
-    });
-</script>
+
 
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
