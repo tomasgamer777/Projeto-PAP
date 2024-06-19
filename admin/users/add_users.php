@@ -337,41 +337,58 @@ $user_photo_path = '/admin/users/' . $user_photo;
                               </div>
                           </div>
                           <div class="tab-pane" id="account">
-                            <h5 class="info-text"> Qual é a função do Utilizador? </h5>
-                            <div class="row justify-content-center">
-                                <div class="col-lg-10">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="choice" data-toggle="wizard-radio">
-                                                <input type="radio" name="jobb" value="4" id="admin">
-                                                <div class="icon">
-                                                    <i class="material-icons">admin_panel_settings</i>
-                                                </div>
-                                                <h6>Admin</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="choice" data-toggle="wizard-radio">
-                                                <input type="radio" name="jobb" value="2" id="musico">
-                                                <div class="icon">
-                                                    <i class="material-icons">piano</i>
-                                                </div>
-                                                <h6>Músico</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="choice" data-toggle="wizard-radio">
-                                                <input type="radio" name="jobb" value="3" id="socio">
-                                                <div class="icon">
-                                                    <i class="material-icons">payments</i>
-                                                </div>
-                                                <h6>Sócio</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <h5 class="info-text">Qual é a função do Utilizador?</h5>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="row">
+                <!-- Opção existente para Admin -->
+                <div class="col-sm-4">
+                    <div class="choice" data-toggle="wizard-radio">
+                        <input type="radio" name="jobb" value="4" id="admin">
+                        <div class="icon">
+                            <i class="material-icons">admin_panel_settings</i>
                         </div>
+                        <h6>Admin</h6>
+                    </div>
+                </div>
+
+                <!-- Opção existente para Músico -->
+                <div class="col-sm-4">
+                    <div class="choice" data-toggle="wizard-radio">
+                        <input type="radio" name="jobb" value="2" id="musico">
+                        <div class="icon">
+                            <i class="material-icons">piano</i>
+                        </div>
+                        <h6>Músico</h6>
+                    </div>
+                </div>
+
+                <!-- Opção existente para Sócio -->
+                <div class="col-sm-4">
+                    <div class="choice" data-toggle="wizard-radio">
+                        <input type="radio" name="jobb" value="3" id="socio">
+                        <div class="icon">
+                            <i class="material-icons">payments</i>
+                        </div>
+                        <h6>Sócio</h6>
+                    </div>
+                </div>
+
+                <!-- Nova opção para Aluno com código 1 -->
+                <div class="col-sm-4">
+                    <div class="choice" data-toggle="wizard-radio">
+                        <input type="radio" name="jobb" value="1" id="aluno">
+                        <div class="icon">
+                            <i class="material-icons">school</i>
+                        </div>
+                        <h6>Aluno</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
                         <style>
                           .error-message {
                               color: red;
