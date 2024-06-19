@@ -11,7 +11,7 @@ $user_surname = $_SESSION['user_surname'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
-$user_name1 = $user_name . $user_surname;
+$user_name1 = $user_name . ' ' . $user_surname;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
