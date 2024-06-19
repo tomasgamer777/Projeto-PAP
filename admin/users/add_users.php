@@ -408,6 +408,12 @@ $user_photo_path = '/admin/users/' . $user_photo;
                               </div>
                               <div class="col-sm-3">
                                   <div class="form-group">
+                                      <label>Código Postal</label>
+                                      <input type="text" class="form-control" name="cod_postal">
+                                  </div>
+                              </div>
+                              <div class="col-sm-3">
+                                  <div class="form-group">
                                       <label>Rua</label>
                                       <input type="text" class="form-control" name="rua">
                                   </div>

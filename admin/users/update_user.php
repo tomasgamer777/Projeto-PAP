@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $distrito = $_POST['distrito'];
         $cod_postal = $_POST['cod_postal'];
         $nif = $_POST['nif'];
+        $cod_postal = $_POST['cod_postal']
 
         // Conexão com o banco de dados
         $servername = "localhost";
