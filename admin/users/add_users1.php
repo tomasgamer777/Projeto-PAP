@@ -74,7 +74,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 }
 
 // Verificar se os campos obrigatórios estão vazios
-if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nasc) || empty($cod_postal) || empty($nif) || empty($distrito)) {
+if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nascimento) || empty($cod_postal) || empty($nif) || empty($distrito)) {
     send_json_response(false, "Todos os campos devem ser preenchidos.");
 }
 
