@@ -426,8 +426,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
                             <option value="2">Músico</option>
                             <option value="3">Sócio</option>
                             <option value="4">Admin</option>
-                            <option value="5">Encarregado de educação</option>
-                            <option value="6">Professor</option>
                           </select>
                         </div>
                       </div>
