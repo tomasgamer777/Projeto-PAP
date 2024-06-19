@@ -2,8 +2,8 @@
 session_start();
 
 // Recuperar dados do usuário da sessão
-$user_name = $_SESSION['user_name'];
-$user_surname = $_SESSION['user_surname'];
+$user_name = $_SESSION['user_nome'];
+$user_surname = $_SESSION['user_subrenome'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
