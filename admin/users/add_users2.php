@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-// Conectar ao banco de dados
+// Configurações de conexão com o banco de dados
 $servername = "localhost";
 $username = "tomas";
 $password = "!h01fFw35";
@@ -16,7 +16,8 @@ $dbname = "banda";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+    echo json_encode(["success" => false, "message" => "Falha na conexão: " . $conn->connect_error]);
+    exit;
 }
 
 // Receber os dados do formulário
@@ -31,9 +32,10 @@ $cod_postal = $_POST['cod_postal'] ?? '';
 $nif = $_POST['nif'] ?? '';
 $distrito = $_POST['distrito'] ?? '';
 $profile_picture = null;
-$tipo = $tipo;
-$status = $status;
 
+// Certifique-se de que $tipo e $status sejam definidos corretamente
+$tipo = $_POST['tipo'] ?? '';
+$status = $_POST['status'] ?? '';
 
 // Verificar se uma nova imagem de perfil foi enviada
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
@@ -51,7 +53,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
         // Caminho para onde a imagem será movida
-        $uploadFileDir = './fotosperfil/';
+        $uploadFileDir = './uploaded_images/';
         $dest_path = $uploadFileDir . $newFileName;
 
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
@@ -67,7 +69,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 }
 
 // Verificar se os campos obrigatórios estão vazios
-if (empty($user_id) || empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nasc) || empty($cod_postal) || empty($nif) || empty($distrito)) {
+if (empty($user_id) || empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nasc) || empty($cod_postal) || empty($nif) || empty($distrito) || empty($tipo) || empty($status)) {
     echo json_encode(["success" => false, "message" => "Todos os campos devem ser preenchidos."]);
     exit;
 }
@@ -86,6 +88,10 @@ if ($profile_picture) {
 }
 
 $stmt = $conn->prepare($sql);
+if (!$stmt) {
+    echo json_encode(["success" => false, "message" => "Erro ao preparar a declaração: " . $conn->error]);
+    exit;
+}
 $stmt->bind_param(str_repeat("s", count($params)), ...$params);
 
 if ($stmt->execute()) {
@@ -102,7 +108,6 @@ if ($stmt->execute()) {
     if ($profile_picture) {
         $_SESSION['user_photo'] = $profile_picture;
     }
-
 
     echo json_encode(["success" => true, "message" => "Usuário atualizado com sucesso."]);
 } else {
