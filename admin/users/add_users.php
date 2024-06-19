@@ -517,7 +517,7 @@ $(document).ready(function() {
                         buttonsStyling: false
                     }).then(function() {
                         // Redirecionar ou fazer qualquer outra ação após sucesso...
-                        window.location.href = "add_users.php";
+                        window.location.href = "pagina_de_redirecionamento.php";
                     });
                 } else {
                     Swal.fire({
@@ -542,6 +542,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 
 
