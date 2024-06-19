@@ -8,7 +8,7 @@ function checkAdmin() {
         exit;
     }
 
-    if (!isset($_SESSION['user_type'])) {
+    if (!isset($_SESSION['tipo'])) {
         header('Location: /permissao_negada.html'); // Caminho relativo para a página de permissão negada
         exit;
     }
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (password_verify($password_user, $row['password'])) {
                     // Definir variáveis de sessão
                     $_SESSION['loggedin'] = true;
-                    $_SESSION['user_type'] = $row['tipo'];
+                    $_SESSION['tipo'] = $row['tipo']; // Usar 'tipo' para consistência
                     $_SESSION['last_activity'] = time();
                     $_SESSION['user_name'] = $row['nome']; // Nome do usuário
                     $_SESSION['user_id'] = $row['user_id'];
@@ -70,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['user_surname'] = $row['sobrenome'];
                     $_SESSION['nif'] = $row['nif'];
                     $_SESSION['status'] = $row['status'];
-                    $_SESSION['tipo'] = $row['tipo'];
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
                     $_SESSION['user_photo'] = $row['foto']; // URL da foto do usuário
 
