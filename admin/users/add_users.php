@@ -495,10 +495,24 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 $(document).ready(function() {
-    $('#userForm').on('submit', function(e) {
-        e.preventDefault();
+    $('#btnAddUser').on('click', function() {
+        console.log("Botão de adicionar clicado"); 
+        var fileInput = $('#wizard-picture')[0];
+        var file = fileInput.files[0];
 
-        var formData = new FormData(this);
+        // Verifica se o arquivo é uma imagem
+        if (file && !file.type.startsWith('image/')) {
+            Swal.fire({
+                title: "Erro!",
+                text: "Por favor, envie um arquivo de imagem.",
+                icon: "error",
+                confirmButtonClass: "btn btn-danger",
+                buttonsStyling: false
+            });
+            return;
+        }
+
+        var formData = new FormData($('#userForm')[0]);
 
         $.ajax({
             url: 'add_users1.php',
@@ -506,6 +520,7 @@ $(document).ready(function() {
             data: formData,
             contentType: false,
             processData: false,
+            dataType: 'json', // Espera uma resposta JSON do servidor
             success: function(response) {
                 // Verifica a resposta do servidor
                 if (response.success) {
@@ -516,7 +531,7 @@ $(document).ready(function() {
                         confirmButtonText: 'OK'
                     }).then(function() {
                         // Redireciona ou realiza outras ações após o sucesso
-                        window.location.href = 'add_users.php';
+                        window.location.href = 'pagina_sucesso.php';
                     });
                 } else {
                     Swal.fire({
@@ -538,7 +553,6 @@ $(document).ready(function() {
         });
     });
 });
-
 </script>
 
 
