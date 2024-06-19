@@ -337,57 +337,57 @@ $user_photo_path = '/admin/users/' . $user_photo;
                               </div>
                           </div>
                           <div class="tab-pane" id="account">
-    <h5 class="info-text">Qual é a função do Utilizador?</h5>
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="row">
-                <!-- Opção existente para Admin -->
-                <div class="col-sm-4">
-                    <div class="choice" data-toggle="wizard-radio">
-                        <input type="radio" name="jobb" value="4" id="admin">
-                        <div class="icon">
-                            <i class="material-icons">admin_panel_settings</i>
-                        </div>
-                        <h6>Admin</h6>
-                    </div>
-                </div>
+                          <h5 class="info-text">Qual é a função do Utilizador?</h5>
+                          <div class="row justify-content-center">
+                              <div class="col-lg-10">
+                                  <div class="row">
+                                      <!-- Opção existente para Admin -->
+                                      <div class="col-sm-4">
+                                          <div class="choice" data-toggle="wizard-radio">
+                                              <input type="radio" name="jobb" value="4" id="admin">
+                                              <div class="icon">
+                                                  <i class="material-icons">admin_panel_settings</i>
+                                              </div>
+                                              <h6>Admin</h6>
+                                          </div>
+                                      </div>
 
-                <!-- Opção existente para Músico -->
-                <div class="col-sm-4">
-                    <div class="choice" data-toggle="wizard-radio">
-                        <input type="radio" name="jobb" value="2" id="musico">
-                        <div class="icon">
-                            <i class="material-icons">piano</i>
-                        </div>
-                        <h6>Músico</h6>
-                    </div>
-                </div>
+                                      <!-- Opção existente para Músico -->
+                                      <div class="col-sm-4">
+                                          <div class="choice" data-toggle="wizard-radio">
+                                              <input type="radio" name="jobb" value="2" id="musico">
+                                              <div class="icon">
+                                                  <i class="material-icons">piano</i>
+                                              </div>
+                                              <h6>Músico</h6>
+                                          </div>
+                                      </div>
 
-                <!-- Opção existente para Sócio -->
-                <div class="col-sm-4">
-                    <div class="choice" data-toggle="wizard-radio">
-                        <input type="radio" name="jobb" value="3" id="socio">
-                        <div class="icon">
-                            <i class="material-icons">payments</i>
-                        </div>
-                        <h6>Sócio</h6>
-                    </div>
-                </div>
+                                      <!-- Opção existente para Sócio -->
+                                      <div class="col-sm-4">
+                                          <div class="choice" data-toggle="wizard-radio">
+                                              <input type="radio" name="jobb" value="3" id="socio">
+                                              <div class="icon">
+                                                  <i class="material-icons">payments</i>
+                                              </div>
+                                              <h6>Sócio</h6>
+                                          </div>
+                                      </div>
 
-                <!-- Nova opção para Aluno com código 1 -->
-                <div class="col-sm-4">
-                    <div class="choice" data-toggle="wizard-radio">
-                        <input type="radio" name="jobb" value="1" id="aluno">
-                        <div class="icon">
-                            <i class="material-icons">school</i>
-                        </div>
-                        <h6>Aluno</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                                      <!-- Nova opção para Aluno com código 1 -->
+                                      <div class="col-sm-4">
+                                          <div class="choice" data-toggle="wizard-radio">
+                                              <input type="radio" name="jobb" value="1" id="aluno">
+                                              <div class="icon">
+                                                  <i class="material-icons">school</i>
+                                              </div>
+                                              <h6>Aluno</h6>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
 
                         <style>
                           .error-message {
@@ -478,6 +478,37 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#addUserForm').on('submit', function(event){
+        event.preventDefault(); // Previna a submissão padrão do formulário
+        var form = $(this);
+        
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function(response) {
+                try {
+                    var data = JSON.parse(response);
+                    if(data.status === 'success') {
+                        alert(data.message);
+                    } else {
+                        alert('Erro: ' + data.message);
+                    }
+                } catch(e) {
+                    console.error('Erro ao processar a resposta JSON:', e);
+                    console.error('Resposta recebida:', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro na requisição AJAX:', status, error);
+            }
+        });
+    });
+});
+</script>
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
