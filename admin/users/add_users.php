@@ -6,12 +6,12 @@ require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme neces
 checkAdmin();
 
 // Recuperar dados do usuário da sessão
-$user_name = $_SESSION['user_name'];
-$user_surname = $_SESSION['user_surname'];
+$user_nome = $_SESSION['user_nome'];
+$user_subrenome = $_SESSION['user_subrenome'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
-$user_name1 = $user_name . ' ' . $user_surname;
+$user_name1 = $user_nome . ' ' . $user_subrenome;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;

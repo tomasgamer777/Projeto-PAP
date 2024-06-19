@@ -60,14 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['loggedin'] = true;
                     $_SESSION['tipo'] = $row['tipo']; // Usar 'tipo' para consistência
                     $_SESSION['last_activity'] = time();
-                    $_SESSION['user_name'] = $row['nome']; // Nome do usuário
+                    $_SESSION['user_nome'] = $row['nome']; // Nome do usuário
                     $_SESSION['user_id'] = $row['user_id'];
                     $_SESSION['telef'] = $row['telef'];
                     $_SESSION['data_nasc'] = $row['data_nasc'];
                     $_SESSION['morada'] = $row['morada'];
                     $_SESSION['distrito'] = $row['distrito'];
                     $_SESSION['cod_postal'] = $row['cod_postal'];
-                    $_SESSION['user_surname'] = $row['sobrenome'];
+                    $_SESSION['user_subrenome'] = $row['sobrenome'];
                     $_SESSION['nif'] = $row['nif'];
                     $_SESSION['status'] = $row['status'];
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
