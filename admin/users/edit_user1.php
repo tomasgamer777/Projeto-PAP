@@ -690,7 +690,73 @@ $user_photo_path = '/admin/users/' . $user_photo;
    <script src="../assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
    
 
- 
+   <script>
+
+    function resizeImage(file, maxWidth, maxHeight, callback) {
+        var img = document.createElement("img");
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            img.src = e.target.result;
+        };
+
+        img.onload = function() {
+            var width = img.width;
+            var height = img.height;
+
+            if (width > height) {
+                if (width > maxWidth) {
+                    height *= maxWidth / width;
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width *= maxHeight / height;
+                    height = maxHeight;
+                }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            ctx.drawImage(img, 0, 0, width, height);
+            canvas.toBlob(callback, "image/jpeg");
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function sendFormData(formData) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "update_user1.php", true);
+        xhr.onload = function() {
+            try {
+                var response = JSON.parse(xhr.responseText);
+                if (xhr.status === 200 && response.success) {
+                    // Mostrar uma mensagem de sucesso com SweetAlert
+                    swal("Sucesso", response.message, "success").then(() => {
+                        // Redirecionar o usuário para a página desejada
+                        
+                    });
+                } else {
+                    // Mostrar uma mensagem de erro com SweetAlert
+                    swal("Erro", response.message || "Ocorreu um erro ao atualizar o usuário.", "error");
+                }
+            } catch (e) {
+                // Mostrar uma mensagem de erro com SweetAlert para resposta inesperada
+                swal("Erro", "Ocorreu um erro inesperado. Verifique a resposta do servidor.", "error");
+                console.error("Erro na resposta do servidor: ", xhr.responseText);
+            }
+        };
+        xhr.onerror = function() {
+            swal("Erro", "Erro de conexão. Verifique sua rede e tente novamente.", "error");
+        };
+        xhr.send(formData);
+    }
+
+</script>
 
 
    
