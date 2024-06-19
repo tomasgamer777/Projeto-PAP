@@ -51,7 +51,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
         // Caminho para onde a imagem será movida
-        $uploadFileDir = './uploaded_images/';
+        $uploadFileDir = 'fotosperfil/';
         $dest_path = $uploadFileDir . $newFileName;
 
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
