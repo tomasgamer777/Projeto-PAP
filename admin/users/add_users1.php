@@ -32,10 +32,11 @@ if ($conn->connect_error) {
 // Receber os dados do formulário
 $nome = $_POST['firstname'] ?? '';
 $sobrenome = $_POST['lastname'] ?? '';
+$password = $_POST['password'] ?? '';
 $email = $_POST['email'] ?? '';
 $telef = $_POST['telefone'] ?? '';
 $morada = $_POST['rua'] ?? '';
-$data_nasc = $_POST['data_nascimento'] ?? '';
+$data_nascimento = $_POST['data_nascimento'] ?? '';
 $cod_postal = $_POST['cod_postal'] ?? '';
 $nif = $_POST['nif'] ?? '';
 $distrito = $_POST['distrito'] ?? '';
@@ -77,15 +78,15 @@ if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty
 }
 
 // Atualizar as informações do usuário no banco de dados
-$sql = "INSERT INTO users (nome, sobrenome, email, telef, morada, data_nasc, cod_postal, nif, distrito, tipo, status" . ($profile_picture ? ", foto" : "") . ") 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" . ($profile_picture ? ", ?" : "") . ")";
+$sql = "INSERT INTO users (nome, sobrenome, email, password, telef, morada, data_nasc, cod_postal, nif, distrito, tipo, status" . ($profile_picture ? ", foto" : "") . ") 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" . ($profile_picture ? ", ?" : "") . ")";
 
 $stmt = $conn->prepare($sql);
 
 if ($profile_picture) {
-    $stmt->bind_param("ssssssssssss", $nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
+    $stmt->bind_param("ssssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
 } else {
-    $stmt->bind_param("sssssssssss", $nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $tipo, $status);
+    $stmt->bind_param("sssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status);
 }
 
 if ($stmt->execute()) {
@@ -93,9 +94,10 @@ if ($stmt->execute()) {
     $_SESSION['user_name'] = $nome;
     $_SESSION['user_surname'] = $sobrenome;
     $_SESSION['user_email'] = $email;
+    $_SESSION ['password'] = $password;
     $_SESSION['telef'] = $telef;
     $_SESSION['morada'] = $morada;
-    $_SESSION['data_nasc'] = $data_nasc;
+    $_SESSION['data_nascimento'] = $data_nasc;
     $_SESSION['cod_postal'] = $cod_postal;
     $_SESSION['nif'] = $nif;
     $_SESSION['distrito'] = $distrito;
