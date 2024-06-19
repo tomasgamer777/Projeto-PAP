@@ -244,232 +244,217 @@ $user_photo_path = '/admin/users/' . $user_photo;
       <!--      Wizard container        -->
       <div class="wizard-container">
           <div class="card card-wizard" data-color="rose" id="wizardProfile">
-            <form id="userForm" method="POST" enctype="multipart/form-data">
-                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-                  <div class="card-header text-center">
-                      <h3 class="card-title">
-                          Personaliza o Utilizador
-                      </h3>
-                  </div>
-                  <div class="wizard-navigation">
-                      <ul class="nav nav-pills">
-                          <li class="nav-item">
-                              <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
-                                  Informações Básicas
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="#address" data-toggle="tab" role="tab">
-                                  Sobre
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="#account" data-toggle="tab" role="tab">
-                                  Função
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-                  <div class="card-body">
-                      <div class="tab-content">
-                              <div class="tab-pane active" id="about">
-                                <h5 class="info-text"> Informações Básicas</h5>
-                                <div class="row justify-content-center">
-                                  <div class="col-sm-4">
-                                    <div class="picture-container">
-                                      <div class="picture">
-                                        <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                        <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif" onchange="resizeImage(event)">
-                                      </div>
-                                      <h6 class="description">Foto de Perfil</h6>
+          <form id="userForm" method="POST" enctype="multipart/form-data">
+    <div class="card-header text-center">
+        <h3 class="card-title">
+            Personaliza o Utilizador
+        </h3>
+    </div>
+    <div class="wizard-navigation">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
+                    Informações Básicas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#address" data-toggle="tab" role="tab">
+                    Sobre
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#account" data-toggle="tab" role="tab">
+                    Função
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="tab-pane active" id="about">
+                <h5 class="info-text"> Informações Básicas</h5>
+                <div class="row justify-content-center">
+                    <div class="col-sm-4">
+                        <div class="picture-container">
+                            <div class="picture">
+                                <img src="../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                <input type="file" id="wizard-picture" name="profile_picture" accept="image/jpeg, image/png, image/gif">
+                            </div>
+                            <h6 class="description">Foto de Perfil</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group form-control-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">face</i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInput1" class="bmd-label-floating">Primeiro Nome</label>
+                                <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                            </div>
+                        </div>
+                        <div class="input-group form-control-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">record_voice_over</i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInput11" class="bmd-label-floating">Sobrenome</label>
+                                <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 mt-3">
+                        <div class="input-group form-control-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">email</i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInput1" class="bmd-label-floating">Email </label>
+                                <input type="email" class="form-control" id="exampleemail" name="email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 mt-3">
+                        <div class="input-group form-control-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">password</i>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInput1" class="bmd-label-floating">Password </label>
+                                <input type="password" class="form-control" id="examplepassword" name="password" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="account">
+                <h5 class="info-text">Qual é a função do Utilizador?</h5>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="choice" data-toggle="wizard-radio">
+                                    <input type="radio" name="jobb" value="4" id="admin">
+                                    <div class="icon">
+                                        <i class="material-icons">admin_panel_settings</i>
                                     </div>
-                                  </div>
-                                  <div class="col-sm-6">
-                                      <div class="input-group form-control-lg">
-                                          <div class="input-group-prepend">
-                                              <span class="input-group-text">
-                                                  <i class="material-icons">face</i>
-                                              </span>
-                                          </div>
-                                          <div class="form-group">
-                                              <label for="exampleInput1" class="bmd-label-floating">Primeiro Nome</label>
-                                              <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
-                                          </div>
-                                      </div>
-                                      <div class="input-group form-control-lg">
-                                          <div class="input-group-prepend">
-                                              <span class="input-group-text">
-                                                  <i class="material-icons">record_voice_over</i>
-                                              </span>
-                                          </div>
-                                          <div class="form-group">
-                                              <label for="exampleInput11" class="bmd-label-floating">Sobrenome</label>
-                                              <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-10 mt-3">
-                                      <div class="input-group form-control-lg">
-                                          <div class="input-group-prepend">
-                                              <span class="input-group-text">
-                                                  <i class="material-icons">email</i>
-                                              </span>
-                                          </div>
-                                          <div class="form-group">
-                                              <label for="exampleInput1" class="bmd-label-floating">Email </label>
-                                              <input type="email" class="form-control" id="exampleemail" name="email" required>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-10 mt-3">
-                                      <div class="input-group form-control-lg">
-                                          <div class="input-group-prepend">
-                                              <span class="input-group-text">
-                                                  <i class="material-icons">password</i>
-                                              </span>
-                                          </div>
-                                          <div class="form-group">
-                                              <label for="exampleInput1" class="bmd-label-floating">Password </label>
-                                              <input type="password" class="form-control" id="examplepassword" name="password" required>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="tab-pane" id="account">
-                          <h5 class="info-text">Qual é a função do Utilizador?</h5>
-                          <div class="row justify-content-center">
-                              <div class="col-lg-10">
-                                  <div class="row">
-                                      <!-- Opção existente para Admin -->
-                                      <div class="col-sm-4">
-                                          <div class="choice" data-toggle="wizard-radio">
-                                              <input type="radio" name="jobb" value="4" id="admin">
-                                              <div class="icon">
-                                                  <i class="material-icons">admin_panel_settings</i>
-                                              </div>
-                                              <h6>Admin</h6>
-                                          </div>
-                                      </div>
-
-                                      <!-- Opção existente para Músico -->
-                                      <div class="col-sm-4">
-                                          <div class="choice" data-toggle="wizard-radio">
-                                              <input type="radio" name="jobb" value="2" id="musico">
-                                              <div class="icon">
-                                                  <i class="material-icons">piano</i>
-                                              </div>
-                                              <h6>Músico</h6>
-                                          </div>
-                                      </div>
-
-                                      <!-- Opção existente para Sócio -->
-                                      <div class="col-sm-4">
-                                          <div class="choice" data-toggle="wizard-radio">
-                                              <input type="radio" name="jobb" value="3" id="socio">
-                                              <div class="icon">
-                                                  <i class="material-icons">payments</i>
-                                              </div>
-                                              <h6>Sócio</h6>
-                                          </div>
-                                      </div>
-
-                                      <!-- Nova opção para Aluno com código 1 -->
-                                      <div class="col-sm-4">
-                                          <div class="choice" data-toggle="wizard-radio">
-                                              <input type="radio" name="jobb" value="1" id="aluno">
-                                              <div class="icon">
-                                                  <i class="material-icons">school</i>
-                                              </div>
-                                              <h6>Aluno</h6>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                        <style>
-                          .error-message {
-                              color: red;
-                              display: none;
-                          }
-                      </style>
-                        <div class="tab-pane" id="address">
-                          <div class="row justify-content-center">
-                              <div class="col-sm-12">
-                                  <h5 class="info-text">Mais informações sobre o Utilizador</h5>
-                              </div>
-                              <div class="col-sm-7">
-                                  <div class="form-group">
-                                      <label>Data de Nascimento</label>
-                                      <input type="text" class="form-control datepicker" id="data_nascimento" name="data_nascimento">
-                                  </div>
-                              </div>
-                              <div class="col-sm-3">
-                                  <div class="form-group">
-                                      <label>Código Postal</label>
-                                      <input type="text" class="form-control" name="cod_postal">
-                                  </div>
-                              </div>
-                              <div class="col-sm-3">
-                                  <div class="form-group">
-                                      <label>Rua</label>
-                                      <input type="text" class="form-control" name="rua">
-                                  </div>
-                              </div>
-                              <div class="col-sm-3">
-                                <div class="form-group">
-                                  <label>Telefone</label>
-                                  <input type="text" class="form-control" id="telefone" name="telefone" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                    <h6>Admin</h6>
                                 </div>
-                              </div>
-                              <div class="col-sm-3">
-                                <div class="form-group">
-                                  <label>NIF</label>
-                                  <input type="text" class="form-control" id="nif" name="nif" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="choice" data-toggle="wizard-radio">
+                                    <input type="radio" name="jobb" value="2" id="musico">
+                                    <div class="icon">
+                                        <i class="material-icons">piano</i>
+                                    </div>
+                                    <h6>Músico</h6>
                                 </div>
-                              </div>
-                              
-                              <div class="col-sm-5">
-                                  <div class="form-group select-wizard">
-                                      <label>Distrito</label>
-                                      <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
-                                          <option value="Aveiro">Aveiro</option>
-                                          <option value="Beja">Beja</option>
-                                          <option value="Braga">Braga</option>
-                                          <option value="Bragança">Bragança</option>
-                                          <option value="Castelo Branco">Castelo Branco</option>
-                                          <option value="Coimbra">Coimbra</option>
-                                          <option value="Évora">Évora</option>
-                                          <option value="Faro">Faro</option>
-                                          <option value="Guarda">Guarda</option>
-                                          <option value="Leiria">Leiria</option>
-                                          <option value="Lisboa">Lisboa</option>
-                                          <option value="Portalegre">Portalegre</option>
-                                          <option value="Porto">Porto</option>
-                                          <option value="Setúbal">Setúbal</option>
-                                          <option value="Viana do Castelo">Viana do Castelo</option>
-                                          <option value="Vila Real">Vila Real</option>
-                                          <option value="Viseu">Viseu</option>
-                                      </select>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="choice" data-toggle="wizard-radio">
+                                    <input type="radio" name="jobb" value="3" id="socio">
+                                    <div class="icon">
+                                        <i class="material-icons">payments</i>
+                                    </div>
+                                    <h6>Sócio</h6>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="choice" data-toggle="wizard-radio">
+                                    <input type="radio" name="jobb" value="1" id="aluno">
+                                    <div class="icon">
+                                        <i class="material-icons">school</i>
+                                    </div>
+                                    <h6>Aluno</h6>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="card-footer">
-                    <div class="mr-auto">
-                      <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Voltar">
+                </div>
+            </div>
+            <div class="tab-pane" id="address">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12">
+                        <h5 class="info-text">Mais informações sobre o Utilizador</h5>
                     </div>
-                    <div class="ml-auto">
-                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Proximo">
-                      <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" id ="userForm">
+                    <div class="col-sm-7">
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input type="text" class="form-control datepicker" id="data_nascimento" name="data_nascimento">
+                        </div>
                     </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </form>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Código Postal</label>
+                            <input type="text" class="form-control" name="cod_postal">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Rua</label>
+                            <input type="text" class="form-control" name="rua">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input type="text" class="form-control" id="telefone" name="telefone" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>NIF</label>
+                            <input type="text" class="form-control" id="nif" name="nif" maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group select-wizard">
+                            <label>Distrito</label>
+                            <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select" name="distrito">
+                                <option value="Aveiro">Aveiro</option>
+                                <option value="Beja">Beja</option>
+                                <option value="Braga">Braga</option>
+                                <option value="Bragança">Bragança</option>
+                                <option value="Castelo Branco">Castelo Branco</option>
+                                <option value="Coimbra">Coimbra</option>
+                                <option value="Évora">Évora</option>
+                                <option value="Faro">Faro</option>
+                                <option value="Guarda">Guarda</option>
+                                <option value="Leiria">Leiria</option>
+                                <option value="Lisboa">Lisboa</option>
+                                <option value="Portalegre">Portalegre</option>
+                            <option value="Porto">Porto</option>
+                            <option value="Setúbal">Setúbal</option>
+                            <option value="Viana do Castelo">Viana do Castelo</option>
+                            <option value="Vila Real">Vila Real</option>
+                            <option value="Viseu">Viseu</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="mr-auto">
+            <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Voltar">
+        </div>
+        <div class="ml-auto">
+            <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Proximo">
+            <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Adicionar" id="userForm">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</form>
+
               </div>
             </div>
             <!-- wizard container -->
