@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $distrito = $_POST['distrito'];
         $cod_postal = $_POST['cod_postal'];
         $nif = $_POST['nif'];
-        $cod_postal = $_POST['cod_postal']
 
         // Conexão com o banco de dados
         $servername = "localhost";
@@ -51,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     unlink($old_photo); // Excluir a foto de perfil antiga
                 }
             }
+
+            $stmt_select_foto->close();
 
             // Carregar a nova foto de perfil
             $photo_name = $_FILES['profile_picture']['name'];
