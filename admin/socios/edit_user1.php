@@ -315,8 +315,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
-            $uploadFileDir = '../users/';
-            document.getElementById("wizardPicturePreview").src = '../users' userData.foto;
+            document.getElementById("wizardPicturePreview").src = userData.foto;
         } else {
             // Se não houver foto, exibir a imagem padrão
             document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
