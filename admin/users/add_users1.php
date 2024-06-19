@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Definir o cabeçalho de resposta como JSON
+header('Content-Type: application/json');
+
 // Verifica se o usuário está logado
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     echo json_encode(["success" => false, "message" => "Usuário não está logado."]);
@@ -16,22 +19,22 @@ $dbname = "banda";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+    echo json_encode(["success" => false, "message" => "Falha na conexão: " . $conn->connect_error]);
+    exit;
 }
 
 // Receber os dados do formulário
-$nome = $_POST['nome'] ?? '';
-$sobrenome = $_POST['sobrenome'] ?? '';
+$nome = $_POST['firstname'] ?? '';
+$sobrenome = $_POST['lastname'] ?? '';
 $email = $_POST['email'] ?? '';
-$telef = $_POST['telef'] ?? '';
-$morada = $_POST['morada'] ?? '';
-$data_nasc = $_POST['data_nasc'] ?? '';
+$telef = $_POST['telefone'] ?? '';
+$morada = $_POST['rua'] ?? '';
+$data_nasc = $_POST['data_nascimento'] ?? '';
 $cod_postal = $_POST['cod_postal'] ?? '';
 $nif = $_POST['nif'] ?? '';
 $distrito = $_POST['distrito'] ?? '';
-$tipo = $_POST['tipo'] ?? '';
+$tipo = $_POST['jobb'] ?? '';
 $status = 2; // Adicionando status padrão
-$user_id = $_POST['user_id'] ?? ''; // Supondo que você esteja usando um campo oculto para user_id
 $profile_picture = null;
 
 // Verificar se uma nova imagem de perfil foi enviada
