@@ -351,35 +351,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 </div>
             </div>
         </div>
-        <div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-        <h4 class="title">Estado</h4>
-        <div class="togglebutton">
-            <label>
-                <input type="checkbox" checked="" id="estado" name="estado" class="toggle-btn" data-style="slow" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
-                <span class="toggle"></span>
-            </label>
-            <span class="state-text"></span> 
-        </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-    <div class="form-group">
-    <label for="tipo">Tipo</label>
-    <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
-      <option disabled selected>Tipo</option>
-      <option value="0">Para aceitar</option>
-      <option value="1">Aluno</option>
-      <option value="2">Músico</option>
-      <option value="3">Sócio</option>
-      <option value="4">Admin</option>
-      <option value="5">Encarregado de educação</option>
-      <option value="6">Professor</option>
-    </select>
-  </div>
-    </div>
-</div>
+        
 
         <button type="button" class="btn btn-primary" id="updateButton">Atualizar Utilizador</button>
         <div class="clearfix"></div>
@@ -400,19 +372,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
 
-        // Atualiza o texto do toggle button conforme o estado
-        const estadoToggle = document.querySelector('.toggle');
-        const estadoText = document.getElementById('estadoText');
-        if (userData.estado === "Ativo") {
-            estadoText.innerText = "Ativo";
-            estadoToggle.style.left = "25px";
-        } else {
-            estadoText.innerText = "Inativo";
-            estadoToggle.style.left = "0";
-        }
 
-        // Preencher o campo tipo
-        document.getElementById("tipo").value = userData.tipo;
 
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
@@ -1149,18 +1109,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
 <script>
   const toggleButton = document.querySelector('.toggle-btn');
   const stateText = document.querySelector('.state-text');
-
-  // Função para atualizar a legenda com base no estado do ToggleButton
-  function updateStateText() {
-    if (toggleButton.checked) {
-      stateText.textContent = toggleButton.getAttribute('data-on');
-    } else {
-      stateText.textContent = toggleButton.getAttribute('data-off');
-    }
-  }
-
-  // Atualizar a legenda quando houver mudança no estado do ToggleButton
-  toggleButton.addEventListener('change', updateStateText);
 
   // Atualizar a legenda no carregamento da página
   updateStateText();
