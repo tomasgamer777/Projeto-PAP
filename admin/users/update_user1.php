@@ -7,6 +7,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
+$user_tipo = $_SESSION['tipo'];
+$user_status = $_SESSION['status'];
+
 // Conectar ao banco de dados
 $servername = "localhost";
 $username = "tomas";
@@ -64,8 +67,8 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 }
 
 // Atualizar as informações do usuário no banco de dados
-$sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?";
-$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito];
+$sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?, tipo=?, status=?";
+$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $user_tipo, $user_status];
 
 if ($profile_picture) {
     $sql .= ", foto=? WHERE user_id=?";

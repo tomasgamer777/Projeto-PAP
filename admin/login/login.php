@@ -70,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['user_surname'] = $row['sobrenome'];
                     $_SESSION['nif'] = $row['nif'];
                     $_SESSION['status'] = $row['status'];
+                    $_SESSION['tipo'] = $row['tipo'];
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
                     $_SESSION['user_photo'] = $row['foto']; // URL da foto do usuário
 
