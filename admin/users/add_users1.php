@@ -37,7 +37,6 @@ $email = $_POST['email'] ?? '';
 $telef = $_POST['telefone'] ?? '';
 $morada = $_POST['rua'] ?? '';
 $data_nascimento = $_POST['data_nascimento'] ?? '';
-$data_nascimento = date('Y-m-d', strtotime($data_nascimento));
 $cod_postal = $_POST['cod_postal'] ?? '';
 $nif = $_POST['nif'] ?? '';
 $distrito = $_POST['distrito'] ?? '';
@@ -74,9 +73,12 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 }
 
 // Verificar se os campos obrigatórios estão vazios
-if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nascimento) || empty($cod_postal) || empty($nif) || empty($distrito)) {
+if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nascimento) || empty($cod_postal) || empty($nif) || empty($distrito) || empty($password)) {
     send_json_response(false, "Todos os campos devem ser preenchidos.");
 }
+
+// Criptografar a senha
+$password_hashed = password_hash($password, PASSWORD_BCRYPT);
 
 // Atualizar as informações do usuário no banco de dados
 $sql = "INSERT INTO users (nome, sobrenome, email, password, telef, morada, data_nasc, cod_postal, nif, distrito, tipo, status" . ($profile_picture ? ", foto" : "") . ") 
@@ -85,30 +87,15 @@ $sql = "INSERT INTO users (nome, sobrenome, email, password, telef, morada, data
 $stmt = $conn->prepare($sql);
 
 if ($profile_picture) {
-    $stmt->bind_param("sssssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
+    $stmt->bind_param("ssssssssssiss", $nome, $sobrenome, $email, $password_hashed, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
 } else {
-    $stmt->bind_param("ssssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status);
+    $stmt->bind_param("ssssssssssis", $nome, $sobrenome, $email, $password_hashed, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status);
 }
 
 if ($stmt->execute()) {
-    // Atualizar os dados da sessão
-    $_SESSION['user_name'] = $nome;
-    $_SESSION['user_surname'] = $sobrenome;
-    $_SESSION['user_email'] = $email;
-    $_SESSION ['password'] = $password;
-    $_SESSION['telef'] = $telef;
-    $_SESSION['morada'] = $morada;
-    $_SESSION['data_nascimento'] = $data_nascimento;
-    $_SESSION['cod_postal'] = $cod_postal;
-    $_SESSION['nif'] = $nif;
-    $_SESSION['distrito'] = $distrito;
-    if ($profile_picture) {
-        $_SESSION['user_photo'] = $profile_picture;
-    }
-
-    send_json_response(true, "Usuário atualizado com sucesso.");
+    send_json_response(true, "Usuário adicionado com sucesso.");
 } else {
-    send_json_response(false, "Erro ao atualizar usuário: " . $stmt->error);
+    send_json_response(false, "Erro ao adicionar usuário: " . $stmt->error);
 }
 
 $stmt->close();
