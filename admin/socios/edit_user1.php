@@ -299,10 +299,9 @@ $user_photo_path = '/admin/users/' . $user_photo;
     </form>
 
     <script>
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
-      $uploadFileDir = '../users/';
         document.getElementById("user_id").value = userData.user_id;
         document.getElementById("nome").value = userData.nome;
         document.getElementById("sobrenome").value = userData.sobrenome;
@@ -316,8 +315,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
-          userData.foto = '../users/' + userData.foto;         
-            document.getElementById("wizardPicturePreview").src = userData.foto;
+            document.getElementById("wizardPicturePreview").src = '../users/' + userData.foto;
         } else {
             // Se não houver foto, exibir a imagem padrão
             document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
@@ -344,21 +342,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Função para visualizar a foto de perfil
     function previewProfilePicture() {
-    const fileInput = document.getElementById('wizard-picture');
-    const previewImage = document.getElementById('wizardPicturePreview');
+        const fileInput = document.getElementById('wizard-picture');
+        const previewImage = document.getElementById('wizardPicturePreview');
 
-    fileInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            previewImage.src = '../users/' + file.name;  // Caminho para a pasta ../users/
-        };
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+            };
 
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    });
-}
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                // Caso não haja arquivo selecionado, exibe a imagem padrão
+                previewImage.src = '../assets/img/default-avatar.png';
+            }
+        });
+    }
 
     // Função para enviar os dados do formulário
     document.getElementById("updateButton").addEventListener("click", function() {
