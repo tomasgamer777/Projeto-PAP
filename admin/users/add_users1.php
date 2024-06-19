@@ -20,7 +20,6 @@ if ($conn->connect_error) {
 }
 
 // Receber os dados do formulário
-$user_id = $_POST['user_id'] ?? '';
 $nome = $_POST['nome'] ?? '';
 $sobrenome = $_POST['sobrenome'] ?? '';
 $email = $_POST['email'] ?? '';
@@ -30,10 +29,10 @@ $data_nasc = $_POST['data_nasc'] ?? '';
 $cod_postal = $_POST['cod_postal'] ?? '';
 $nif = $_POST['nif'] ?? '';
 $distrito = $_POST['distrito'] ?? '';
+$tipo = $_POST['tipo'] ?? '';
+$status = 2; // Adicionando status padrão
+$user_id = $_POST['user_id'] ?? ''; // Supondo que você esteja usando um campo oculto para user_id
 $profile_picture = null;
-$tipo = $tipo;
-$status = $status;
-
 
 // Verificar se uma nova imagem de perfil foi enviada
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
@@ -51,7 +50,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
         $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
         // Caminho para onde a imagem será movida
-        $uploadFileDir = './fotosperfil/';
+        $uploadFileDir = 'fotosperfil/';
         $dest_path = $uploadFileDir . $newFileName;
 
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
@@ -67,26 +66,22 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 }
 
 // Verificar se os campos obrigatórios estão vazios
-if (empty($user_id) || empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nasc) || empty($cod_postal) || empty($nif) || empty($distrito)) {
+if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty($morada) || empty($data_nasc) || empty($cod_postal) || empty($nif) || empty($distrito)) {
     echo json_encode(["success" => false, "message" => "Todos os campos devem ser preenchidos."]);
     exit;
 }
 
 // Atualizar as informações do usuário no banco de dados
-$sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?, tipo=?, status=?";
-$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $tipo, $status];
-
-if ($profile_picture) {
-    $sql .= ", foto=? WHERE user_id=?";
-    $params[] = $profile_picture;
-    $params[] = $user_id;
-} else {
-    $sql .= " WHERE user_id=?";
-    $params[] = $user_id;
-}
+$sql = "INSERT INTO users (nome, sobrenome, email, telef, morada, data_nasc, cod_postal, nif, distrito, tipo, status" . ($profile_picture ? ", foto" : "") . ") 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" . ($profile_picture ? ", ?" : "") . ")";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param(str_repeat("s", count($params)), ...$params);
+
+if ($profile_picture) {
+    $stmt->bind_param("ssssssssssss", $nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
+} else {
+    $stmt->bind_param("sssssssssss", $nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $tipo, $status);
+}
 
 if ($stmt->execute()) {
     // Atualizar os dados da sessão
@@ -102,7 +97,6 @@ if ($stmt->execute()) {
     if ($profile_picture) {
         $_SESSION['user_photo'] = $profile_picture;
     }
-
 
     echo json_encode(["success" => true, "message" => "Usuário atualizado com sucesso."]);
 } else {
