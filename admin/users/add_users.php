@@ -483,6 +483,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
 <script>
 $(document).ready(function() {
     $('#btnAddUser').on('click', function() {
+        console.log("Botão de adicionar clicado"); 
         var fileInput = $('#wizard-picture')[0];
         var file = fileInput.files[0];
 
