@@ -35,7 +35,7 @@ $profile_picture = null;
 
 // Certifique-se de que $tipo e $status sejam definidos corretamente
 $tipo = $_POST['tipo'] ?? '';
-$status = $_POST['status'] ?? '';
+$status = "2";
 
 // Verificar se uma nova imagem de perfil foi enviada
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
