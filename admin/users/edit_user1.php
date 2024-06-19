@@ -483,7 +483,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
         });
         console.error('Erro:', error);
     });
-});
 
     // Função para redimensionar a imagem
     function resizeImage(file, maxWidth, maxHeight, callback) {
