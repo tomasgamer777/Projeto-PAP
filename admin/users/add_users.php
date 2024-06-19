@@ -479,34 +479,28 @@ $user_photo_path = '/admin/users/' . $user_photo;
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('#addUserForm').on('submit', function(event){
-        event.preventDefault(); // Previna a submissão padrão do formulário
-        var form = $(this);
-        
-        $.ajax({
-            type: form.attr('method'),
-            url: form.attr('action'),
-            data: form.serialize(),
-            success: function(response) {
-                try {
-                    var data = JSON.parse(response);
-                    if(data.status === 'success') {
-                        alert(data.message);
-                    } else {
-                        alert('Erro: ' + data.message);
-                    }
-                } catch(e) {
-                    console.error('Erro ao processar a resposta JSON:', e);
-                    console.error('Resposta recebida:', response);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Erro na requisição AJAX:', status, error);
+  <script>
+    $.ajax({
+    url: 'add_users1.php',
+    type: 'POST',
+    data: new FormData(document.getElementById('userForm')),
+    contentType: false,
+    processData: false,
+    success: function(response) {
+        try {
+            var jsonResponse = JSON.parse(response);
+            if (jsonResponse.success) {
+                alert(jsonResponse.message);
+            } else {
+                alert(jsonResponse.message);
             }
-        });
-    });
+        } catch (e) {
+            console.error("Erro ao processar resposta JSON:", e, response);
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error("Erro na requisição AJAX:", status, error);
+    }
 });
 </script>
   <div class="fixed-plugin">
