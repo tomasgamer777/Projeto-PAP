@@ -37,6 +37,7 @@ $email = $_POST['email'] ?? '';
 $telef = $_POST['telefone'] ?? '';
 $morada = $_POST['rua'] ?? '';
 $data_nascimento = $_POST['data_nascimento'] ?? '';
+$data_nascimento = date('Y-m-d', strtotime($data_nascimento));
 $cod_postal = $_POST['cod_postal'] ?? '';
 $nif = $_POST['nif'] ?? '';
 $distrito = $_POST['distrito'] ?? '';
