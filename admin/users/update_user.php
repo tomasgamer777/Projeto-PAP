@@ -21,19 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nif = $_POST['nif'];
         $cod_postal = $_POST['cod_postal']
 
-        // Conexão com o banco de dados
-        $servername = "localhost";
-        $username = "tomas";
-        $password = "!h01fFw35";
-        $dbname = "banda";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Verificar a conexão
-        if ($conn->connect_error) {
-            echo json_encode(["success" => false, "message" => "Falha na conexão com o banco de dados: " . $conn->connect_error]);
-            exit();
-        }
+      
 
         // Verificar se uma nova imagem de perfil foi enviada
         if (!empty($_FILES['profile_picture']['name'])) {
