@@ -34,7 +34,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <title>
     ADMIN SFLP
   </title>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
@@ -459,31 +459,13 @@ $user_photo_path = '/admin/users/' . $user_photo;
         })
         .then(response => response.json())
         .then(data => {
-          if (data.success) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso',
-                text: data.message
-            }).then(() => {
-                // Recarregar a página após o alerta
-                window.location.reload();
-            });
+            if (data.success) {
+                alert('Usuário atualizado com sucesso!');
             } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro',
-                text: data.message
-            });
-        }
-    })
-    .catch(error => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Erro',
-            text: 'Ocorreu um erro ao processar a solicitação.'
-        });
-        console.error('Erro:', error);
-      });
+                alert('Erro ao atualizar usuário: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Erro na requisição: ', error));
     }
 
     // Função para redimensionar a imagem
