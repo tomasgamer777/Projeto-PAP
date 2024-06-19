@@ -85,9 +85,9 @@ $sql = "INSERT INTO users (nome, sobrenome, email, password, telef, morada, data
 $stmt = $conn->prepare($sql);
 
 if ($profile_picture) {
-    $stmt->bind_param("ssssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
+    $stmt->bind_param("sssssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status, $profile_picture);
 } else {
-    $stmt->bind_param("sssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status);
+    $stmt->bind_param("ssssssssssss", $nome, $sobrenome, $email, $password, $telef, $morada, $data_nascimento, $cod_postal, $nif, $distrito, $tipo, $status);
 }
 
 if ($stmt->execute()) {
@@ -98,7 +98,7 @@ if ($stmt->execute()) {
     $_SESSION ['password'] = $password;
     $_SESSION['telef'] = $telef;
     $_SESSION['morada'] = $morada;
-    $_SESSION['data_nascimento'] = $data_nasc;
+    $_SESSION['data_nascimento'] = $data_nascimento;
     $_SESSION['cod_postal'] = $cod_postal;
     $_SESSION['nif'] = $nif;
     $_SESSION['distrito'] = $distrito;
