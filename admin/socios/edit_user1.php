@@ -312,11 +312,10 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cod_postal").value = userData.cod_postal;
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
-        $uploadFileDir = '../users/';
 
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
-            document.getElementById("wizardPicturePreview").src = uploadFileDir . userData.foto;
+            document.getElementById("wizardPicturePreview").src = userData.foto;
         } else {
             // Se não houver foto, exibir a imagem padrão
             document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
