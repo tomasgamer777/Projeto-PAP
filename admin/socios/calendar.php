@@ -45,8 +45,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
       <div class="logo">
-        <a href="dashboard.php" class="simple-text logo-mini">AM</a>
-        <a href="dashboard.php" class="simple-text logo-normal">Menu Sócio</a>
+        <a href="dashboard.php" class="simple-text logo-mini">MM</a>
+        <a href="dashboard.php" class="simple-text logo-normal">Menu Músico</a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
@@ -63,7 +63,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
             <div class="collapse" id="collapseExample">
               <ul class="nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="../users/edit_user1.php">
+                  <a class="nav-link" href="edit_user1.php">
                     <span class="sidebar-mini"> EP </span>
                     <span class="sidebar-normal"> Editar Perfil </span>
                   </a>
@@ -73,12 +73,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
           </div>
         </div>
         <ul class="nav">
-          <li class="nav-item ">
-            <a class="nav-link" href="dashboard_socios.php">
-              <i class="material-icons">dashboard</i>
-              <p> Pagamento de Quotas </p>
-            </a>
-          </li>
           <li class="nav-item active">
             <a class="nav-link" href="calendar.php">
               <i class="material-icons">calendar_today</i>
@@ -125,7 +119,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="../users/edit_user1.php">Perfil</a>
+                  <a class="dropdown-item" href="edit_user1.php">Perfil</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="../login/login.html">Terminar sessão</a>
                 </div>
