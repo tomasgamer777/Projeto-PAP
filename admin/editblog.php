@@ -137,7 +137,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
             <ul class="nav">
               
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="users/edit_user1.php">
                   <span class="sidebar-mini"> EP </span>
                   <span class="sidebar-normal"> Editar Perfil </span>
                 </a>
@@ -261,7 +261,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="">Perfil</a>
+                  <a class="dropdown-item" href="users/edit_user1.php">Perfil</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
                 </div>

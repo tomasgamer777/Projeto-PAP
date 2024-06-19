@@ -249,7 +249,7 @@ $conn->close();
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="">Perfil</a>
+                  <a class="dropdown-item" href="users/edit_user1.php">Perfil</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
                 </div>
