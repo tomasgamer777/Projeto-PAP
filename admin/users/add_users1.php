@@ -77,6 +77,18 @@ if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty
     send_json_response(false, "Todos os campos devem ser preenchidos.");
 }
 
+// Verificar se o email já existe
+$sql = "SELECT email FROM users WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    send_json_response(false, "Email já cadastrado.");
+}
+$stmt->close();
+
 // Formatar a data de nascimento para o formato Y-m-d (que é o formato aceito pelo MySQL)
 $date_parts = explode('/', $data_nascimento);
 if (count($date_parts) == 3) {
