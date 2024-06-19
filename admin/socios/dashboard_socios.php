@@ -245,7 +245,7 @@ $conn->close();
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="">Perfil</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="login/login.html">Terminar sessão</a>
+                  <a class="dropdown-item" href="../login/login.html">Terminar sessão</a>
                 </div>
               </li>
             </ul>
