@@ -79,8 +79,18 @@ if ($profile_picture) {
     $params[] = $user_id;
 }
 
+// Criação da string de tipos para bind_param
+$param_types = str_repeat('s', count($params) - 1) . 'i'; // Tudo como string, exceto o último que é integer (user_id)
+
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssssssss", ...$params);
+
+if ($stmt === false) {
+    echo json_encode(["success" => false, "message" => "Erro na preparação da consulta: " . $conn->error]);
+    exit;
+}
+
+// Ligando os parâmetros à declaração preparada
+$stmt->bind_param($param_types, ...$params);
 
 if ($stmt->execute()) {
     // Atualizar os dados da sessão
