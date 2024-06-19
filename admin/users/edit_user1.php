@@ -458,8 +458,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
             body: formData
         })
         .then(response => response.json())
-    .then(data => {
-        if (data.success) {
+        .then(data => {
+          if (data.success) {
             Swal.fire({
                 icon: 'success',
                 title: 'Sucesso',
@@ -467,13 +467,13 @@ $user_photo_path = '/admin/users/' . $user_photo;
             }).then(() => {
                 // Recarregar a página após o alerta
                 window.location.reload();
-            })
-        } else {
+            });
+            } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Erro',
                 text: data.message
-            })
+            });
         }
     })
     .catch(error => {
@@ -481,10 +481,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
             icon: 'error',
             title: 'Erro',
             text: 'Ocorreu um erro ao processar a solicitação.'
-        })
+        });
         console.error('Erro:', error);
-    })
-})
+      });
+    }
 
     // Função para redimensionar a imagem
     function resizeImage(file, maxWidth, maxHeight, callback) {
