@@ -24,12 +24,9 @@ $user_photo_path = '/admin/users/' . $user_photo;
 <html lang="en">
 
 <head>
-  <!-- Inclua o Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Inclua o Bootstrap Datepicker CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-</head>
+  
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -491,12 +488,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </div>
     </div>
   </div>
-<!-- Inclua o jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Inclua o Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Inclua o Bootstrap Datepicker JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
