@@ -452,7 +452,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
 
     // Função para enviar os dados do formulário via AJAX
     function sendFormData(formData) {
-        fetch('update_user.php', {
+        fetch('update_user1.php', {
             method: 'POST',
             body: formData
         })
