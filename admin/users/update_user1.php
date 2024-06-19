@@ -7,8 +7,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-$user_tipo = $_SESSION['tipo'];
-$user_status = $_SESSION['status'];
+$user_tipo = isset($_SESSION['tipo']) ? $_SESSION['tipo'] : null;
+$user_status = isset($_SESSION['status']) ? $_SESSION['status'] : null;
+
+// Verificar se tipo ou status estão nulos
+if ($user_tipo === null || $user_status === null) {
+    echo json_encode(["success" => false, "message" => "Tipo ou status do usuário não está definido."]);
+    exit;
+}
 
 // Conectar ao banco de dados
 $servername = "localhost";
