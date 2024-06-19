@@ -405,7 +405,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                               <div class="col-sm-7">
                                   <div class="form-group">
                                       <label>Data de Nascimento</label>
-                                      <input type="text" class="form-control datepicker" id="data_nascimento" name="data_nascimento">
+                                      <input type="text" class="datepicker" id="data_nascimento" name="data_nascimento">
                                   </div>
                               </div>
                               <div class="col-sm-3">
