@@ -78,7 +78,12 @@ if (empty($nome) || empty($sobrenome) || empty($email) || empty($telef) || empty
 }
 
 // Formatar a data de nascimento para o formato Y-m-d (que é o formato aceito pelo MySQL)
-$data_nascimento_formatada = date('Y-m-d', strtotime($data_nascimento));
+$date_parts = explode('/', $data_nascimento);
+if (count($date_parts) == 3) {
+    $data_nascimento_formatada = $date_parts[2] . '-' . $date_parts[1] . '-' . $date_parts[0]; // dd/mm/yyyy to yyyy-mm-dd
+} else {
+    send_json_response(false, "Formato de data de nascimento inválido.");
+}
 
 // Criptografar a senha
 $password_hashed = password_hash($password, PASSWORD_BCRYPT);
