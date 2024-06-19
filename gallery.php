@@ -112,7 +112,7 @@
                     <a href="www.facebook.com/sflpinheirense/"><i class="fa fa-facebook-square"></i></a>
                     <a href="https://www.youtube.com/@bandamusicaldepinheirodeazere"><i class="fa fa-youtube"></i></a>
 
-                <p class="copy">Copyright 2014 Company Name. Designed by Themezy. All right reserved</p>
+                <p class="copy">Copyright 2024 Banda Músical de Pinheiro de Azere.</p>
             </div>
         </footer> <!-- .site-footer -->
     </div> <!-- #site-content -->
