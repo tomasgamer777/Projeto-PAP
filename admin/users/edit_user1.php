@@ -359,7 +359,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
     </form>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
         document.getElementById("user_id").value = userData.user_id;
@@ -372,8 +372,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
         document.getElementById("cod_postal").value = userData.cod_postal;
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
-
-
 
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
@@ -460,12 +458,30 @@ $user_photo_path = '/admin/users/' . $user_photo;
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Usuário atualizado com sucesso!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Usuário atualizado com sucesso!'
+                }).then(() => {
+                    // Recarregar a página após o alerta
+                    window.location.reload();
+                });
             } else {
-                alert('Erro ao atualizar usuário: ' + data.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Erro ao atualizar usuário: ' + data.message
+                });
             }
         })
-        .catch(error => console.error('Erro na requisição: ', error));
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Ocorreu um erro na requisição: ' + error
+            });
+            console.error('Erro na requisição: ', error);
+        });
     }
 
     // Função para redimensionar a imagem
@@ -501,8 +517,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
         reader.readAsDataURL(file);
     }
 });
+</script>
 
-    </script>
     <script src="path/to/jquery.js"></script>
     <script src="path/to/bootstrap.js"></script>
     <script src="path/to/bootstrap-select.js"></script>
