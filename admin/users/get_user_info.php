@@ -10,8 +10,8 @@
     // Dados do usuário da sessão
     $userInfo = [
         "user_id" => $_SESSION['user_id'],
-        "nome" => $_SESSION['user_name'],
-        "sobrenome" => $_SESSION['user_surname'],
+        "nome" => $_SESSION['user_nome'],
+        "sobrenome" => $_SESSION['user_sobrenome'],
         "email" => $_SESSION['user_email'],
         "foto" => $_SESSION['user_photo'],
         "telef" => $_SESSION['telef'],
