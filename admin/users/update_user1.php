@@ -106,12 +106,12 @@ $stmt->bind_param($param_types, ...$params);
 
 if ($stmt->execute()) {
     // Atualizar os dados da sessão
-    $_SESSION['user_name'] = $nome;
-    $_SESSION['user_surname'] = $sobrenome;
+    $_SESSION['user_nome'] = $nome;
+    $_SESSION['user_sobrenome'] = $sobrenome;
     $_SESSION['user_email'] = $email;
     $_SESSION['telef'] = $telef;
     $_SESSION['morada'] = $morada;
-    $_SESSION['data_nasc'] = $data_nasc;
+    $_SESSION['data_nascimento'] = $data_nasc;
     $_SESSION['cod_postal'] = $cod_postal;
     $_SESSION['nif'] = $nif;
     $_SESSION['distrito'] = $distrito;
