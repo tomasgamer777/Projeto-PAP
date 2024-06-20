@@ -14,7 +14,7 @@ function send_json_response($success, $message) {
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    send_json_response(false, "Usuário não está logado.");
+    send_json_response(false, "Utilizador não está logado.");
 }
 
 // Conectar ao banco de dados
@@ -85,7 +85,7 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    send_json_response(false, "Email já cadastrado.");
+    send_json_response(false, "Email já registado.");
 }
 $stmt->close();
 
@@ -113,9 +113,9 @@ if ($profile_picture) {
 }
 
 if ($stmt->execute()) {
-    send_json_response(true, "Usuário adicionado com sucesso.");
+    send_json_response(true, "Utilizador adicionado com sucesso.");
 } else {
-    send_json_response(false, "Erro ao adicionar usuário: " . $stmt->error);
+    send_json_response(false, "Erro ao adicionar o Utilizador: " . $stmt->error);
 }
 
 $stmt->close();
