@@ -6,6 +6,7 @@ require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme neces
 checkAdmin();
 
 // Recuperar dados do usuário da sessão
+
 $user_nome = $_SESSION['user_nome'];
 $user_sobrenome = $_SESSION['user_sobrenome'];
 $user_email = $_SESSION['user_email'];
