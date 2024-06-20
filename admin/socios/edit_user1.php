@@ -223,8 +223,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
                     <label class="bmd-label-floating" for="nome">Nome</label>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="sobrenome" placeholder=" ">
-                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                    <input type="text" class="form-control" id="user_sobrenome" placeholder=" ">
+                    <label class="bmd-label-floating" for="user_sobrenome">Sobrenome</label>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="email" placeholder=" ">

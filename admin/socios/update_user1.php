@@ -30,8 +30,8 @@ if ($conn->connect_error) {
 
 // Receber os dados do formulário
 $user_id = $_POST['user_id'];
-$nome = $_POST['nome'];
-$sobrenome = $_POST['sobrenome'];
+$user_nome = $_POST['nome'];
+$user_sobrenome = $_POST['sobrenome'];
 $email = $_POST['email'];
 $telef = $_POST['telef'];
 $morada = $_POST['morada'];
@@ -100,12 +100,12 @@ $stmt->bind_param($param_types, ...$params);
 
 if ($stmt->execute()) {
     // Atualizar os dados da sessão
-    $_SESSION['user_name'] = $nome;
-    $_SESSION['user_surname'] = $sobrenome;
+    $_SESSION['user_nome'] = $nome;
+    $_SESSION['user_sobrenome'] = $sobrenome;
     $_SESSION['user_email'] = $email;
     $_SESSION['telef'] = $telef;
     $_SESSION['morada'] = $morada;
-    $_SESSION['data_nasc'] = $data_nasc;
+    $_SESSION['data_nascimento'] = $data_nasc;
     $_SESSION['cod_postal'] = $cod_postal;
     $_SESSION['nif'] = $nif;
     $_SESSION['distrito'] = $distrito;
