@@ -27,7 +27,7 @@ if ($conn->connect_error) {
 // Recuperar dados do usuário da sessão
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_nome'];
-$user_surname = $_SESSION['user_subrenome'];
+$user_surname = $_SESSION['user_sobrenome'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 

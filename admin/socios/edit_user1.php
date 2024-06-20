@@ -8,11 +8,11 @@ checkAdmin();
 // Recuperar dados do usuário da sessão
 $user_id = $SESSION['user_id'];
 $user_nome = $_SESSION['user_nome'];
-$user_subrenome = $_SESSION['user_subrenome'];
+$user_sobrenome = $_SESSION['user_sobrenome'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
-$user_name1 = $user_nome . ' ' . $user_subrenome;
+$user_name1 = $user_nome . ' ' . $user_sobrenome;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
@@ -304,7 +304,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
     function fillForm(userData) {
         document.getElementById("user_id").value = userData.user_id;
         document.getElementById("nome").value = userData.nome;
-        document.getElementById("subrenome").value = userData.subrenome;
+        document.getElementById("sobrenome").value = userData.sobrenome;
         document.getElementById("email").value = userData.email;
         document.getElementById("telef").value = userData.telef;
         document.getElementById("morada").value = userData.morada;

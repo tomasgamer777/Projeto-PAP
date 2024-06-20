@@ -7,11 +7,11 @@ checkAdmin();
 
 // Recuperar dados do usuário da sessão
 $user_nome = $_SESSION['user_nome'];
-$user_surname = $_SESSION['user_subrenome'];
+$user_surname = $_SESSION['user_sobrenome'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
-$user_name1 = $user_nome . ' ' . $user_subrenome;
+$user_name1 = $user_nome . ' ' . $user_sobrenome;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;

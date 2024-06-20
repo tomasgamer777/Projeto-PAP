@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['morada'] = $row['morada'];
                     $_SESSION['distrito'] = $row['distrito'];
                     $_SESSION['cod_postal'] = $row['cod_postal'];
-                    $_SESSION['user_subrenome'] = $row['sobrenome'];
+                    $_SESSION['user_sobrenome'] = $row['sobrenome'];
                     $_SESSION['nif'] = $row['nif'];
                     $_SESSION['status'] = $row['status'];
                     $_SESSION['user_email'] = $row['email']; // Email do usuário
