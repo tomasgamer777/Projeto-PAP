@@ -421,8 +421,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
                           <label for="tipo">Tipo</label>
                           <select class="selectpicker form-control" data-size="7" data-style="select-with-transition" title="Single Select" id="tipo" name="tipo">
                             <option disabled selected>Tipo</option>
-                            <option value="0">Para aceitar</option>
-                            <option value="1">Aluno</option>
                             <option value="2">Músico</option>
                             <option value="3">Sócio</option>
                             <option value="4">Admin</option>
