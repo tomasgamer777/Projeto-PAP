@@ -392,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data.success) {
                 fillForm(data.data);
             } else {
-                console.error("Erro ao obter dados do usuário: ", data.message);
+                console.error("Erro ao obter dados do utilizador: ", data.message);
             }
         })
         .catch(error => console.error('Erro na requisição: ', error));
@@ -461,7 +461,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Sucesso',
-                    text: 'Usuário atualizado com sucesso!'
+                    text: 'Utilizador atualizado com sucesso!'
                 }).then(() => {
                     // Recarregar a página após o alerta
                     window.location.reload();
@@ -470,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro',
-                    text: 'Erro ao atualizar usuário: ' + data.message
+                    text: 'Erro ao atualizar o utilizador: ' + data.message
                 });
             }
         })
