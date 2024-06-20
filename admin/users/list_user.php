@@ -317,12 +317,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
                                         
                                         // Verifica o valor do campo "tipo" e exibe o status correspondente
                                         switch ($row["tipo"]) {
-                                            case 0:
-                                                echo "<td><span style='background-color: #ffcc00; color: black; padding: 2px 5px; border-radius: 3px;'>Para aceitação</span></td>";
-                                                break;
-                                            case 1:
-                                                echo "<td><span style='background-color: #ffeb3b; color: black; padding: 2px 5px; border-radius: 3px;'>Aluno</span></td>";
-                                                break;
                                             case 2:
                                                 echo "<td><span style='background-color: #f44336; color: white; padding: 2px 5px; border-radius: 3px;'>Músico</span></td>";
                                                 break;
@@ -331,12 +325,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
                                                 break;
                                             case 4:
                                                 echo "<td><span style='background-color: #9c27b0; color: white; padding: 2px 5px; border-radius: 3px;'>Admin</span></td>";
-                                                break;
-                                            case 5:
-                                                echo "<td><span style='background-color: #673ab7; color: white; padding: 2px 5px; border-radius: 3px;'>Encarregado de Educação</span></td>";
-                                                break;
-                                            case 6:
-                                                echo "<td><span style='background-color: #009688; color: white; padding: 2px 5px; border-radius: 3px;'>Professor</span></td>";
                                                 break;
                                             default:
                                                 echo "<td>" . $row["tipo"] . "</td>";
