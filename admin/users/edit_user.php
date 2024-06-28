@@ -771,7 +771,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                     });
                 } else {
                     // Mostrar uma mensagem de erro com SweetAlert
-                    swal("Erro", response.message || "Ocorreu um erro ao atualizar o usuário.", "error");
+                    swal("Erro", response.message || "Ocorreu um erro ao atualizar o utilizador.", "error");
                 }
             } catch (e) {
                 // Mostrar uma mensagem de erro com SweetAlert para resposta inesperada

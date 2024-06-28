@@ -79,9 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verificar se a atualização foi bem-sucedida
         if ($stmt->affected_rows > 0) {
-            echo json_encode(["success" => true, "message" => "As informações do usuário foram atualizadas com sucesso."]);
+            echo json_encode(["success" => true, "message" => "As informações do utilizador foram atualizadas com sucesso."]);
         } else {
-            echo json_encode(["success" => false, "message" => "Nenhuma alteração foi feita nas informações do usuário."]);
+            echo json_encode(["success" => false, "message" => "Nenhuma alteração foi feita nas informações do utilizador."]);
         }
 
         // Fechar a conexão com o banco de dados e liberar os recursos

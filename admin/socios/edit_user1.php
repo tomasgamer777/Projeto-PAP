@@ -219,12 +219,12 @@ $user_photo_path = '/admin/users/' . $user_photo;
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="nome" placeholder=" ">
-                    <label class="bmd-label-floating" for="nome">Nome</label>
+                    <input type="text" class="form-control" id="user_nome" placeholder=" ">
+                    <label class="bmd-label-floating" for="user_nome">Nome</label>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="sobrenome" placeholder=" ">
-                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
+                    <input type="text" class="form-control" id="user_sobrenome" placeholder=" ">
+                    <label class="bmd-label-floating" for="user_sobrenome">Sobrenome</label>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="email" placeholder=" ">
@@ -303,8 +303,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
         document.getElementById("user_id").value = userData.user_id;
-        document.getElementById("nome").value = userData.nome;
-        document.getElementById("sobrenome").value = userData.sobrenome;
+        document.getElementById("user_nome").value = userData.nome;
+        document.getElementById("user_sobrenome").value = userData.sobrenome;
         document.getElementById("email").value = userData.email;
         document.getElementById("telef").value = userData.telef;
         document.getElementById("morada").value = userData.morada;

@@ -30,8 +30,8 @@ if ($conn->connect_error) {
 
 // Receber os dados do formulário
 $user_id = $_POST['user_id'];
-$user_nome = $_POST['nome'];
-$user_sobrenome = $_POST['sobrenome'];
+$user_nome = $_POST['user_nome'];
+$user_sobrenome = $_POST['user_sobrenome'];
 $email = $_POST['email'];
 $telef = $_POST['telef'];
 $morada = $_POST['morada'];
