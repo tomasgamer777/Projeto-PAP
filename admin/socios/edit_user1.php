@@ -86,10 +86,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-      <a href="../dashboard.php" class="simple-text logo-mini">
+      <a href="dashboard_socios.php" class="simple-text logo-mini">
         AM
       </a>
-      <a href="../dashboard.php"class="simple-text logo-normal">
+      <a href="dashboard_socios.php"class="simple-text logo-normal">
         ADMIN
       </a>
     </div>
