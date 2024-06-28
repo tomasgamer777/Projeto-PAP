@@ -527,9 +527,6 @@ $(document).ready(function() {
                         title: 'Sucesso!',
                         text: response.message,
                         confirmButtonText: 'OK'
-                    }).then(function() {
-                        // Redireciona ou realiza outras ações após o sucesso
-                        window.location.href = 'pagina_sucesso.php';
                     });
                 } else {
                     Swal.fire({
