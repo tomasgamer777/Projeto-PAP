@@ -75,8 +75,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
       <div class="logo">
-        <a href="dashboard.php" class="simple-text logo-mini">MM</a>
-        <a href="dashboard.php" class="simple-text logo-normal">Menu Músico</a>
+        <a href="dashboard_musicos.php" class="simple-text logo-mini">MM</a>
+        <a href="dashboard_musicos.php" class="simple-text logo-normal">Menu Músico</a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
@@ -104,7 +104,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
         <ul class="nav">
           <li class="nav-item active">
-            <a class="nav-link" href="calendar.php">
+            <a class="nav-link" href="dashboard_musicos.php">
               <i class="material-icons">calendar_today</i>
               <p> Calendário </p>
             </a>
@@ -134,7 +134,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../dashboard.php">
+                <a class="nav-link" href="dashboard_musicos.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">
                     Stats
