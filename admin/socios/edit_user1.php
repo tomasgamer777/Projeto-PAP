@@ -120,17 +120,77 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
       </div>
       <ul class="nav">
-        <li class="nav-item active ">
-          <a class="nav-link" href="dashboard_socios.php">
+        <li class="nav-item  ">
+          <a class="nav-link" href="../dashboard.php">
             <i class="material-icons">dashboard</i>
-            <p> Pagamento de quotas </p>
+            <p> Menu Principal </p>
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="calendar.php">
+          <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+            <i class="material-icons">person</i>
+            <p> Utilizadores
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="formsExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../users/add_users.php">
+                  <i class="material-icons"> person_add_alt </i>
+                  <span class="sidebar-normal"> Adicionar Utilizador </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../users/list_user.php">
+                  <i class="material-icons"> list </i>
+                  <span class="sidebar-normal"> lista de Utilizadores </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../calendar.php">
             <i class="material-icons">calendar_today</i>
             <p> Calendário </p>
           </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../notificacoes.php">
+            <i class="material-icons">notifications</i>
+            <p> Notificações </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#website">
+            <i class="material-icons">public</i>
+            <p> Editar Website
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="website">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../edithomepage.php">
+                  <i class="material-icons"> house </i>
+                  <span class="sidebar-normal"> Página Principal </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../editgalery.php">
+                  <i class="material-icons"> collections </i>
+                  <span class="sidebar-normal"> Galeria </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="../editblog.php">
+                  <i class="material-icons"> newspaper </i>
+                  <span class="sidebar-normal"> Blog </span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
@@ -223,8 +283,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
                     <label class="bmd-label-floating" for="nome">Nome</label>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="user_sobrenome" placeholder=" ">
-                    <label class="bmd-label-floating" for="user_sobrenome">Sobrenome</label>
+                    <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="email" placeholder=" ">
@@ -299,7 +359,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
     </form>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
         document.getElementById("user_id").value = userData.user_id;
@@ -312,10 +372,10 @@ $user_photo_path = '/admin/users/' . $user_photo;
         document.getElementById("cod_postal").value = userData.cod_postal;
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
-        
+
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
-            document.getElementById("wizardPicturePreview").src = '../users/' + userData.foto;
+            document.getElementById("wizardPicturePreview").src = userData.foto;
         } else {
             // Se não houver foto, exibir a imagem padrão
             document.getElementById("wizardPicturePreview").src = '../assets/img/default-avatar.png';
@@ -332,7 +392,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
             if (data.success) {
                 fillForm(data.data);
             } else {
-                console.error("Erro ao obter dados do usuário: ", data.message);
+                console.error("Erro ao obter dados do utilizador: ", data.message);
             }
         })
         .catch(error => console.error('Erro na requisição: ', error));
@@ -354,9 +414,6 @@ $user_photo_path = '/admin/users/' . $user_photo;
 
             if (file) {
                 reader.readAsDataURL(file);
-            } else {
-                // Caso não haja arquivo selecionado, exibe a imagem padrão
-                previewImage.src = '../assets/img/default-avatar.png';
             }
         });
     }
@@ -404,7 +461,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 Swal.fire({
                     icon: 'success',
                     title: 'Sucesso',
-                    text: 'Usuário atualizado com sucesso!'
+                    text: 'Utilizador atualizado com sucesso!'
                 }).then(() => {
                     // Recarregar a página após o alerta
                     window.location.reload();
@@ -413,7 +470,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro',
-                    text: 'Erro ao atualizar usuário: ' + data.message
+                    text: 'Erro ao atualizar o utilizador: ' + data.message
                 });
             }
         })
