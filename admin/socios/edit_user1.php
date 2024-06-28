@@ -303,8 +303,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
         document.getElementById("user_id").value = userData.user_id;
-        document.getElementById("user_nome").value = userData.nome;
-        document.getElementById("user_sobrenome").value = userData.sobrenome;
+        document.getElementById("user_nome").value = userData.user_nome;
+        document.getElementById("user_sobrenome").value = userData.user_sobrenome;
         document.getElementById("email").value = userData.email;
         document.getElementById("telef").value = userData.telef;
         document.getElementById("morada").value = userData.morada;
