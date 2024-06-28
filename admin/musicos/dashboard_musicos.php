@@ -41,8 +41,8 @@ $user_photo_path = '/admin/users/' . $user_photo;
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
       <div class="logo">
-        <a href="dashboard.php" class="simple-text logo-mini">MM</a>
-        <a href="dashboard.php" class="simple-text logo-normal">Menu Músico</a>
+        <a href="dashboard_musicos.php" class="simple-text logo-mini">MM</a>
+        <a href="dashboard_musicos.php" class="simple-text logo-normal">Menu Músico</a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
