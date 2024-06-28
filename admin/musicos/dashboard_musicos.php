@@ -70,7 +70,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
         <ul class="nav">
           <li class="nav-item active">
-            <a class="nav-link" href="calendar.php">
+            <a class="nav-link" href="dashboard_musicos.php">
               <i class="material-icons">calendar_today</i>
               <p> Calendário </p>
             </a>
