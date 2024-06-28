@@ -94,7 +94,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
       </a>
     </div>
     <div class="sidebar-wrapper">
-    <div class="user">
+        <div class="user">
             <div class="photo">
                 <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
             </div>
@@ -120,77 +120,17 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
       </div>
       <ul class="nav">
-        <li class="nav-item  ">
-          <a class="nav-link" href="../dashboard.php">
+        <li class="nav-item active ">
+          <a class="nav-link" href="dashboard_socios.php">
             <i class="material-icons">dashboard</i>
-            <p> Menu Principal </p>
+            <p> Pagamento de quotas </p>
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-            <i class="material-icons">person</i>
-            <p> Utilizadores
-              <b class="caret"></b>
-            </p>
-          </a>
-          <div class="collapse" id="formsExamples">
-            <ul class="nav">
-              <li class="nav-item ">
-                <a class="nav-link" href="../users/add_users.php">
-                  <i class="material-icons"> person_add_alt </i>
-                  <span class="sidebar-normal"> Adicionar Utilizador </span>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="../users/list_user.php">
-                  <i class="material-icons"> list </i>
-                  <span class="sidebar-normal"> lista de Utilizadores </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="../calendar.php">
+          <a class="nav-link" href="calendar.php">
             <i class="material-icons">calendar_today</i>
             <p> Calendário </p>
           </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="../notificacoes.php">
-            <i class="material-icons">notifications</i>
-            <p> Notificações </p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" data-toggle="collapse" href="#website">
-            <i class="material-icons">public</i>
-            <p> Editar Website
-              <b class="caret"></b>
-            </p>
-          </a>
-          <div class="collapse" id="website">
-            <ul class="nav">
-              <li class="nav-item ">
-                <a class="nav-link" href="../edithomepage.php">
-                  <i class="material-icons"> house </i>
-                  <span class="sidebar-normal"> Página Principal </span>
-                </a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="../editgalery.php">
-                  <i class="material-icons"> collections </i>
-                  <span class="sidebar-normal"> Galeria </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="../editblog.php">
-                  <i class="material-icons"> newspaper </i>
-                  <span class="sidebar-normal"> Blog </span>
-                </a>
-              </li>
-            </ul>
-          </div>
         </li>
       </ul>
     </div>
@@ -206,7 +146,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="../users/edit_user.html">Editar utilizador</a>
+            <a class="navbar-brand" href="dashboard_socios.php">Pagamento de quotas</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -217,7 +157,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../dashboard.php">
+                <a class="nav-link" href="dashboard_socios.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">
                     Stats
