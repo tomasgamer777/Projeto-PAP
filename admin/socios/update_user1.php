@@ -100,8 +100,8 @@ $stmt->bind_param($param_types, ...$params);
 
 if ($stmt->execute()) {
     // Atualizar os dados da sessão
-    $_SESSION['user_nome'] = $nome;
-    $_SESSION['user_sobrenome'] = $sobrenome;
+    $_SESSION['user_nome'] = $user_nome;
+    $_SESSION['user_sobrenome'] = $user_sobrenome;
     $_SESSION['user_email'] = $email;
     $_SESSION['telef'] = $telef;
     $_SESSION['morada'] = $morada;
