@@ -108,7 +108,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse" id="collapseExample">
             <ul class="nav">
               
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="edit_user1.php">
                   <span class="sidebar-mini"> EP </span>
                   <span class="sidebar-normal"> Editar Perfil </span>
@@ -120,7 +120,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
       </div>
       <ul class="nav">
-        <li class="nav-item active ">
+        <li class="nav-item ">
           <a class="nav-link" href="dashboard_socios.php">
             <i class="material-icons">dashboard</i>
             <p> Pagamento de quotas </p>
