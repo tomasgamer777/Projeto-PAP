@@ -1,16 +1,16 @@
 <?php
-
-
-
-
 session_start();
-
 
 
 require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
-if ($_SESSION['tipo'] == 4){
+if ($_SESSION['tipo'] == 3){
+  echo json_encode(array("success" => true, "redirect" => "/admin/socios/dashboard_socios.php"));
+} else if ($_SESSION['tipo'] == 2){
+  echo json_encode(array("success" => true, "redirect" => "/admin/musicos/dashboard_musicos.php"));
+}
+
 // Recuperar dados do usuário da sessão
 $user_nome = $_SESSION['user_nome'];
 $user_surname = $_SESSION['user_sobrenome'];
@@ -21,7 +21,7 @@ $user_name1 = $user_nome . ' ' . $user_surname;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
-
+?>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -434,11 +434,3 @@ $user_photo_path = '/admin/users/' . $user_photo;
 
 </body>
 </html>
-
-} else if ($_SESSION['tipo'] == 3){
-  echo json_encode(array("success" => true, "redirect" => "/admin/socios/dashboard_socios.php"));
-} else if ($_SESSION['tipo'] == 2){
-  echo json_encode(array("success" => true, "redirect" => "/admin/musicos/dashboard_musicos.php"));
-}
-
-?>

@@ -1,15 +1,9 @@
 <?php
 session_start();
 
-// Função para verificar se o usuário está logado e é administrador
 function checkAdmin() {
     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         header('Location: /admin/login/login.html'); // Caminho relativo para a página de login
-        exit;
-    }
-
-    if (!isset($_SESSION['tipo'])) {
-        header('Location: /permissao_negada.html'); // Caminho relativo para a página de permissão negada
         exit;
     }
 
