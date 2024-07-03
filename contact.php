@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
         formData.append("mensagem", document.getElementById("mensagem").value);
 
         // Enviar os dados para o arquivo PHP usando fetch
-        fetch('processar_formulario.php', {
+        fetch('form.php', {
             method: 'POST',
             body: formData
         })
