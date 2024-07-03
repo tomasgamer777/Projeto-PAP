@@ -30,8 +30,8 @@ if ($conn->connect_error) {
 
 // Receber os dados do formulário
 $user_id = $_POST['user_id'];
-$user_nome = $_POST['user_nome'];
-$user_sobrenome = $_POST['user_sobrenome'];
+$user_nome = $_POST['nome'];
+$user_sobrenome = $_POST['sobrenome'];
 $email = $_POST['email'];
 $telef = $_POST['telef'];
 $morada = $_POST['morada'];
@@ -40,6 +40,10 @@ $cod_postal = $_POST['cod_postal'];
 $nif = $_POST['nif'];
 $distrito = $_POST['distrito'];
 $profile_picture = null;
+
+// Debugging - Verificar se os dados estão sendo recebidos
+error_log("Nome: " . $user_nome);
+error_log("Sobrenome: " . $user_sobrenome);
 
 // Verificar se uma nova imagem de perfil foi enviada
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
@@ -53,28 +57,28 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
     // Verificar se o arquivo é uma imagem válida
     $allowedfileExtensions = ['jpg', 'gif', 'png'];
     if (in_array($fileExtension, $allowedfileExtensions)) {
-        // Limpar o nome do arquivo
+        // Nome do arquivo único
         $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
-        // Caminho para onde a imagem será movida
-        $uploadFileDir = '../users/fotosperfil/';
+        // Diretório de upload
+        $uploadFileDir = '../users/';
         $dest_path = $uploadFileDir . $newFileName;
 
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            $profile_picture = $dest_path;
+            $profile_picture = $newFileName;
         } else {
-            echo json_encode(["success" => false, "message" => "Erro ao mover o arquivo de imagem."]);
+            echo json_encode(["success" => false, "message" => "Erro ao mover a imagem de perfil para o diretório de upload."]);
             exit;
         }
     } else {
-        echo json_encode(["success" => false, "message" => "Formato de arquivo não suportado."]);
+        echo json_encode(["success" => false, "message" => "Apenas arquivos JPG, GIF e PNG são permitidos."]);
         exit;
     }
 }
 
-// Atualizar as informações do usuário no banco de dados
+// Preparar a declaração SQL para atualizar os dados do usuário
 $sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?, tipo=?, status=?";
-$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $user_tipo, $user_status];
+$params = [$user_nome, $user_sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $user_tipo, $user_status];
 
 if ($profile_picture) {
     $sql .= ", foto=? WHERE user_id=?";
@@ -91,12 +95,17 @@ $param_types = str_repeat('s', count($params) - 1) . 'i'; // Tudo como string, e
 $stmt = $conn->prepare($sql);
 
 if ($stmt === false) {
+    error_log("Erro na preparação da consulta: " . $conn->error);
     echo json_encode(["success" => false, "message" => "Erro na preparação da consulta: " . $conn->error]);
     exit;
 }
 
 // Ligando os parâmetros à declaração preparada
 $stmt->bind_param($param_types, ...$params);
+
+// Debugging - Verificar a consulta SQL
+error_log("SQL: " . $sql);
+error_log("Params: " . implode(", ", $params));
 
 if ($stmt->execute()) {
     // Atualizar os dados da sessão
@@ -120,4 +129,5 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
+
 ?>

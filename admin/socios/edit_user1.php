@@ -439,6 +439,11 @@ document.addEventListener("DOMContentLoaded", function() {
         formData.append("nif", document.getElementById("nif").value);
         formData.append("distrito", document.querySelector('select[name="distrito"]').value);
 
+        // Debugging - Verificar se os dados estão sendo enviados
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]); 
+        }
+
         // Verificar se há uma imagem para redimensionar e enviar
         var fileInput = document.getElementById('wizard-picture');
         var file = fileInput.files[0];
@@ -523,6 +528,7 @@ document.addEventListener("DOMContentLoaded", function() {
         reader.readAsDataURL(file);
     }
 });
+
 </script>
 
     <script src="path/to/jquery.js"></script>
