@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = "tomas";
         $password = "!h01fFw35";
         $dbname = "banda";
-    
 
         // Cria conexão
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode(array("status" => "success"));
         } else {
             // Retorna uma resposta JSON indicando erro
-            echo json_encode(array("status" => "error", "message" => "Erro ao excluir notificação."));
+            echo json_encode(array("status" => "error", "message" => "Erro ao excluir notificação: " . $stmt->error));
         }
 
         // Fecha a conexão
