@@ -1,7 +1,12 @@
 <?php
+if ($_SESSION['tipo'] == 4){
+
+
+<?php
 session_start();
 
-// Incluir a função checkAdmin do login.php
+
+
 require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
@@ -428,3 +433,11 @@ $user_photo_path = '/admin/users/' . $user_photo;
 
 </body>
 </html>
+
+} else if ($_SESSION['tipo'] == 3){
+  echo json_encode(array("success" => true, "redirect" => "/admin/socios/dashboard_socios.php"));
+} else if ($_SESSION['tipo'] == 2){
+  echo json_encode(array("success" => true, "redirect" => "/admin/musicos/dashboard_musicos.php"));
+}
+
+?>
