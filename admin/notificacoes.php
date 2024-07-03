@@ -330,7 +330,7 @@ $conn->close();
       <!-- Rodapé do modal (botões de ação) -->
       <div class="modal-footer">
         <button type="button" class="btn btn-info btn-sm" data-dismiss="modal" onclick="exibirModalResposta()">Responder por Email</button>
-        <button type="button" class="btn btn-danger btn-sm" onclick="excluirNotificacao()">Excluir</button>
+       
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Fechar</button>
       </div>
     </div>
