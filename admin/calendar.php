@@ -6,7 +6,7 @@ require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessá
 checkAdmin();
 
 if ($_SESSION['tipo'] == 3){
-  header("Location: " . '/admin/socios/dashboard_socios.php')
+  header("Location: " . '/admin/socios/dashboard_socios.php');
 } else if ($_SESSION['tipo'] == 2){
   echo json_encode(array("success" => true, "redirect" => "/admin/musicos/dashboard_musicos.php"));
 }
