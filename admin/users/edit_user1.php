@@ -114,7 +114,7 @@ $user_photo_path = '../users/' . $user_photo;
           <div class="collapse" id="collapseExample">
             <ul class="nav">
               
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="edit_user1.php">
                   <span class="sidebar-mini"> EP </span>
                   <span class="sidebar-normal"> Editar Perfil </span>
@@ -147,7 +147,7 @@ $user_photo_path = '../users/' . $user_photo;
                   <span class="sidebar-normal"> Adicionar Utilizador </span>
                 </a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="../users/list_user.php">
                   <i class="material-icons"> list </i>
                   <span class="sidebar-normal"> lista de Utilizadores </span>
@@ -183,7 +183,7 @@ $user_photo_path = '../users/' . $user_photo;
                   <span class="sidebar-normal"> Página Principal </span>
                 </a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="../editgalery.php">
                   <i class="material-icons"> collections </i>
                   <span class="sidebar-normal"> Galeria </span>
