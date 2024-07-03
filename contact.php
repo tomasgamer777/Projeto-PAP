@@ -23,7 +23,7 @@
 <style>
 /* Estilo para o botão Enviar mensagem no formulário de contato */
 .contact-form input[type="submit"] {
-    background-color: #007bff; /* Cor de fundo */
+    background-color: #fd5927; /* Cor de fundo */
     color: #fff; /* Cor do texto */
     border: none; /* Remove a borda padrão */
     padding: 10px 20px; /* Espaçamento interno */
