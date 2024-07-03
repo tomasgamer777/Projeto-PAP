@@ -20,7 +20,22 @@
 </head>
 
 <body>
-    
+<style>
+/* Estilo para o botão Enviar mensagem no formulário de contato */
+.contact-form input[type="submit"] {
+    background-color: #007bff; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor de apontar */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.contact-form input[type="submit"]:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+</style>
     <div id="site-content">
         <header class="site-header">
             <div class="container">
@@ -55,7 +70,7 @@
                                 <input type="email" id="email" name="email" placeholder="Email" required>
                                 <input type="text" id="assunto" name="assunto" placeholder="Assunto" required>
                                 <textarea id="mensagem" name="mensagem" placeholder="Mensagem..." required></textarea>
-                                <button type="button" id="enviarMensagem">Enviar mensagem</button>
+                                <input type="submit" name="enviar" value="Enviar mensagem" class="btn-enviar">
                             </form>
                         </div>
                         <div class="col-md-6">
@@ -105,7 +120,9 @@
     
     <script>
     $(document).ready(function() {
-        $('#enviarMensagem').on('click', function() {
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+            
             var nome = $('#nome').val();
             var email = $('#email').val();
             var assunto = $('#assunto').val();
