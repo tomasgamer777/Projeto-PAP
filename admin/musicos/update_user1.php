@@ -74,7 +74,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 
 // Atualizar as informações do usuário no banco de dados
 $sql = "UPDATE users SET nome=?, sobrenome=?, email=?, telef=?, morada=?, data_nasc=?, cod_postal=?, nif=?, distrito=?, tipo=?, status=?";
-$params = [$nome, $sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $user_tipo, $user_status];
+$params = [$user_nome, $user_sobrenome, $email, $telef, $morada, $data_nasc, $cod_postal, $nif, $distrito, $user_tipo, $user_status];
 
 if ($profile_picture) {
     $sql .= ", foto=? WHERE user_id=?";
