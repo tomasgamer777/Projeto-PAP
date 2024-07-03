@@ -7,8 +7,8 @@ checkAdmin();
 
 if ($_SESSION['tipo'] == 4){
   header("Location: " . '/admin/dashboard.php');
-} else if ($_SESSION['tipo'] == 2){
-  header("Location: " . '/admin/musicos/dashboard_musicos.php');
+} else if ($_SESSION['tipo'] == 3){
+  header("Location: " . '/admin/socios/dashboard_socios.php');
 }
 
 // Recuperar dados do usuário da sessão
