@@ -25,15 +25,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO noti (nome, email, assunto, mensagem) VALUES ('$nome', '$email', '$assunto', '$mensagem')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Mensagem enviada com sucesso!');</script>";
+        $response = [
+            'success' => true,
+            'message' => 'Mensagem enviada com sucesso!'
+        ];
     } else {
-        echo "<script>alert('Erro ao enviar mensagem: " . $conn->error . "');</script>";
+        $response = [
+            'success' => false,
+            'message' => 'Erro ao enviar mensagem: ' . $conn->error
+        ];
     }
 
     // Fechar conexão
     $conn->close();
+
+    // Enviar resposta JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit; // Terminar o script após enviar a resposta JSON
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -140,5 +152,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="js/plugins.js"></script>
     <script src="js/app.js"></script>
     
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Função para enviar o formulário via AJAX
+    function enviarFormulario(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        // Seleciona o formulário
+        var form = event.target;
+
+        // Prepara os dados do formulário para envio via AJAX
+        var formData = new FormData(form);
+
+        // Envia a requisição AJAX
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Verifica se a operação foi bem-sucedida
+            if (data.success) {
+                // Mostra um SweetAlert de sucesso
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: data.message,
+                    showConfirmButton: false,
+                    timer: 2000 // Fecha automaticamente após 2 segundos
+                });
+                // Limpa o formulário após o envio
+                form.reset();
+            } else {
+                // Mostra um SweetAlert de erro
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: data.message
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao enviar formulário:', error);
+            // Mostra um SweetAlert de erro genérico
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro!',
+                text: 'Ocorreu um erro ao enviar o formulário. Por favor, tente novamente mais tarde.'
+            });
+        });
+    }
+
+    // Adiciona um ouvinte de evento para o envio do formulário
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.querySelector('.contact-form');
+        form.addEventListener('submit', enviarFormulario);
+    });
+</script>
+
 </body>
 </html>
