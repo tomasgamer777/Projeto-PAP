@@ -2,7 +2,7 @@
 if ($_SESSION['tipo'] == 4){
 
 
-<?php
+
 session_start();
 
 
@@ -20,7 +20,7 @@ $user_name1 = $user_nome . ' ' . $user_surname;
 
 // Construir o caminho completo da foto do usuário
 $user_photo_path = '/admin/users/' . $user_photo;
-?>
+
 
 <!DOCTYPE html>
 <html lang="pt">
