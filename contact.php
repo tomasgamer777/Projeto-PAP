@@ -20,22 +20,7 @@
 </head>
 
 <body>
-<style>
-/* Estilo para o botão Enviar mensagem no formulário de contato */
-.contact-form input[type="submit"] {
-    background-color: #fd5927; /* Cor de fundo */
-    color: #fff; /* Cor do texto */
-    border: none; /* Remove a borda padrão */
-    padding: 10px 20px; /* Espaçamento interno */
-    cursor: pointer; /* Cursor de apontar */
-    transition: background-color 0.3s ease; /* Transição suave */
-}
-
-.contact-form input[type="submit"]:hover {
-    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
-}
-
-</style>
+    
     <div id="site-content">
         <header class="site-header">
             <div class="container">
@@ -65,7 +50,7 @@
                     <h2 class="page-title">Contacte-nos</h2>
                     <div class="row">
                         <div class="col-md-6">
-                            <form id="contactForm" class="contact-form">
+                            <form id="contactForm" class="contact-form" method="post">
                                 <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
                                 <input type="email" id="email" name="email" placeholder="Email" required>
                                 <input type="text" id="assunto" name="assunto" placeholder="Assunto" required>
@@ -116,30 +101,36 @@
     <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>   
     <script src="js/plugins.js"></script>
     <script src="js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- SweetAlert2 -->
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <script>
     $(document).ready(function() {
-        $('#contactForm').on('submit', function(e) {
-            e.preventDefault();
-            
-            var nome = $('#nome').val();
-            var email = $('#email').val();
-            var assunto = $('#assunto').val();
-            var mensagem = $('#mensagem').val();
-            
+        $('#contactForm').submit(function(event) {
+            event.preventDefault(); // Evita que o formulário seja enviado pelo método padrão
+
+            // Coleta dados do formulário
+            var formData = {
+                'nome': $('#nome').val(),
+                'email': $('#email').val(),
+                'assunto': $('#assunto').val(),
+                'mensagem': $('#mensagem').val()
+            };
+
+            // Envia requisição AJAX
             $.ajax({
                 type: 'POST',
-                url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
-                data: { nome: nome, email: email, assunto: assunto, mensagem: mensagem },
+                url: 'form.php', // Script PHP que processa o formulário
+                data: formData,
+                dataType: 'text',
+                encode: true,
                 success: function(response) {
-                    if (response.trim() == 'Mensagem enviada com sucesso!') {
+                    if (response.includes('sucesso')) {
                         Swal.fire({
                             icon: 'success',
                             title: 'Sucesso',
-                            text: response
+                            text: 'Mensagem enviada com sucesso!'
                         });
-                        // Limpar os campos do formulário após o envio bem-sucedido
+                        // Limpa os campos do formulário após o envio
                         $('#nome').val('');
                         $('#email').val('');
                         $('#assunto').val('');
