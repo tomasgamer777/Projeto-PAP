@@ -38,7 +38,7 @@ $user_photo_path = '../users/' . $user_photo;
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    ADMIN SFLP
+    Menu Sócios
   </title>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -93,10 +93,10 @@ $user_photo_path = '../users/' . $user_photo;
     -->
     <div class="logo">
       <a href="../dashboard.php" class="simple-text logo-mini">
-        AM
+        MM
       </a>
       <a href="../dashboard.php"class="simple-text logo-normal">
-        ADMIN
+        MENU MUSICOS
       </a>
     </div>
     <div class="sidebar-wrapper">
