@@ -415,7 +415,7 @@ function excluirNotificacao() {
         if (result.isConfirmed) {
             // Requisição AJAX para excluir notificação
             $.ajax({
-                url: 'excluir-notificacao.php', // Caminho para o arquivo PHP
+                url: 'excluir.php', // Caminho para o arquivo PHP
                 type: 'POST',
                 dataType: 'json', // Tipo de dado que se espera receber
                 data: { id: notiId }, // Dados a serem enviados (ID da notificação)
