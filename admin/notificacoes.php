@@ -310,7 +310,14 @@ $conn->close();
 <div class="modal fade" id="modalDetalhesNotificacao" tabindex="-1" role="dialog" aria-labelledby="modalDetalhesNotificacaoLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <!-- Conteúdo do modal (detalhes da notificação) -->
+      <!-- Cabeçalho do modal -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDetalhesNotificacaoLabel">Detalhes da Notificação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- Corpo do modal (detalhes da notificação) -->
       <div class="modal-body">
         <input type="hidden" id="notiId">
         <!-- Detalhes da notificação exibidos aqui -->
@@ -322,9 +329,8 @@ $conn->close();
       </div>
       <!-- Rodapé do modal (botões de ação) -->
       <div class="modal-footer">
-        <!-- Botão para excluir a notificação -->
-        <button type="button" class="btn btn-danger btn-sm" id="btnExcluirNotificacao" onclick="excluirNotificacao()">Excluir</button>
         <button type="button" class="btn btn-info btn-sm" data-dismiss="modal" onclick="exibirModalResposta()">Responder por Email</button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="excluirNotificacao()">Excluir</button>
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Fechar</button>
       </div>
     </div>
@@ -398,66 +404,7 @@ $conn->close();
    
 </script>
 
-<script>
-function excluirNotificacao() {
-    var notiId = $('#notiId').val(); // Verifica se você realmente precisa disso
 
-    // Confirmar exclusão com SweetAlert2
-    Swal.fire({
-        title: 'Excluir Notificação',
-        text: 'Tem certeza que deseja excluir esta notificação?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Sim, excluir'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Requisição AJAX para excluir notificação
-            $.ajax({
-                url: 'excluir.php', // Caminho para o arquivo PHP
-                type: 'POST',
-                dataType: 'json', // Tipo de dado que se espera receber
-                data: { id: notiId }, // Dados a serem enviados (ID da notificação)
-                success: function(response) {
-                    // Verifica a resposta do servidor
-                    if (response.status === 'success') {
-                        // Notificação de sucesso com SweetAlert2
-                        Swal.fire({
-                            title: 'Excluído!',
-                            text: 'Notificação excluída com sucesso.',
-                            icon: 'success',
-                            timer: 1500,
-                            timerProgressBar: true,
-                            showConfirmButton: false
-                        });
-
-                        // Atualizar a interface ou fazer outras ações necessárias após a exclusão
-                        // Por exemplo, recarregar uma lista de notificações, etc.
-                    } else {
-                        // Notificação de erro com SweetAlert2
-                        Swal.fire({
-                            title: 'Erro!',
-                            text: 'Ocorreu um erro ao excluir a notificação.',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // Notificação de erro com SweetAlert2
-                    Swal.fire({
-                        title: 'Erro!',
-                        text: 'Ocorreu um erro ao excluir a notificação.',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            });
-        }
-    });
-}
-</script>
 
 
 
