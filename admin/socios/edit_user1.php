@@ -152,7 +152,7 @@ $user_photo_path = '../users/' . $user_photo;
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="../users/edit_user.html">Editar utilizador</a>
+            <a class="navbar-brand" href="../users/edit_user.html">Editar Perfil</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
