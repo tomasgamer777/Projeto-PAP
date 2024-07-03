@@ -7,8 +7,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-$user_tipo = isset($_SESSION['tipo']) ? $_SESSION['tipo'] : null;
-$user_status = isset($_SESSION['status']) ? $_SESSION['status'] : null;
+$user_tipo = $_SESSION['tipo'] ?? null;
+$user_status = $_SESSION['status'] ?? null;
 
 // Verificar se tipo ou status estão nulos
 if ($user_tipo === null || $user_status === null) {
@@ -25,21 +25,27 @@ $dbname = "banda";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+    echo json_encode(["success" => false, "message" => "Falha na conexão: " . $conn->connect_error]);
+    exit;
 }
 
 // Receber os dados do formulário
-$user_id = $_POST['user_id'];
-$nome = $_POST['nome'];
-$sobrenome = $_POST['sobrenome'];
-$email = $_POST['email'];
-$telef = $_POST['telef'];
-$morada = $_POST['morada'];
-$data_nasc = $_POST['data_nasc'];
-$cod_postal = $_POST['cod_postal'];
-$nif = $_POST['nif'];
-$distrito = $_POST['distrito'];
+$user_id = $_POST['user_id'] ?? null;
+$nome = $_POST['nome'] ?? '';
+$sobrenome = $_POST['sobrenome'] ?? '';
+$email = $_POST['email'] ?? '';
+$telef = $_POST['telef'] ?? '';
+$morada = $_POST['morada'] ?? '';
+$data_nasc = $_POST['data_nasc'] ?? '';
+$cod_postal = $_POST['cod_postal'] ?? '';
+$nif = $_POST['nif'] ?? '';
+$distrito = $_POST['distrito'] ?? '';
 $profile_picture = null;
+
+if (!$user_id || !is_numeric($user_id)) {
+    echo json_encode(["success" => false, "message" => "ID do usuário inválido."]);
+    exit;
+}
 
 // Verificar se uma nova imagem de perfil foi enviada
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
@@ -105,7 +111,7 @@ if ($stmt->execute()) {
     $_SESSION['user_email'] = $email;
     $_SESSION['telef'] = $telef;
     $_SESSION['morada'] = $morada;
-    $_SESSION['data_nasc'] = $data_nasc;
+    $_SESSION['data_nascimento'] = $data_nasc;
     $_SESSION['cod_postal'] = $cod_postal;
     $_SESSION['nif'] = $nif;
     $_SESSION['distrito'] = $distrito;
