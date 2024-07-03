@@ -5,8 +5,8 @@ session_start();
 require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
-if ($_SESSION['tipo'] == 4){
-  header("Location: " . '/admin/dashboard.php');
+if ($_SESSION['tipo'] == 3){
+  header("Location: " . '/admin/socios/dashboard_socios.php');
 } else if ($_SESSION['tipo'] == 2){
   header("Location: " . '/admin/musicos/dashboard_musicos.php');
 }
@@ -21,7 +21,7 @@ $user_photo = $_SESSION['user_photo'];
 $user_name1 = $user_nome . ' ' . $user_sobrenome;
 
 // Construir o caminho completo da foto do usuário
-$user_photo_path = '/admin/users/' . $user_photo;
+$user_photo_path = '../users/' . $user_photo;
 ?>
 
 
@@ -92,15 +92,15 @@ $user_photo_path = '/admin/users/' . $user_photo;
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-      <a href="dashboard_socios.php" class="simple-text logo-mini">
+      <a href="../dashboard.php" class="simple-text logo-mini">
         AM
       </a>
-      <a href="dashboard_socios.php"class="simple-text logo-normal">
+      <a href="../dashboard.php"class="simple-text logo-normal">
         ADMIN
       </a>
     </div>
     <div class="sidebar-wrapper">
-        <div class="user">
+    <div class="user">
             <div class="photo">
                 <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
             </div>
@@ -114,7 +114,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse" id="collapseExample">
             <ul class="nav">
               
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="edit_user1.php">
                   <span class="sidebar-mini"> EP </span>
                   <span class="sidebar-normal"> Editar Perfil </span>
@@ -126,17 +126,77 @@ $user_photo_path = '/admin/users/' . $user_photo;
         </div>
       </div>
       <ul class="nav">
-        <li class="nav-item ">
-          <a class="nav-link" href="dashboard_socios.php">
+        <li class="nav-item  ">
+          <a class="nav-link" href="../dashboard.php">
             <i class="material-icons">dashboard</i>
-            <p> Pagamento de quotas </p>
+            <p> Menu Principal </p>
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="calendar.php">
+          <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+            <i class="material-icons">person</i>
+            <p> Utilizadores
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="formsExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../users/add_users.php">
+                  <i class="material-icons"> person_add_alt </i>
+                  <span class="sidebar-normal"> Adicionar Utilizador </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../users/list_user.php">
+                  <i class="material-icons"> list </i>
+                  <span class="sidebar-normal"> lista de Utilizadores </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../calendar.php">
             <i class="material-icons">calendar_today</i>
             <p> Calendário </p>
           </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../notificacoes.php">
+            <i class="material-icons">notifications</i>
+            <p> Notificações </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#website">
+            <i class="material-icons">public</i>
+            <p> Editar Website
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="website">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../edithomepage.php">
+                  <i class="material-icons"> house </i>
+                  <span class="sidebar-normal"> Página Principal </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../editgalery.php">
+                  <i class="material-icons"> collections </i>
+                  <span class="sidebar-normal"> Galeria </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="../editblog.php">
+                  <i class="material-icons"> newspaper </i>
+                  <span class="sidebar-normal"> Blog </span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
@@ -152,7 +212,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="dashboard_socios.php"> Editar Perfil </a>
+            <a class="navbar-brand" href="../users/edit_user.html">Editar utilizador</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -163,7 +223,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="dashboard_socios.php">
+                <a class="nav-link" href="../dashboard.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">
                     Stats
@@ -225,12 +285,12 @@ $user_photo_path = '/admin/users/' . $user_photo;
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="user_nome" placeholder=" ">
-                    <label class="bmd-label-floating" for="user_nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder=" ">
+                    <label class="bmd-label-floating" for="nome">Nome</label>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="user_sobrenome" placeholder=" ">
-                    <label class="bmd-label-floating" for="user_sobrenome">Sobrenome</label>
+                    <input type="text" class="form-control" id="sobrenome" placeholder=" ">
+                    <label class="bmd-label-floating" for="sobrenome">Sobrenome</label>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="email" placeholder=" ">
@@ -309,8 +369,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Função para preencher o formulário com dados do usuário
     function fillForm(userData) {
         document.getElementById("user_id").value = userData.user_id;
-        document.getElementById("user_nome").value = userData.user_nome;
-        document.getElementById("user_sobrenome").value = userData.user_sobrenome;
+        document.getElementById("nome").value = userData.nome;
+        document.getElementById("sobrenome").value = userData.sobrenome;
         document.getElementById("email").value = userData.email;
         document.getElementById("telef").value = userData.telef;
         document.getElementById("morada").value = userData.morada;
