@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if ($_SESSION['tipo'] == 3){
+  header("Location: " . '/admin/socios/dashboard_socios.php');
+} else if ($_SESSION['tipo'] == 4){
+  header("Location: " . '/admin/dashboard.php');
+}
+
 // Incluir a função checkAdmin do login.php
 require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();

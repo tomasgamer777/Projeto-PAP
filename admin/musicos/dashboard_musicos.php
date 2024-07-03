@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+if ($_SESSION['tipo'] == 4){
+  header("Location: " . '/admin/dashboard.php');
+} else if ($_SESSION['tipo'] == 3){
+  header("Location: " . '/admin/socios/dashboard_socios.php');
+}
+
+
 // Recuperar dados do usuário da sessão
 $user_nome = $_SESSION['user_nome'];
 $user_surname = $_SESSION['user_sobrenome'];

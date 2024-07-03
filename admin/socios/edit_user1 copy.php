@@ -5,6 +5,12 @@ session_start();
 require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
+if ($_SESSION['tipo'] == 4){
+  header("Location: " . '/admin/dashboard.php');
+} else if ($_SESSION['tipo'] == 2){
+  header("Location: " . '/admin/musicos/dashboard_musicos.php');
+}
+
 // Recuperar dados do usuário da sessão
 $user_id = $SESSION['user_id'];
 $user_nome = $_SESSION['user_nome'];
