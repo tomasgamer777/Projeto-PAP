@@ -1,27 +1,27 @@
 <?php
 session_start();
 
-if ($_SESSION['tipo'] == 3){
-  header("Location: " . '/admin/socios/dashboard_socios.php');
-} else if ($_SESSION['tipo'] == 4){
-  header("Location: " . '/admin/dashboard.php');
-}
-
 // Incluir a função checkAdmin do login.php
 require_once __DIR__ . '/../login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
+if ($_SESSION['tipo'] == 4){
+  header("Location: " . '/admin/dashboard.php');
+} else if ($_SESSION['tipo'] == 2){
+  header("Location: " . '/admin/musicos/dashboard_musicos.php');
+}
+
 // Recuperar dados do usuário da sessão
 $user_id = $SESSION['user_id'];
 $user_nome = $_SESSION['user_nome'];
-$user_surname = $_SESSION['user_sobrenome'];
+$user_sobrenome = $_SESSION['user_sobrenome'];
 $user_email = $_SESSION['user_email'];
 $user_photo = $_SESSION['user_photo'];
 
-$user_name1 = $user_nome . ' ' . $user_surname;
+$user_name1 = $user_nome . ' ' . $user_sobrenome;
 
 // Construir o caminho completo da foto do usuário
-$user_photo_path = '/admin/users/' . $user_photo;
+$user_photo_path = '../users/' . $user_photo;
 ?>
 
 
@@ -78,46 +78,129 @@ $user_photo_path = '/admin/users/' . $user_photo;
 </head>
 
 <body class="">
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
-      <div class="logo">
-        <a href="dashboard_musicos.php" class="simple-text logo-mini">MM</a>
-        <a href="dashboard_musicos.php" class="simple-text logo-normal">Menu Músico</a>
-      </div>
-      <div class="sidebar-wrapper">
-        <div class="user">
-          <div class="photo">
-            <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
-          </div>
-          <div class="user-info">
-            <a data-toggle="collapse" href="#collapseExample" class="username">
-              <span>
-                <?php echo htmlspecialchars($user_name1); ?>
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="edit_user1.php">
-                    <span class="sidebar-mini"> EP </span>
-                    <span class="sidebar-normal"> Editar Perfil </span>
-                  </a>
-                </li>
-              </ul>
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+    <div class="logo">
+      <a href="../dashboard.php" class="simple-text logo-mini">
+        AM
+      </a>
+      <a href="../dashboard.php"class="simple-text logo-normal">
+        ADMIN
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+    <div class="user">
+            <div class="photo">
+                <img src="<?php echo htmlspecialchars($user_photo_path); ?>" alt="Foto do utilizador" />
             </div>
+            <div class="user-info">
+                <a data-toggle="collapse" href="#collapseExample" class="username">
+                    <span>
+                        <?php echo htmlspecialchars($user_name1); ?>
+                        <b class="caret"></b>
+                    </span>
+                </a>
+          <div class="collapse" id="collapseExample">
+            <ul class="nav">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="edit_user1.php">
+                  <span class="sidebar-mini"> EP </span>
+                  <span class="sidebar-normal"> Editar Perfil </span>
+                </a>
+              </li>
+              
+            </ul>
           </div>
         </div>
-        <ul class="nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="dashboard_musicos.php">
-              <i class="material-icons">calendar_today</i>
-              <p> Calendário </p>
-            </a>
-          </li>
-        </ul>
       </div>
+      <ul class="nav">
+        <li class="nav-item  ">
+          <a class="nav-link" href="../dashboard.php">
+            <i class="material-icons">dashboard</i>
+            <p> Menu Principal </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+            <i class="material-icons">person</i>
+            <p> Utilizadores
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="formsExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../users/add_users.php">
+                  <i class="material-icons"> person_add_alt </i>
+                  <span class="sidebar-normal"> Adicionar Utilizador </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../users/list_user.php">
+                  <i class="material-icons"> list </i>
+                  <span class="sidebar-normal"> lista de Utilizadores </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../calendar.php">
+            <i class="material-icons">calendar_today</i>
+            <p> Calendário </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../notificacoes.php">
+            <i class="material-icons">notifications</i>
+            <p> Notificações </p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#website">
+            <i class="material-icons">public</i>
+            <p> Editar Website
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="website">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="../edithomepage.php">
+                  <i class="material-icons"> house </i>
+                  <span class="sidebar-normal"> Página Principal </span>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../editgalery.php">
+                  <i class="material-icons"> collections </i>
+                  <span class="sidebar-normal"> Galeria </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="../editblog.php">
+                  <i class="material-icons"> newspaper </i>
+                  <span class="sidebar-normal"> Blog </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
   <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
@@ -140,7 +223,7 @@ $user_photo_path = '/admin/users/' . $user_photo;
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="dashboard_musicos.php">
+                <a class="nav-link" href="../dashboard.php">
                   <i class="material-icons">dashboard</i>
                   <p class="d-lg-none d-md-block">
                     Stats
@@ -295,7 +378,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cod_postal").value = userData.cod_postal;
         document.getElementById("nif").value = userData.nif;
         document.getElementById("distrito").value = userData.distrito;
-        
+
         // Exibir a foto de perfil, se existir
         if (userData.foto) {
             document.getElementById("wizardPicturePreview").src = '../users/' + userData.foto;
@@ -315,7 +398,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data.success) {
                 fillForm(data.data);
             } else {
-                console.error("Erro ao obter dados do usuário: ", data.message);
+                console.error("Erro ao obter dados do utilizador: ", data.message);
             }
         })
         .catch(error => console.error('Erro na requisição: ', error));
@@ -337,9 +420,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (file) {
                 reader.readAsDataURL(file);
-            } else {
-                // Caso não haja arquivo selecionado, exibe a imagem padrão
-                previewImage.src = '../assets/img/default-avatar.png';
             }
         });
     }
@@ -387,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Sucesso',
-                    text: 'Usuário atualizado com sucesso!'
+                    text: 'Utilizador atualizado com sucesso!'
                 }).then(() => {
                     // Recarregar a página após o alerta
                     window.location.reload();
@@ -396,7 +476,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro',
-                    text: 'Erro ao atualizar usuário: ' + data.message
+                    text: 'Erro ao atualizar o utilizador: ' + data.message
                 });
             }
         })

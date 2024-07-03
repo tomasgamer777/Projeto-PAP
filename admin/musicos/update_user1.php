@@ -7,8 +7,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-$user_tipo = $_SESSION['tipo'] ?? null;
-$user_status = $_SESSION['status'] ?? null;
+$user_tipo = isset($_SESSION['tipo']) ? $_SESSION['tipo'] : null;
+$user_status = isset($_SESSION['status']) ? $_SESSION['status'] : null;
 
 // Verificar se tipo ou status estão nulos
 if ($user_tipo === null || $user_status === null) {
@@ -25,27 +25,21 @@ $dbname = "banda";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    echo json_encode(["success" => false, "message" => "Falha na conexão: " . $conn->connect_error]);
-    exit;
+    die("Falha na conexão: " . $conn->connect_error);
 }
 
 // Receber os dados do formulário
-$user_id = $_POST['user_id'] ?? null;
-$nome = $_POST['nome'] ?? '';
-$sobrenome = $_POST['sobrenome'] ?? '';
-$email = $_POST['email'] ?? '';
-$telef = $_POST['telef'] ?? '';
-$morada = $_POST['morada'] ?? '';
-$data_nasc = $_POST['data_nasc'] ?? '';
-$cod_postal = $_POST['cod_postal'] ?? '';
-$nif = $_POST['nif'] ?? '';
-$distrito = $_POST['distrito'] ?? '';
+$user_id = $_POST['user_id'];
+$user_nome = $_POST['user_nome'];
+$user_sobrenome = $_POST['user_sobrenome'];
+$email = $_POST['email'];
+$telef = $_POST['telef'];
+$morada = $_POST['morada'];
+$data_nasc = $_POST['data_nasc'];
+$cod_postal = $_POST['cod_postal'];
+$nif = $_POST['nif'];
+$distrito = $_POST['distrito'];
 $profile_picture = null;
-
-if (!$user_id || !is_numeric($user_id)) {
-    echo json_encode(["success" => false, "message" => "ID do usuário inválido."]);
-    exit;
-}
 
 // Verificar se uma nova imagem de perfil foi enviada
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
@@ -106,8 +100,8 @@ $stmt->bind_param($param_types, ...$params);
 
 if ($stmt->execute()) {
     // Atualizar os dados da sessão
-    $_SESSION['user_nome'] = $nome;
-    $_SESSION['user_sobrenome'] = $sobrenome;
+    $_SESSION['user_nome'] = $user_nome;
+    $_SESSION['user_sobrenome'] = $user_sobrenome;
     $_SESSION['user_email'] = $email;
     $_SESSION['telef'] = $telef;
     $_SESSION['morada'] = $morada;
