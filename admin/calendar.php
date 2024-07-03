@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['tipo'] == 4){
+
 
 
 
@@ -10,6 +10,7 @@ session_start();
 require_once __DIR__ . '/login/login.php'; // Ajuste o caminho conforme necessário
 checkAdmin();
 
+if ($_SESSION['tipo'] == 4){
 // Recuperar dados do usuário da sessão
 $user_nome = $_SESSION['user_nome'];
 $user_surname = $_SESSION['user_sobrenome'];
