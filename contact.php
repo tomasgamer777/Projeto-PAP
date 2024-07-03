@@ -1,39 +1,4 @@
-<?php
-// Verifica se o formulário foi submetido
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conectar ao banco de dados (substitua com suas credenciais)
-	$servername = "localhost";
-    $username = "tomas";
-    $password = "!h01fFw35";
-    $dbname = "banda";
 
-    // Criar conexão
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Verificar conexão
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
-
-    // Receber e sanitizar dados do formulário
-    $nome = htmlspecialchars($_POST['nome']);
-    $email = htmlspecialchars($_POST['email']);
-    $assunto = htmlspecialchars($_POST['assunto']);
-    $mensagem = htmlspecialchars($_POST['mensagem']);
-
-    // Preparar e executar a query SQL para inserir na tabela 'noti'
-    $sql = "INSERT INTO noti (nome, email, assunto, mensagem) VALUES ('$nome', '$email', '$assunto', '$mensagem')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Mensagem enviada com sucesso!";
-    } else {
-        echo "Erro ao enviar mensagem: " . $conn->error;
-    }
-
-    // Fechar conexão
-    $conn->close();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="email" name="email" placeholder="Email" required>
                             <input type="text" name="assunto" placeholder="Assunto" required>
                             <textarea name="mensagem" placeholder="Mensagem..." required></textarea>
-                            <input type="submit" name="enviar" value="Enviar mensagem">
+                            <button type="button" id="enviarMensagem">Enviar mensagem</button>
                         </form>
                     </div>
                     <div class="col-md-6">
@@ -118,6 +83,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Adicionar evento de clique ao botão enviarMensagem
+    document.getElementById('enviarMensagem').addEventListener('click', function() {
+        // Coletar os dados do formulário
+        var formData = new FormData();
+        formData.append("nome", document.getElementById("nome").value);
+        formData.append("email", document.getElementById("email").value);
+        formData.append("assunto", document.getElementById("assunto").value);
+        formData.append("mensagem", document.getElementById("mensagem").value);
+
+        // Enviar os dados para o arquivo PHP usando fetch
+        fetch('processar_formulario.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso',
+                    text: 'Mensagem enviada com sucesso!'
+                });
+                // Limpar os campos do formulário após o envio bem-sucedido
+                document.getElementById("nome").value = '';
+                document.getElementById("email").value = '';
+                document.getElementById("assunto").value = '';
+                document.getElementById("mensagem").value = '';
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'Erro ao enviar mensagem: ' + data.message
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Ocorreu um erro na requisição: ' + error
+            });
+            console.error('Erro na requisição: ', error);
+        });
+    });
+});
+
+</script>    
+    
+
 
     <footer class="site-footer">
             <div class="container">
